@@ -55,7 +55,7 @@
                  String userEmail = "" + email.getText().toString();
 
                  if (userEmail == "" || userName == "") {
-                     Toast.makeText(LoginActivity.this, "Enter login details", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(LoginActivity.this, "Enter the registration details", Toast.LENGTH_SHORT).show();
                      return;
                  }
                  new LoginUser().execute(userName, userEmail);
