@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -41,13 +44,13 @@ public class login extends AppCompatActivity {
         accessAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* if (validateRegistrationDetails()) {
+                if (validateRegistrationDetails()) {
                     String userPassword = password.getText().toString().trim();
                     String userEmail = email.getText().toString().trim();
                     new loginUser().execute(userPassword, userEmail);
-                } */
+                }
 
-               openPhotoActivity();
+            //   openPhotoActivity();
             }
         });
     }
@@ -110,10 +113,21 @@ public class login extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if(s == "successful") {
-                openPhotoActivity();
-            } else {
-                Toast.makeText(login.this, s, Toast.LENGTH_SHORT).show();
+
+            try {
+                JSONObject response = new JSONObject(s);
+                boolean error = response.getBoolean("error");
+
+                if (!error) {
+                    //user succefully logged in
+                    //open photoActivity
+                    openPhotoActivity();
+                } else {
+                    Toast.makeText(login.this, "Invalid login details", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }
