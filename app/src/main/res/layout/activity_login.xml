@@ -23,7 +23,6 @@
             android:padding="10dp"
             android:layout_marginTop="150dp"
             android:textColor="#32CD32"
-
             android:background="#fff"
             />
 
@@ -44,6 +43,17 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:layout_marginTop="20dp"
+            />
+
+        <Button
+            android:id="@+id/linkToRegistrationActivity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Not a member? Register now."
+            android:textColor="#fff"
+            android:layout_marginTop="40dp"
+            android:background="@null"
+            android:textAllCaps="false"
             />
 
     </LinearLayout>

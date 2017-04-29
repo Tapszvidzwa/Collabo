@@ -56,7 +56,10 @@
             android:id="@+id/login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="I already have an account. Login here"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@null"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             />

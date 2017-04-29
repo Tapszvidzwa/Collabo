@@ -26,6 +26,7 @@ public class login extends AppCompatActivity {
 
 
     private Button accessAccount;
+    private Button linkToRegistration;
     private EditText password;
     private EditText email;
 
@@ -36,8 +37,18 @@ public class login extends AppCompatActivity {
         setContentView(activity_login);
 
         accessAccount = (Button) findViewById(R.id.accessAccountBtn);
+        linkToRegistration = (Button) findViewById(R.id.linkToRegistrationActivity);
         password = (EditText) findViewById(R.id.loginPassword);
         email = (EditText) findViewById(R.id.loginEmail);
+
+        linkToRegistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openRegistrationActivity = new Intent(login.this, registrationActivity.class);
+                startActivity(openRegistrationActivity);
+                finish();
+            }
+        });
 
         /*If successful, this logs in user to the account*/
         // TODO: 4/29/17 Aunthenticate user login properly
