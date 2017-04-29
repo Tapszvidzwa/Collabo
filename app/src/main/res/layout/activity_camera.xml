@@ -14,7 +14,7 @@
         android:layout_height="450dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/capture"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Take Photo"
