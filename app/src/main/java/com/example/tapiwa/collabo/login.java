@@ -3,11 +3,11 @@ package com.example.tapiwa.collabo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class loginActivity extends AppCompatActivity {
+public class login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_login);
     }
 }

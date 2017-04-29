@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".camera" />
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".loginActivity" />
+        <activity android:name=".login"></activity>
     </application>
 
 </manifest>

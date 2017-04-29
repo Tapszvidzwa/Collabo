@@ -21,6 +21,7 @@
      private Button registerBtn;
      private EditText password;
      private EditText email;
+     private Button loginBtn;
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,19 @@
          registerBtn = (Button) findViewById(R.id.button);
          password = (EditText) findViewById(R.id.password);
          email = (EditText) findViewById(R.id.email);
+         loginBtn = (Button) findViewById(R.id.login);
+
+
+         loginBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent openLogin = new Intent(registrationActivity.this, login.class);
+                 startActivity(openLogin);
+             }
+             });
 
 
          registerBtn.setOnClickListener(new View.OnClickListener() {
-
-
              @Override
              public void onClick(View view) {
 
