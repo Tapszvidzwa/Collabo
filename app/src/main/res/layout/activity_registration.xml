@@ -22,7 +22,7 @@
             android:hint="email"
             android:inputType="textEmailAddress"
             android:layout_gravity="center"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="130dp"
             android:padding="10dp"
             android:textColor="#32CD32"
             android:maxLines="1"
@@ -61,7 +61,7 @@
             android:textAllCaps="false"
             android:background="@null"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             />
 
     </LinearLayout>
