@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/collaboColor"
+    android:padding="25dp"
     tools:context="com.example.tapiwa.collabo.login">
 
     <LinearLayout
@@ -15,12 +16,11 @@
 
         <EditText
             android:id="@+id/loginEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="email"
             android:inputType="textEmailAddress"
-            android:layout_gravity="center"
+            android:padding="10dp"
             android:layout_marginTop="150dp"
             android:textColor="#32CD32"
             android:background="#fff"
@@ -28,24 +28,21 @@
 
         <EditText
             android:id="@+id/loginPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:inputType="textPassword"
-            android:layout_gravity="center"
             android:textColor="@color/lime"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="#fff"
             android:hint="Password"/>
 
         <Button
             android:id="@+id/accessAccountBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             />
 
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
