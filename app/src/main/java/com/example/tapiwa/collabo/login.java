@@ -55,13 +55,13 @@ public class login extends AppCompatActivity {
         accessAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateRegistrationDetails()) {
+              /*  if (validateRegistrationDetails()) {
                     String userPassword = password.getText().toString().trim();
                     String userEmail = email.getText().toString().trim();
                     new loginUser().execute(userPassword, userEmail);
-                }
+                } */
 
-            //   openPhotoActivity();
+               openPhotoActivity();
             }
         });
     }
