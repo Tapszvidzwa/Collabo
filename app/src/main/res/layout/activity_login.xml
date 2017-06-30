@@ -5,14 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0000b2"
+    android:background="@color/collaboColor"
     android:padding="25dp"
-    tools:context="com.example.tapiwa.collabo.login">
+    android:gravity="center"
+    tools:context="com.example.tapiwa.collabo.Login">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
         <EditText
             android:id="@+id/loginEmail"
@@ -23,7 +20,7 @@
             android:hint="Email address"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="90dp"
             android:textColor="#000"
             android:background="#fff"
             />
@@ -39,6 +36,7 @@
             android:textColor="#000"
             android:layout_marginTop="10dp"
             android:background="#fff"
+            android:imeOptions="actionDone"
             android:hint="Password"/>
 
         <Button
@@ -50,7 +48,7 @@
             />
 
         <Button
-            android:id="@+id/linkToRegistrationActivity"
+            android:id="@+id/registrationActivityBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Not a member? Register now."
@@ -60,5 +58,17 @@
             android:textAllCaps="false"
             />
 
-    </LinearLayout>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:visibility="invisible"
+        app:indicatorName="BallTrianglePathIndicator"
+        app:indicatorColor="#fff"
+        />
+
+
+
 </LinearLayout>
