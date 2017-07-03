@@ -84,7 +84,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void openCollaboHomeActivity() {
-        Intent openCollaboAct = new Intent(RegistrationActivity.this, CollaboHomeActivity.class);
+        Intent openCollaboAct = new Intent(RegistrationActivity.this, Main.class);
         startActivity(openCollaboAct);
     }
 

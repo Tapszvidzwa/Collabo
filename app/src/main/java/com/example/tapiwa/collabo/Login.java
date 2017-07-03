@@ -143,7 +143,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
 
 
     private void openCollaboHome() {
-        Intent openCollaboActivity = new Intent(Login.this, CollaboHomeActivity.class);
+        Intent openCollaboActivity = new Intent(Login.this, Main.class);
         startActivity(openCollaboActivity);
     }
 
