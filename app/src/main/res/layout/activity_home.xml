@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
+    android:background="#f0f0f0"
     tools:context="com.example.tapiwa.collabo.Main">
 
     <android.support.design.widget.AppBarLayout
@@ -39,14 +40,20 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     
     <GridView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gridView"
-        android:horizontalSpacing="5dp"
-        android:verticalSpacing="2dp"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="29dp"
+        android:layout_gravity="center"
         android:stretchMode="columnWidth"
-        android:layout_marginTop="120dp"
-        android:numColumns="2"></GridView>
+        android:layout_marginTop="150dp"
+        android:numColumns="2"
+        android:clickable="true"
+        android:focusable="true">
+
+    </GridView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/takePhoto"

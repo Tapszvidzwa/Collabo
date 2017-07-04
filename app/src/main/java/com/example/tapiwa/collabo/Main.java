@@ -24,15 +24,15 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,12 +41,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
 
 public class Main extends AppCompatActivity {
 
@@ -55,6 +58,7 @@ public class Main extends AppCompatActivity {
     private StorageReference storageReference;
     private ProgressDialog mProgress;
     private String image_tag;
+    private AVLoadingIndicatorView loadingSpinner;
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
@@ -62,19 +66,15 @@ public class Main extends AppCompatActivity {
     final String FB_DATABASE_PATH = "photos";
     Uri fileUri;
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        gridView = (GridView) findViewById(R.id.gridView);
-        list = new ArrayList<>();
-        adapter = new ImageListAdapter(this, R.layout.images, list);
-        gridView.setAdapter(adapter);
 
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
@@ -105,32 +105,6 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                //fetch image data from firebase
-                list.clear();
-
-                for (DataSnapshot Snapshot1 : dataSnapshot.getChildren()) {
-                    ImageUpload img = Snapshot1.getValue(ImageUpload.class);
-                    list.add(img);
-                }
-                Collections.reverse(list);
-
-
-                //init adapter
-                adapter = new ImageListAdapter(Main.this, R.layout.images, list);
-                gridView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 
