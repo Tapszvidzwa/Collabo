@@ -39,7 +39,9 @@
             android:name=".Main"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MaximizeImage"></activity>
+        <activity android:name=".MaximizeImage" />
+        <activity android:name=".Tags" />
+        <activity android:name=".TagListAdapter"></activity>
     </application>
 
 </manifest>

@@ -1,46 +1,32 @@
 package com.example.tapiwa.collabo;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.GridView;
+import android.widget.ListView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 
+public class Tags extends Fragment {
 
-public class Collabos extends Fragment {
-
-
-    public Collabos() {
+    public Tags() {
     }
 
-    public GridView gridView;
+    public ListView listview;
     public ArrayList<ImageUpload> list;
-    public ImageListAdapter adapter;
+    public TagListAdapter adapter;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
 
@@ -49,11 +35,11 @@ public class Collabos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View collabos = inflater.inflate(R.layout.collabos, container, false);
-        gridView = (GridView) collabos.findViewById(R.id.gridview);
+        View tags = inflater.inflate(R.layout.tags, container, false);
+        listview = (ListView) tags.findViewById(R.id.listView);
         list = new ArrayList<>();
-        adapter = new ImageListAdapter(getContext(), R.layout.images, list);
-        gridView.setAdapter(adapter);
+        adapter = new TagListAdapter(getContext(), R.layout.tag_item_list, list);
+        listview.setAdapter(adapter);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
@@ -73,8 +59,8 @@ public class Collabos extends Fragment {
 
 
                 //init adapter
-                adapter = new ImageListAdapter(getContext(), R.layout.images, list);
-                gridView.setAdapter(adapter);
+                adapter = new TagListAdapter(getContext(), R.layout.tag_item_list, list);
+                listview.setAdapter(adapter);
             }
 
             @Override
@@ -83,7 +69,7 @@ public class Collabos extends Fragment {
         });
 
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                 //Get item at position
@@ -100,9 +86,6 @@ public class Collabos extends Fragment {
             }
         });
 
-        return collabos;
+        return tags;
     }
-
 }
-
-

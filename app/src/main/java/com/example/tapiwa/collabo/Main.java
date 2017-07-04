@@ -259,10 +259,10 @@ public class Main extends AppCompatActivity {
                     Collabos collabos = new Collabos();
                     return collabos;
                 case 1 :
-                    Notes notes = new Notes();
-                    return notes;
-                case 2: Tags tags = new Tags();
+                    Tags tags = new Tags();
                     return tags;
+                case 2: Notes notes = new Notes();
+                    return notes;
                 default:
                     return null;
             }
