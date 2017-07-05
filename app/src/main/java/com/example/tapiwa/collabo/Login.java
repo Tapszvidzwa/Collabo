@@ -45,6 +45,13 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
+
+
         setContentView(activity_login);
 
         spinner = (AVLoadingIndicatorView) findViewById(R.id.avi);
@@ -144,6 +151,11 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
 
     private void openCollaboHome() {
         Intent openCollaboActivity = new Intent(Login.this, Main.class);
+
+        openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
         startActivity(openCollaboActivity);
     }
 
