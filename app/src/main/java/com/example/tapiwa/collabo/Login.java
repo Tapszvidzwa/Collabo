@@ -191,7 +191,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                                     .show();
                         } else if (e instanceof FirebaseAuthInvalidUserException) {
                             stopLoadingSpinner();
-                            Toast.makeText(Login.this, "No account is associated with that email", Toast.LENGTH_SHORT)
+                            Toast.makeText(Login.this, "No pref_account is associated with that email", Toast.LENGTH_SHORT)
                                     .show();
                         } else {
                             stopLoadingSpinner();

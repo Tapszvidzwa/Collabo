@@ -1,8 +1,10 @@
 package com.example.tapiwa.collabo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -13,6 +15,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.preference.PreferenceManager;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -60,6 +63,7 @@ public class Main extends AppCompatActivity {
     private String image_tag;
     private AVLoadingIndicatorView loadingSpinner;
     public GridView gridView;
+    SharedPreferences usrName;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
     private DatabaseReference mDatabaseRef;
@@ -81,6 +85,7 @@ public class Main extends AppCompatActivity {
         mStorage = FirebaseStorage.getInstance();
         storageReference = mStorage.getReference();
         image_tag = "";
+        usrName = PreferenceManager.getDefaultSharedPreferences(this);
 
         mProgress = new ProgressDialog(this);
 
@@ -188,7 +193,9 @@ public class Main extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
                 Toast.makeText(Main.this, "Uploading finished", Toast.LENGTH_SHORT).show();
-                ImageUpload imageUpload = new ImageUpload("@Tapiwa", image_tag, taskSnapshot.getDownloadUrl().toString());
+
+                String userName = usrName.getString("example_text", null);
+                ImageUpload imageUpload = new ImageUpload("@" + userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 
                 //save image info into the firebase database
                 String uploadId = mDatabaseRef.push().getKey();
@@ -237,7 +244,8 @@ public class Main extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent settings = new Intent(Main.this, Settings.class);
+            startActivity(settings);
         }
 
         return super.onOptionsItemSelected(item);

@@ -41,7 +41,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MaximizeImage" />
         <activity android:name=".Tags" />
-        <activity android:name=".TagListAdapter"></activity>
+        <activity android:name=".TagListAdapter" />
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

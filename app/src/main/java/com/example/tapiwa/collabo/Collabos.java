@@ -32,11 +32,13 @@ import java.util.Collections;
 
 
 
+
 public class Collabos extends Fragment {
 
 
     public Collabos() {
     }
+
 
     public GridView gridView;
     public ArrayList<ImageUpload> list;
