@@ -22,13 +22,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ProgressBar;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
 
 
 
@@ -40,6 +44,7 @@ public class Collabos extends Fragment {
     }
 
 
+    private ProgressDialog mProgress;
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
@@ -56,6 +61,11 @@ public class Collabos extends Fragment {
         list = new ArrayList<>();
         adapter = new ImageListAdapter(getContext(), R.layout.images, list);
         gridView.setAdapter(adapter);
+        mProgress = new ProgressDialog(getContext());
+
+
+        mProgress.setMessage("Loading... ");
+        mProgress.show();
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
@@ -77,6 +87,8 @@ public class Collabos extends Fragment {
                 //init adapter
                 adapter = new ImageListAdapter(getContext(), R.layout.images, list);
                 gridView.setAdapter(adapter);
+                mProgress.dismiss();
+
             }
 
             @Override
