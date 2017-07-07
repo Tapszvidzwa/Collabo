@@ -75,13 +75,16 @@ public class Main extends AppCompatActivity {
     private ViewPager mViewPager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+       // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+        mDatabaseRef.keepSynced(true);
+
         mStorage = FirebaseStorage.getInstance();
         storageReference = mStorage.getReference();
         image_tag = "";

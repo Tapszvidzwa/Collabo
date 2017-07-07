@@ -30,16 +30,12 @@ public class Tags extends Fragment {
     public TagListAdapter adapter;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
-    private ProgressDialog mProgress;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mProgress = new ProgressDialog(getContext());
-        mProgress.setMessage("Loading... ");
-        mProgress.show();
 
         View tags = inflater.inflate(R.layout.tags, container, false);
         listview = (ListView) tags.findViewById(R.id.listView);
@@ -48,6 +44,7 @@ public class Tags extends Fragment {
         listview.setAdapter(adapter);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+        mDatabaseRef.keepSynced(true);
 
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
@@ -67,7 +64,6 @@ public class Tags extends Fragment {
                 //init adapter
                 adapter = new TagListAdapter(getContext(), R.layout.tag_item_list, list);
                 listview.setAdapter(adapter);
-                mProgress.dismiss();
             }
 
             @Override

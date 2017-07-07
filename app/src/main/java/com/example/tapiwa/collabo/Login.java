@@ -45,13 +45,6 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
-
-
-
         setContentView(activity_login);
 
         spinner = (AVLoadingIndicatorView) findViewById(R.id.avi);
@@ -81,10 +74,9 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                 if (user != null) {
                     //user signed in
                     openCollaboHome();
-                    Log.d(TAG, "Signed in");
                 } else {
                     // User is signed out
-                    Log.d(TAG, "Currently signed out");
+
                 }
             }
         };

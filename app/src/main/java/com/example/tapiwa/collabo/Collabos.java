@@ -44,7 +44,7 @@ public class Collabos extends Fragment {
     }
 
 
-    private ProgressDialog mProgress;
+
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
@@ -56,18 +56,17 @@ public class Collabos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+        mDatabaseRef.keepSynced(true);
+
         View collabos = inflater.inflate(R.layout.collabos, container, false);
         gridView = (GridView) collabos.findViewById(R.id.gridview);
         list = new ArrayList<>();
         adapter = new ImageListAdapter(getContext(), R.layout.images, list);
         gridView.setAdapter(adapter);
-        mProgress = new ProgressDialog(getContext());
 
 
-        mProgress.setMessage("Loading... ");
-        mProgress.show();
-
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
 
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
@@ -87,7 +86,6 @@ public class Collabos extends Fragment {
                 //init adapter
                 adapter = new ImageListAdapter(getContext(), R.layout.images, list);
                 gridView.setAdapter(adapter);
-                mProgress.dismiss();
 
             }
 
