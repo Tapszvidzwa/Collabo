@@ -17,7 +17,6 @@ public class collabo extends Application {
     public void onCreate() {
         super.onCreate();
 
-
         //Helps sync with the database
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 

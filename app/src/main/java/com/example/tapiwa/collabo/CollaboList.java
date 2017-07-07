@@ -24,10 +24,7 @@ public class CollaboList extends AppCompatActivity {
 
         gridView = (GridView) findViewById(R.id.gridView);
         list = new ArrayList<>();
-        adapter = new ImageListAdapter(this, R.layout.images, list);
+        adapter = new ImageListAdapter(this, R.layout.image_item_list, list);
         gridView.setAdapter(adapter);
-
-
-
     }
 }

@@ -1,7 +1,6 @@
 package com.example.tapiwa.collabo;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,30 +26,20 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 
@@ -61,20 +50,12 @@ public class Main extends AppCompatActivity {
     private StorageReference storageReference;
     private ProgressDialog mProgress;
     private String image_tag;
-    private AVLoadingIndicatorView loadingSpinner;
-    public GridView gridView;
-    SharedPreferences usrName;
-    public ArrayList<ImageUpload> list;
-    public ImageListAdapter adapter;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
-    Uri fileUri;
-
-
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-
-
+    SharedPreferences usrName;
+    Uri fileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +68,6 @@ public class Main extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance();
         storageReference = mStorage.getReference();
-        image_tag = "";
         usrName = PreferenceManager.getDefaultSharedPreferences(this);
 
         mProgress = new ProgressDialog(this);
@@ -155,7 +135,6 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: 7/3/17 fix such that user cannot enter empty tag
-                image_tag = tag.getText().toString();
                 attemptImageUpload();
             }
         });
@@ -188,7 +167,6 @@ public class Main extends AppCompatActivity {
         //// TODO: 6/29/17 change the uri so that its custom for every photo
 
 
-
         StorageReference filepath = storageReference.child("Photo").child(fileUri.getLastPathSegment());
 
         filepath.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -197,8 +175,9 @@ public class Main extends AppCompatActivity {
                 mProgress.dismiss();
                 Toast.makeText(Main.this, "Uploading finished", Toast.LENGTH_SHORT).show();
 
-                String userName = usrName.getString("example_text", null);
-                ImageUpload imageUpload = new ImageUpload("@" + userName, image_tag, taskSnapshot.getDownloadUrl().toString());
+                String userName = "@" + usrName.getString("example_text", null);
+
+                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 
                 //save image info into the firebase database
                 String uploadId = mDatabaseRef.push().getKey();

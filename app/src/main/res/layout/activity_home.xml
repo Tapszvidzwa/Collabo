@@ -51,7 +51,6 @@
         android:numColumns="2"
         android:clickable="true"
         android:focusable="true">
-
     </GridView>
 
 

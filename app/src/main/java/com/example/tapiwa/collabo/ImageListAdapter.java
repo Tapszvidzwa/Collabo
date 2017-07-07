@@ -1,14 +1,14 @@
 package com.example.tapiwa.collabo;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
+import android.content.SharedPreferences;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
@@ -22,6 +22,8 @@ public class ImageListAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<ImageUpload> imageList;
+    private SharedPreferences userName;
+
 
 
     public ImageListAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
@@ -73,10 +75,10 @@ public class ImageListAdapter extends BaseAdapter {
         final ImageUpload imageUpload = imageList.get(position);
 
         holder.name.setText(imageUpload.getProfileName());
+
         holder.tag.setText(imageUpload.getTag());
 
         final ImageView holderr = holder.imageView;
-
 
         Picasso.with(context)
                 .load(imageUpload.getUrl())
@@ -95,12 +97,6 @@ public class ImageListAdapter extends BaseAdapter {
                                 .into(holderr);
                     }
                 });
-
-      /*  Picasso picasso = new Picasso.Builder(context)
-                .memoryCache(new LruCache(MAX_CACHE_SIZE))
-                .build();
-
-        picasso.with(context).load(imageUpload.getUrl()).into(holder.imageView); */
 
         return row;
     }

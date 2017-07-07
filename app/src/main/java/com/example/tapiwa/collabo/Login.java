@@ -32,7 +32,6 @@ import static com.example.tapiwa.collabo.R.layout.activity_login;
 public class  Login extends AppCompatActivity implements View.OnClickListener {
     private EditText password;
     private EditText email;
-    private final String TAG = "FB_SIGNIN";
 
     private final int MIN_SESSION_DURATION = 3000;
 
@@ -46,6 +45,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_login);
+
 
         spinner = (AVLoadingIndicatorView) findViewById(R.id.avi);
 
@@ -75,6 +75,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                     //user signed in
                     openCollaboHome();
                 } else {
+
                     // User is signed out
 
                 }
