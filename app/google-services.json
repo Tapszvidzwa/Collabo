@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "667867860740",
+    "firebase_url": "https://collabo-6c588.firebaseio.com",
+    "project_id": "collabo-6c588",
+    "storage_bucket": "collabo-6c588.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667867860740:android:398555b20bcc022e",
+        "android_client_info": {
+          "package_name": "com.example.tapiwa.collabo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667867860740-d3ogvc6d12v9f1iquc8v1oeu53v1p4kq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tapiwa.collabo",
+            "certificate_hash": "1827d333342d27848a32276d6aa021a068cef869"
+          }
+        },
+        {
+          "client_id": "667867860740-7ra8t52sq4042p1e0mqfio3glhuipibc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN1G0DPWdqwp4ktGrzS0Jh4hgVx4vGAJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667867860740-7ra8t52sq4042p1e0mqfio3glhuipibc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
