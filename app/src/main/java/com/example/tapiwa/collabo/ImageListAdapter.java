@@ -22,9 +22,6 @@ public class ImageListAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<ImageUpload> imageList;
-    private SharedPreferences userName;
-
-
 
     public ImageListAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
         this.context = context;
