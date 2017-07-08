@@ -3,7 +3,6 @@ package com.example.tapiwa.collabo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,8 +10,6 @@ import java.util.Collections;
 
 
 public class FirebaseHelper {
-
-
 
     DatabaseReference db;
     ArrayList<ImageUpload> list = new ArrayList<>();

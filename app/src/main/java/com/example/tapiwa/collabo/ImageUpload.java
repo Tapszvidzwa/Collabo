@@ -1,6 +1,5 @@
 package com.example.tapiwa.collabo;
 
-import android.net.Uri;
 
 /**
  * Created by tapiwa on 7/3/17.

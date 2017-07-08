@@ -5,12 +5,19 @@
     android:background="#000"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <ImageView
         android:id="@+id/grid_item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:scaleType="fitCenter" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,5 +45,15 @@
             android:textSize="20dp" />
 
     </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/maximizeImageProgressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:visibility="visible"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
 </FrameLayout>
