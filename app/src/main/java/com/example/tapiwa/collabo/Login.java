@@ -15,18 +15,15 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
-import android.util.Log;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 
-import static com.example.tapiwa.collabo.R.id.avi;
 import static com.example.tapiwa.collabo.R.layout.activity_login;
 
 public class  Login extends AppCompatActivity implements View.OnClickListener {
@@ -73,7 +70,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
 
                 if (user != null) {
                     //user signed in
-                    openCollaboHome();
+                    openLoadingMain();
                 } else {
 
                     // User is signed out
@@ -142,7 +139,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    private void openCollaboHome() {
+    private void openLoadingMain() {
         Intent openCollaboActivity = new Intent(Login.this, Main.class);
 
         openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -179,7 +176,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     showLoadingSpinner();
-                                    openCollaboHome();
+                                    openLoadingMain();
                                 } else {
                                     stopLoadingSpinner();
                                     Toast.makeText(Login.this, "Sign in failed", Toast.LENGTH_SHORT)

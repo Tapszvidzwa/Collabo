@@ -1,15 +1,15 @@
 package com.example.tapiwa.collabo;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -23,11 +23,14 @@ public class ImageListAdapter extends BaseAdapter {
     private int layout;
     private ArrayList<ImageUpload> imageList;
 
+
     public ImageListAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
         this.context = context;
         this.layout = layout;
         this.imageList = imageList;
     }
+
+
 
     @Override
     public int getCount() {
@@ -46,14 +49,19 @@ public class ImageListAdapter extends BaseAdapter {
 
     private class ViewHolder {
         ImageView imageView;
+        ProgressBar progressBar;
         TextView name, tag;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(int position, final View view, ViewGroup viewGroup) {
+
+        final ImageUpload imageUpload = imageList.get(position);
+        Picasso.with(context).load(imageUpload.getUrl()).fetch();
 
         View row = view;
         ViewHolder holder = new ViewHolder();
+
 
         if(row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -62,6 +70,7 @@ public class ImageListAdapter extends BaseAdapter {
             holder.name = (TextView) row.findViewById(R.id.name);
             holder.tag  = (TextView) row.findViewById(R.id.tag);
             holder.imageView = (ImageView) row.findViewById(R.id.Image);
+            holder.progressBar = (ProgressBar) row.findViewById(R.id.image_item_list_progress_bar);
 
             row.setTag(holder);
 
@@ -69,13 +78,15 @@ public class ImageListAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        final ImageUpload imageUpload = imageList.get(position);
+
 
         holder.name.setText(imageUpload.getProfileName());
 
         holder.tag.setText(imageUpload.getTag());
 
         final ImageView holderr = holder.imageView;
+        final ProgressBar holderrr = holder.progressBar;
+
 
         Picasso.with(context)
                 .load(imageUpload.getUrl())
@@ -84,6 +95,7 @@ public class ImageListAdapter extends BaseAdapter {
                 .into(holder.imageView, new Callback() {
                     @Override
                     public void onSuccess() {
+                        holderrr.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -92,6 +104,8 @@ public class ImageListAdapter extends BaseAdapter {
                         Picasso.with(context)
                                 .load(imageUpload.getUrl())
                                 .into(holderr);
+                        holderrr.setVisibility(View.GONE);
+
                     }
                 });
 

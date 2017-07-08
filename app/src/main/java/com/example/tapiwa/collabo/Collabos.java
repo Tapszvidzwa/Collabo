@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,9 +31,11 @@ public class Collabos extends Fragment {
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
@@ -56,6 +59,7 @@ public class Collabos extends Fragment {
                 }
                 Collections.reverse(list);
 
+
                 //init adapter
                 adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
                 gridView.setAdapter(adapter);
@@ -75,6 +79,7 @@ public class Collabos extends Fragment {
                 intent.putExtra("title", item.getTag());
                 intent.putExtra("image", item.getUrl());
                 intent.putExtra("name", item.getProfileName());
+
                 //Start details activity
                 startActivity(intent);
             }

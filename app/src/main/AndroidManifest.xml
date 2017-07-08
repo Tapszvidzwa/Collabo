@@ -12,10 +12,10 @@
         android:required="true" />
 
     <application
+        android:name=".collabo"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".collabo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
@@ -40,17 +40,12 @@
             android:name=".Main"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MaximizeImage"
-             />
-
+        <activity android:name=".MaximizeImage" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".NewNote"
-             />
-        <activity android:name=".DisplayNote"></activity>
+        <activity android:name=".NewNote" />
+        <activity android:name=".DisplayNote" />
     </application>
 
 </manifest>
