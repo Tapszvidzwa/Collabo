@@ -10,7 +10,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import com.wang.avi.AVLoadingIndicatorView;
@@ -33,7 +32,6 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
     private final int MIN_SESSION_DURATION = 3000;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAnalytics mFBAnalytics;
     public AVLoadingIndicatorView spinner;
 
@@ -61,37 +59,6 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
 
         //Get a reference to the Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
-        // TODO: Attach a new AuthListener to detect sign in and out
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if (user != null) {
-                    //user signed in
-                    openLoadingMain();
-                } else {
-
-                    // User is signed out
-
-                }
-            }
-        };
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
     }
 
     public void showLoadingSpinner() {
@@ -135,6 +102,9 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
 
     private void openRegistrationActivity() {
         Intent openRegistrationAct = new Intent(Login.this, RegistrationActivity.class);
+        openRegistrationAct.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        openRegistrationAct.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        openRegistrationAct.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(openRegistrationAct);
     }
 

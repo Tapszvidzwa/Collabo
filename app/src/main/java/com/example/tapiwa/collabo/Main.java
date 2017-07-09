@@ -62,18 +62,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-       // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
-        mDatabaseRef.keepSynced(true);
-
-        mStorage = FirebaseStorage.getInstance();
-        storageReference = mStorage.getReference();
-        usrName = PreferenceManager.getDefaultSharedPreferences(this);
-
-        mProgress = new ProgressDialog(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -84,6 +72,16 @@ public class Main extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
+        mStorage = FirebaseStorage.getInstance();
+        storageReference = mStorage.getReference();
+        usrName = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton takePhoto = (FloatingActionButton) findViewById(R.id.takePhoto);
         takePhoto.setOnClickListener(new View.OnClickListener() {

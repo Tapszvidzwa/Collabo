@@ -36,12 +36,12 @@ public class Collabos extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
         View collabos = inflater.inflate(R.layout.collabos, container, false);
         gridView = (GridView) collabos.findViewById(R.id.gridview);
         list = new ArrayList<>();
         adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
         gridView.setAdapter(adapter);
+
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
         mDatabaseRef.keepSynced(true);
