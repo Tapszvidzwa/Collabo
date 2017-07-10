@@ -40,13 +40,7 @@ public class Notes extends Fragment {
         listview = (ListView) notesView.findViewById(R.id.notesListView);
         list = new ArrayList<>();
 
-
-        dbHelper = new DBHelper(getContext());
-        list = dbHelper.getAllTitles();
-        Collections.reverse(list);
-        adapter = new NotesListAdapter(getContext(),R.layout.note_item_list, list);
-        listview.setAdapter(adapter);
-
+        populateScreen();
 
         FloatingActionButton newNote = (FloatingActionButton) notesView.findViewById(R.id.addNote);
         newNote.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +61,6 @@ public class Notes extends Fragment {
                 //Pass the image title and url to DetailsActivity
                 Intent intent = new Intent(getContext(), DisplayNote.class);
                 intent.putExtra("title", note);
-            //  intent.putExtra("contents", contents);
 
                 //Start details activity
                 startActivity(intent);
@@ -80,6 +73,19 @@ public class Notes extends Fragment {
 
     }
 
+    public void populateScreen() {
+        dbHelper = new DBHelper(getContext());
+        list = dbHelper.getAllTitles();
+        Collections.reverse(list);
+        adapter = new NotesListAdapter(getContext(),R.layout.note_item_list, list);
+        listview.setAdapter(adapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populateScreen();
+    }
 
     public void createNewNote() {
         Intent writeNote = new Intent(getContext(), NewNote.class);

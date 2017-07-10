@@ -17,22 +17,15 @@ public class DisplayNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_note);
 
-        String noteTitle = getIntent().getStringExtra("title");
-        String noteContents = getIntent().getStringExtra("contents");
-
-        dbHelper = new DBHelper(this);
-
         displayNoteTitle = (TextView) findViewById(R.id.displayNoteTitle);
         displayNoteContents = (TextView) findViewById(R.id.displayNoteContent);
 
-        displayNote(noteTitle, noteContents);
+        String noteTitle = getIntent().getStringExtra("title");
 
+        dbHelper = new DBHelper(this);
 
-    }
-
-    public void displayNote(String noteTitle, String noteContents){
-
+        displayNoteContents.setText(dbHelper.getNoteContents(noteTitle));
         displayNoteTitle.setText(noteTitle);
-     //  displayNoteContents.setText(noteContents);
     }
+
 }

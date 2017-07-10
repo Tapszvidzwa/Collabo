@@ -25,6 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "create table notes" +
                         "(title text,contents text)"
+
+                //// TODO: 7/9/17 check if text is the right type of text to be entered here
         );
     }
 
@@ -36,25 +38,34 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertNote (String title, String contents) {
+    public void insertNote (String title, String contents) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("contents", contents);
         db.insert("notes", null, contentValues);
-        return true;
     }
 
     public String getNoteContents(String title) {
 
-
         // TODO: 7/6/17 fix displayNote 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from notes where title = "+title+" ", null);
-        String contents = res.getColumnName(1);
 
-        return contents;
+        Cursor res = db.rawQuery("select * from notes", null);
+
+        
+        //// TODO: 7/10/17 look for a better way to implement this 
+        res.moveToFirst();
+        while (res.isAfterLast() == false) {
+            if (res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE)).equals(title)) {
+                return res.getString(res.getColumnIndex(NOTES_COLUMN_CONTENT));
+            }
+            res.moveToNext();
+        }
+        return null;
     }
+
+
 
     public Cursor getAllNotes() {
         SQLiteDatabase db = this.getReadableDatabase();

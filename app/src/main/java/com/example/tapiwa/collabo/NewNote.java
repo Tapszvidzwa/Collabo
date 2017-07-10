@@ -20,7 +20,8 @@ public class NewNote extends AppCompatActivity {
         setContentView(R.layout.activity_new_note);
         
         noteTitle = (EditText) findViewById(R.id.noteTitle);
-        noteContents = (EditText) findViewById(R.id.editNewNote); 
+        noteContents = (EditText) findViewById(R.id.editNewNote);
+
         
         dbHelper = new DBHelper(this);
 
@@ -35,17 +36,18 @@ public class NewNote extends AppCompatActivity {
     
     
     public void saveNote() {
-        
+
+/*
+        if(noteTitle.getText().toString() == "") {
+            Toast.makeText(NewNote.this, "Please provide a note title", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        */
+
         //insert note into database
         dbHelper.insertNote(noteTitle.getText().toString(), noteContents.getText().toString());
         Toast.makeText(NewNote.this, noteTitle.getText().toString() + " has been saved", Toast.LENGTH_SHORT).show();
 
-        Intent goBackToMain = new Intent(NewNote.this, Main.class);
-
-        goBackToMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        goBackToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        goBackToMain.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-        startActivity(goBackToMain);
+        NewNote.this.finish();
     }
 }
