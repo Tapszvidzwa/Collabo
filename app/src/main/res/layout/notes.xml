@@ -8,10 +8,19 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.tapiwa.collabo.Main">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="23dp"
+        android:text="Private Notes"
+        android:textStyle="bold"
+        />
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/notesListView"
+        android:layout_marginTop="30dp"
         android:numColumns="2">
     </ListView>
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -57,6 +58,7 @@ public class Main extends AppCompatActivity {
     SharedPreferences usrName;
     Uri fileUri;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +66,13 @@ public class Main extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mProgress = new ProgressDialog(this);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -129,9 +133,12 @@ public class Main extends AppCompatActivity {
         builder.setView(tag);
 
 
+
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                image_tag = tag.getText().toString();
                 // TODO: 7/3/17 fix such that user cannot enter empty tag
                 attemptImageUpload();
             }
@@ -249,7 +256,8 @@ public class Main extends AppCompatActivity {
                 case 1 :
                     Tags tags = new Tags();
                     return tags;
-                case 2: Notes notes = new Notes();
+                case 2:
+                    Notes notes = new Notes();
                     return notes;
                 default:
                     return null;

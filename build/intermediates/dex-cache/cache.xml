@@ -2,6 +2,15 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/okhttp-3.8.1_a4f28a26d0d0e23bbfa4450f070faaf8faedacb6.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
@@ -11,49 +20,40 @@
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_457ae01dc460b46663b7256cff9a29f6c2efef43/classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/universal-image-loader-1.9.5_138078cf69107ba981484cdf0c118542a32141a7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.8.1_a4f28a26d0d0e23bbfa4450f070faaf8faedacb6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.13.0_8ee181cd50c4070c245303f3d9aae3ca3776ca16/classes.dex" />
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/okio-1.13.0_8ee181cd50c4070c245303f3d9aae3ca3776ca16.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="40340c0748190fe897baf7bffbc1b282734294e5">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-2.4.0_9a5dfab73a1037e4f5f5b2ec4e7efa5c97c6ec19/classes.dex" />
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/okhttp-2.4.0_9a5dfab73a1037e4f5f5b2ec4e7efa5c97c6ec19.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.5_138078cf69107ba981484cdf0c118542a32141a7.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/tapiwa/.android/build-cache/18fc163dd45faffdd3d7c02075d0de3601508032/output/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_41eb8b72fa6108a77057f3c7be4c8ed471b7c53b/classes.dex" />
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_41eb8b72fa6108a77057f3c7be4c8ed471b7c53b.jar" />
     </item>
     <item
         is-multidex="true"
@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="54b62d0ffb0e0c68e0743c92aab1a8c8006c91eb">
+        sha1="41123ec09120fb502dcb1dedf368c5e5d7b0f048">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
     </item>
 
