@@ -27,7 +27,7 @@ public class NewNote extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
-        FloatingActionButton saveNote = (FloatingActionButton) findViewById(R.id.addNote);
+        FloatingActionButton saveNote = (FloatingActionButton) findViewById(R.id.saveNote);
         saveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

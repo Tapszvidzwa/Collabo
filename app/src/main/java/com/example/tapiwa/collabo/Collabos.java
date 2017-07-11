@@ -1,19 +1,35 @@
 package com.example.tapiwa.collabo;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,12 +41,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.VIBRATOR_SERVICE;
-import static android.support.constraint.R.id.parent;
+import static com.example.tapiwa.collabo.Main.REQUEST_IMAGE_CAPTURE;
+import static com.example.tapiwa.collabo.R.layout.collabos;
 
 
 public class Collabos extends Fragment {
@@ -41,9 +60,17 @@ public class Collabos extends Fragment {
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
+    Vibrator vibrate;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private FirebaseStorage mStorage;
+    private StorageReference storageReference;
+    private ProgressDialog mProgress;
+    private String image_tag;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
-    Vibrator vibrate;
+    SharedPreferences usrName;
+    Uri fileUri;
 
 
 
@@ -58,11 +85,16 @@ public class Collabos extends Fragment {
         list = new ArrayList<>();
         adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
         gridView.setAdapter(adapter);
-   vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
+         vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
+        mProgress = new ProgressDialog(getContext());
 
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
         mDatabaseRef.keepSynced(true);
+
+        mStorage = FirebaseStorage.getInstance();
+        storageReference = mStorage.getReference();
+        usrName = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -83,6 +115,14 @@ public class Collabos extends Fragment {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        FloatingActionButton takePhoto = (FloatingActionButton) collabos.findViewById(R.id.takePhoto);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TakePicture();
             }
         });
 
@@ -177,10 +217,124 @@ public class Collabos extends Fragment {
             }
         });
 
-
-
         return collabos;
     }
+
+
+    public void startUpload() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(("Provide the Collabo tag"));
+
+        int maxLength = 40;
+        final EditText tag = new EditText(getContext());
+        tag.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        tag.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(tag);
+
+        image_tag = tag.getText().toString();
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO: 7/3/17 fix such that user cannot enter empty tag
+                attemptImageUpload();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                Toast.makeText(getContext(), "Upload cancelled, no tag", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.show();
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            startUpload();
+        }
+    }
+
+    public void attemptImageUpload() {
+        mProgress.setMessage("Uploading Collabo...");
+        mProgress.show();
+        //Upload the picture to the Photo folder in the Storage bucket
+        //// TODO: 6/29/17 change the uri so that its custom for every photo
+
+
+        StorageReference filepath = storageReference.child("Photo").child(fileUri.getLastPathSegment());
+
+        filepath.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                mProgress.dismiss();
+                Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
+
+                String userName = "@" + usrName.getString("example_text", null);
+
+                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
+
+                //save image info into the firebase database
+                String uploadId = mDatabaseRef.push().getKey();
+                mDatabaseRef.child(uploadId).setValue(imageUpload);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                mProgress.dismiss();
+                Toast.makeText(getContext(), "Uploading failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void TakePicture() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        "com.example.android.fileprovider",
+                        photoFile);
+
+                fileUri = photoURI;
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        return image;
+    }
+
+
 
 
 
