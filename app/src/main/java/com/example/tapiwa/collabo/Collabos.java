@@ -12,6 +12,7 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
@@ -33,6 +34,7 @@ import java.util.Date;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +47,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.VIBRATOR_SERVICE;
@@ -116,7 +120,9 @@ public class Collabos extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
+
         });
+
 
         FloatingActionButton takePhoto = (FloatingActionButton) collabos.findViewById(R.id.takePhoto);
         takePhoto.setOnClickListener(new View.OnClickListener() {
@@ -232,13 +238,11 @@ public class Collabos extends Fragment {
         tag.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(tag);
 
-        image_tag = tag.getText().toString();
-
-
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: 7/3/17 fix such that user cannot enter empty tag
+                image_tag = tag.getText().toString();
                 attemptImageUpload();
             }
         });
@@ -280,6 +284,8 @@ public class Collabos extends Fragment {
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
 
                 String userName = "@" + usrName.getString("example_text", null);
+
+                image_tag = image_tag + " ";
 
                 ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 

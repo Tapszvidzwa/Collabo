@@ -1,21 +1,12 @@
 package com.example.tapiwa.collabo;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Environment;
-import android.os.Vibrator;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.preference.PreferenceManager;
+
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,24 +16,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.firebase.storage.FirebaseStorage;
-
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class Main extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    private FirebaseStorage mStorage;
-    final String FB_DATABASE_PATH = "photos";
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    SharedPreferences usrName;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+     //   StrictMode.setThreadPolicy(policy);
+
+        //Subscribe to topic and get token from firebase
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
+
+      //  MyFirebaseInstanceIDService myFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
+      //  myFirebaseInstanceIDService.onTokenRefresh();
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
