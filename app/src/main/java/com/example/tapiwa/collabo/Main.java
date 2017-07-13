@@ -34,16 +34,11 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-     //   StrictMode.setThreadPolicy(policy);
 
         //Subscribe to topic and get token from firebase
-        FirebaseMessaging.getInstance().subscribeToTopic("test");
-        FirebaseInstanceId.getInstance().getToken();
-
-      //  MyFirebaseInstanceIDService myFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
-      //  myFirebaseInstanceIDService.onTokenRefresh();
+       // FirebaseMessaging.getInstance().subscribeToTopic("test");
+       // FirebaseInstanceId.getInstance().getToken();
 
 
         // Create the adapter that will return a fragment for each of the three

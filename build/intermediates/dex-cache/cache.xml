@@ -11,13 +11,31 @@
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_457ae01dc460b46663b7256cff9a29f6c2efef43/classes.dex" />
     </item>
     <item
+        is-multidex="false"
+        jar="/Users/tapiwa/.android/build-cache/e22f4e642e3da59c967546b59f4a794bfab0bb45/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b6d9b70f93bbeb872d0948bc064ae3f3f2bcbac">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_d76357762f7a383bb5596a0e34215164c2772dbc.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="cd597fd3df472e545fb9d69e002e4473a128050f">
+        sha1="50f36e734d1a844a414933e6c623bbbaffcf183c">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tapiwa/.android/build-cache/f7dc5be17bd104b3664b0e7bb3edfb015da61735/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ee37f68676f80095b60f995cd00586e8478c505">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_79ea9bd425f051d04016e30666b06b77e0830a14.jar" />
     </item>
 
 </items>

@@ -66,4 +66,27 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         }
 
     }
+
+
+    public void sendNotifications(String user) {
+        // TODO: Implement this method to send token to your app server.
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("userName", user)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("http://192.168.43.229/test/pushNotification.php")
+                .post(body)
+                .build();
+
+        try {
+            client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -44,11 +45,18 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Response;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.VIBRATOR_SERVICE;
@@ -82,6 +90,10 @@ public class Collabos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+      //  StrictMode.setThreadPolicy(policy);
 
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
@@ -281,9 +293,19 @@ public class Collabos extends Fragment {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
-                Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
 
                 String userName = "@" + usrName.getString("example_text", null);
+                try {
+                    sendNotifications(userName);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
+
+
+
+
 
                 ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 
@@ -339,10 +361,30 @@ public class Collabos extends Fragment {
     }
 
 
+    public  void sendNotifications(String username) throws IOException{
 
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("userName", username)
+                .build();
 
+        Request request = new Request.Builder()
+                .url("http://192.168.43.229/test/pushNotification.php")
+                .post(body)
+                .build();
 
+        client.newCall(request)
+                .enqueue(new okhttp3.Callback() {
+                    @Override
+                    public void onFailure(okhttp3.Call call, IOException e) {
+                        e.printStackTrace();
+                    }
 
+                    @Override
+                    public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+                    }
+                });
+    }
 
 }
 
