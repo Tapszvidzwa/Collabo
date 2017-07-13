@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -85,15 +86,13 @@ public class Collabos extends Fragment {
     Uri fileUri;
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-      //  StrictMode.setThreadPolicy(policy);
+        StrictMode.setThreadPolicy(policy);
 
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
@@ -101,7 +100,7 @@ public class Collabos extends Fragment {
         list = new ArrayList<>();
         adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
         gridView.setAdapter(adapter);
-         vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
+        vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
         mProgress = new ProgressDialog(getContext());
 
 
@@ -129,6 +128,7 @@ public class Collabos extends Fragment {
                 adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
                 gridView.setAdapter(adapter);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -161,16 +161,13 @@ public class Collabos extends Fragment {
         });
 
 
-
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-
 
 
             public boolean onItemLongClick(AdapterView<?> parent, View v,
                                            int position, long id) {
 
-             final  ImageUpload item = (ImageUpload) parent.getItemAtPosition(position);
+                final ImageUpload item = (ImageUpload) parent.getItemAtPosition(position);
                 vibrate.vibrate(40);
 
                 AlertDialog.Builder builder;
@@ -210,7 +207,7 @@ public class Collabos extends Fragment {
                                 ImagesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                                        for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
                                             Snapshot.getRef().removeValue();
                                         }
                                     }
@@ -246,7 +243,7 @@ public class Collabos extends Fragment {
 
         int maxLength = 40;
         final EditText tag = new EditText(getContext());
-        tag.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        tag.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         tag.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(tag);
 
@@ -268,7 +265,6 @@ public class Collabos extends Fragment {
 
         builder.show();
     }
-
 
 
     @Override
@@ -295,6 +291,8 @@ public class Collabos extends Fragment {
                 mProgress.dismiss();
 
                 String userName = "@" + usrName.getString("example_text", null);
+
+                //send notifications to all users in group
                 try {
                     sendNotifications(userName);
                 } catch (IOException e) {
@@ -302,11 +300,6 @@ public class Collabos extends Fragment {
                 }
 
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
-
-
-
-
-
                 ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 
                 //save image info into the firebase database
@@ -361,15 +354,16 @@ public class Collabos extends Fragment {
     }
 
 
-    public  void sendNotifications(String username) throws IOException{
+    public void sendNotifications(String username) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
+
         RequestBody body = new FormBody.Builder()
                 .add("userName", username)
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.43.229/test/pushNotification.php")
+                .url("http://192.168.43.229/test/pushNotifications.php")
                 .post(body)
                 .build();
 
@@ -377,15 +371,18 @@ public class Collabos extends Fragment {
                 .enqueue(new okhttp3.Callback() {
                     @Override
                     public void onFailure(okhttp3.Call call, IOException e) {
-                        e.printStackTrace();
+
                     }
 
                     @Override
                     public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+
                     }
                 });
+
     }
 
 }
+
 
 

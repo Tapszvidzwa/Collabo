@@ -1,8 +1,6 @@
 package com.example.tapiwa.collabo;
 
-
 import android.content.Intent;
-import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,8 +35,8 @@ public class Main extends AppCompatActivity {
 
 
         //Subscribe to topic and get token from firebase
-       // FirebaseMessaging.getInstance().subscribeToTopic("test");
-       // FirebaseInstanceId.getInstance().getToken();
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
 
 
         // Create the adapter that will return a fragment for each of the three
