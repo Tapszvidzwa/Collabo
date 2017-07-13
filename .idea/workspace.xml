@@ -734,8 +734,8 @@
       <file leaf-file-name="Collabos.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Collabos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+            <state relative-caret-position="156">
+              <caret line="285" column="80" selection-start-line="285" selection-start-column="80" selection-end-line="285" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9647#9967#0" expanded="true" />
@@ -3417,7 +3417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499767585997</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed tag issues, Changed icon">
+      <created>1499930816951</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1499930816951</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3478,7 +3485,8 @@
     <MESSAGE value="Fix font color" />
     <MESSAGE value="Fixed display note bugs and upload image tag bug" />
     <MESSAGE value="Removed junk code from Main function to Collabo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed junk code from Main function to Collabo" />
+    <MESSAGE value="Fixed tag issues, Changed icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed tag issues, Changed icon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3524,12 +3532,6 @@
           <line>285</line>
           <properties />
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Collabos.java</url>
-          <line>287</line>
-          <properties />
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MyFirebaseInstanceIDService.java</url>
@@ -3935,8 +3937,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Collabos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+        <state relative-caret-position="156">
+          <caret line="285" column="80" selection-start-line="285" selection-start-column="80" selection-end-line="285" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9647#9967#0" expanded="true" />

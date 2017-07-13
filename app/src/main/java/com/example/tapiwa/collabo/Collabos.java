@@ -285,8 +285,6 @@ public class Collabos extends Fragment {
 
                 String userName = "@" + usrName.getString("example_text", null);
 
-                image_tag = image_tag + " ";
-
                 ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
 
                 //save image info into the firebase database
