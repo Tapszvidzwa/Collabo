@@ -29,6 +29,7 @@ import static android.R.id.input;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
+    public static  int NOTIFICATION_ID = 1;
     SharedPreferences sharedPreferences;
     static int count = 0;
 
@@ -93,7 +94,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notifiBuilder.build());
+        notificationManager.notify(NOTIFICATION_ID, notifiBuilder.build());
 
     }
 

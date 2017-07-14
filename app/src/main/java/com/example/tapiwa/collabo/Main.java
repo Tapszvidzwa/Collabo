@@ -1,5 +1,6 @@
 package com.example.tapiwa.collabo;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ public class Main extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static final String MyPREFERENCES = "MyPrefs" ;
+    private NotificationManager mNotificationManager;
 
 
 
@@ -63,6 +65,20 @@ public class Main extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        CancelNotification(this, MyFirebaseMessagingService.NOTIFICATION_ID);
+    }
+
+    public void CancelNotification(Context ctx, int notifyId) {
+        String notificationService = Context.NOTIFICATION_SERVICE;
+        NotificationManager nMgr = (NotificationManager) ctx
+                .getSystemService(notificationService);
+        nMgr.cancel(notifyId);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,4 +148,5 @@ public class Main extends AppCompatActivity {
             return null;
         }
     }
+
 }
