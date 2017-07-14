@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/tapiwa/.android/build-cache/6a32118eaf4428abc4dcc67085da936f93eceaeb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="248218f163235e6d2a81188eaa1db0ec61193055">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_ef9fb97820f975f2c9790198d0066d9376282821.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/tapiwa/.android/build-cache/e22f4e642e3da59c967546b59f4a794bfab0bb45/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -25,17 +34,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="50f36e734d1a844a414933e6c623bbbaffcf183c">
+        sha1="b3060be519f234c63669537014e1eb0d321fd117">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tapiwa/.android/build-cache/f7dc5be17bd104b3664b0e7bb3edfb015da61735/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6ee37f68676f80095b60f995cd00586e8478c505">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_79ea9bd425f051d04016e30666b06b77e0830a14.jar" />
     </item>
 
 </items>

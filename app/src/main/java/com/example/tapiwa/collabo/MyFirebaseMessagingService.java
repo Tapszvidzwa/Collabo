@@ -15,6 +15,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.IOException;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -28,15 +29,22 @@ import static android.R.id.input;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences;
+    static int count = 0;
+
+
+
    // @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         // TODO: Handle FCM messages here.
+        ShortcutBadger.applyCount(getApplicationContext(), ++count);
+
         // If the application is in the foreground handle both data and notification messages here.
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated.
      //   Log.d(TAG, "From: " + remoteMessage.getFrom());
       // Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+
 
         sendNotification(remoteMessage.getData().get("message").toString());
     }
@@ -66,6 +74,7 @@ SharedPreferences sharedPreferences;
             e.printStackTrace();
         }
 
+        //show new notification badge
 
         Intent intent = new Intent(this, Main.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

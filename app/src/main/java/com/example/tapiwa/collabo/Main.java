@@ -1,6 +1,8 @@
 package com.example.tapiwa.collabo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +19,15 @@ import android.view.MenuItem;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 
 public class Main extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    public static final String MyPREFERENCES = "MyPrefs" ;
 
 
 
@@ -32,7 +37,8 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-
+        ShortcutBadger.removeCount(Main.this);
+        MyFirebaseMessagingService.count = 0;
 
         //Subscribe to topic and get token from firebase
         FirebaseMessaging.getInstance().subscribeToTopic("test");
@@ -54,9 +60,9 @@ public class Main extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
