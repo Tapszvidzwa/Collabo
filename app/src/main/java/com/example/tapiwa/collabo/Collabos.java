@@ -29,6 +29,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
+
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -45,6 +47,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,6 +93,7 @@ public class Collabos extends Fragment {
 
         StrictMode.setThreadPolicy(policy);
 
+        getTime();
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
         gridView = (GridView) collabos.findViewById(R.id.gridview);
@@ -232,10 +238,10 @@ public class Collabos extends Fragment {
 
     public String getTime() {
 
-        String day = DateUtils.formatDateTime(getContext(), DateUtils.FORMAT_ABBREV_WEEKDAY, 2).substring(0, 3);
-        String time = DateUtils.formatDateTime(getContext(), DateUtils.FORMAT_SHOW_TIME, 1);
-
-        return day + " " + time;
+        DateTime dt = new DateTime();
+        String timeNow = dt.toString().substring(11,16);
+        String day = dt.dayOfWeek().getAsShortText();
+        return day + " " + timeNow;
     }
 
 
