@@ -29,6 +29,7 @@ public class MaximizeImage extends AppCompatActivity {
 
 
     private TextView tag;
+    private TextView timeuploaded;
     private ImageView imageView;
     private TextView name;
     private ProgressBar progressBar;
@@ -40,20 +41,21 @@ public class MaximizeImage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maximizeimage);
 
-
-
-
-
-        progressBar = (ProgressBar) findViewById(R.id.maximizeImageProgressbar);
-        deletePhoto = (FloatingActionButton) findViewById(R.id.deleteImage);
-        String title = getIntent().getStringExtra("title");
         final String imageUri = getIntent().getStringExtra("image");
+
+        String title = getIntent().getStringExtra("title");
+        String timegiven = getIntent().getStringExtra("time");
         String profilename = getIntent().getStringExtra(("name"));
+
         tag = (TextView) findViewById(R.id.imageTag);
+        timeuploaded = (TextView) findViewById(R.id.timeImageUploaded);
         name = (TextView) findViewById(R.id.profileName);
         imageView = (ImageView) findViewById(R.id.grid_item_image);
         tag.setText(title);
         name.setText(profilename);
+        timeuploaded.setText(timegiven);
+        progressBar = (ProgressBar) findViewById(R.id.maximizeImageProgressbar);
+        deletePhoto = (FloatingActionButton) findViewById(R.id.deleteImage);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.keepSynced(true);

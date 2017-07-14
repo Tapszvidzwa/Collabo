@@ -8,10 +8,11 @@ package com.example.tapiwa.collabo;
 public class ImageUpload {
 
 
-    public ImageUpload(String profileName, String tag, String url) {
+    public ImageUpload(String profileName, String tag, String url, String timeUploaded) {
         this.profileName = profileName;
         this.tag = tag;
         this.url = url;
+        this.timeUploaded = timeUploaded;
     }
 
     public ImageUpload() {
@@ -20,6 +21,11 @@ public class ImageUpload {
     public String profileName;
     public String tag;
     public String url;
+    public String timeUploaded;
+
+    public String getTimeUploaded() {
+        return timeUploaded;
+    }
 
 
     public String getProfileName() {

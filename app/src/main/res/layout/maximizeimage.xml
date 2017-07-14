@@ -54,6 +54,8 @@
             android:textColor="#fff"
             android:textSize="20dp" />
 
+
+`
     </LinearLayout>
 
         <ProgressBar
@@ -64,6 +66,18 @@
             android:visibility="visible"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#07000000"
+            android:textColor="#fff"
+            android:id="@+id/timeImageUploaded"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:text="time"/>
+
+
     </RelativeLayout>
 
    </FrameLayout>

@@ -83,6 +83,7 @@ public class Tags extends Fragment {
                 intent.putExtra("title", item.getTag());
                 intent.putExtra("image", item.getUrl());
                 intent.putExtra("name", item.getProfileName());
+                intent.putExtra("time", item.getTimeUploaded());
 
                 //Start details activity
                 startActivity(intent);

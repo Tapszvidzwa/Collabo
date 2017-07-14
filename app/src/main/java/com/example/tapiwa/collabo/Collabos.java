@@ -1,6 +1,7 @@
 package com.example.tapiwa.collabo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,6 +148,7 @@ public class Collabos extends Fragment {
                 intent.putExtra("title", item.getTag());
                 intent.putExtra("image", item.getUrl());
                 intent.putExtra("name", item.getProfileName());
+                intent.putExtra("time", item.getTimeUploaded());
 
                 //Start details activity
                 startActivity(intent);
@@ -227,6 +230,14 @@ public class Collabos extends Fragment {
         return collabos;
     }
 
+    public String getTime() {
+
+        String day = DateUtils.formatDateTime(getContext(), DateUtils.FORMAT_ABBREV_WEEKDAY, 2).substring(0, 3);
+        String time = DateUtils.formatDateTime(getContext(), DateUtils.FORMAT_SHOW_TIME, 1);
+
+        return day + " " + time;
+    }
+
 
     public void startUpload() {
 
@@ -292,7 +303,7 @@ public class Collabos extends Fragment {
                 }
 
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
-                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString());
+                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime());
 
                 //save image info into the firebase database
                 String uploadId = mDatabaseRef.push().getKey();

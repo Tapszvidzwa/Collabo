@@ -37,7 +37,7 @@ public class TagListAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView name, tag;
+        TextView name, tag, time;
     }
 
     @Override
@@ -51,6 +51,7 @@ public class TagListAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.name = (TextView) row.findViewById(R.id.userName);
+            holder.time = (TextView) row.findViewById(R.id.timeUploaded);
             holder.tag = (TextView) row.findViewById(R.id.tagLine);
 
             row.setTag(holder);
@@ -62,6 +63,7 @@ public class TagListAdapter extends BaseAdapter {
         ImageUpload imageUpload = imageList.get(position);
 
         holder.name.setText(imageUpload.getProfileName());
+        holder.time.setText(imageUpload.getTimeUploaded());
         holder.tag.setText(imageUpload.getTag());
 
         return row;
