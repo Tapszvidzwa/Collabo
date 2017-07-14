@@ -89,11 +89,6 @@ public class Collabos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
-        getTime();
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
         gridView = (GridView) collabos.findViewById(R.id.gridview);
