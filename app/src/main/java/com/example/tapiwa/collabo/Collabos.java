@@ -1,7 +1,6 @@
 package com.example.tapiwa.collabo;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +19,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,11 +47,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -72,9 +72,11 @@ public class Collabos extends Fragment {
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
+    final int UNREAD_MESSAGE = 1;
+    final int OPENED_MESSAGE = 0;
     Vibrator vibrate;
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    final int REQUEST_IMAGE_CAPTURE = 1;
     private FirebaseStorage mStorage;
     private StorageReference storageReference;
     private ProgressDialog mProgress;
@@ -89,6 +91,13 @@ public class Collabos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build();
+        StrictMode.setThreadPolicy(policy);
+
+        ShortcutBadger.removeCount(getContext());
 
         View collabos = inflater.inflate(R.layout.collabos, container, false);
         gridView = (GridView) collabos.findViewById(R.id.gridview);
@@ -148,8 +157,11 @@ public class Collabos extends Fragment {
                 Intent intent = new Intent(getContext(), MaximizeImage.class);
                 intent.putExtra("title", item.getTag());
                 intent.putExtra("image", item.getUrl());
+                intent.putExtra("chatRoom", item.getChatRoom());
                 intent.putExtra("name", item.getProfileName());
+                intent.putExtra("activityCalling", "collabos");
                 intent.putExtra("time", item.getTimeUploaded());
+                intent.putExtra("user", "none");                //user is none because this is for the group
 
                 //Start details activity
                 startActivity(intent);
@@ -231,12 +243,22 @@ public class Collabos extends Fragment {
         return collabos;
     }
 
-    public String getTime() {
+    @Override
+    public void onResume(){
+        super.onResume();
+        ShortcutBadger.removeCount(getContext());
+    }
+
+
+    public static String getTime() {
 
         DateTime dt = new DateTime();
         String timeNow = dt.toString().substring(11,16);
-        String day = dt.dayOfWeek().getAsShortText();
-        return day + " " + timeNow;
+        int month = dt.monthOfYear().get();
+        String date = dt.dayOfMonth().getAsShortText();
+
+
+        return  "(" + month + "/" + date + ")" + " " + timeNow;
     }
 
 
@@ -304,7 +326,10 @@ public class Collabos extends Fragment {
                 }
 
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
-                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime());
+                String chatroom = createChatRoomName(image_tag);
+
+                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime(), chatroom, UNREAD_MESSAGE);
+
 
                 //save image info into the firebase database
                 String uploadId = mDatabaseRef.push().getKey();
@@ -321,7 +346,11 @@ public class Collabos extends Fragment {
     }
 
 
-    private void TakePicture() {
+    public String createChatRoomName(String tag) {
+        return usrName.getString("example_text", null).trim() + tag;
+    }
+
+    private  void TakePicture() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
             File photoFile = null;
@@ -343,7 +372,7 @@ public class Collabos extends Fragment {
     }
 
 
-    private File createImageFile() throws IOException {
+    private  File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -358,7 +387,7 @@ public class Collabos extends Fragment {
     }
 
 
-    public void sendNotifications(String username) throws IOException {
+    public static void sendNotifications(String username) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -383,6 +412,17 @@ public class Collabos extends Fragment {
 
                     }
                 });
+
+    }
+
+    private void createChatRoom() {
+
+         DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put(usrName + image_tag, "");
+        root.updateChildren(map);
 
     }
 

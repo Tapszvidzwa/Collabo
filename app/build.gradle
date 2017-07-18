@@ -30,9 +30,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
     //todo change the firebase to use the latest version
-    compile "me.leolin:ShortcutBadger:1.1.17@aar"
+    compile 'me.leolin:ShortcutBadger:1.1.17@aar'
     compile 'joda-time:joda-time:2.9.9'
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'

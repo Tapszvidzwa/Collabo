@@ -1,6 +1,7 @@
 package com.example.tapiwa.collabo;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+
 public class MaximizeImage extends AppCompatActivity {
 
 
@@ -34,18 +36,31 @@ public class MaximizeImage extends AppCompatActivity {
     private TextView name;
     private ProgressBar progressBar;
     private FloatingActionButton deletePhoto;
-    final String FB_DATABASE_PATH = "photos";
+    private String FB_DATABASE_PATH;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maximizeimage);
 
         final String imageUri = getIntent().getStringExtra("image");
 
-        String title = getIntent().getStringExtra("title");
+       final String title = getIntent().getStringExtra("title");
         String timegiven = getIntent().getStringExtra("time");
         String profilename = getIntent().getStringExtra(("name"));
+        String user = getIntent().getStringExtra(("user"));
+        String activityCalling = getIntent().getStringExtra("activityCalling");
+       final String chatRoom = getIntent().getStringExtra(("chatRoom"));
+
+
+        if(user.equals("none")) {
+            FB_DATABASE_PATH = "photos";
+        } else {
+            FB_DATABASE_PATH = user;
+        }
 
         tag = (TextView) findViewById(R.id.imageTag);
         timeuploaded = (TextView) findViewById(R.id.timeImageUploaded);
@@ -101,6 +116,26 @@ public class MaximizeImage extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton openChat = (FloatingActionButton) findViewById(R.id.openChat);
+
+        if(activityCalling.equals("tags") || activityCalling.equals("collabos")) {
+
+            openChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    try {
+                        openChatRoom(chatRoom);
+                    } catch (Exception e) {
+                        Toast.makeText(MaximizeImage.this, "ChatRoom unavailable, please check network strength", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else {
+            openChat.setVisibility(View.INVISIBLE);
+        }
+
+
         Picasso.with(this)
                 .load(imageUri)
                 .priority(Picasso.Priority.HIGH)
@@ -130,6 +165,19 @@ public class MaximizeImage extends AppCompatActivity {
                                 });
                     }
                     });
+    }
+
+
+    private void openChatRoom(String chatRoom) {
+
+
+        //Pass the image title and url to DetailsActivity
+        Intent intent = new Intent(MaximizeImage.this, TagChats.class);
+        intent.putExtra("chatRoom", chatRoom);
+        //Start details activity
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up );
+
     }
 
 }

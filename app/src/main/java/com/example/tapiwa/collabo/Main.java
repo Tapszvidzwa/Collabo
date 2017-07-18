@@ -3,7 +3,6 @@ package com.example.tapiwa.collabo;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,13 +24,8 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class Main extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    private NotificationManager mNotificationManager;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,14 +110,18 @@ public class Main extends AppCompatActivity {
 
             switch (position) {
                 case 0 :
-                    Collabos collabos = new Collabos();
-                    return collabos;
+                    Privates privates = new Privates();
+                    return privates;
                 case 1 :
-                    Tags tags = new Tags();
-                    return tags;
-                case 2:
                     Notes notes = new Notes();
                     return notes;
+                case 2:
+                    Tags tags = new Tags();
+                    return tags;
+                case 3:
+                   Collabos collabos = new Collabos();
+                    return collabos;
+
                 default:
                     return null;
             }
@@ -132,18 +130,20 @@ public class Main extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "COLLABOS";
+                    return "PRIVATE";
                 case 1:
-                    return "TAGS";
-                case 2:
                     return "NOTES";
+                case 2:
+                    return "TAGS";
+                case 3:
+                    return "GROUP";
             }
             return null;
         }

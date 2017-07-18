@@ -7,9 +7,24 @@ package com.example.tapiwa.collabo;
 
 public class ImageUpload {
 
+    public String profileName;
+    public String tag;
+    public String url;
+    public String timeUploaded;
+    public String chatRoom;
+    public int unreadFlag;
 
-    public ImageUpload(String profileName, String tag, String url, String timeUploaded) {
+
+    public ImageUpload(String profileName, String tag, String url, String timeUploaded, String chatRoom, int unreadFlag) {
         this.profileName = profileName;
+        this.tag = tag;
+        this.url = url;
+        this.timeUploaded = timeUploaded;
+        this.chatRoom = chatRoom;
+    }
+
+
+    public ImageUpload(String tag, String url, String timeUploaded) {
         this.tag = tag;
         this.url = url;
         this.timeUploaded = timeUploaded;
@@ -18,13 +33,13 @@ public class ImageUpload {
     public ImageUpload() {
     }
 
-    public String profileName;
-    public String tag;
-    public String url;
-    public String timeUploaded;
 
     public String getTimeUploaded() {
         return timeUploaded;
+    }
+
+    public String getChatRoom() {
+        return chatRoom;
     }
 
 

@@ -51,7 +51,7 @@ public class Welcome extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(2300);
+                    sleep(1250);
 
                     if (isUser == true) {
 

@@ -77,7 +77,8 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", title);
         contentValues.put("contents", contents);
-     //   db.update("notes", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
+        String [] whereArgs = {title};
+        db.update("notes", contentValues, "title = ? ", whereArgs);
         return true;
     }
 

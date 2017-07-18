@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.util.ArrayList;
 
 
@@ -59,6 +62,8 @@ public class TagListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) row.getTag();
         }
+
+
 
         ImageUpload imageUpload = imageList.get(position);
 

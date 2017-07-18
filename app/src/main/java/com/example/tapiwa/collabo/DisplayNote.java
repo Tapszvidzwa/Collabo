@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class DisplayNote extends AppCompatActivity {
@@ -12,7 +13,7 @@ public class DisplayNote extends AppCompatActivity {
 
     private TextView displayNoteTitle;
     private TextView displayNoteContents;
-    private FloatingActionButton deleteNote;
+    private FloatingActionButton deleteNote, saveNote, editNote;
     DBHelper dbHelper;
 
 
@@ -23,8 +24,10 @@ public class DisplayNote extends AppCompatActivity {
 
 
         displayNoteTitle = (TextView) findViewById(R.id.displayNoteTitle);
-        displayNoteContents = (TextView) findViewById(R.id.displayNoteContent);
+        displayNoteContents = (EditText) findViewById(R.id.displayNoteContent);
         deleteNote = (FloatingActionButton) findViewById(R.id.deleteNote);
+        saveNote = (FloatingActionButton) findViewById(R.id.saveEditedNote);
+        editNote = (FloatingActionButton) findViewById(R.id.EditNote);
 
         final String noteTitle = getIntent().getStringExtra("title");
 
@@ -39,6 +42,23 @@ public class DisplayNote extends AppCompatActivity {
 
                 dbHelper.deleteNote(noteTitle);
                 DisplayNote.this.finish();
+            }
+        });
+
+        saveNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dbHelper.updateNote(noteTitle, displayNoteContents.getText().toString());
+                DisplayNote.this.finish();
+            }
+        });
+
+        editNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayNoteContents.setCursorVisible(true);
             }
         });
     }

@@ -38,9 +38,11 @@
                 android:background="#fff"
                 android:textStyle="bold"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/displayNoteContent"
                 android:layout_marginTop="3dp"
+                android:gravity="top"
+                android:cursorVisible="false"
                 android:layout_below="@id/displayNoteTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,12 +58,36 @@
 
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/EditNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_alignTop="@+id/saveEditedNote"
+        android:layout_toLeftOf="@+id/saveEditedNote"
+        android:layout_toStartOf="@+id/saveEditedNote" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/saveEditedNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_alignTop="@+id/deleteNote"
+        android:layout_toLeftOf="@+id/deleteNote"
+        android:layout_toStartOf="@+id/deleteNote" />
+
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/deleteNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 

@@ -39,7 +39,7 @@ public class NewNote extends AppCompatActivity {
     
     public void saveNote() {
 
-        if(noteTitle.getText().toString().isEmpty()) {
+        if(noteTitle.getText().toString().trim().equals("")) {
            noteTitle.setError("Please enter unique note title");
             return;
         }

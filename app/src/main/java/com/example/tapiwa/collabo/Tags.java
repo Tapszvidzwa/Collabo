@@ -84,6 +84,9 @@ public class Tags extends Fragment {
                 intent.putExtra("image", item.getUrl());
                 intent.putExtra("name", item.getProfileName());
                 intent.putExtra("time", item.getTimeUploaded());
+                intent.putExtra("chatRoom", item.getChatRoom());
+                intent.putExtra("user", "none");
+                intent.putExtra("activityCalling", "tags");
 
                 //Start details activity
                 startActivity(intent);
