@@ -68,12 +68,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
 
-    public void sendNotifications(String user) {
+    public void sendNotifications(String user, String key) {
         // TODO: Implement this method to send token to your app server.
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("userName", user)
+                .add("key", key)
                 .build();
 
         Request request = new Request.Builder()

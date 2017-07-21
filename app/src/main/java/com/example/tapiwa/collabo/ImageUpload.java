@@ -12,15 +12,17 @@ public class ImageUpload {
     public String url;
     public String timeUploaded;
     public String chatRoom;
-    public int unreadFlag;
+    public String key;
 
 
-    public ImageUpload(String profileName, String tag, String url, String timeUploaded, String chatRoom, int unreadFlag) {
+
+    public ImageUpload(String profileName, String tag, String url, String timeUploaded, String chatRoom,String key) {
         this.profileName = profileName;
         this.tag = tag;
         this.url = url;
         this.timeUploaded = timeUploaded;
         this.chatRoom = chatRoom;
+        this.key = key;
     }
 
 
@@ -31,6 +33,10 @@ public class ImageUpload {
     }
 
     public ImageUpload() {
+    }
+
+    public String getKey() {
+        return key;
     }
 
 

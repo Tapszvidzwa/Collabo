@@ -41,12 +41,12 @@ public class Main extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getToken();
 
 
-        // Create the adapter that will return a fragment for each of the three
+        // Create the unopenedMessagesadapter that will return a fragment for each of the three
         // primary sections of the activity.
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
+        // Set up the ViewPager with the sections unopenedMessagesadapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 

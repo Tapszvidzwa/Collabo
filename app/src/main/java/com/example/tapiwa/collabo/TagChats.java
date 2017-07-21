@@ -35,7 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-import static com.example.tapiwa.collabo.R.id.right;
+
 
 public class TagChats extends AppCompatActivity {
 
@@ -43,12 +43,17 @@ public class TagChats extends AppCompatActivity {
     private FloatingActionButton btn_send_msg;
     private TextView chat_conversation;
     private EditText input_msg;
-    private SharedPreferences sharedPreferences;
+    private String timeSent;
+   private SharedPreferences sharedPreferences;
 
     private String user_name, room_name;
     private DatabaseReference root;
     public String temp_key;
     private ScrollView scrollView;
+    public String key;
+    private String profilename;
+    SortMessages sortMessages;
+
 
 
 
@@ -67,9 +72,14 @@ public class TagChats extends AppCompatActivity {
         sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(TagChats.this);
         scrollView = ((ScrollView) findViewById(R.id.scrollView));
 
+        sortMessages = new SortMessages(getApplicationContext());
+
 
         room_name = getIntent().getExtras().get("chatRoom").toString();
-        user_name =  sharedPreferences.getString("example_text", null);
+        key = getIntent().getStringExtra("key");
+        profilename = getIntent().getStringExtra("profilename");
+
+        user_name =  "@" + sharedPreferences.getString("example_text", null);
 
         setTitle(room_name);
 
@@ -106,17 +116,16 @@ public class TagChats extends AppCompatActivity {
 
 
 
-
-
         root.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 append_chat_conversation(dataSnapshot);
+
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                append_chat_conversation(dataSnapshot);
+              //  append_chat_conversation(dataSnapshot);
             }
 
             @Override
@@ -155,15 +164,17 @@ public class TagChats extends AppCompatActivity {
 
           chat_msg = (String) ((DataSnapshot) i.next()).getValue();
           chat_user_name = (String) ((DataSnapshot) i.next()).getValue();
+          timeSent = (String) ((DataSnapshot) i.next()).getValue();
+
 
           String time = Collabos.getTime();
           chat_conversation.append(Html.fromHtml("<b>" + chat_user_name + "</b>"
-                                                  + ": " + chat_msg + "<br />"
-                                                  + "<small align = \"right\"> " + time + "</small>" + "<br />"));
+                  + ": " + chat_msg + "<br />"
+                  + "<small align = \"right\"> " + timeSent + "</small>" + "<br />"));
+
+          scrollToBottom();
 
       }
-      scrollToBottom();
-
   }
 
   public void sendMessage() {
@@ -172,15 +183,18 @@ public class TagChats extends AppCompatActivity {
       temp_key = root.push().getKey();
       root.updateChildren(map);
 
+      timeSent = Collabos.getTime();
+
       DatabaseReference message_root = root.child(temp_key);
       Map<String, Object> map2 = new HashMap<String, Object>();
       map2.put("name",user_name);
       map2.put("msg", input_msg.getText().toString());
+      map2.put("time", timeSent);
 
       input_msg.setText("");
 
       try {
-          sendNotifications("@" + user_name);
+          sendNotifications(user_name, key);
       } catch (IOException e) {
           e.printStackTrace();
       }
@@ -200,7 +214,7 @@ public class TagChats extends AppCompatActivity {
       });
   }
 
-    public static void sendNotifications(String username) throws IOException {
+    public static void sendNotifications(String username,String key) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -209,6 +223,7 @@ public class TagChats extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("userName", username)
                 .add("type", type)
+                .add("key", key)
                 .build();
 
         Request request = new Request.Builder()

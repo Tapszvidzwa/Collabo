@@ -46,22 +46,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      //   Log.d(TAG, "From: " + remoteMessage.getFrom());
       // Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
 
+        String receivedMsg = remoteMessage.getData().get("message").toString();
 
-        sendNotification(remoteMessage.getData().get("message").toString());
+        String parts[] = receivedMsg.split("/");
+
+        String username = parts[0];
+        String messagetype = parts[1];
+        String messagekey = parts[2];
+        
+
+        sendNotification(username + " " + messagetype, messagekey);
     }
 
 
     //Display the notification
 
-    private void sendNotification(String body) {
-
+    private void sendNotification(String body, String key) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         //// TODO: 7/14/17 find a cleaner way of storing the user name, consider firebase?
         String storedUserName = "@" + sharedPreferences.getString("example_text", null);
-
         String postMessage = body;
-
         
         //// TODO: 7/14/17 This method only works when the username does not have spaces, fix so that it works on any userName string 
         int i = postMessage.indexOf(' ');
@@ -75,8 +80,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
         }
 
-        //show new notification badge
 
+     //Send notification to Tags
+        SortMessages sortMessages = new SortMessages(getApplicationContext());
+        if(Tags.isInForeGround) {
+            //// TODO: 7/21/17 find a way to update the Tags UI fragment if it is in the foreground 
+            // sortMessages.removeFromStoredKeys(messagekey);
+        } else {
+            if(Tags.onStopCalled) {
+                sortMessages.restoreStoredMessagesPreference();
+                sortMessages.removeFromStoredKeys(key);
+                sortMessages.savePreferences();
+            }
+        }
+        
+        //show new notification badge on icon
         Intent intent = new Intent(this, Main.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

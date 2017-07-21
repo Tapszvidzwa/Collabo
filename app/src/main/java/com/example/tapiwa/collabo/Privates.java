@@ -38,10 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import static android.content.Context.VIBRATOR_SERVICE;
 
-
-import org.joda.time.DateTime;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,11 +46,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -66,7 +58,7 @@ public class Privates extends Fragment {
     public ListView listview;
     Vibrator vibrate;
     public ArrayList<ImageUpload> list;
-    public TagListAdapter adapter;
+    public PrivateTagListAdapter adapter;
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
@@ -94,9 +86,9 @@ public class Privates extends Fragment {
 
 
         View privateTags = inflater.inflate(R.layout.privatetags, container, false);
-        listview = (ListView) privateTags.findViewById(R.id.listView);
+        listview = (ListView) privateTags.findViewById(R.id.unopenedlistView);
         list = new ArrayList<>();
-        adapter = new TagListAdapter(getContext(), R.layout.privatetag_item_list, list);
+        adapter = new PrivateTagListAdapter(getContext(), R.layout.privatetag_item_list, list);
         listview.setAdapter(adapter);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(user);
@@ -117,8 +109,8 @@ public class Privates extends Fragment {
                 Collections.reverse(list);
 
 
-                //init adapter
-                adapter = new TagListAdapter(getContext(), R.layout.privatetag_item_list, list);
+                //init unopenedMessagesadapter
+                adapter = new PrivateTagListAdapter(getContext(), R.layout.privatetag_item_list, list);
                 listview.setAdapter(adapter);
             }
 

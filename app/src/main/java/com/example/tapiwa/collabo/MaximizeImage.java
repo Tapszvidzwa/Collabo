@@ -37,6 +37,8 @@ public class MaximizeImage extends AppCompatActivity {
     private ProgressBar progressBar;
     private FloatingActionButton deletePhoto;
     private String FB_DATABASE_PATH;
+    private String key;
+    private String profilename;
 
 
     @Override
@@ -47,10 +49,12 @@ public class MaximizeImage extends AppCompatActivity {
         setContentView(R.layout.maximizeimage);
 
         final String imageUri = getIntent().getStringExtra("image");
+        Boolean fromCollabo = false;
 
        final String title = getIntent().getStringExtra("title");
         String timegiven = getIntent().getStringExtra("time");
-        String profilename = getIntent().getStringExtra(("name"));
+        key = getIntent().getStringExtra("key");
+        profilename = getIntent().getStringExtra(("name"));
         String user = getIntent().getStringExtra(("user"));
         String activityCalling = getIntent().getStringExtra("activityCalling");
        final String chatRoom = getIntent().getStringExtra(("chatRoom"));
@@ -58,6 +62,7 @@ public class MaximizeImage extends AppCompatActivity {
 
         if(user.equals("none")) {
             FB_DATABASE_PATH = "photos";
+            fromCollabo = true;
         } else {
             FB_DATABASE_PATH = user;
         }
@@ -76,18 +81,28 @@ public class MaximizeImage extends AppCompatActivity {
         ref.keepSynced(true);
         final StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageUri);
         final Query ImagesQuery = ref.child(FB_DATABASE_PATH).orderByChild("url").equalTo(imageUri);
-
+        final Boolean isFromCollabo = fromCollabo;
+        final String keyToBeRemoved = key;
 
 //// TODO: 7/11/17 Implement this method in the firebase helper
         deletePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 
                  //// TODO: 7/11/17 make sure it deletes from Storage too and give result to UI
 
                 photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+
+                        if(isFromCollabo) {
+                            SortMessages sortMessages = new SortMessages(getApplicationContext());
+                            sortMessages.restoreStoredMessagesPreference();
+                            sortMessages.removeFromStoredKeys(keyToBeRemoved);
+                            sortMessages.savePreferences();
+                        }
                         Toast.makeText(MaximizeImage.this, "Collabo successfully deleted", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -174,6 +189,8 @@ public class MaximizeImage extends AppCompatActivity {
         //Pass the image title and url to DetailsActivity
         Intent intent = new Intent(MaximizeImage.this, TagChats.class);
         intent.putExtra("chatRoom", chatRoom);
+        intent.putExtra("profileName", profilename);
+        intent.putExtra("key", key);
         //Start details activity
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up );

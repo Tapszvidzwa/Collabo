@@ -19,6 +19,7 @@ public class Welcome extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseAnalytics mFBAnalytics;
     private Boolean isUser;
+    public static Boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class Welcome extends AppCompatActivity {
                         startActivity(openMain);
                         Welcome.this.finish();
                     } else {
-
+                        loggedIn = true;
                         Intent openLoginRegistration = new Intent(Welcome.this, Login.class);
                         startActivity(openLoginRegistration);
                         Welcome.this.finish();

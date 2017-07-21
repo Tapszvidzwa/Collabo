@@ -81,9 +81,11 @@ public class Collabos extends Fragment {
     private StorageReference storageReference;
     private ProgressDialog mProgress;
     private String image_tag;
+    public static Boolean imageDeleted = false;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
     SharedPreferences usrName;
+    public SharedPreferences sharedpreferences;
     Uri fileUri;
 
 
@@ -108,6 +110,7 @@ public class Collabos extends Fragment {
         mProgress = new ProgressDialog(getContext());
 
 
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_DATABASE_PATH);
         mDatabaseRef.keepSynced(true);
 
@@ -119,6 +122,9 @@ public class Collabos extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                MessageNotificationsHelper nf = new MessageNotificationsHelper();
+                nf.restructureAdded();
+
                 //fetch image data from firebase
                 list.clear();
                 for (DataSnapshot Snapshot1 : dataSnapshot.getChildren()) {
@@ -128,7 +134,7 @@ public class Collabos extends Fragment {
                 Collections.reverse(list);
 
 
-                //init adapter
+                //init unopenedMessagesadapter
                 adapter = new ImageListAdapter(getContext(), R.layout.image_item_list, list);
                 gridView.setAdapter(adapter);
             }
@@ -157,6 +163,7 @@ public class Collabos extends Fragment {
                 Intent intent = new Intent(getContext(), MaximizeImage.class);
                 intent.putExtra("title", item.getTag());
                 intent.putExtra("image", item.getUrl());
+                intent.putExtra("key", item.getKey());
                 intent.putExtra("chatRoom", item.getChatRoom());
                 intent.putExtra("name", item.getProfileName());
                 intent.putExtra("activityCalling", "collabos");
@@ -173,7 +180,7 @@ public class Collabos extends Fragment {
 
 
             public boolean onItemLongClick(AdapterView<?> parent, View v,
-                                           int position, long id) {
+                                           final int position, long id) {
 
                 final ImageUpload item = (ImageUpload) parent.getItemAtPosition(position);
                 vibrate.vibrate(40);
@@ -185,7 +192,7 @@ public class Collabos extends Fragment {
                     builder = new AlertDialog.Builder(getContext());
                 }
                 builder.setTitle("Delete Collabo")
-                        .setMessage("Are you sure you want to delete this Collabo?")
+                        .setMessage("Are you sure you want to delete this Collabo, this will delete to the whole group?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -202,6 +209,13 @@ public class Collabos extends Fragment {
                                 photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
+
+                                        //remove from opened/unopened messages
+                                      SortMessages sortMessages = new SortMessages(getContext());
+                                        sortMessages.restoreStoredMessagesPreference();
+                                        sortMessages.removeFromStoredKeys(item.getKey());
+                                        sortMessages.savePreferences();
+
                                         Toast.makeText(getContext(), "Collabo successfully deleted", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
@@ -319,21 +333,23 @@ public class Collabos extends Fragment {
                 String userName = "@" + usrName.getString("example_text", null);
 
                 //send notifications to all users in group
+
+
+                Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
+
+                String chatroom = createChatRoomName(image_tag);
+                String key = mDatabaseRef.push().getKey();
+
                 try {
-                    sendNotifications(userName);
+                    sendNotifications(userName, key);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
-                String chatroom = createChatRoomName(image_tag);
-
-                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime(), chatroom, UNREAD_MESSAGE);
-
-
+                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime(), chatroom, key);
                 //save image info into the firebase database
-                String uploadId = mDatabaseRef.push().getKey();
-                mDatabaseRef.child(uploadId).setValue(imageUpload);
+
+                mDatabaseRef.child(key).setValue(imageUpload);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -387,12 +403,13 @@ public class Collabos extends Fragment {
     }
 
 
-    public static void sendNotifications(String username) throws IOException {
+    public static void sendNotifications(String username, String key) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
                 .add("userName", username)
+                .add("key", key)
                 .build();
 
         Request request = new Request.Builder()
@@ -425,6 +442,24 @@ public class Collabos extends Fragment {
         root.updateChildren(map);
 
     }
+
+    //save all list of all the opened Messages
+    public void saveSession() {
+
+        SharedPreferences.Editor messagesEditor = sharedpreferences.edit();
+
+        MessageNotificationsHelper.list.size();
+        StringBuilder str = new StringBuilder();
+        int listSize = MessageNotificationsHelper.list.size();
+
+        for (int i = 0; i < listSize; i++) {
+            StringBuilder append = str.append(MessageNotificationsHelper.list.get(i)).append(",");
+        }
+        messagesEditor.putString("openedMessages", str.toString());
+        messagesEditor.putInt("listSize", listSize);
+        messagesEditor.commit();
+    }
+
 
 }
 
