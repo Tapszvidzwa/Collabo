@@ -332,16 +332,15 @@ public class Collabos extends Fragment {
 
                 String userName = "@" + usrName.getString("example_text", null);
 
-                //send notifications to all users in group
-
 
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
 
                 String chatroom = createChatRoomName(image_tag);
                 String key = mDatabaseRef.push().getKey();
 
+                //send notifications to all the users in the group
                 try {
-                    sendNotifications(userName, key);
+                    sendNotifications(userName, image_tag, key);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -403,13 +402,14 @@ public class Collabos extends Fragment {
     }
 
 
-    public static void sendNotifications(String username, String key) throws IOException {
+    public static void sendNotifications(String username, String packetMessage, String key) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
                 .add("userName", username)
                 .add("key", key)
+                .add("packetMessage", packetMessage)
                 .build();
 
         Request request = new Request.Builder()

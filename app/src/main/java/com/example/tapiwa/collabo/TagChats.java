@@ -45,6 +45,7 @@ public class TagChats extends AppCompatActivity {
     private EditText input_msg;
     private String timeSent;
    private SharedPreferences sharedPreferences;
+    final int NOTIFICATION_BODY_MAX_LENGTH = 30;
 
     private String user_name, room_name;
     private DatabaseReference root;
@@ -84,6 +85,7 @@ public class TagChats extends AppCompatActivity {
         setTitle(room_name);
 
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
+        root.keepSynced(true);
 
 
         input_msg.setOnKeyListener(new View.OnKeyListener() {
@@ -167,7 +169,6 @@ public class TagChats extends AppCompatActivity {
           timeSent = (String) ((DataSnapshot) i.next()).getValue();
 
 
-          String time = Collabos.getTime();
           chat_conversation.append(Html.fromHtml("<b>" + chat_user_name + "</b>"
                   + ": " + chat_msg + "<br />"
                   + "<small align = \"right\"> " + timeSent + "</small>" + "<br />"));
@@ -191,17 +192,29 @@ public class TagChats extends AppCompatActivity {
       map2.put("msg", input_msg.getText().toString());
       map2.put("time", timeSent);
 
-      input_msg.setText("");
+      //update database
+      message_root.updateChildren(map2);
 
+      //Notify other users in the chatrooom of the new message
+
+      String packet = trimText(input_msg.getText().toString());
       try {
-          sendNotifications(user_name, key);
+          sendNotifications(user_name, packet, room_name, key);
       } catch (IOException e) {
           e.printStackTrace();
       }
 
-      message_root.updateChildren(map2);
+      input_msg.setText("");
       scrollToBottom();
 
+  }
+
+  private String trimText(String str) {
+      if(str.length() > NOTIFICATION_BODY_MAX_LENGTH) {
+        return  str.substring(0,NOTIFICATION_BODY_MAX_LENGTH) + "...";
+      } else {
+          return str;
+      }
   }
 
 
@@ -214,7 +227,7 @@ public class TagChats extends AppCompatActivity {
       });
   }
 
-    public static void sendNotifications(String username,String key) throws IOException {
+    public static void sendNotifications(String username,String packetMessage, String chatRoom, String key) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
@@ -223,6 +236,8 @@ public class TagChats extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("userName", username)
                 .add("type", type)
+                .add("chatRoom", chatRoom)
+                .add("packetMessage",packetMessage)
                 .add("key", key)
                 .build();
 

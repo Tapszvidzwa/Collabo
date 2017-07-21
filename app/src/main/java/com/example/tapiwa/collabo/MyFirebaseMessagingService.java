@@ -52,28 +52,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String username = parts[0];
         String messagetype = parts[1];
-        String messagekey = parts[2];
+        String messageBody = parts[2];
+        String messagekey = parts[3];
         
 
-        sendNotification(username + " " + messagetype, messagekey);
+        sendNotification(username, messagetype,messageBody, messagekey);
     }
 
 
     //Display the notification
 
-    private void sendNotification(String body, String key) {
+    private void sendNotification(String username, String messagetype, String messageBody, String messagekey) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         //// TODO: 7/14/17 find a cleaner way of storing the user name, consider firebase?
         String storedUserName = "@" + sharedPreferences.getString("example_text", null);
-        String postMessage = body;
-        
-        //// TODO: 7/14/17 This method only works when the username does not have spaces, fix so that it works on any userName string 
-        int i = postMessage.indexOf(' ');
-        String userName = postMessage.substring(0, i);
 
         try {
-            if (userName.equals(storedUserName)) {
+            if (username.equals(storedUserName)) {
                 return;
             }
         } catch (Exception e) {
@@ -84,12 +80,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      //Send notification to Tags
         SortMessages sortMessages = new SortMessages(getApplicationContext());
         if(Tags.isInForeGround) {
-            //// TODO: 7/21/17 find a way to update the Tags UI fragment if it is in the foreground 
+            //// TODO: 7/21/17 find a way to update the Tags UI fragment if it is in the foreground
             // sortMessages.removeFromStoredKeys(messagekey);
         } else {
             if(Tags.onStopCalled) {
                 sortMessages.restoreStoredMessagesPreference();
-                sortMessages.removeFromStoredKeys(key);
+                sortMessages.removeFromStoredKeys(messagekey);
                 sortMessages.savePreferences();
             }
         }
@@ -105,8 +101,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notifiBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Collabo")
-                .setContentText(body)
+                .setContentTitle("Collabo:" + messagetype)
+                .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(notificationSound)
                 .setContentIntent(pendingIntent);
