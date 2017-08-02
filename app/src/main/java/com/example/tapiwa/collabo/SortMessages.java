@@ -49,6 +49,7 @@ public class SortMessages {
     }
 
 
+
     public void savePreferences() {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
@@ -63,6 +64,8 @@ public class SortMessages {
         storedMessageKeys.clear();
 
     }
+
+
 
     public void restoreStoredMessagesPreference() {
 

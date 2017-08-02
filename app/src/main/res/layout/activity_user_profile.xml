@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/collaboColor"
+    android:layout_centerHorizontal="true"
+    tools:context="com.example.tapiwa.collabo.ProfileActivity">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/profile_toolBar" />
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/new_default_image"
+        android:id="@+id/profile_photo"
+        android:layout_below="@+id/profile_toolBar"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/DisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28dp"
+        android:textColor="#fff"
+        android:text="Display Name"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/profile_photo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/bio"
+        android:layout_width="wrap_content"
+        android:textColor="#fff"
+        android:layout_height="wrap_content"
+        android:text="Hello there, I've joined Collabo"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/DisplayName"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/send_friend_request"
+        android:layout_width="wrap_content"
+        android:padding="8dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:background="@color/lime"
+        android:ellipsize="marquee"
+        android:fontFamily="@string/com_facebook_loginview_logged_in_using_facebook"
+        android:text="Send Friend Request"
+        android:textColor="@android:color/background_light"
+        android:visibility="visible" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        android:id="@+id/request_sent_spinner"
+        app:indicatorName="BallTrianglePathIndicator"
+        app:indicatorColor="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+
+        />
+
+
+</RelativeLayout>

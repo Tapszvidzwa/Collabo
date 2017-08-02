@@ -16,39 +16,52 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.storage.StorageReference;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 
 public class Main extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
+    private FirebaseUser mCurrentUser;
+    private String uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         ShortcutBadger.removeCount(Main.this);
         MyFirebaseMessagingService.count = 0;
+
+        //Connect to Facebook analytics
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
         //Subscribe to topic and get token from firebase
         FirebaseMessaging.getInstance().subscribeToTopic("test");
         FirebaseInstanceId.getInstance().getToken();
 
 
-        // Create the unopenedMessagesadapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections unopenedMessagesadapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setAdapter(mViewPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -89,9 +102,24 @@ public class Main extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+
+        //// TODO: 8/1/17 Change these settings to custom settings
         if (id == R.id.action_settings) {
             Intent settings = new Intent(Main.this, Settings.class);
             startActivity(settings);
+        }
+
+        if (id == R.id.action_profile) {
+            Intent userProfile = new Intent(Main.this, ProfileActivity.class);
+            String uid = mCurrentUser.getUid();
+            userProfile.putExtra("uid", uid);
+            userProfile.putExtra("myProfile", "mine");
+            startActivity(userProfile);
+        }
+
+        if(id == R.id.friends_list) {
+            Intent friendList = new Intent(Main.this, FriendsListActivity.class);
+            startActivity(friendList);
         }
 
         return super.onOptionsItemSelected(item);
@@ -99,9 +127,9 @@ public class Main extends AppCompatActivity {
 
 
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -112,16 +140,12 @@ public class Main extends AppCompatActivity {
                 case 0 :
                     Privates privates = new Privates();
                     return privates;
-                case 1 :
-                    Notes notes = new Notes();
-                    return notes;
+                case 1:
+                    GroupsFragment groupsFragment = new GroupsFragment();
+                    return groupsFragment;
                 case 2:
-                    Tags tags = new Tags();
-                    return tags;
-                case 3:
-                   Collabos collabos = new Collabos();
-                    return collabos;
-
+                    RequestsFragment requestsFragment = new RequestsFragment();
+                    return requestsFragment;
                 default:
                     return null;
             }
@@ -130,7 +154,7 @@ public class Main extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 4;
+            return 3;
         }
 
         @Override
@@ -139,11 +163,9 @@ public class Main extends AppCompatActivity {
                 case 0:
                     return "PRIVATE";
                 case 1:
-                    return "NOTES";
+                    return "GROUPS";
                 case 2:
-                    return "TAGS";
-                case 3:
-                    return "GROUP";
+                    return "REQUESTS";
             }
             return null;
         }

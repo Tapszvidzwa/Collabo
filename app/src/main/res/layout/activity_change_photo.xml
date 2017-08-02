@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tapiwa.collabo.ChangePhotoActivity">
+    
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/change_photo_toolbar"
+        />
+
+
+
+    <Button
+        android:id="@+id/choose_from_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:background="@color/colorAccent"
+        android:text="Chooose from Gallery"
+        android:layout_below="@+id/change_photo_toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp" />
+
+
+    <Button
+        android:id="@+id/capture_new_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Capture new photo"
+        android:layout_alignBaseline="@+id/choose_from_gallery"
+        android:layout_alignBottom="@+id/choose_from_gallery"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
+
+</RelativeLayout>

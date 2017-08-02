@@ -2,6 +2,7 @@ package com.example.tapiwa.collabo;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +45,6 @@ public class TagChats extends AppCompatActivity {
     private TextView chat_conversation;
     private EditText input_msg;
     private String timeSent;
-   private SharedPreferences sharedPreferences;
     final int NOTIFICATION_BODY_MAX_LENGTH = 30;
 
     private String user_name, room_name;
@@ -52,7 +52,7 @@ public class TagChats extends AppCompatActivity {
     public String temp_key;
     private ScrollView scrollView;
     public String key;
-    private String profilename;
+    private SharedPreferences sharedPreferences;
     SortMessages sortMessages;
 
 
@@ -72,17 +72,20 @@ public class TagChats extends AppCompatActivity {
         chat_conversation = (TextView) findViewById(R.id.chatArea);
         sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(TagChats.this);
         scrollView = ((ScrollView) findViewById(R.id.scrollView));
+        sharedPreferences = getApplicationContext().getSharedPreferences(Tags.MyPREFERENCES, MODE_PRIVATE);
+
+
+        user_name = sharedPreferences.getString("username", "no name");
 
         sortMessages = new SortMessages(getApplicationContext());
 
 
         room_name = getIntent().getExtras().get("chatRoom").toString();
         key = getIntent().getStringExtra("key");
-        profilename = getIntent().getStringExtra("profilename");
-
-        user_name =  "@" + sharedPreferences.getString("example_text", null);
+       // profilename = getIntent().getStringExtra("profilename");
 
         setTitle(room_name);
+
 
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
         root.keepSynced(true);
@@ -168,10 +171,10 @@ public class TagChats extends AppCompatActivity {
           chat_user_name = (String) ((DataSnapshot) i.next()).getValue();
           timeSent = (String) ((DataSnapshot) i.next()).getValue();
 
-
           chat_conversation.append(Html.fromHtml("<b>" + chat_user_name + "</b>"
                   + ": " + chat_msg + "<br />"
                   + "<small align = \"right\"> " + timeSent + "</small>" + "<br />"));
+
 
           scrollToBottom();
 

@@ -3,6 +3,7 @@ package com.example.tapiwa.collabo;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ public class DisplayNote extends AppCompatActivity {
 
 
     private TextView displayNoteTitle;
+    private Toolbar mToolBar;
     private TextView displayNoteContents;
     private FloatingActionButton deleteNote, saveNote, editNote;
     DBHelper dbHelper;
@@ -23,6 +25,7 @@ public class DisplayNote extends AppCompatActivity {
         setContentView(R.layout.activity_display_note);
 
 
+        mToolBar = (Toolbar) findViewById(R.id.displayNote_toolbar);
         displayNoteTitle = (TextView) findViewById(R.id.displayNoteTitle);
         displayNoteContents = (EditText) findViewById(R.id.displayNoteContent);
         deleteNote = (FloatingActionButton) findViewById(R.id.deleteNote);
@@ -35,6 +38,7 @@ public class DisplayNote extends AppCompatActivity {
 
         displayNoteContents.setText(dbHelper.getNoteContents(noteTitle));
         displayNoteTitle.setText(noteTitle);
+        mToolBar.setTitle("Personal Notes");
 
         deleteNote.setOnClickListener(new View.OnClickListener() {
             @Override

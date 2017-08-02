@@ -1,74 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/collaboColor"
-    android:padding="25dp"
-    android:gravity="center"
-    tools:context="com.example.tapiwa.collabo.Login">
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:gravity="center_horizontal"
+    tools:context="com.example.tapiwa.collabo.Login"
+    android:weightSum="1">
 
 
-        <EditText
-            android:id="@+id/loginEmail"
-            android:maxLength="100"
-            android:maxLines="1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email address"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:layout_marginTop="90dp"
-            android:textColor="#000"
-            android:background="#fff"
-            />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/imagelogo"
+        android:src="@drawable/newestwelcomecollabo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <EditText
-            android:id="@+id/loginPassword"
-            android:maxLength="100"
-            android:maxLines="1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"
-            android:background="#fff"
-            android:imeOptions="actionDone"
-            android:hint="Password"/>
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="335dp"
+        android:layout_height="45dp"
+        android:background="#fff"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_marginBottom="8dp"
+        android:layout_above="@+id/loginPassword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/accessAccountBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_marginTop="20dp"
-            />
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="335dp"
+        android:layout_height="45dp"
+        android:background="#fff"
+        android:hint="Password"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/accessAccountBtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:id="@+id/registrationActivityBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Not a member? Register now."
-            android:textColor="#fff"
-            android:layout_marginTop="40dp"
-            android:background="@null"
-            android:textAllCaps="false"
-            />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="218dp"
+            android:layout_height="25dp"
+            android:paddingLeft="13dp"
+            android:paddingStart="13dp"
+            android:layout_above="@+id/google_sign_in_button"
+            android:layout_marginBottom="12dp"
+            android:layout_alignRight="@+id/google_sign_in_button"
+            android:layout_alignEnd="@+id/google_sign_in_button" />
+
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avi"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
         style="@style/AVLoadingIndicatorView.Small"
         android:visibility="invisible"
+        android:layout_alignParentBottom="true"
         app:indicatorName="BallTrianglePathIndicator"
-        app:indicatorColor="#fff"
+        app:indicatorColor="@color/colorAccent"
         />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="303dp"
+        android:layout_height="22dp"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:textColor="#fff"
+        android:text="---------------- OR ----------------"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        android:layout_above="@+id/facebook_login_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp" />
+
+    <Button
+        android:id="@+id/accessAccountBtn"
+        android:layout_width="109dp"
+        android:layout_height="51dp"
+        android:text="Login"
+        android:layout_alignTop="@+id/registrationActivityBtn"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:layout_toRightOf="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+    android:id="@+id/registrationActivityBtn"
+    android:layout_width="112dp"
+    android:layout_height="51dp"
+        android:text="Create an account"
+        android:layout_above="@+id/textView"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="36dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_sign_in_button"
+        android:layout_width="224dp"
+        android:layout_height="47dp"
+        android:text="Sign in with Google"
+        android:layout_above="@+id/avi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp" />
 
 
-</LinearLayout>
+
+    </RelativeLayout>

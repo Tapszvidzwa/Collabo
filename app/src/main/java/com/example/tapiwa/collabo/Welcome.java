@@ -30,7 +30,7 @@ public class Welcome extends AppCompatActivity {
         isUser = false;
 
         //FirebaseAnalytics setup
-        mFBAnalytics = FirebaseAnalytics.getInstance(this);
+      /*  mFBAnalytics = FirebaseAnalytics.getInstance(this);
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -46,26 +46,15 @@ public class Welcome extends AppCompatActivity {
                 }
             }
         };
-
-
+ */
         Thread myThread = new Thread() {
             @Override
             public void run() {
                 try {
-                    sleep(1250);
-
-                    if (isUser == true) {
-
-                        Intent openMain = new Intent(Welcome.this, Main.class);
-                        startActivity(openMain);
-                        Welcome.this.finish();
-                    } else {
-                        loggedIn = true;
-                        Intent openLoginRegistration = new Intent(Welcome.this, Login.class);
-                        startActivity(openLoginRegistration);
-                        Welcome.this.finish();
-                    }
-
+                    sleep(1300);
+                    Intent openLogin = new Intent(Welcome.this, Login.class);
+                    startActivity(openLogin);
+                    Welcome.this.finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -74,21 +63,6 @@ public class Welcome extends AppCompatActivity {
 
         myThread.start();
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
 
 }
 

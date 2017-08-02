@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/welcomeLogo"
         android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
         app:srcCompat="@drawable/newestwelcomecollabo" />
@@ -20,12 +20,13 @@
         android:id="@+id/aviWelcome"
         android:layout_width="61dp"
         android:layout_height="63dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@id/welcomeLogo"
        android:layout_centerHorizontal="true"
         style="@style/AVLoadingIndicatorView.Small"
         android:visibility="visible"
         app:indicatorName="BallTrianglePathIndicator"
-        app:indicatorColor="#fff" />
+        app:indicatorColor="@color/colorAccent" />
 
 
 

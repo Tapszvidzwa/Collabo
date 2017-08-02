@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tapiwa.collabo.Main">
+
+
+    <item
+        android:id="@+id/change_bio"
+        android:title="@string/profile_bio_change"
+        android:orderInCategory="90"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:id="@+id/change_display_name"
+        android:title="@string/profile_username_change"
+        android:orderInCategory="90"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:id="@+id/change_profile_photo"
+        android:title="@string/profile_photo_change"
+        android:orderInCategory="90"
+        app:showAsAction="never"
+        />
+
+</menu>

@@ -34,7 +34,6 @@ public class Tags extends Fragment {
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
     public static Boolean onStopCalled = false;
-    public SharedPreferences sharedpreferences;
     public static Boolean isInForeGround = false;
     SortMessages sortMessages;
 
@@ -44,7 +43,6 @@ public class Tags extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        sharedpreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         sortMessages = new SortMessages(getContext());
        // sortMessages.restoreStoredMessagesPreference();
 
@@ -79,6 +77,8 @@ public class Tags extends Fragment {
 
                 //init
                 unopenedMessagesadapter = new UnopenedTagListAdapter(getContext(), R.layout.tag_item_list, sortMessages.listOfUnopenedMessages(Firebaselist));
+
+
                 openedMessagesadapter = new OpenedTagListAdapter(getContext(), R.layout.tag_item_list, sortMessages.listOfOpenedMessages(Firebaselist));
                 unopenedListview.setAdapter(unopenedMessagesadapter);
                 openedlistview.setAdapter(openedMessagesadapter);
@@ -182,7 +182,12 @@ public class Tags extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        sortMessages.restoreStoredMessagesPreference();
+
+        try {
+            sortMessages.restoreStoredMessagesPreference();
+        } catch (Exception e) {
+
+        }
    //     onStopCalled = false;
   //  sortMessages.restoreStoredMessagesPreference();
 
@@ -193,7 +198,7 @@ public class Tags extends Fragment {
         super.onPause();
         isInForeGround = false;
     //    String onPause = "OnPauseCalled";
-     //   sortMessages.savePreferences();
+    //    sortMessages.savePreferences();
     }
 
     public void onStop() {

@@ -223,6 +223,18 @@ public class Privates extends Fragment {
             }
         });
 
+        FloatingActionButton openNotes = (FloatingActionButton) privateTags.findViewById(R.id.openNotes);
+        openNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent notes = new Intent(getActivity(), Notes.class);
+                startActivity(notes);
+            }
+        });
+
+
+
+
 
         return privateTags;
     }
@@ -269,7 +281,7 @@ public class Privates extends Fragment {
         }
     }
 
-    public void attemptImageUpload() {
+    private void attemptImageUpload() {
         mProgress.setMessage("Uploading Private Image...");
         mProgress.show();
         //Upload the picture to the Photo folder in the Storage bucket
@@ -283,7 +295,10 @@ public class Privates extends Fragment {
                 mProgress.dismiss();
 
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
-                ImageUpload imageUpload = new ImageUpload(image_tag, taskSnapshot.getDownloadUrl().toString(), Collabos.getTime());
+
+
+                @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
+                ImageUpload imageUpload = new ImageUpload(image_tag, url, Collabos.getTime());
 
                 //save image info into the firebase database
                 String uploadId = mDatabaseRef.push().getKey();

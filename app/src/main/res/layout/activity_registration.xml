@@ -6,26 +6,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/collaboColor"
-    android:padding="25dp"
+    android:paddingLeft="25dp"
     android:gravity="center"
     tools:context="com.example.tapiwa.collabo.RegistrationActivity">
 
+        <EditText
+            android:id="@+id/displaName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:background="#fff"
+            android:ems="10"
+            android:hint="Enter your username"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="8dp"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="#000" />
 
         <EditText
             android:id="@+id/email"
-            android:maxLength="100"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#fff"
             android:ems="10"
             android:hint="Enter your email address"
             android:inputType="textEmailAddress"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:padding="10dp"
-            android:textColor="#000"
+            android:maxLength="100"
             android:maxLines="1"
-            android:background="#fff"
-            />
+            android:padding="10dp"
+            android:textColor="#000" />
 
         <EditText
             android:id="@+id/password"
@@ -54,13 +67,12 @@
             android:id="@+id/login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="I already have an account. Sign in."
-            android:textColor="#fff"
-            android:textAllCaps="false"
-            android:background="@null"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            />
+            android:background="@null"
+            android:text="I already have an account. Sign in."
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/avi"

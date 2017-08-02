@@ -1,10 +1,16 @@
 package com.example.tapiwa.collabo;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,16 +23,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.HashMap;
 
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText password;
+    private EditText password, displayName;
     private EditText email;
+    private Toolbar mToolBar;
     private final String TAG = "FB_REGISTER";
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseRef;
     private AVLoadingIndicatorView spinner;
+    public static final String FB_USERS_PATH = "Users";
+    private SharedPreferences storedDisplayName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         findViewById(R.id.registerUser).setOnClickListener(this);
         findViewById(R.id.login).setOnClickListener(this);
 
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_USERS_PATH);
+        storedDisplayName = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        displayName = (EditText) findViewById(R.id.displaName);
         password = (EditText) findViewById(R.id.password);
         email = (EditText) findViewById(R.id.email);
         mAuth = FirebaseAuth.getInstance();
@@ -66,10 +85,16 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
 
     public boolean checkLoginFieldsCompleted() {
-        String userEmail, userPassword;
+        String userEmail, userPassword, userName;
 
-        userEmail = email.getText().toString();
+        userEmail = email.getText().toString().trim();
+        userName = displayName.getText().toString().trim();
         userPassword = password.getText().toString();
+
+        if (userName.isEmpty()) {
+            email.setError("Please enter your email");
+            return false;
+        }
 
         if (userEmail.isEmpty()) {
             email.setError("Please enter your email");
@@ -88,11 +113,19 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         startActivity(openCollaboAct);
     }
 
-    private void hideKeyboard() {
+    public void hideKeyboard() {
         //Hide the keyboard
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(password.getWindowToken(), 0);
     }
+
+    public void setUserName(String name) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Tags.MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor Editor = sharedPreferences.edit();
+        Editor.putString("username",  "@" + name);
+        Editor.commit();
+    }
+
 
     private void showLoadingSpinner() {
         spinner.setVisibility(View.VISIBLE);
@@ -113,8 +146,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         showLoadingSpinner();
 
-        String usrEmail = email.getText().toString();
+        String usrEmail = email.getText().toString().trim();
         String usrPassword = password.getText().toString();
+        final String usrName = displayName.getText().toString().trim();
+
+        //final String userName = usrName.toString();
 
 
         mAuth.createUserWithEmailAndPassword(usrEmail, usrPassword)
@@ -126,7 +162,23 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                     stopLoadingSpinner();
                                     Toast.makeText(RegistrationActivity.this, "Collabo Buddy successfully created", Toast.LENGTH_SHORT)
                                             .show();
+
+                                    setUserName(usrName);
+
+                                    String uid = mAuth.getCurrentUser().getUid();
+                                 //   User newUser = new User(userName, uid);
+
+                                    HashMap<String, String> map = new HashMap();
+                                    map.put("name", usrName);
+                                    map.put("uid", uid);
+                                    map.put("bio", "Hi there, I have joined Collabo");
+                                    map.put("image_uri", "default");
+                                    map.put("thumb_image", "default");
+
+                                  mDatabaseRef.child(uid).setValue(map);
                                    openCollaboHomeActivity();
+                                    finish();
+
                                 } else {
                                     stopLoadingSpinner();
                                     Toast.makeText(RegistrationActivity.this, "Account creation failed", Toast.LENGTH_SHORT)

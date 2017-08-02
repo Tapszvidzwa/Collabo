@@ -1,5 +1,6 @@
 package com.example.tapiwa.collabo;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -105,6 +106,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(notificationSound)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);

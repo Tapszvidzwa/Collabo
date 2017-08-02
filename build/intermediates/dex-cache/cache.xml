@@ -7,44 +7,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_457ae01dc460b46663b7256cff9a29f6c2efef43/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/tapiwa/.android/build-cache/6a32118eaf4428abc4dcc67085da936f93eceaeb/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="248218f163235e6d2a81188eaa1db0ec61193055">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_ef9fb97820f975f2c9790198d0066d9376282821.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tapiwa/.android/build-cache/e22f4e642e3da59c967546b59f4a794bfab0bb45/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b6d9b70f93bbeb872d0948bc064ae3f3f2bcbac">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/classes_d76357762f7a383bb5596a0e34215164c2772dbc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.9/f7b520c458572890807d143670c9b24f4de90897/joda-time-2.9.9.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f7b520c458572890807d143670c9b24f4de90897">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/pre-dexed/debug/joda-time-2.9.9_486ae65c1c3170bb03e701297807f1d893e6eede.jar" />
-    </item>
-    <item
         is-multidex="true"
-        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.9.9/f7b520c458572890807d143670c9b24f4de90897/joda-time-2.9.9.jar"
+        jar="/Users/tapiwa/.android/build-cache/f3d238f3a00ae9ed82a5371cc0f033f075000d9a/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f7b520c458572890807d143670c9b24f4de90897">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/joda-time-2.9.9_486ae65c1c3170bb03e701297807f1d893e6eede/classes.dex" />
+        sha1="f5bcd9cbfeedc58f493339841a7c5d0347a39f0b">
+        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_def207279e8ddaf17f4001afcf8ba32edba19fe6/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -52,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3c94adeabca47f68552f5314b79e17b502fdc7d6">
+        sha1="d088a9a98adbaf8e86bdfec0fa9fb0961e22bc57">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
     </item>
 

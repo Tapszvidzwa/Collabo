@@ -1,6 +1,7 @@
 package com.example.tapiwa.collabo;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,8 +61,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.VIBRATOR_SERVICE;
-
+import static com.example.tapiwa.collabo.Tags.MyPREFERENCES;
 
 
 public class Collabos extends Fragment {
@@ -72,8 +74,6 @@ public class Collabos extends Fragment {
     public GridView gridView;
     public ArrayList<ImageUpload> list;
     public ImageListAdapter adapter;
-    final int UNREAD_MESSAGE = 1;
-    final int OPENED_MESSAGE = 0;
     Vibrator vibrate;
 
     final int REQUEST_IMAGE_CAPTURE = 1;
@@ -81,11 +81,10 @@ public class Collabos extends Fragment {
     private StorageReference storageReference;
     private ProgressDialog mProgress;
     private String image_tag;
-    public static Boolean imageDeleted = false;
     private DatabaseReference mDatabaseRef;
     final String FB_DATABASE_PATH = "photos";
-    SharedPreferences usrName;
-    public SharedPreferences sharedpreferences;
+    private SharedPreferences sharedPreferences;
+    private String username;
     Uri fileUri;
 
 
@@ -108,6 +107,9 @@ public class Collabos extends Fragment {
         gridView.setAdapter(adapter);
         vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
         mProgress = new ProgressDialog(getContext());
+        sharedPreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        username = sharedPreferences.getString("username", "no name");
 
 
 
@@ -116,7 +118,6 @@ public class Collabos extends Fragment {
 
         mStorage = FirebaseStorage.getInstance();
         storageReference = mStorage.getReference();
-        usrName = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -316,7 +317,7 @@ public class Collabos extends Fragment {
         }
     }
 
-    public void attemptImageUpload() {
+    private void attemptImageUpload() {
         mProgress.setMessage("Uploading Collabo...");
         mProgress.show();
         //Upload the picture to the Photo folder in the Storage bucket
@@ -330,9 +331,6 @@ public class Collabos extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 mProgress.dismiss();
 
-                String userName = "@" + usrName.getString("example_text", null);
-
-
                 Toast.makeText(getContext(), "Uploading finished", Toast.LENGTH_SHORT).show();
 
                 String chatroom = createChatRoomName(image_tag);
@@ -340,14 +338,15 @@ public class Collabos extends Fragment {
 
                 //send notifications to all the users in the group
                 try {
-                    sendNotifications(userName, image_tag, key);
+                    sendNotifications(username, image_tag, key);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                ImageUpload imageUpload = new ImageUpload(userName, image_tag, taskSnapshot.getDownloadUrl().toString(), getTime(), chatroom, key);
-                //save image info into the firebase database
+                @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
 
+                ImageUpload imageUpload = new ImageUpload(username, image_tag, url, getTime(), chatroom, key);
+                //save image info into the firebase database
                 mDatabaseRef.child(key).setValue(imageUpload);
 
             }
@@ -362,7 +361,7 @@ public class Collabos extends Fragment {
 
 
     public String createChatRoomName(String tag) {
-        return usrName.getString("example_text", null).trim() + tag;
+        return username + ": " + tag;
     }
 
     private  void TakePicture() {
@@ -421,7 +420,6 @@ public class Collabos extends Fragment {
                 .enqueue(new okhttp3.Callback() {
                     @Override
                     public void onFailure(okhttp3.Call call, IOException e) {
-
                     }
 
                     @Override
@@ -438,28 +436,10 @@ public class Collabos extends Fragment {
 
         Map<String, Object> map = new HashMap<String, Object>();
 
-        map.put(usrName + image_tag, "");
+        map.put(username + ": " + image_tag, "");
         root.updateChildren(map);
 
     }
-
-    //save all list of all the opened Messages
-    public void saveSession() {
-
-        SharedPreferences.Editor messagesEditor = sharedpreferences.edit();
-
-        MessageNotificationsHelper.list.size();
-        StringBuilder str = new StringBuilder();
-        int listSize = MessageNotificationsHelper.list.size();
-
-        for (int i = 0; i < listSize; i++) {
-            StringBuilder append = str.append(MessageNotificationsHelper.list.get(i)).append(",");
-        }
-        messagesEditor.putString("openedMessages", str.toString());
-        messagesEditor.putInt("listSize", listSize);
-        messagesEditor.commit();
-    }
-
 
 }
 

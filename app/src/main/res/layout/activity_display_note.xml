@@ -7,10 +7,12 @@
 
     android:background="#00BFFF">
 
+    <include layout="@layout/app_bar_layout" android:id="@+id/displayNote_toolbar" />
+
 
     <android.support.v7.widget.CardView
         android:layout_width="365dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="80dp"
         android:layout_height="410dp"
         android:layout_gravity="center_horizontal"

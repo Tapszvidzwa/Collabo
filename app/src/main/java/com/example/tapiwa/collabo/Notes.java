@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,39 +19,37 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static com.example.tapiwa.collabo.R.id.container;
 import static com.example.tapiwa.collabo.R.layout.notes;
+import static java.security.AccessController.getContext;
 
-public class Notes extends Fragment {
+public class Notes extends AppCompatActivity {
 
     public ListView listview;
     public ArrayList<String> list;
     public NotesListAdapter adapter;
-
-    public Notes() {
-    }
-
-
+    private Toolbar mToolbar;
 
     private DBHelper dbHelper;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View notesView = inflater.inflate(notes, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.notes);
 
-        listview = (ListView) notesView.findViewById(R.id.notesListView);
+        mToolbar = (Toolbar) findViewById(R.id.list_of_notes);
+        mToolbar.setTitle("Personal Notes");
+
+
+        listview = (ListView) findViewById(R.id.notesListView);
         list = new ArrayList<>();
-
         populateScreen();
-
-        FloatingActionButton newNote = (FloatingActionButton) notesView.findViewById(R.id.addNote);
+        FloatingActionButton newNote = (FloatingActionButton) findViewById(R.id.addNote);
         newNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createNewNote();
             }
         });
-
 
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,7 +60,7 @@ public class Notes extends Fragment {
                //  String contents = dbHelper.getNoteContents(note);
 
                 //Pass the image title and url to DetailsActivity
-                Intent intent = new Intent(getContext(), DisplayNote.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayNote.class);
                 intent.putExtra("title", note);
 
                 //Start details activity
@@ -68,17 +68,13 @@ public class Notes extends Fragment {
             }
         });
 
-
-
-        return notesView;
-
     }
 
     public void populateScreen() {
-        dbHelper = new DBHelper(getContext());
+        dbHelper = new DBHelper(getApplicationContext());
         list = dbHelper.getAllTitles();
         Collections.reverse(list);
-        adapter = new NotesListAdapter(getContext(),R.layout.note_item_list, list);
+        adapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, list);
         listview.setAdapter(adapter);
     }
 
@@ -89,7 +85,7 @@ public class Notes extends Fragment {
     }
 
     public void createNewNote() {
-        Intent writeNote = new Intent(getContext(), NewNote.class);
+        Intent writeNote = new Intent(getApplicationContext(), NewNote.class);
         startActivity(writeNote);
     }
 }
