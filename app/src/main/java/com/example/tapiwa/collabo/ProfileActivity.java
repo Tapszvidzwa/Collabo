@@ -83,8 +83,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         mToolBar.setTitle("User Profile");
 
-        if (myprofile.equals("mine")) {
+        if (myprofile.equals("mine") || ReceivedUid.equals(current_user_id)) {
             setSupportActionBar(mToolBar);
+            mSendFriendRequestBtn.setVisibility(View.INVISIBLE);
 
         } else {
             //profile is not mine, check if friend request has been sent
