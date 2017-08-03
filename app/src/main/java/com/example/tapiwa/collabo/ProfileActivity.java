@@ -31,6 +31,8 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.HashMap;
+
 public class ProfileActivity extends AppCompatActivity {
 
 
@@ -38,13 +40,11 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mDisplayName, mUserBio;
     private ImageView mProfilePhoto;
     private DatabaseReference mDatabaseReference;
-    private StorageReference mStorageReference;
+    private DatabaseReference mDatabaseReferenceCurrentUser;
     private FirebaseUser mCurrentUser;
     private Button mSendFriendRequestBtn;
-    private Boolean weAreBuddies;
     private final String BUDDIE_REQUESTS_SENT = "Friend_Requests_Sent";
-    private final String BUDDIE_REQUESTS_RECEIVED = "Friend_Requests_received";
-    private final String REQUESTS_SENT = "Friend_Requests_Sent";
+    public final static String BUDDIE_REQUESTS_RECEIVED = "Friend_Requests_received";
     private DatabaseReference mBuddieRequestsSentDBRef;
     private DatabaseReference mBuddieRequestsReceivedDBRef;
     private AVLoadingIndicatorView mLoadingSpinner;
@@ -56,40 +56,45 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-       final String uid = getIntent().getStringExtra("uid");
+        final String ReceivedUid = getIntent().getStringExtra("uid");
         String myprofile = getIntent().getStringExtra("myProfile");
-
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-        mDatabaseReference.keepSynced(true);
-
-        mBuddieRequestsSentDBRef = FirebaseDatabase.getInstance().getReference().child(BUDDIE_REQUESTS_SENT);
-        mBuddieRequestsReceivedDBRef = FirebaseDatabase.getInstance().getReference().child(BUDDIE_REQUESTS_RECEIVED);
-        weAreBuddies = false;
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         mLoadingSpinner = (AVLoadingIndicatorView) findViewById(R.id.request_sent_spinner);
         final String current_user_id = mCurrentUser.getUid();
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        mDatabaseReferenceCurrentUser = FirebaseDatabase.getInstance().getReference("Users").child(current_user_id);
+        mDatabaseReference.keepSynced(true);
+
+        mBuddieRequestsSentDBRef = FirebaseDatabase.getInstance().getReference().child(BUDDIE_REQUESTS_SENT);
+        mBuddieRequestsReceivedDBRef = FirebaseDatabase.getInstance().getReference().child(BUDDIE_REQUESTS_RECEIVED);
+
+
+        mBuddieRequestsSentDBRef.keepSynced(true);
+        mBuddieRequestsReceivedDBRef.keepSynced(true);
+
+
         mToolBar = (Toolbar) findViewById(R.id.profile_toolBar);
         mSendFriendRequestBtn = (Button) findViewById(R.id.send_friend_request);
-        mUserBio = (TextView) findViewById(R.id.bio) ;
+        mUserBio = (TextView) findViewById(R.id.bio);
         mDisplayName = (TextView) findViewById(R.id.DisplayName);
         mProfilePhoto = (ImageView) findViewById(R.id.profile_photo);
 
         mToolBar.setTitle("User Profile");
 
-        if(myprofile.equals("mine")) {
+        if (myprofile.equals("mine")) {
             setSupportActionBar(mToolBar);
-        } else
-            {
+
+        } else {
             //profile is not mine, check if friend request has been sent
-            final Query RequestsQuery = mBuddieRequestsSentDBRef.child(current_user_id).orderByChild("sent_to")
-                    .equalTo(uid);
+            final Query RequestsQuery = mBuddieRequestsSentDBRef.child(current_user_id).equalTo(ReceivedUid);
 
             RequestsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if(dataSnapshot.hasChildren()) {
+                    if (dataSnapshot.hasChildren()) {
                         disableSendRequestBtn();
                     } else {
                         mSendFriendRequestBtn.setVisibility(View.VISIBLE);
@@ -110,41 +115,102 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mLoadingSpinner.setVisibility(View.VISIBLE);
 
-                String key1 = mBuddieRequestsSentDBRef.push().getKey();
 
-           mBuddieRequestsSentDBRef.child(current_user_id).child(key1).child("sent_to").setValue(uid).addOnCompleteListener(new OnCompleteListener<Void>() {
-               @Override
-               public void onComplete(@NonNull Task<Void> task) {
-                   if(task.isSuccessful()) {
-                       String key2 =  mBuddieRequestsReceivedDBRef.push().getKey();
-                       mBuddieRequestsReceivedDBRef.child(uid).child(key2).child("sent_by").setValue(current_user_id).addOnCompleteListener(new OnCompleteListener<Void>() {
-                           @Override
-                           public void onComplete(@NonNull Task<Void> task) {
-                               if(task.isSuccessful()) {
 
-                                   disableSendRequestBtn();
-                                   Toast toast = Toast.makeText(ProfileActivity.this, "Friend request sent... ", Toast.LENGTH_SHORT);
-                                   toast.setGravity(Gravity.CENTER, 0, 0);
-                                   toast.show();
-                               }
-                           }
-                       });
-                   } else {
-                       mLoadingSpinner.setVisibility(View.INVISIBLE);
-                       Toast toast = Toast.makeText(ProfileActivity.this, "Failed to send friend request... ", Toast.LENGTH_SHORT);
-                       toast.setGravity(Gravity.CENTER, 0, 0);
-                       toast.show();
-                   }
-               }
-           });
+                mDatabaseReference.child(ReceivedUid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    //sent details of user receiving request
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        String name1 = dataSnapshot.child("name")
+                                .getValue().toString() ;
+                        String uid1 = dataSnapshot.child("uid")
+                                .getValue().toString() ;
+                        String bio1 = dataSnapshot.child("bio")
+                                .getValue().toString();
+                        String image_uri1 = dataSnapshot.child("image_uri")
+                                .getValue().toString() ;
+                        String thumb_image1 = dataSnapshot.child("thumb_image")
+                                .getValue().toString();
+
+                        BuddieProfiles profile1 = new BuddieProfiles(name1, image_uri1, bio1, thumb_image1);
+
+
+                        mBuddieRequestsSentDBRef
+                                .child(current_user_id).child(ReceivedUid)
+                                .setValue(profile1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                    mDatabaseReferenceCurrentUser
+                                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                            String name = dataSnapshot.child("name")
+                                                    .getValue()
+                                                    .toString() ;
+                                            String uid = dataSnapshot.child("uid")
+                                                    .getValue().toString() ;
+                                            String bio = dataSnapshot.child("bio")
+                                                    .getValue().toString();
+                                            String image_uri= dataSnapshot.child("image_uri")
+                                                    .getValue().toString() ;
+                                            String thumb_image= dataSnapshot.child("thumb_image")
+                                                    .getValue().toString();
+
+                                            BuddieProfiles profile = new BuddieProfiles(name, image_uri, bio, thumb_image);
+
+                                            mBuddieRequestsReceivedDBRef
+                                                    .child(ReceivedUid)
+                                                    .child(current_user_id).
+                                                    setValue(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        disableSendRequestBtn();
+                                                        Toast toast = Toast.makeText(ProfileActivity.this, "Friend request sent... ", Toast.LENGTH_SHORT);
+                                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                                        toast.show();
+                                                    }
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+                                } else {
+                                    mLoadingSpinner.setVisibility(View.INVISIBLE);
+                                    Toast toast = Toast.makeText(ProfileActivity.this, "Failed to send friend request... ", Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.show();
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
 
 
         //todo Implement Cancel Friend Request
+        //todo save user bio and name and etc in the shared preferences
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.child(ReceivedUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mUserBio.setText(dataSnapshot.child("bio").getValue().toString());
@@ -156,9 +222,9 @@ public class ProfileActivity extends AppCompatActivity {
                         .load(profile_photo_uri)
                         .networkPolicy(NetworkPolicy.OFFLINE)
                         .placeholder(R.drawable.new_default_image)
-                        .into(mProfilePhoto  , new Callback() {
+                        .into(mProfilePhoto, new Callback() {
                             @Override
-                            public void onSuccess(){
+                            public void onSuccess() {
                             }
 
                             @Override

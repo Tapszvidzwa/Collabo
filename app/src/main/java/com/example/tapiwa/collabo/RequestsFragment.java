@@ -6,15 +6,28 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RequestsFragment extends Fragment {
 
     private FloatingActionButton mSearchForNewBuddies;
+    private ListView mRequestsList;
+    private DatabaseReference mRequestsDatabase;
+    private String mCurrent_user_id;
+    private View mMainView;
+
 
 
     public RequestsFragment() {
@@ -33,9 +46,13 @@ public class RequestsFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
-        View requests = inflater.inflate(R.layout.fragment_requests, container, false);
+        mMainView = inflater.inflate(R.layout.fragment_requests, container, false);
+        mRequestsList = (ListView) mMainView.findViewById(R.id.buddie_requests_list);
+        mCurrent_user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mRequestsDatabase = FirebaseDatabase.getInstance().getReference().child(ProfileActivity.BUDDIE_REQUESTS_RECEIVED).child(mCurrent_user_id);
 
-        mSearchForNewBuddies = (FloatingActionButton) requests.findViewById(R.id.search_for_new_buddies);
+
+        mSearchForNewBuddies = (FloatingActionButton)  mMainView.findViewById(R.id.search_for_new_buddies);
 
 
         mSearchForNewBuddies.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +64,19 @@ public class RequestsFragment extends Fragment {
             }
         });
 
-  return requests;
+
+
+
+  return mMainView;
     }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
 
 }

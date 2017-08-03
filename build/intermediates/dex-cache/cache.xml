@@ -12,20 +12,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tapiwa/.android/build-cache/f3d238f3a00ae9ed82a5371cc0f033f075000d9a/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f5bcd9cbfeedc58f493339841a7c5d0347a39f0b">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_def207279e8ddaf17f4001afcf8ba32edba19fe6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d088a9a98adbaf8e86bdfec0fa9fb0961e22bc57">
+        sha1="f0f74797517735924c655cfa606cfc7959783f16">
         <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
     </item>
 

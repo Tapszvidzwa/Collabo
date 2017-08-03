@@ -20,9 +20,6 @@ public class BuddieProfiles {
     }
 
 
-
-
-
     public BuddieProfiles() {
     }
 

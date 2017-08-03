@@ -144,8 +144,8 @@ public class Main extends AppCompatActivity {
                     GroupsFragment groupsFragment = new GroupsFragment();
                     return groupsFragment;
                 case 2:
-                    RequestsFragment requestsFragment = new RequestsFragment();
-                    return requestsFragment;
+                    RequestsReceivedFragment requestsReceivedFragment = new RequestsReceivedFragment();
+                    return requestsReceivedFragment;
                 default:
                     return null;
             }
