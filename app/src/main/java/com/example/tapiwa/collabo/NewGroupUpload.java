@@ -10,6 +10,9 @@ public class NewGroupUpload {
     public String groupName;
     public String groupKey;
 
+    public NewGroupUpload() {
+    }
+
 
     public NewGroupUpload(String groupName, String groupKey) {
         this.groupName = groupName;

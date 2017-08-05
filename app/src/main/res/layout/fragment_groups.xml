@@ -19,4 +19,16 @@
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_menu_add"
       />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
+        android:id="@+id/groups_list">
+
+    </ListView>
+
+
+
 </RelativeLayout>

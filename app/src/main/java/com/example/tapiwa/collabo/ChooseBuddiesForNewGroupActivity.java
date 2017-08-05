@@ -32,8 +32,8 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
     private DatabaseReference mUsersDBRef;
     private DatabaseReference mGroupsDatabaseReference;
     private DatabaseReference mUserListOfGroupsReference;
-    public final String GROUPS_DB_PATH = "Groups";
-    public final String USER_LIST_OF_GROUPS_PATH = "User_List_Of_Groups";
+    public final static String GROUPS_DB_PATH = "Groups";
+    public final static String USER_LIST_OF_GROUPS_PATH = "User_List_Of_Groups";
     private GenericServices internet;
     private ArrayList<BuddieProfiles> newGroupMembers;
     private String mCurrentUserId;
