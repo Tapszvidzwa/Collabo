@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -35,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private EditText password, displayName;
     private EditText email;
+    private GenericServices checkInternet;
     private Toolbar mToolBar;
     private final String TAG = "FB_REGISTER";
     private FirebaseAuth mAuth;
@@ -50,6 +52,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         findViewById(R.id.registerUser).setOnClickListener(this);
         findViewById(R.id.login).setOnClickListener(this);
+
+        checkInternet = new GenericServices(getApplicationContext());
+
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(FB_USERS_PATH);
         storedDisplayName = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -135,14 +140,33 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         spinner.setVisibility(View.INVISIBLE);
     }
 
+    private boolean internetConnectionAvailable() {
+
+         if(!checkInternet.isConnectingToInternet()) {
+             Toast toast = Toast.makeText(RegistrationActivity.this, "No internet Connection... ", Toast.LENGTH_SHORT);
+             toast.setGravity(Gravity.CENTER, 0, 0);
+             toast.show();
+             return false;
+         } else {
+             return true;
+         }
+    }
+
 
 
     private void attemptRegisterUser() {
 
         hideKeyboard();
 
-        if (!checkLoginFieldsCompleted())
+        //verify all credentials entered
+        if (!checkLoginFieldsCompleted()) {
             return;
+        }
+
+        //verify internet connection before proceeding
+       if(!internetConnectionAvailable()) {
+        return;
+       }
 
         showLoadingSpinner();
 

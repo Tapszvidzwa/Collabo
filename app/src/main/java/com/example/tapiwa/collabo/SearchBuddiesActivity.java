@@ -65,7 +65,7 @@ public class SearchBuddiesActivity extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mSearchNametext.getWindowToken(), 0);
 
-                    String name_to_search = mSearchNametext.getText().toString();
+                    String name_to_search = mSearchNametext.getText().toString().trim();
                     search_buddies(name_to_search);
                     return true;
                 }
@@ -85,7 +85,7 @@ public class SearchBuddiesActivity extends AppCompatActivity {
                 mSearchResultsDatabase.orderByChild("name")
                         .startAt(search_name)
                         .endAt(search_name + "\uf8ff")
-                ) {
+        ) {
 
             @Override
             protected void populateViewHolder(SearchResultsViewHolder viewHolder, BuddieProfiles buddieProfile, final int position) {
@@ -102,6 +102,7 @@ public class SearchBuddiesActivity extends AppCompatActivity {
                         Intent openProfile = new Intent(SearchBuddiesActivity.this, ProfileActivity.class);
                         openProfile.putExtra("uid", uid);
                         openProfile.putExtra("myProfile", "notMine");
+                        openProfile.putExtra("intent", "search");
                         startActivity(openProfile);
                     }
                 });
@@ -109,7 +110,6 @@ public class SearchBuddiesActivity extends AppCompatActivity {
             }
         };
 
-        mSearch_results.setAdapter(null);
         mSearch_results.setAdapter(firebaseRecyclerAdapter);
 
     }
@@ -132,17 +132,17 @@ public class SearchBuddiesActivity extends AppCompatActivity {
 
         }
 
-       public void setImage(String thumb_uri, Context context) {
+        public void setImage(String thumb_uri, Context context) {
 
-           if (!thumb_uri.equals("default")) {
+            if (!thumb_uri.equals("default")) {
 
-               CircleImageView searched_user_profile_photo = (CircleImageView) mView.findViewById(R.id.search_buddie_photo);
-               Picasso.with(context).load(thumb_uri)
-                       .placeholder(R.drawable.new_default_image)
-                       .into(searched_user_profile_photo);
+                CircleImageView searched_user_profile_photo = (CircleImageView) mView.findViewById(R.id.search_buddie_photo);
+                Picasso.with(context).load(thumb_uri)
+                        .placeholder(R.drawable.new_default_image)
+                        .into(searched_user_profile_photo);
 
-           }
-       }
+            }
+        }
 
         public void setBio(String bio) {
             TextView userBio = (TextView) mView.findViewById(R.id.search_buddie_bio);

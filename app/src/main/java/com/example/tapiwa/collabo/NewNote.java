@@ -4,6 +4,7 @@ package com.example.tapiwa.collabo;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ public class NewNote extends AppCompatActivity {
     private DBHelper dbHelper;
     private EditText noteTitle;
     private EditText noteContents;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class NewNote extends AppCompatActivity {
         setContentView(R.layout.activity_new_note);
         
         noteTitle = (EditText) findViewById(R.id.noteTitle);
+        mToolBar = (Toolbar) findViewById(R.id.create_new_note_toolbar);
+        mToolBar.setTitle("Create New Note");
+
         noteContents = (EditText) findViewById(R.id.editNewNote);
 
         dbHelper = new DBHelper(this);

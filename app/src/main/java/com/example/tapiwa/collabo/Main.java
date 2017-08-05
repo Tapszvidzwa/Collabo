@@ -20,10 +20,8 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.storage.StorageReference;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
@@ -54,7 +52,7 @@ public class Main extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getToken();
 
 
-        // Create the adapter that will return a fragment for each of the three
+        // Create the mAdapter that will return a fragment for each of the three
         // primary sections of the activity.
 
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -118,7 +116,7 @@ public class Main extends AppCompatActivity {
         }
 
         if(id == R.id.friends_list) {
-            Intent friendList = new Intent(Main.this, FriendsListActivity.class);
+            Intent friendList = new Intent(Main.this, BuddiesListActivity.class);
             startActivity(friendList);
         }
 

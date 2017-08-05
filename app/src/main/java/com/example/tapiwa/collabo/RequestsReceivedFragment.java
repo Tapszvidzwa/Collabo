@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class RequestsReceivedFragment extends Fragment {
@@ -73,6 +72,23 @@ public class RequestsReceivedFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        requestsListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Get item at position
+                BuddieProfiles profile = (BuddieProfiles) parent.getItemAtPosition(position);
+
+                Intent openRequestProfile = new Intent(getContext(), ProfileActivity.class);
+                openRequestProfile.putExtra("intent", "request");
+                openRequestProfile.putExtra("uid", profile.getUid());
+                openRequestProfile.putExtra("myProfile", "notMine");
+
+                startActivity(openRequestProfile);
+
             }
         });
 

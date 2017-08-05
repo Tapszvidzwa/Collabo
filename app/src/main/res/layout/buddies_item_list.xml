@@ -29,11 +29,11 @@
         android:id="@+id/search_buddie_bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:text="bio"
         android:textSize="14sp"
         android:layout_below="@+id/search_buddie_name"
+        android:layout_marginTop="7dp"
         android:layout_alignLeft="@+id/search_buddie_name"
-        android:layout_alignStart="@+id/search_buddie_name" />
+        android:layout_alignStart="@+id/search_buddie_name" />" />
 
 </RelativeLayout>

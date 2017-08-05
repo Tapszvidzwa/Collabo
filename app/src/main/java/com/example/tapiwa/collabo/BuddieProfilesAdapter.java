@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -62,6 +65,7 @@ public class BuddieProfilesAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.requestType = (TextView) row.findViewById(R.id.request_buddie_name);
+            holder.imageView = (CircleImageView) row.findViewById(R.id.request_buddie_photo);
 
             row.setTag(holder);
 
@@ -71,13 +75,34 @@ public class BuddieProfilesAdapter extends BaseAdapter {
 
 
 
-        BuddieProfiles buddieProfile = BuddieProfilesList.get(position);
-
-        String name = buddieProfile.getName();
+        final BuddieProfiles buddieProfile = BuddieProfilesList.get(position);
 
         holder.requestType.setText("@" + buddieProfile.getName() + " wants to be your buddie");
 
-       /* Picasso.with(context).load().placeholder(R.drawable.new_default_image).into(holder.imageView); */
+
+
+        final ImageView holderr = holder.imageView;
+        Picasso.with(context)
+                .load(buddieProfile.getThumb_image())
+                .placeholder(R.drawable.new_default_image)
+                .networkPolicy(NetworkPolicy.OFFLINE)
+                .into(holder.imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError() {
+                        // Try again online if cache failed
+                        Picasso.with(context)
+                                .load(buddieProfile.getThumb_image())
+                                .placeholder(R.drawable.new_default_image)
+                                .into(holderr);
+
+                    }
+                });
+
+
         return row;
     }
 

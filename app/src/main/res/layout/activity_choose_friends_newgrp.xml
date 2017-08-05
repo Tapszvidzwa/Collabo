@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.tapiwa.collabo.RequestsFragment">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/choose_grp_members_toolbar" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/choose_new_group_list"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/choose_grp_members_toolbar">
+    </ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/done_create_group_Btn"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="CREATE GROUP"
+        />
+
+</RelativeLayout>

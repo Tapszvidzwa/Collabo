@@ -8,14 +8,16 @@
     android:layout_centerHorizontal="true"
     tools:context="com.example.tapiwa.collabo.ProfileActivity">
 
+
+
     <include layout="@layout/app_bar_layout"
         android:id="@+id/profile_toolBar" />
 
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="11dp"
         android:src="@drawable/new_default_image"
         android:id="@+id/profile_photo"
@@ -26,10 +28,10 @@
         android:id="@+id/DisplayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="28dp"
-        android:textColor="#fff"
+        android:layout_marginTop="14dp"
         android:text="Display Name"
-        android:layout_marginTop="42dp"
+        android:textColor="#fff"
+        android:textSize="18sp"
         android:layout_below="@+id/profile_photo"
         android:layout_centerHorizontal="true" />
 
@@ -39,24 +41,65 @@
         android:textColor="#fff"
         android:layout_height="wrap_content"
         android:text="Hello there, I've joined Collabo"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="28dp"
         android:layout_below="@+id/DisplayName"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/send_friend_request"
         android:layout_width="wrap_content"
-        android:padding="8dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bio"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="24dp"
         android:background="@color/lime"
         android:ellipsize="marquee"
-        android:fontFamily="@string/com_facebook_loginview_logged_in_using_facebook"
+        android:padding="2dp"
         android:text="Send Friend Request"
-        android:textColor="@android:color/background_light"
-        android:visibility="visible" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:visibility="visible"
+        android:layout_below="@+id/accept_friend_request"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:id="@+id/accept_friend_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/lime"
+        android:ellipsize="marquee"
+        android:layout_marginRight="8dp"
+        android:paddingBottom="1dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="1dp"
+        android:text="Accept Friend Request"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:visibility="visible"
+        android:layout_alignTop="@+id/decline_friend_request"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/decline_friend_request"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@android:color/holo_red_dark"
+        android:ellipsize="marquee"
+        android:paddingBottom="1dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="1dp"
+        android:layout_marginRight="8dp"
+        android:text="Decline Friend Request"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:visibility="visible"
+        android:layout_below="@+id/bio"
+        android:layout_toStartOf="@+id/accept_friend_request"
+        android:layout_toLeftOf="@+id/accept_friend_request"/>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="50dp"
