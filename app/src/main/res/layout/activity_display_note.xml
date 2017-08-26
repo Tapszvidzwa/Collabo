@@ -56,21 +56,6 @@
                 android:layout_centerHorizontal="true"
               />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/EditNote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
-                app:srcCompat="@drawable/ic_mode_edit_white_24dp"
-                app:fab_size="mini"
-                android:elevation="8dp"
-                android:layout_marginRight="8dp"
-                android:clickable="true"
-                android:layout_marginBottom="7dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                />
-
 
         </RelativeLayout>
 

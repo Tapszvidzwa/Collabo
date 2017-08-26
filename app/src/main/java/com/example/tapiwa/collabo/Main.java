@@ -212,7 +212,7 @@ public class Main extends AppCompatActivity {
             startActivity(requestsList);
         }
 
-        if (id == R.id.search_buddie_name) {
+        if (id == R.id.search_new_friends) {
             Intent searchNewFriends = new Intent(Main.this, SearchBuddiesActivity.class);
             startActivity(searchNewFriends);
         }

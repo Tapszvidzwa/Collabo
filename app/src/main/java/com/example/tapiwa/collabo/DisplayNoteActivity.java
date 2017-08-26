@@ -22,7 +22,6 @@ public class DisplayNoteActivity extends AppCompatActivity {
     private TextView displayNoteTitle;
     private Toolbar mToolBar;
     private TextView displayNoteContents;
-    private FloatingActionButton editNote;
     NotesSQLiteDBHelper dbHelper;
     private String opened_note_title;
 
@@ -41,7 +40,6 @@ public class DisplayNoteActivity extends AppCompatActivity {
 
         displayNoteTitle = (TextView) findViewById(R.id.displayNoteTitle);
         displayNoteContents = (EditText) findViewById(R.id.displayNoteContent);
-        editNote = (FloatingActionButton) findViewById(R.id.EditNote);
 
         final String noteTitle = getIntent().getStringExtra("title");
         opened_note_title = noteTitle;
@@ -50,20 +48,6 @@ public class DisplayNoteActivity extends AppCompatActivity {
 
         displayNoteContents.setText(dbHelper.getNoteContents(noteTitle));
         displayNoteTitle.setText(noteTitle);
-        mToolBar.setTitle("Personal Notes");
-
-
-        editNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                displayNoteContents.setCursorVisible(true);
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(displayNoteContents, InputMethodManager.SHOW_FORCED);
-            }
-        });
-
-
     }
 
 
@@ -101,6 +85,12 @@ public class DisplayNoteActivity extends AppCompatActivity {
 
         if(id == R.id.copy_note_icon) {
            copynote();
+        }
+
+        if(id == R.id.edit_note_icon) {
+            displayNoteContents.setCursorVisible(true);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(displayNoteContents, InputMethodManager.SHOW_FORCED);
         }
 
         return super.onOptionsItemSelected(item);
