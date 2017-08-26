@@ -388,12 +388,12 @@ public class PrivateFolderContentsActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
 
                 searchImage(query);
-                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                searchImage(newText);
                 return false;
             }
         });
