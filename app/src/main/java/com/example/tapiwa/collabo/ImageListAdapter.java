@@ -54,7 +54,7 @@ public class ImageListAdapter extends BaseAdapter {
     public View getView(int position, final View view, ViewGroup viewGroup) {
 
         final ImageUpload imageUpload = imageList.get(position);
-        Picasso.with(context).load(imageUpload.getUrl()).fetch();
+        Picasso.with(context).load(imageUpload.getFull_image_uri()).fetch();
 
         View row = view;
         ViewHolder holder = new ViewHolder();
@@ -86,7 +86,7 @@ public class ImageListAdapter extends BaseAdapter {
 
 
         Picasso.with(context)
-                .load(imageUpload.getUrl())
+                .load(imageUpload.getFull_image_uri())
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .priority(Picasso.Priority.HIGH)
                 .into(holder.imageView, new Callback() {
@@ -99,7 +99,7 @@ public class ImageListAdapter extends BaseAdapter {
                     public void onError() {
                         // Try again online if cache failed
                         Picasso.with(context)
-                                .load(imageUpload.getUrl())
+                                .load(imageUpload.getFull_image_uri())
                                 .into(holderr);
                         holderrr.setVisibility(View.GONE);
 

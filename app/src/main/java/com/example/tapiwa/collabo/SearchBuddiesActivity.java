@@ -2,7 +2,7 @@ package com.example.tapiwa.collabo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,6 +29,7 @@ public class SearchBuddiesActivity extends AppCompatActivity {
     private RecyclerView mSearch_results;
     private DatabaseReference mSearchResultsDatabase;
     public Context context;
+    private FloatingActionButton searchBuddiesFab;
 
 
     @Override
@@ -43,6 +40,12 @@ public class SearchBuddiesActivity extends AppCompatActivity {
 
         mToolBar = (Toolbar) findViewById(R.id.search_buddies_toolbar);
         mToolBar.setTitle("Find new Buddies");
+        searchBuddiesFab = (FloatingActionButton) findViewById(R.id.search_buddie_fab);
+        setSupportActionBar(mToolBar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mSearchNametext = (EditText) findViewById(R.id.search_name_text);
         mSearch_results = (RecyclerView) findViewById(R.id.searched_buddies_list);
         mSearch_results.setHasFixedSize(true);
@@ -53,6 +56,20 @@ public class SearchBuddiesActivity extends AppCompatActivity {
                 .child("Users");
 
         mSearchResultsDatabase.keepSynced(true);
+
+        searchBuddiesFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mSearchNametext.getWindowToken(), 0);
+
+                String name_to_search = mSearchNametext.getText().toString().trim();
+                search_buddies(name_to_search);
+
+            }
+        });
 
 
 
@@ -74,6 +91,8 @@ public class SearchBuddiesActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
     public void search_buddies(String search_name) {
@@ -150,5 +169,10 @@ public class SearchBuddiesActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 }

@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tapiwa.collabo.DisplayNoteActivity">
+
+    <item
+        android:id="@+id/search_private_image"
+        android:orderInCategory="100"
+        android:title="Search Image"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+</menu>

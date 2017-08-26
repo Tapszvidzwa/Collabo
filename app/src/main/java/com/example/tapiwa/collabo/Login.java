@@ -142,7 +142,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                                 Log.v("Main", response.toString());
                                 String[] fullName = extractFBdata(object).split(" ");
                                 String firstName = fullName[0];
-                                setUserName(firstName);
                                 handleFacebookAccessToken(loginResult.getAccessToken(), firstName);
                             }
                         });
@@ -184,13 +183,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             e.printStackTrace();
         }
         return null;
-    }
-
-    public void setUserName(String name) {
-        SharedPreferences sharedPreferences = getSharedPreferences(Tags.MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor Editor = sharedPreferences.edit();
-        Editor.putString("username", "@" + name);
-        Editor.commit();
     }
 
 
@@ -361,13 +353,12 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                             FirebaseUser user = mAuth.getCurrentUser();
                             String uid = user.getUid();
 
-                            HashMap<String, String> map = new HashMap<>();
-                            map.put("name", name);
-                            map.put("uid", uid);
-                            map.put("status", "Hi there, I have joined Collabo");
-                            map.put("image_uri", "default");
-                            map.put("thumb_image", "default");
-                            mDatabaseRef.child(uid).setValue(map);
+                            //create and add new user
+                            String bio = "Hi there, I have joined Collabo";
+                            String image_uri = "default";
+                            String thumb_image = "default";
+                            NewUser newUser = new NewUser(name, uid, bio, image_uri, thumb_image);
+                            mDatabaseRef.child(uid).setValue(newUser);
 
                             updateUI(user);
                         } else {
@@ -386,8 +377,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            String fullName[] = acct.getDisplayName().toString().split(" ");
-            final String Name = fullName[0];
+            final String fullName = acct.getDisplayName().toString();
 
 
             AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -403,15 +393,12 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String uid = user.getUid();
 
-                                HashMap<String, String> map = new HashMap<>();
-                                map.put("name", Name);
-                                map.put("uid", uid);
-                                map.put("status", "Hi there, I have joined Collabo");
-                                map.put("image_uri", "default");
-                                map.put("thumb_image", "default");
-                                mDatabaseRef.child(uid).setValue(map);
-
-                                setUserName(Name);
+                                //create and add new user
+                                String bio = "Hi there, I have joined Collabo";
+                                String image_uri = "default";
+                                String thumb_image = "default";
+                                NewUser newUser = new NewUser(fullName, uid, bio, image_uri, thumb_image);
+                                mDatabaseRef.child(uid).setValue(newUser);
 
                                 updateUI(user);
                             } else {

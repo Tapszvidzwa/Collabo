@@ -18,6 +18,7 @@ public class Note {
     }
 
 
+
     public String getNoteContent() {
         return noteContent;
     }

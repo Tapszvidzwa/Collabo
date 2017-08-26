@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/delete_note"
+        android:orderInCategory="100"
+        android:title="Delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/pin_note"
+        android:orderInCategory="95"
+        android:title="Pin to the top"
+        app:showAsAction="never" />
+
+</menu>

@@ -31,7 +31,13 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Login" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".Main"
@@ -43,21 +49,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MaximizeImage" />
+        <activity android:name=".MaximizeGroupImageActivity" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
         <activity android:name=".NewNote" />
-        <activity android:name=".Notes" />
-        <activity android:name=".ChooseBuddiesForNewGroupActivity"/>
-        <activity android:name=".DisplayNote" />
-        <activity android:name=".Welcome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".RequestsReceivedActivity" />
+        <activity android:name=".ChooseBuddiesForNewGroupActivity" />
+        <activity android:name=".DisplayNoteActivity" />
 
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -106,8 +105,8 @@
         </service>
 
         <activity
-            android:name=".TagChats"
-            android:windowSoftInputMode="adjustPan" />
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ChangeBioActivity" />
         <activity android:name=".ChangeDisplayNameActivity" />
@@ -116,7 +115,11 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".BuddiesListActivity" />
-        <activity android:name=".SearchBuddiesActivity"></activity>
+        <activity android:name=".GroupChatsActivity" />
+        <activity android:name=".SearchBuddiesActivity" />
+        <activity android:name=".MaximizePrivateImageActivity" />
+        <activity android:name=".PrivateFolderContentsActivity" />
+        <activity android:name=".SendFeedBackActivity"></activity>
     </application>
 
 </manifest>

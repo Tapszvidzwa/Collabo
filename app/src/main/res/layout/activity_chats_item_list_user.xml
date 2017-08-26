@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/user_msgs"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/relativeLayout2">
+
+
+        <TextView
+            android:id="@+id/user_chat_text_txtV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_below="@+id/chat_user_name_txtV" />
+
+
+    </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/user_chat_time_sent_txtV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="10dp"
+            android:layout_below="@id/relativeLayout2"
+         android:layout_alignStart="@id/relativeLayout2"
+            android:layout_marginRight="1dp"
+            />
+
+
+
+</RelativeLayout>

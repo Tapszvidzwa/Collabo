@@ -1,6 +1,8 @@
 package com.example.tapiwa.collabo;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,8 @@ public class NotesListAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView title;
+        TextView last_time_updated;
+        CardView notesItemCard;
     }
 
     @Override
@@ -53,6 +57,8 @@ public class NotesListAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.title = (TextView) row.findViewById(R.id.titleNote);
+            holder.notesItemCard = (CardView) row.findViewById(R.id.note_card_item);
+            holder.last_time_updated = (TextView) row.findViewById(R.id.note_last_updated_time);
 
             row.setTag(holder);
 
@@ -62,7 +68,13 @@ public class NotesListAdapter extends BaseAdapter {
 
         String note = noteList.get(position);
 
+        NotesSQLiteDBHelper dbHelper = new NotesSQLiteDBHelper(context);
+        String time_last_updated = dbHelper.getTimeUpdated(note);
+
+
         holder.title.setText(note);
+        holder.last_time_updated.setText("last updated " + time_last_updated);
+        holder.notesItemCard.setCardBackgroundColor(Color.WHITE);
 
         return row;
     }

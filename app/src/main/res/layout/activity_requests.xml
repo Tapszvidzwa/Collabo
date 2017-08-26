@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tapiwa.collabo.RequestsFragment">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/requests_toolbar"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/buddie_requests_list"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/requests_toolbar">
+
+    </ListView>
+
+
+</RelativeLayout>

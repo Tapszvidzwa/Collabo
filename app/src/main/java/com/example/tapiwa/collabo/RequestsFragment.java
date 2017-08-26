@@ -40,14 +40,10 @@ public class RequestsFragment extends Fragment {
 
 
 
-        mMainView = inflater.inflate(R.layout.fragment_requests, container, false);
+        mMainView = inflater.inflate(R.layout.activity_requests, container, false);
         mRequestsList = (ListView) mMainView.findViewById(R.id.buddie_requests_list);
         mCurrent_user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mRequestsDatabase = FirebaseDatabase.getInstance().getReference().child(ProfileActivity.BUDDIE_REQUESTS_RECEIVED).child(mCurrent_user_id);
-
-
-        mSearchForNewBuddies = (FloatingActionButton)  mMainView.findViewById(R.id.search_for_new_buddies);
-
 
         mSearchForNewBuddies.setOnClickListener(new View.OnClickListener() {
             @Override

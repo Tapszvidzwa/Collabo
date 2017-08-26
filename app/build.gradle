@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.tapiwa.collabo"
-        minSdkVersion 16
+        minSdkVersion 22
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -32,8 +32,12 @@ dependencies {
 
     //todo change the firebase to use the latest version
 
+    //remove this one
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'me.leolin:ShortcutBadger:1.1.17@aar'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.jsibbold:zoomage:1.1.0'
     compile 'id.zelory:compressor:2.1.0'
     compile 'com.iceteck.silicompressorr:silicompressor:2.0'
     compile 'joda-time:joda-time:2.9.9'

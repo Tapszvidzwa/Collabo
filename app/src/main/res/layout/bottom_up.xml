@@ -4,6 +4,6 @@
     android:layout_width="wrap_content">
     <translate android:fromYDelta="75%p" android:toYDelta="0%p"
         android:fillAfter="true"
-        android:duration="500"/>
+        android:duration="100"/>
 </set>
 

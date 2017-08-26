@@ -124,13 +124,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         imm.hideSoftInputFromWindow(password.getWindowToken(), 0);
     }
 
-    public void setUserName(String name) {
-        SharedPreferences sharedPreferences = getSharedPreferences(Tags.MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor Editor = sharedPreferences.edit();
-        Editor.putString("username",  "@" + name);
-        Editor.commit();
-    }
-
 
     private void showLoadingSpinner() {
         spinner.setVisibility(View.VISIBLE);
@@ -183,25 +176,33 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    stopLoadingSpinner();
-                                    Toast.makeText(RegistrationActivity.this, "Collabo Buddy successfully created", Toast.LENGTH_SHORT)
-                                            .show();
 
-                                    setUserName(usrName);
+
 
                                     String uid = mAuth.getCurrentUser().getUid();
-                                 //   User newUser = new User(userName, uid);
 
-                                    HashMap<String, String> map = new HashMap();
-                                    map.put("name", usrName);
-                                    map.put("uid", uid);
-                                    map.put("bio", "Hi there, I have joined Collabo");
-                                    map.put("image_uri", "default");
-                                    map.put("thumb_image", "default");
+                                  //create and add new user
+                                    String bio = "Hi there, I have joined Collabo";
+                                    String image_uri = "default";
+                                    String thumb_image = "default";
+                                    NewUser newUser = new NewUser(usrName, uid, bio, image_uri, thumb_image);
 
-                                  mDatabaseRef.child(uid).setValue(map);
-                                   openCollaboHomeActivity();
-                                    finish();
+                                  mDatabaseRef.child(uid).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                      @Override
+                                      public void onComplete(@NonNull Task<Void> task) {
+                                          if(task.isSuccessful()) {
+                                              stopLoadingSpinner();
+                                              Toast.makeText(RegistrationActivity.this, "Collabo Buddy successfully created", Toast.LENGTH_SHORT)
+                                                      .show();
+                                              openCollaboHomeActivity();
+                                              finish();
+                                          } else {
+                                              Toast.makeText(RegistrationActivity.this, "Error in creating account, try again...", Toast.LENGTH_SHORT)
+                                                      .show();
+                                          }
+                                      }
+                                  });
+
 
                                 } else {
                                     stopLoadingSpinner();

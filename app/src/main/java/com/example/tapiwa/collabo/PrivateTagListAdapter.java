@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
@@ -16,23 +17,23 @@ public class PrivateTagListAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private ArrayList<ImageUpload> imageList;
+    private ArrayList<NewProjectFolder> projectNamesList;
 
-    public PrivateTagListAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
+    public PrivateTagListAdapter(Context context, int layout, ArrayList<NewProjectFolder> projectNamesList) {
         this.context = context;
         this.layout = layout;
-        this.imageList = imageList;
+        this.projectNamesList = projectNamesList;
     }
 
     @Override
     public int getCount() {
-        return imageList.size();
+        return projectNamesList.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return imageList.get(position);
+        return projectNamesList.get(position);
     }
 
     @Override
@@ -43,11 +44,9 @@ public class PrivateTagListAdapter extends BaseAdapter {
 
 
     private class ViewHolder {
-        TextView name, tag, time;
-        AVLoadingIndicatorView unreadMessageNotification;
+        TextView projectName;
+        ImageView folderIcon;
     }
-
-
 
     @Override
     public  View getView(int position, View view, ViewGroup viewGroup) {
@@ -59,12 +58,8 @@ public class PrivateTagListAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-            holder.name = (TextView) row.findViewById(R.id.userName);
-            holder.time = (TextView) row.findViewById(R.id.timeUploaded);
-            holder.tag = (TextView) row.findViewById(R.id.tagLine);
-
-
-            holder.unreadMessageNotification = (AVLoadingIndicatorView) row.findViewById(R.id.unreadMessage);
+            holder.projectName = (TextView) row.findViewById(R.id.private_folder_name);
+            holder.folderIcon = (ImageView) row.findViewById(R.id.private_folder_icon);
 
             row.setTag(holder);
 
@@ -73,12 +68,9 @@ public class PrivateTagListAdapter extends BaseAdapter {
         }
 
 
+        NewProjectFolder projectFolder = projectNamesList.get(position);
 
-        ImageUpload imageUpload = imageList.get(position);
-
-        holder.name.setText(imageUpload.getProfileName());
-        holder.time.setText(imageUpload.getTimeUploaded());
-        holder.tag.setText(imageUpload.getTag());
+        holder.projectName.setText(projectFolder.getProjectName());
 
         return row;
     }

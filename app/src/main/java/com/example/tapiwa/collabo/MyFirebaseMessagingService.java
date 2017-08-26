@@ -77,19 +77,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             e.printStackTrace();
         }
 
-
-     //Send notification to Tags
-        SortMessages sortMessages = new SortMessages(getApplicationContext());
-        if(Tags.isInForeGround) {
-            //// TODO: 7/21/17 find a way to update the Tags UI fragment if it is in the foreground
-            // sortMessages.removeFromStoredKeys(messagekey);
-        } else {
-            if(Tags.onStopCalled) {
-                sortMessages.restoreStoredMessagesPreference();
-                sortMessages.removeFromStoredKeys(messagekey);
-                sortMessages.savePreferences();
-            }
-        }
         
         //show new notification badge on icon
         Intent intent = new Intent(this, Main.class);

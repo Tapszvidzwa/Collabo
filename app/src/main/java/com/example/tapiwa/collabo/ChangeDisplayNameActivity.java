@@ -43,6 +43,10 @@ public class ChangeDisplayNameActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
         mToolbar.setTitle("Change Display Name");
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         mDatabaseReference.keepSynced(true);
@@ -79,5 +83,11 @@ public class ChangeDisplayNameActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

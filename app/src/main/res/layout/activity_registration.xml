@@ -25,7 +25,7 @@
             android:maxLength="100"
             android:maxLines="1"
             android:padding="10dp"
-            android:textColor="#000" />
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/email"
@@ -39,7 +39,7 @@
             android:maxLength="100"
             android:maxLines="1"
             android:padding="10dp"
-            android:textColor="#000" />
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/password"

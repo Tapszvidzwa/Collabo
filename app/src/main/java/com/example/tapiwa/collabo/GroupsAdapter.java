@@ -14,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class GroupsAdapter extends BaseAdapter {
 
@@ -47,6 +49,7 @@ public class GroupsAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView groupName;
+        ImageView groupIcon;
 
     }
 
@@ -60,6 +63,8 @@ public class GroupsAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
             holder.groupName = (TextView) row.findViewById(R.id.group_name_tv);
+            holder.groupIcon = (ImageView) row.findViewById(R.id.group_icon);
+
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
@@ -67,6 +72,7 @@ public class GroupsAdapter extends BaseAdapter {
 
         NewGroupUpload group = GroupsList.get(position);
         holder.groupName.setText(group.getGroupName());
+
 
         return row;
     }

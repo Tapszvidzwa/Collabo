@@ -30,8 +30,8 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
     public ChooseGroupMembersAdapter mAdapter;
     private DatabaseReference mDatabaseRef;
     private DatabaseReference mUsersDBRef;
-    private DatabaseReference mGroupsDatabaseReference;
-    private DatabaseReference mUserListOfGroupsReference;
+    public static DatabaseReference mGroupsDatabaseReference;
+    public static DatabaseReference mUserListOfGroupsReference;
     public final static String GROUPS_DB_PATH = "Groups";
     public final static String USER_LIST_OF_GROUPS_PATH = "User_List_Of_Groups";
     private GenericServices internet;

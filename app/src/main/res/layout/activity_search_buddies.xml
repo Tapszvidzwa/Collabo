@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.tapiwa.collabo.SearchBuddiesActivity">
 
     <include layout="@layout/app_bar_layout"
@@ -17,32 +18,49 @@
         android:layout_below="@+id/search_buddies_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:hint="Search your Buddie...">
+        android:hint="Search your Buddie..."
+        android:weightSum="1">
+
 
         <EditText
             android:id="@+id/search_name_text"
+            android:textColor="@android:color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/search_name"
             android:layout_alignStart="@+id/search_name"
             android:layout_below="@+id/search_buddies_toolbar"
-            android:drawableRight="@android:drawable/ic_menu_search"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLength="100"
             android:maxLines="1" />
 
+
+
     </android.support.design.widget.TextInputLayout>
 
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/search_buddie_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/search_name"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_search_black_24dp" />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/searched_buddies_list"
-        android:layout_below="@+id/search_name"
         android:layout_alignLeft="@+id/search_name"
         android:layout_alignStart="@+id/search_name"
-        android:layout_marginTop="27dp"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/search_name"></android.support.v7.widget.RecyclerView>
 
 
 

@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tapiwa.collabo.MaximizeGroupImageActivity">
+
+    <item
+        android:id="@+id/delete_maximized_image_icon"
+        android:orderInCategory="90"
+        android:title="delete"
+        android:icon="@drawable/ic_delete_white_24dp"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/rotate_private_maximized_image_icon"
+        android:orderInCategory="80"
+        android:title="delete"
+        android:icon="@drawable/ic_rotate_right_white_24dp"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/cancel_private_maximized_image"
+        android:orderInCategory="100"
+        android:title="delete"
+        android:icon="@drawable/ic_cancel_white_24dp"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -61,9 +60,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.VIBRATOR_SERVICE;
-import static com.example.tapiwa.collabo.Tags.MyPREFERENCES;
 
 
 public class Collabos extends Fragment {
@@ -107,7 +104,7 @@ public class Collabos extends Fragment {
         gridView.setAdapter(adapter);
         vibrate = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
         mProgress = new ProgressDialog(getContext());
-        sharedPreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences("new Guy", Context.MODE_PRIVATE);
 
         username = sharedPreferences.getString("username", "no name");
 
@@ -159,11 +156,11 @@ public class Collabos extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Get item at position
-                ImageUpload item = (ImageUpload) parent.getItemAtPosition(position);
-                //Pass the image title and url to DetailsActivity
+              /*  ImageUpload item = (ImageUpload) parent.getItemAtPosition(position);
+                //Pass the image title and full_image_uri to DetailsActivity
                 Intent intent = new Intent(getContext(), MaximizeImage.class);
                 intent.putExtra("title", item.getTag());
-                intent.putExtra("image", item.getUrl());
+                intent.putExtra("image", item.getFull_image_uri());
                 intent.putExtra("key", item.getKey());
                 intent.putExtra("chatRoom", item.getChatRoom());
                 intent.putExtra("name", item.getProfileName());
@@ -172,7 +169,7 @@ public class Collabos extends Fragment {
                 intent.putExtra("user", "none");                //user is none because this is for the group
 
                 //Start details activity
-                startActivity(intent);
+                startActivity(intent); */
             }
         });
 
@@ -199,23 +196,18 @@ public class Collabos extends Fragment {
 
 
                                 //// TODO: 7/11/17 Please refactor this long code and also try to implement it in FirebaseHelper
-                                String imageUri = item.getUrl();
+                                String imageUri = item.getFull_image_uri();
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                 ref.keepSynced(true);
                                 final StorageReference photoRef = FirebaseStorage.getInstance().getReferenceFromUrl(imageUri);
-                                final Query ImagesQuery = ref.child(FB_DATABASE_PATH).orderByChild("url").equalTo(imageUri);
+                                final Query ImagesQuery = ref.child(FB_DATABASE_PATH).orderByChild("full_image_uri").equalTo(imageUri);
 
 
                                 photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
 
-                                        //remove from opened/unopened messages
-                                      SortMessages sortMessages = new SortMessages(getContext());
-                                        sortMessages.restoreStoredMessagesPreference();
-                                        sortMessages.removeFromStoredKeys(item.getKey());
-                                        sortMessages.savePreferences();
 
                                         Toast.makeText(getContext(), "Collabo successfully deleted", Toast.LENGTH_SHORT).show();
                                     }
@@ -268,12 +260,12 @@ public class Collabos extends Fragment {
     public static String getTime() {
 
         DateTime dt = new DateTime();
-        String timeNow = dt.toString().substring(11,16);
-        int month = dt.monthOfYear().get();
-        String date = dt.dayOfMonth().getAsShortText();
 
+        String date = dt.dayOfMonth().getAsShortText().toString();
+        String year = dt.year().getAsShortText().toString();
+        String month = dt.monthOfYear().getAsShortText().toString();
 
-        return  "(" + month + "/" + date + ")" + " " + timeNow;
+        return  date + " " + month + ", " + year;
     }
 
 
@@ -345,9 +337,9 @@ public class Collabos extends Fragment {
 
                 @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
 
-                ImageUpload imageUpload = new ImageUpload(username, image_tag, url, getTime(), chatroom, key);
+             /*   ImageUpload imageUpload = new ImageUpload(username, image_tag, url, getTime(), chatroom, key, "hey");
                 //save image info into the firebase database
-                mDatabaseRef.child(key).setValue(imageUpload);
+                mDatabaseRef.child(key).setValue(imageUpload); */
 
             }
         }).addOnFailureListener(new OnFailureListener() {

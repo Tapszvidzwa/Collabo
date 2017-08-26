@@ -22,12 +22,12 @@ public class SortMessages {
     ArrayList<String> storedMessageKeys = new ArrayList<>();
 
      private Context context;
-    public SortMessages(Context context) {
-        this.context = context;
+  //  public SortMessages(Context context) {
+    //    this.context = context;
     }
 
 
-    public void addToStoredMessages(String key) {
+   /* public void addToStoredMessages(String key) {
 
         if (!storedMessageKeys.contains(key)){
             storedMessageKeys.add(key);
@@ -47,10 +47,10 @@ public class SortMessages {
         removeFromStoredKeys(key);
         savePreferences();
     }
+*/
 
 
-
-    public void savePreferences() {
+   /* public void savePreferences() {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
@@ -64,12 +64,12 @@ public class SortMessages {
         storedMessageKeys.clear();
 
     }
+*/
 
 
+  //  public void restoreStoredMessagesPreference() {
 
-    public void restoreStoredMessagesPreference() {
-
-        if(Welcome.loggedIn) {
+   /*     if(Welcome.loggedIn) {
             Welcome.loggedIn = false;
             return;
         }
@@ -83,10 +83,10 @@ public class SortMessages {
             storedMessageKeys.add(str);
         }
 
-    }
+    } */
 
 
-    public ArrayList<ImageUpload> listOfOpenedMessages(ArrayList<ImageUpload> imageUploads){
+   /* public ArrayList<ImageUpload> listOfOpenedMessages(ArrayList<ImageUpload> imageUploads){
 
         ArrayList<ImageUpload> openedMessages = new ArrayList<>();
 
@@ -96,20 +96,9 @@ public class SortMessages {
             }
 
         }
-        
+
         //// TODO: 7/20/17 fix so that latest opened goes on top of list for opened messages
         return openedMessages;
-    }
+    } */
 
 
-    public ArrayList<ImageUpload> listOfUnopenedMessages(ArrayList<ImageUpload> imageUploads){
-        ArrayList<ImageUpload> unopenedMessages = new ArrayList<>();
-
-        for(int i = 0; i < imageUploads.size(); i++) {
-            if(!storedMessageKeys.contains(imageUploads.get(i).getKey())) {
-                unopenedMessages.add(imageUploads.get(i));
-            }
-        }
-        return unopenedMessages;
-    }
-}

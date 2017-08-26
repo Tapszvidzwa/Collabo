@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tapiwa.collabo.SendFeedBackActivity">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/send_feedback_toolbar" />
+
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="75dp"
+        android:layout_below="@id/send_feedback_toolbar"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        >
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedback_msg_txt"
+            android:hint="@string/enter_feedback"
+            android:textColor="@android:color/black"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <Button
+        android:id="@+id/send_feedback_via_email_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send_feedback_to_email"
+        android:layout_below="@id/feedback"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+
+</RelativeLayout>

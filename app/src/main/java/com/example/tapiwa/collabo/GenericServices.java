@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
+
 /**
  * Created by tapiwa on 8/3/17.
  */
@@ -40,6 +42,17 @@ public class GenericServices {
             return false;
         }
     }
+
+
+    public static String timeStamp() {
+
+        DateTime dt = new DateTime();
+        String time  = dt.toLocalTime().toString().substring(0,5);
+
+        return time;
+    }
+
+
 
 
 }

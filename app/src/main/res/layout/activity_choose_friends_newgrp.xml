@@ -17,6 +17,8 @@
 
     <Button
         android:layout_width="match_parent"
+        android:background="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:id="@+id/done_create_group_Btn"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

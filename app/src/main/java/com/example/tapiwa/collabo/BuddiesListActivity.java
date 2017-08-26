@@ -4,9 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseBooleanArray;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,8 +46,13 @@ public class BuddiesListActivity extends AppCompatActivity {
         mCurrentUserId = mUser.getUid();
         mToolbar = (Toolbar) findViewById(R.id.buddies_list_toolbar);
         mToolbar.setTitle("Your Buddies");
-        adapter = new BuddieFriendsAdapter(getApplicationContext(), R.layout.buddies_item_list, Firebaselist);
+        setSupportActionBar(mToolbar);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        adapter = new BuddieFriendsAdapter(getApplicationContext(), R.layout.buddies_item_list, Firebaselist);
 
         BuddiesListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         BuddiesListView.setAdapter(adapter);
@@ -120,6 +128,13 @@ public class BuddiesListActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

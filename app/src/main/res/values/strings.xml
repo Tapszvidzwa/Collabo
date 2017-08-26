@@ -11,7 +11,13 @@
     <string name="title_activity_settings">Settings</string>
     <string name="default_bio">Hi there, I have joined Collabo</string>
     <string name="facebook_app_id">1956736494614098</string>
+    <string name="send_buddie_request">Send Buddie Request</string>
+    <string name="accept_buddie_request">Accept</string>
     <string name="fb_login_protocol_scheme">fb1956736494614098</string>
+    <string name="decline_buddie_request">Decline</string>
+    <string name="help_or_send_feedback">Help / Send Feedback</string>
+    <string name="enter_feedback">Start typing your message here...</string>
+    <string name="send_feedback_to_email">Send via Email</string>
 
 
     <!-- Strings related to Settings -->

@@ -42,7 +42,12 @@ public class ChangeBioActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
+
         mToolbar.setTitle("Change Bio");
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         mDatabaseReference.keepSynced(true);
@@ -80,13 +85,14 @@ public class ChangeBioActivity extends AppCompatActivity {
 
                     }
                 });
-
             }
         });
-
-
-
-
-
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }

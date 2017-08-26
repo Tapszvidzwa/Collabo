@@ -71,6 +71,10 @@ public class ChangePhotoActivity extends AppCompatActivity {
         mStorageReference = FirebaseStorage.getInstance().getReference();
 
         mToolbar.setTitle("Change Profile Photo");
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mUsersDBReference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         mUsersDBReference.keepSynced(true);
@@ -268,7 +272,6 @@ public class ChangePhotoActivity extends AppCompatActivity {
 
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
                 mProgress.dismiss();
                 Toast toast = Toast.makeText(ChangePhotoActivity.this, "Failed to update profile photo... ", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
@@ -280,5 +283,10 @@ public class ChangePhotoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 }
