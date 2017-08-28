@@ -132,6 +132,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             @Override
             public void onSuccess(final LoginResult loginResult) {
 
+
                 //Get profile details
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
@@ -139,10 +140,18 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
-                                Log.v("Main", response.toString());
-                                String[] fullName = extractFBdata(object).split(" ");
-                                String firstName = fullName[0];
-                                handleFacebookAccessToken(loginResult.getAccessToken(), firstName);
+
+                                try {
+
+                                    String userfbname = object.getString("name");
+
+
+                              //      String[] fullName = extractFBdata(object).split(" ");
+                               ///     String firstName = fullName[0];
+                                    handleFacebookAccessToken(loginResult.getAccessToken(), userfbname);
+                                } catch (Exception e) {
+                                    Toast.makeText(Login.this, "There is a problem login in", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
 

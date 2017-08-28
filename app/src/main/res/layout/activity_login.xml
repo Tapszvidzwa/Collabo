@@ -26,7 +26,7 @@
 
     <EditText
         android:id="@+id/loginEmail"
-        android:layout_width="335dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#fff"
         android:hint="Email address"
@@ -35,16 +35,13 @@
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="#000"
-        android:layout_marginBottom="8dp"
-        android:layout_above="@+id/loginPassword"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/imagelogo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:id="@+id/loginPassword"
-        android:layout_width="335dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#fff"
         android:hint="Password"
@@ -54,46 +51,30 @@
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="#000"
-        android:layout_marginBottom="25dp"
-        android:layout_above="@+id/accessAccountBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayout">
-
-    </LinearLayout>
+        android:layout_alignTop="@+id/loginEmail"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="63dp" />
 
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebook_login_button"
-            android:layout_width="218dp"
-            android:layout_height="25dp"
-            android:paddingLeft="13dp"
-            android:paddingStart="13dp"
-            android:layout_above="@+id/google_sign_in_button"
-            android:layout_marginBottom="12dp"
-            android:layout_alignRight="@+id/google_sign_in_button"
-            android:layout_alignEnd="@+id/google_sign_in_button" />
 
-
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/avi"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        style="@style/AVLoadingIndicatorView.Small"
-        android:visibility="invisible"
-        android:layout_alignParentBottom="true"
-        app:indicatorName="BallTrianglePathIndicator"
-        app:indicatorColor="@color/colorAccent"
+    <Button
+        android:id="@+id/accessAccountBtn"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:text="Login"
+        android:layout_below="@+id/loginPassword"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp"
         />
+
+    <Button
+        android:id="@+id/registrationActivityBtn"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:text="Create an account"
+        android:layout_below="@+id/accessAccountBtn"
+         />
+
 
     <TextView
         android:id="@+id/textView"
@@ -110,28 +91,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp" />
 
-    <Button
-        android:id="@+id/accessAccountBtn"
-        android:layout_width="109dp"
-        android:layout_height="51dp"
-        android:text="Login"
-        android:layout_alignTop="@+id/registrationActivityBtn"
-        android:layout_toEndOf="@+id/linearLayout"
-        android:layout_toRightOf="@+id/linearLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-    android:id="@+id/registrationActivityBtn"
-    android:layout_width="112dp"
-    android:layout_height="51dp"
-        android:text="Create an account"
-        android:layout_above="@+id/textView"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="36dp" />
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="218dp"
+            android:layout_height="25dp"
+            android:paddingLeft="13dp"
+            android:paddingStart="13dp"
+            android:layout_above="@+id/google_sign_in_button"
+            android:layout_marginBottom="12dp"
+            android:layout_alignRight="@+id/google_sign_in_button"
+            android:layout_alignEnd="@+id/google_sign_in_button" />
+
+
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_sign_in_button"
@@ -144,4 +116,20 @@
 
 
 
-    </RelativeLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        app:indicatorName="BallTrianglePathIndicator"
+        app:indicatorColor="@color/colorAccent"
+        />
+
+
+
+</RelativeLayout>
