@@ -72,8 +72,6 @@ public class GroupsAdapter extends BaseAdapter {
 
         NewGroupUpload group = GroupsList.get(position);
         holder.groupName.setText(group.getGroupName());
-
-
         return row;
     }
 

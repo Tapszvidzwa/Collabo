@@ -1,27 +1,38 @@
 package com.example.tapiwa.collabo;
 
+import android.*;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,6 +46,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -44,9 +56,12 @@ import org.joda.time.DateTime;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import id.zelory.compressor.Compressor;
@@ -54,8 +69,8 @@ import id.zelory.compressor.Compressor;
 
 public class GroupChatsActivity extends AppCompatActivity {
 
-    private Button startNewDiscussion;
-    private ListView TagsList;
+    private FloatingActionButton addPhotoFab, addPhotoFromGallery;
+    private GridView groupImagesGridView;
     private GenericServices internet;
     private Toolbar mToolBar;
     public static DatabaseReference mTagsDatabaseReference;
@@ -70,10 +85,13 @@ public class GroupChatsActivity extends AppCompatActivity {
     public static final String TAGS_URI_STORAGE_PATH = "GROUP_TAGS_THUMB_PHOTOS";
     public static final String TAGS_PHOTOS_STORAGE_PATH = "GROUP_TAG_PHOTOS";
 
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10101;
+    private static final int PICK_IMAGE = 12341;
+
     private final int REQUEST_IMAGE_CAPTURE = 102;
     private Uri fileUri;
     private ArrayList<ImageUpload> FirebaseTagslist;
-    private TagsAdapter mAdapter;
+    private GroupImagesAdapter mAdapter;
     private String mCurrentUser;
     public String thumb_download_url;
     public String groupName;
@@ -82,6 +100,7 @@ public class GroupChatsActivity extends AppCompatActivity {
     public String groupKey;
     public String chat_room_key;
     private FirebaseUser user;
+    private File thumb_file_path;
 
 
     @Override
@@ -102,9 +121,10 @@ public class GroupChatsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        mAdapter = new TagsAdapter(getApplicationContext(), R.layout.activity_group_chats_item_list, FirebaseTagslist);
-        startNewDiscussion = (Button) findViewById(R.id.tags_take_photo_flBtn);
-        TagsList = (ListView) findViewById(R.id.tags_list);
+        mAdapter = new GroupImagesAdapter(getApplicationContext(), R.layout.activity_group_chats_item_list, FirebaseTagslist);
+        addPhotoFab = (FloatingActionButton) findViewById(R.id.tags_take_photo_flBtn);
+        addPhotoFromGallery = (FloatingActionButton) findViewById(R.id.choose_group_image_from_gallery);
+        groupImagesGridView = (GridView) findViewById(R.id.tags_list);
         FirebaseTagslist = new ArrayList<>();
 
         mChatRoomNamesDatabaseReference = FirebaseDatabase.getInstance().getReference().child(CHAT_ROOMS_DB_REF);
@@ -166,7 +186,7 @@ public class GroupChatsActivity extends AppCompatActivity {
 
 
 
-        TagsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        groupImagesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -207,8 +227,8 @@ public class GroupChatsActivity extends AppCompatActivity {
                     FirebaseTagslist.add(tags);
                 }
 
-                mAdapter = new TagsAdapter(getApplicationContext(), R.layout.activity_group_chats_item_list, FirebaseTagslist);
-                TagsList.setAdapter(mAdapter);
+                mAdapter = new GroupImagesAdapter(getApplicationContext(), R.layout.activity_group_chats_item_list, FirebaseTagslist);
+                groupImagesGridView.setAdapter(mAdapter);
             }
 
             @Override
@@ -217,7 +237,7 @@ public class GroupChatsActivity extends AppCompatActivity {
         });
 
 
-        startNewDiscussion.setOnClickListener(new View.OnClickListener() {
+        addPhotoFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -226,6 +246,13 @@ public class GroupChatsActivity extends AppCompatActivity {
                 } else {
                     return;
                 }
+            }
+        });
+
+        addPhotoFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImageFromGallery();
             }
         });
 
@@ -245,10 +272,11 @@ public class GroupChatsActivity extends AppCompatActivity {
     }
 
 
-    public void startUpload() {
+    public void startUpload(final String callingfunction) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(("Provide the Collabo tag"));
+        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
+        builder.setTitle(("Provide the image label"));
 
         int maxLength = 40;
         final EditText tag = new EditText(getApplicationContext());
@@ -262,7 +290,7 @@ public class GroupChatsActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: 7/3/17 fix such that user cannot enter empty tag
-                  attemptImageUpload(tag.getText().toString());
+                  attemptImageUpload(tag.getText().toString(), callingfunction);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -277,6 +305,7 @@ public class GroupChatsActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -285,11 +314,36 @@ public class GroupChatsActivity extends AppCompatActivity {
             //   BitmapFactory.Options bmOptions = null;
             //   bmOptions = new BitmapFactory.Options();
             //    returnedBitmap = BitmapFactory.decodeFile(photoFile.getPath(), bmOptions);
-            startUpload();
+            startUpload("Capture");
+        } else if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+            try {
+                photoFile = createImageFile();
+                fileUri = data.getData();
+                thumb_file_path = new File(fileUri.toString());
+                startUpload("imagePick");
+            } catch (Exception e) {
+            }
         }
     }
 
-    private void attemptImageUpload(final String tag) {
+    public void chooseImageFromGallery() {
+        if(checkPermissionREAD_EXTERNAL_STORAGE(this)) {
+            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            getIntent.setType("image/*");
+            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickIntent.setType("image/*");
+            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
+            startActivityForResult(chooserIntent, PICK_IMAGE);
+        }
+    }
+
+
+
+
+
+
+    private void attemptImageUpload(final String tag, String callingFunction) {
 
         Toast.makeText(getApplicationContext(), "Creating, discussion will be added shortly...", Toast.LENGTH_SHORT).show();
 
@@ -299,12 +353,29 @@ public class GroupChatsActivity extends AppCompatActivity {
 
         try {
             //upload the thumb_uri
+                Bitmap thumb_bitmap;
 
-            Bitmap thumb_bitmap = new Compressor(this)
-                    .setMaxHeight(100)
-                    .setMaxWidth(100)
-                    .setQuality(60)
-                    .compressToBitmap(photoFile);
+                if(callingFunction.equals("imagePick")) {
+
+                    InputStream imageStream = null;
+                    try {
+                        imageStream = getContentResolver().openInputStream(
+                                fileUri);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    thumb_bitmap = BitmapFactory.decodeStream(imageStream);
+
+                } else {
+
+                    thumb_bitmap = new Compressor(getApplicationContext())
+                            .setMaxHeight(200)
+                            .setMaxWidth(200)
+                            .setQuality(60)
+                            .compressToBitmap(photoFile);
+                }
+
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
@@ -362,7 +433,7 @@ public class GroupChatsActivity extends AppCompatActivity {
 
                @SuppressWarnings("VisibleForTests") String full_image_uri = taskSnapshot.getDownloadUrl().toString();
 
-                ImageUpload imageUpload = new ImageUpload(mCurrentUser, tag, full_image_uri, getTime(), chat_room_key, thumb_download_url, user.getUid().toString());
+                ImageUpload imageUpload = new ImageUpload(currentUserName, tag, full_image_uri, getTime(), chat_room_key, thumb_download_url, user.getUid().toString());
 
                 //save image info into the firebase database
                 mTagsDatabaseReference.child(chat_room_key).setValue(imageUpload);
@@ -414,6 +485,178 @@ public class GroupChatsActivity extends AppCompatActivity {
 
                 return image;
             }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // do your stuff
+                } else {
+                    Toast.makeText(GroupChatsActivity.this, "Denied Access",
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions,
+                        grantResults);
+        }
+    }
+
+
+
+    public boolean checkPermissionREAD_EXTERNAL_STORAGE(
+            final Context context) {
+        int currentAPIVersion = Build.VERSION.SDK_INT;
+        if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
+
+            if (ContextCompat.checkSelfPermission(context,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        (Activity) context,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                    showDialog("External storage", context,
+                            android.Manifest.permission.READ_EXTERNAL_STORAGE);
+
+                } else {
+                    ActivityCompat
+                            .requestPermissions(
+                                    (Activity) context,
+                                    new String[] { android.Manifest.permission.READ_EXTERNAL_STORAGE },
+                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                }
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+            return true;
+        }
+    }
+
+
+    public void showDialog(final String msg, final Context context,
+                           final String permission) {
+
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setIcon(R.drawable.ic_perm_media_black_24dp);
+        alertBuilder.setTitle("Access to Gallery Permission");
+        alertBuilder.setMessage("Permission is necessary to select an image");
+        alertBuilder.setPositiveButton("Give permission",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions((Activity) context,
+                                new String[] { permission },
+                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                return;
+            }
+        });
+
+        alertBuilder.setCancelable(true);
+
+        AlertDialog alert = alertBuilder.create();
+        alert.show();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.group_contents_activity_menu, menu);
+
+        SearchView searchView;
+
+        MenuItem searchItem = menu.findItem(R.id.search_group_image);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchImage(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchImage(newText);
+                return false;
+            }
+        });
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Main/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+
+        //// TODO: 8/1/17 Change these settings to custom settings
+        if (id == R.id.group_contents_activity_information) {
+            showInformation();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showInformation() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(GroupChatsActivity.this);
+        builder.setTitle("Information");
+        builder.setMessage(R.string.group_folder_information);
+        builder.setIcon(R.drawable.ic_info_black_24dp);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    private void searchImage(String imageLabel) {
+
+        Query searchImage = mTagsDatabaseReference.orderByChild("tag")
+                .startAt(imageLabel)
+                .endAt(imageLabel + "\uf8ff");
+
+
+        searchImage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //fetch image data from firebase
+                FirebaseTagslist.clear();
+
+                for (DataSnapshot Snapshot1 : dataSnapshot.getChildren()) {
+                    ImageUpload privateImage = Snapshot1.getValue(ImageUpload.class);
+                    FirebaseTagslist.add(privateImage);
+                }
+
+                mAdapter = new GroupImagesAdapter(getApplicationContext(), R.layout.activity_group_chats_item_list, FirebaseTagslist);
+                groupImagesGridView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+    }
+
+
+
 
 
     @Override

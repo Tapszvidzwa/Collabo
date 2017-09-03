@@ -117,12 +117,8 @@ public class ChatsAdapter extends BaseAdapter {
                     holder.message = (TextView) row.findViewById(R.id.chat_text_txtV);
                     holder.name = (TextView) row.findViewById(R.id.chat_user_name_txtV);
                     holder.time_sent = (TextView) row.findViewById(R.id.chat_time_sent_txtV);
-                    holder.msg_sender_img = (CircleImageView) row.findViewById(R.id.chat_sender_imgV);
-
 
                     row.setTag(holder);
-
-
                 } else {
                     holder = (ViewHolder) row.getTag();
                 }
@@ -132,83 +128,12 @@ public class ChatsAdapter extends BaseAdapter {
                 holder.time_sent.setText(message.getTime_sent());
                 holder.name.setText(message.getSent_from());
 
-                final ImageView holderr = holder.msg_sender_img;
-
-                Picasso.with(context)
-                        .load(message.getThumb_uri())
-                        .placeholder(R.drawable.new_default_image)
-                        .networkPolicy(NetworkPolicy.OFFLINE)
-                        .into(holderr, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                            }
-
-                            @Override
-                            public void onError() {
-                                // Try again online if cache failed
-                                Picasso.with(context)
-                                        .load(message.getThumb_uri())
-                                        .placeholder(R.drawable.new_default_image)
-                                        .into(holderr);
-
-                            }
-                        });
-
-
-
-
                 return row;
 
             }
     }
 
-          //  LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-         //   row = inflater.inflate(layout, null);
 
-       /*     holder.message = (TextView) row.findViewById(R.id.chat_text_txtV);
-            holder.name = (TextView) row.findViewById(R.id.chat_user_name_txtV);
-            holder.time_sent = (TextView) row.findViewById(R.id.chat_time_sent_txtV);
-            holder.msg_sender_img = (CircleImageView) row.findViewById(R.id.chat_sender_imgV);
-*/
-     //       row.setTag(holder);
-
-   /*     } else {
-            holder = (ViewHolder) row.getTag();
-        }
-
-
-        holder.message.setText(message.getMessage());
-        holder.time_sent.setText(message.getTime_sent());
-        holder.name.setText(message.getSent_from());
-
-        final ImageView holderr = holder.msg_sender_img;
-
-        Picasso.with(context)
-                .load(message.getThumb_uri())
-                .placeholder(R.drawable.new_default_image)
-                .networkPolicy(NetworkPolicy.OFFLINE)
-                .into(holderr, new Callback() {
-            @Override
-            public void onSuccess() {
-            }
-
-            @Override
-            public void onError() {
-                // Try again online if cache failed
-                Picasso.with(context)
-                        .load(message.getThumb_uri())
-                        .placeholder(R.drawable.new_default_image)
-                        .into(holderr);
-
-            }
-        });
-
-
-
-
-        return row; */
     }
 
-
-//}
 

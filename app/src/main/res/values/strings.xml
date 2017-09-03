@@ -18,6 +18,24 @@
     <string name="help_or_send_feedback">Help / Send Feedback</string>
     <string name="enter_feedback">Start typing your message here...</string>
     <string name="send_feedback_to_email">Send via Email</string>
+    <string name="privates_information">Click on the add folder button to create
+        a sub folder to store images for your class or project.</string>
+
+    <string name="private_folder_information">Click on the camera or gallery button to add an image
+    to this class/project folder.</string>
+
+    <string name="group_folder_information">Click on the camera or gallery button to add an image
+    to this group. You can also click on the image and discuss with your buddies in this group.</string>
+
+    <string name="buddies_activity_information">Choose any buddy to begin a chat. If you do not have
+    any buddy, find new buddies</string>
+
+    <string name="groups_infomation">Click on the create group button, provide new group name and
+    add buddies to your group. You will be able to share images in this group with your chosen buddies.</string>
+
+
+
+
 
 
     <!-- Strings related to Settings -->

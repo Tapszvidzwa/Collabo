@@ -58,7 +58,6 @@ public class ChooseGroupMembersAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView name, bio;
         CircleImageView imageView;
-        ImageView check;
     }
 
 
@@ -74,10 +73,8 @@ public class ChooseGroupMembersAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.name = (TextView) row.findViewById(R.id.create_new_group_buddie_name_tv);
-            holder.check = (ImageView) row.findViewById(R.id.item_checkBox);
             holder.bio = (TextView) row.findViewById(R.id.create_new_group_bio_tv);
             holder.imageView = (CircleImageView) row.findViewById(R.id.create_new_group_buddie_photo_imgV);
-          //  holder.checkBox = (CheckBox) row.findViewById(R.id.choose_grp_members_checkbox);
 
             row.setTag(holder);
 

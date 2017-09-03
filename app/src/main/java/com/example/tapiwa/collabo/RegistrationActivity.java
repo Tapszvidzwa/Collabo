@@ -177,8 +177,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
 
-
-
                                     String uid = mAuth.getCurrentUser().getUid();
 
                                   //create and add new user

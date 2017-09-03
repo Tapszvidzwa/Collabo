@@ -76,7 +76,11 @@ public class ChatActivity extends AppCompatActivity {
         messagesList = new ArrayList<>();
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
         chat_room_key = getIntent().getStringExtra("chat_room_key");
+
+
+
         btn_send_msg = (FloatingActionButton) findViewById(R.id.sendMessage);
         ChatsListView = (ListView)  findViewById(R.id.chatArea);
 

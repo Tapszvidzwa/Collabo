@@ -44,7 +44,7 @@
 
     <item
         android:id="@+id/search_new_friends"
-        android:title="Search"
+        android:title="Find new buddies"
         android:orderInCategory="60"
         app:showAsAction="never"
         />

@@ -52,7 +52,6 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
 
         chooseBuddiesListView = (ListView) findViewById(R.id.choose_new_group_list);
         mUsersDBRef = FirebaseDatabase.getInstance().getReference().child("Users");
-        checkBox = (ImageView) findViewById(R.id.item_checkBox);
         mGroupsDatabaseReference = FirebaseDatabase.getInstance().getReference().child(GROUPS_DB_PATH);
         mUserListOfGroupsReference = FirebaseDatabase.getInstance().getReference().child(USER_LIST_OF_GROUPS_PATH);
 
@@ -67,6 +66,12 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
         mCurrentUserId = mUser.getUid();
         mToolbar = (Toolbar) findViewById(R.id.choose_grp_members_toolbar);
         mToolbar.setTitle("Choose Group Members");
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         mAdapter = new ChooseGroupMembersAdapter(getApplicationContext(), R.layout.create_new_group_item_list, Firebaselist);
 
 
@@ -89,6 +94,8 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
 
 
 
+
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(ProfileActivity.FRIENDS_DATABASE_PATH).child(mCurrentUserId);
         mDatabaseRef.keepSynced(true);
 
@@ -105,6 +112,10 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
                     Firebaselist.add(profiles);
                 }
 
+                if(Firebaselist.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "You have no buddies yet. Find new buddies to create group", Toast.LENGTH_LONG).show();
+                }
+
                 mAdapter = new ChooseGroupMembersAdapter(getApplicationContext(), R.layout.create_new_group_item_list, Firebaselist);
                 chooseBuddiesListView.setAdapter(mAdapter);
             }
@@ -113,6 +124,8 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
 
 
         mCreateGroupBtn.setOnClickListener(new View.OnClickListener() {
@@ -155,18 +168,20 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 BuddieProfiles profile = (BuddieProfiles) mAdapter.getItem(position);
-                View checkbox = view.findViewById(R.id.item_checkBox);
+                View checkbox = view.findViewById(R.id.item_checkedBox);
+                View uncheckedbox = view.findViewById(R.id.item_uncheckedBox);
 
                 if (checkbox.getVisibility() == View.VISIBLE) {
+                    uncheckedbox.setVisibility(View.VISIBLE);
                     checkbox.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), "You removed " + profile.getName(), Toast.LENGTH_SHORT).show();
                     newGroupMembers.remove(profile);
                 } else {
+
+                    uncheckedbox.setVisibility(View.INVISIBLE);
                     checkbox.setVisibility(View.VISIBLE);
                     newGroupMembers.add(profile);
-                    //  view.findViewById(R.id.item_checkBox).setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), "You added " + profile.getName(), Toast.LENGTH_SHORT).show();
-                    // when checkbox is checked
                 }
             }
         });
@@ -179,6 +194,11 @@ public class ChooseBuddiesForNewGroupActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 }

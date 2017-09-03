@@ -17,14 +17,14 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class TagsAdapter extends BaseAdapter {
+public class GroupImagesAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
     private ArrayList<ImageUpload> imageList;
 
 
-    public TagsAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
+    public GroupImagesAdapter(Context context, int layout, ArrayList<ImageUpload> imageList) {
         this.context = context;
         this.layout = layout;
         this.imageList = imageList;
@@ -65,9 +65,9 @@ public class TagsAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-            holder.tag = (TextView) row.findViewById(R.id.tags_tagline_tv);
-            holder.tag_thumb_img = (ImageView) row.findViewById(R.id.tag_thumbail_imgV);
-            holder.unreadMessageNotification = (AVLoadingIndicatorView) row.findViewById(R.id.unreadMessage_indicator);
+            holder.tag = (TextView) row.findViewById(R.id.groups_details_txtV);
+            holder.name = (TextView) row.findViewById(R.id.group_uploader_and_time_txtV);
+            holder.tag_thumb_img = (ImageView) row.findViewById(R.id.groups_thumbnail_imgV);
 
             row.setTag(holder);
 
@@ -75,15 +75,12 @@ public class TagsAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        holder.unreadMessageNotification.setVisibility(View.INVISIBLE);
-
         final ImageUpload imageUpload = imageList.get(position);
-
         holder.tag.setText(imageUpload.getTag());
+        holder.name.setText(imageUpload.getProfileName() + ":  " + imageUpload.getTimeUploaded());
 
 
         //do the picasso stuff for the uploaded image
-
         final ImageView holderr = holder.tag_thumb_img;
         Picasso.with(context)
                 .load(imageUpload.getThumb_uri())

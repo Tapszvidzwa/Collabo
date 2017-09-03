@@ -17,7 +17,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
-public class PrivateFolderContentsAdapter extends BaseAdapter {
+public class
+PrivateFolderContentsAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
@@ -87,7 +88,6 @@ holder.cardView.setCardBackgroundColor(Color.WHITE);
         Picasso.with(context)
                 .load(imageUpload.getThumb_uri())
                 .placeholder(R.drawable.ic_stat_smalliconcollabo)
-                .rotate(180)
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .into(holder.imgThumb, new Callback() {
                     @Override
@@ -98,7 +98,6 @@ holder.cardView.setCardBackgroundColor(Color.WHITE);
                         // Try again online if cache failed
                         Picasso.with(context)
                                 .load(imageUpload.getThumb_uri())
-                                .rotate(180)
                                 .placeholder(R.drawable.ic_stat_smalliconcollabo)
                                 .into(holderr);
                     }

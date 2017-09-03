@@ -13,13 +13,13 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 
 
-public class PrivateTagListAdapter extends BaseAdapter {
+public class PrivatesActivityAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
     private ArrayList<NewProjectFolder> projectNamesList;
 
-    public PrivateTagListAdapter(Context context, int layout, ArrayList<NewProjectFolder> projectNamesList) {
+    public PrivatesActivityAdapter(Context context, int layout, ArrayList<NewProjectFolder> projectNamesList) {
         this.context = context;
         this.layout = layout;
         this.projectNamesList = projectNamesList;
@@ -59,7 +59,7 @@ public class PrivateTagListAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.projectName = (TextView) row.findViewById(R.id.private_folder_name);
-            holder.folderIcon = (ImageView) row.findViewById(R.id.private_folder_icon);
+            holder.folderIcon = (ImageView) row.findViewById(R.id.private_folder_item_list_icon);
 
             row.setTag(holder);
 

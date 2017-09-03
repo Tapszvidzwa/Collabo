@@ -4,6 +4,7 @@ package com.example.tapiwa.collabo;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -153,14 +157,28 @@ public class MaximizePrivateImageActivity extends AppCompatActivity {
             this.finish();
 
            //get the full image storage reference
-            //delete from the storage
+    /*        //delete from the storage
             StorageReference PrivateFullImageStorageRef = mStorage.getReferenceFromUrl(openedFullImageUri);
-            PrivateFullImageStorageRef.delete();
+            PrivateFullImageStorageRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()) {
+
+                    }
+                }
+            });
 
             //get the thumb nail storage reference
             //delete from the thumb nail storage reference
             StorageReference ThumbNailStorageRef = mStorage.getReferenceFromUrl(openedImageThumbUri);
-            ThumbNailStorageRef.delete();
+            ThumbNailStorageRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()) {
+                        Toast.makeText(MaximizePrivateImageActivity.this, "Image Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }); */
 
     }
 

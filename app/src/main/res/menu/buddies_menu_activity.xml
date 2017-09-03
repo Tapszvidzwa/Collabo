@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tapiwa.collabo.BuddiesListActivity">
+
+
+    <item
+        android:id="@+id/search_buddie"
+        android:orderInCategory="90"
+        android:title="Search Buddie"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+
+    <item
+        android:id="@+id/buddies_information"
+        android:orderInCategory="100"
+        android:title="Info"
+        android:icon="@drawable/ic_info_outline_white_24dp"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+</menu>

@@ -15,6 +15,7 @@ import org.joda.time.DateTime;
 public class GenericServices {
 
     Context context;
+    Boolean foregroundStatus = false;
 
     public GenericServices(Context cxt) {
         this.context = cxt;
@@ -53,6 +54,11 @@ public class GenericServices {
     }
 
 
+    public boolean isInForeGround() {
+
+        return this.foregroundStatus;
+
+    }
 
 
 }

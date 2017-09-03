@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
@@ -21,7 +20,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,21 +28,21 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-
 import me.leolin.shortcutbadger.ShortcutBadger;
 
-import static com.example.tapiwa.collabo.NotesFragment.adapter;
-import static com.example.tapiwa.collabo.NotesFragment.list;
-import static com.example.tapiwa.collabo.NotesFragment.listview;
-import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.example.tapiwa.collabo.OneToOneChats.ONLINE_STATUS;
+import static com.example.tapiwa.collabo.OneToOneChats.mOnlineStatusDbReference;
 
 
 public class Main extends AppCompatActivity {
@@ -55,6 +53,9 @@ public class Main extends AppCompatActivity {
     private String uid;
     private SearchView searchView;
     public static FloatingActionButton actionButton;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference onlineStatusCheck;
+    private Boolean isonline;
 
 
     @Override
@@ -65,6 +66,7 @@ public class Main extends AppCompatActivity {
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         ShortcutBadger.removeCount(Main.this);
         MyFirebaseMessagingService.count = 0;
+        isonline = true;
 
         actionButton = (FloatingActionButton) findViewById(R.id.fragment_action);
 
@@ -75,6 +77,14 @@ public class Main extends AppCompatActivity {
         //Subscribe to topic and get token from firebase
         FirebaseMessaging.getInstance().subscribeToTopic("test");
         FirebaseInstanceId.getInstance().getToken();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        onlineStatusCheck = firebaseDatabase.getReference(OneToOneChats.ONLINE_STATUS).child(mCurrentUser.getUid());
+
+       onlineStatusCheck.keepSynced(true);
+
+
+
 
 
         // Create the mAdapter that will return a fragment for each of the three
@@ -92,6 +102,7 @@ public class Main extends AppCompatActivity {
                 getNewFolderName();
             }
         });
+        actionButton.hide();
 
 
 
@@ -112,6 +123,7 @@ public class Main extends AppCompatActivity {
                             getNewFolderName();
                         }
                     });
+                    actionButton.hide();
 
                 }
 
@@ -125,18 +137,21 @@ public class Main extends AppCompatActivity {
                             startActivity(writeNote);
                         }
                     });
+                    actionButton.show();
 
                 }
 
                 if(position == 2) {
-                    //groups fragment
-                    actionButton.setImageResource(R.drawable.ic_group_add_white_24dp);
+                    //chats fragment
+                    actionButton.setImageResource(R.drawable.ic_chat_white_24dp);
                     actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            getNewGroupName();
+                            Intent openChooseBuddy = new Intent(Main.this, BuddiesListActivity.class);
+                            startActivity(openChooseBuddy);
                         }
                     });
+                    actionButton.show();
 
                 }
             }
@@ -161,8 +176,28 @@ public class Main extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        OnlineStatus status = new OnlineStatus("online");
+        onlineStatusCheck.setValue(status);
+
         CancelNotification(this, MyFirebaseMessagingService.NOTIFICATION_ID);
     }
+
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        OnlineStatus status = new OnlineStatus("last seen " + Collabos.getTime() + " " + GenericServices.timeStamp() );
+        onlineStatusCheck.setValue(status);
+
+        CancelNotification(this, MyFirebaseMessagingService.NOTIFICATION_ID);
+    }
+
+
+
+
+
+
 
     public void CancelNotification(Context ctx, int notifyId) {
         String notificationService = Context.NOTIFICATION_SERVICE;
@@ -246,7 +281,7 @@ public class Main extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 if(givenTitle.getText().toString().length() > 0) {
-                  PrivatesFragment.createNewFolder(givenTitle.getText().toString(), PrivatesFragment.USER_PRIVATE_LIST_OF_GROUPS, Main.this);
+                  PrivatesActivity.createNewFolder(givenTitle.getText().toString(), PrivatesActivity.USER_PRIVATE_LIST_OF_GROUPS, Main.this);
 
                 } else {
                     Toast.makeText(Main.this, "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
@@ -319,14 +354,17 @@ public class Main extends AppCompatActivity {
 
             switch (position) {
                 case 0 :
-                    PrivatesFragment privatesFragment = new PrivatesFragment();
-                    return privatesFragment;
+                   // PrivatesFragment privatesFragment = new PrivatesFragment();
+                    ImagesFragment imagesFragment = new ImagesFragment();
+                    return imagesFragment;
                 case 1:
                     NotesFragment notesFragment = new NotesFragment();
                     return notesFragment;
-                case 2:
-                    GroupsFragment groupsFragment = new GroupsFragment();
-                    return groupsFragment;
+
+                case 2:  ChatsFragment chatsFragment = new ChatsFragment();
+                    return chatsFragment;
+
+
                 default:
                     return null;
             }
@@ -342,11 +380,11 @@ public class Main extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "PRIVATES";
+                    return "IMAGES";
                 case 1:
-                    return "MY NOTES";
+                    return "NOTES";
                 case 2:
-                    return "GROUPS";
+                    return "CHATS";
             }
             return null;
         }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:srcCompat="@drawable/new_default_image"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/chat_item_list_image" />
+
+
+    <TextView
+        android:id="@+id/chat_item_list_name"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:text="name"
+        android:layout_marginStart="21dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_alignTop="@id/chat_item_list_image"
+        android:layout_toEndOf="@+id/chat_item_list_image" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:id="@+id/chats_fragment_online_status"
+        app:srcCompat="@drawable/circle_green"
+        android:layout_marginRight="25dp"
+        android:visibility="invisible"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:visibility="visible"
+        android:id="@+id/chats_fragment_unread_message"
+        app:indicatorName="BallScaleMultipleIndicator"
+        app:indicatorColor="@color/colorAccent"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentEnd="true"
+       />
+
+
+    <TextView
+        android:id="@+id/chats_fragment_last_seen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_toRightOf="@id/chat_item_list_image"
+        android:layout_below="@id/chat_item_list_name"
+        android:layout_marginStart="21dp"
+        android:text="last seen..." />
+
+
+</RelativeLayout>

@@ -11,17 +11,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.ContextMenu;
 import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,18 +42,15 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.zip.Inflater;
 
 
-public class PrivatesFragment extends Fragment {
-
-    public PrivatesFragment() {
-    }
+public class PrivatesActivity extends AppCompatActivity {
 
     public ListView foldersListView;
+    private Toolbar mToolbar;
     private Vibrator vibrate;
     public ArrayList<NewProjectFolder> list;
-    public PrivateTagListAdapter adapter;
+    public PrivatesActivityAdapter adapter;
     private DatabaseReference mDatabaseRef, mFolderContentsDBRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
@@ -71,40 +67,39 @@ public class PrivatesFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_privates);
 
-        View privates = inflater.inflate(R.layout.fragment_privates, container, false);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser().getUid().toString();
         mStorage = FirebaseStorage.getInstance();
+        mToolbar = (Toolbar) findViewById(R.id.privates_activity_toolbar);
+        openNewFolder = (FloatingActionButton) findViewById(R.id.private_activity_open_new_folder_fab);
         storageReference = mStorage.getReference();
-        mProgress = new ProgressDialog(getContext());
-        vibrate = (Vibrator) this.getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        mProgress = new ProgressDialog(this);
+        vibrate = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         mFolderContentsDBRef = FirebaseDatabase.getInstance().getReference(PrivateFolderContentsActivity.PRIVATE_FOLDERS_CONTENTS).child(user);
 
-        foldersListView = (ListView) privates.findViewById(R.id.privates_folders_listV);
-       // openNewFolder = (FloatingActionButton) privates.findViewById(R.id.private_create_new_folder);
+        foldersListView = (ListView) findViewById(R.id.privates_folders_listV);
 
-       // openNewFolder = (FloatingActionButton) this.getActivity().findViewById(R.id.fragment_action);
-      //  openNewFolder.setImageResource(R.drawable.ic_create_new_folder_white_24dp);
-       // Main.actionButton.setBackgroundResource(R.drawable.ic_create_new_folder_white_24dp);
-       // openNewFolder.setBackgroundResource(R.drawable.ic_create_new_folder_white_24dp);
+        mToolbar.setTitle("My Images/");
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar();
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
         list = new ArrayList<>();
-        adapter = new PrivateTagListAdapter(getContext(), R.layout.privates_folders_item_list, list);
+        adapter = new PrivatesActivityAdapter(this, R.layout.privates_folders_item_lst, list);
         foldersListView.setAdapter(adapter);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(USER_PRIVATE_LIST_OF_GROUPS).child(user);
         mDatabaseRef.keepSynced(true);
 
 
-
-
-
-setHasOptionsMenu(true);
         registerForContextMenu(foldersListView);
 
 
@@ -123,7 +118,7 @@ setHasOptionsMenu(true);
                 Collections.reverse(list);
 
 
-                adapter = new PrivateTagListAdapter(getContext(), R.layout.privates_folders_item_list, list);
+                adapter = new PrivatesActivityAdapter(getApplicationContext(), R.layout.privates_folders_item_lst, list);
                 foldersListView.setAdapter(adapter);
             }
 
@@ -144,11 +139,23 @@ setHasOptionsMenu(true);
                 NewProjectFolder item = (NewProjectFolder) parent.getItemAtPosition(position);
 
 
-                Intent intent = new Intent(getContext(), PrivateFolderContentsActivity.class);
+                Intent intent = new Intent(PrivatesActivity.this, PrivateFolderContentsActivity.class);
+
                 intent.putExtra("projectKey", item.getProjectKey());
+                intent.putExtra("projectName", item.getProjectName());
 
                 //Start details activity
                 startActivity(intent);
+            }
+        });
+
+
+
+
+        openNewFolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getNewFolderName();
             }
         });
 
@@ -235,14 +242,13 @@ setHasOptionsMenu(true);
                getNewFolderName();
             }
         }); */
-        return privates;
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
 
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getActivity().getMenuInflater();
+        MenuInflater inflater = PrivatesActivity.this.getMenuInflater();
         inflater.inflate(R.menu.private_folder_menu, menu);
 
     }
@@ -271,11 +277,12 @@ setHasOptionsMenu(true);
     public void renameFolder(final int position) {
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(PrivatesActivity.this);
         builder.setTitle(("Enter new Name"));
+        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
 
         int maxLength = 50;
-        final EditText newName = new EditText(getContext());
+        final EditText newName = new EditText(this);
         newName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         newName.setInputType(InputType.TYPE_CLASS_TEXT);
         newName.setTextColor(Color.BLACK);
@@ -297,7 +304,7 @@ setHasOptionsMenu(true);
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(!task.isSuccessful()) {
-                                Toast toast = Toast.makeText(getContext(), "Failed to rename folder, try again", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Failed to rename folder, try again", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
 
@@ -306,7 +313,7 @@ setHasOptionsMenu(true);
                     });
 
                 } else {
-                    Toast.makeText(getContext(), "Please provide a new Course/Project name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please provide a new Course/Project name", Toast.LENGTH_SHORT).show();
 
                 }
                 dialog.dismiss();
@@ -335,9 +342,9 @@ setHasOptionsMenu(true);
         AlertDialog.Builder builder;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
+            builder = new AlertDialog.Builder(PrivatesActivity.this, android.R.style.Theme_Material_Dialog_Alert);
         } else {
-            builder = new AlertDialog.Builder(getContext());
+            builder = new AlertDialog.Builder(PrivatesActivity.this);
         }
 
 
@@ -360,7 +367,7 @@ setHasOptionsMenu(true);
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()) {
-                                                Toast.makeText(getContext(), "Folder deleted", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(PrivatesActivity.this, "Folder deleted", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -381,11 +388,12 @@ setHasOptionsMenu(true);
 
     private void getNewFolderName() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(PrivatesActivity.this);
+        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
         builder.setTitle(("Enter new Course/Project title"));
 
         int maxLength = 50;
-        final EditText givenTitle = new EditText(getContext());
+        final EditText givenTitle = new EditText(this);
         givenTitle.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         givenTitle.setInputType(InputType.TYPE_CLASS_TEXT);
         givenTitle.setTextColor(Color.BLACK);
@@ -404,11 +412,11 @@ setHasOptionsMenu(true);
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()) {
-                                Toast toast = Toast.makeText(getContext(), "New folder created successfully", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(PrivatesActivity.this, "New folder created successfully", Toast.LENGTH_SHORT);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 toast.show();
                             } else {
-                                Toast toast = Toast.makeText(getContext(), "Failed to create folder, try again", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(PrivatesActivity.this, "Failed to create folder, try again", Toast.LENGTH_SHORT);
                                 toast.setGravity(Gravity.CENTER, 0, 0);
                                 toast.show();
                             }
@@ -416,7 +424,7 @@ setHasOptionsMenu(true);
                     });
 
                 } else {
-                    Toast.makeText(getContext(), "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PrivatesActivity.this, "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
 
                 }
                 dialog.dismiss();
@@ -461,6 +469,50 @@ setHasOptionsMenu(true);
         });
     }
 
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.private_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Main/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+
+        //// TODO: 8/1/17 Change these settings to custom settings
+        if (id == R.id.private_activity_information) {
+            showInformationDialogue();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void showInformationDialogue() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PrivatesActivity.this);
+        builder.setMessage(R.string.privates_information);
+        builder.setTitle("Information");
+        builder.setIcon(R.drawable.ic_info_black_24dp);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 
 }

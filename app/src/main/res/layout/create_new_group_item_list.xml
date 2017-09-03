@@ -30,13 +30,25 @@
     <ImageView
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:src="@drawable/ic_check_circle_black_24dp"
-        android:visibility="invisible"
-        android:id="@+id/item_checkBox"
+        android:src="@drawable/ic_radio_button_unchecked_black_24dp"
+        android:visibility="visible"
+        android:id="@+id/item_uncheckedBox"
         android:layout_alignBottom="@+id/create_new_group_bio_tv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="8dp"/>
+
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_radio_button_checked_black_24dp"
+        android:visibility="invisible"
+        android:id="@+id/item_checkedBox"
+        android:layout_alignBottom="@+id/create_new_group_bio_tv"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="8dp"/>
+
 
     <TextView
         android:id="@+id/create_new_group_bio_tv"

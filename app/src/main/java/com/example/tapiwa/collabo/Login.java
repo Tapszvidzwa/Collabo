@@ -2,6 +2,9 @@ package com.example.tapiwa.collabo;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 
 import com.facebook.AccessToken;
@@ -42,6 +45,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -52,6 +56,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 import static com.example.tapiwa.collabo.R.layout.activity_login;
@@ -142,15 +148,11 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                             public void onCompleted(JSONObject object, GraphResponse response) {
 
                                 try {
-
                                     String userfbname = object.getString("name");
-
-
-                              //      String[] fullName = extractFBdata(object).split(" ");
-                               ///     String firstName = fullName[0];
                                     handleFacebookAccessToken(loginResult.getAccessToken(), userfbname);
                                 } catch (Exception e) {
-                                    Toast.makeText(Login.this, "There is a problem login in", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "There was a problem login in", Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
                             }
                         });
@@ -181,17 +183,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 .build();
 
 
-    }
-
-
-    private String extractFBdata(JSONObject jsonObject) {
-        try {
-            String name = jsonObject.getString("name");
-            return name;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 
