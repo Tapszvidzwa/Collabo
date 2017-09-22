@@ -13,109 +13,26 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79a9502f-782f-48f5-bc78-5596352ee063" name="Default" comment="Fixed background color">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_black_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_white_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_close_white_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_help_outline_black_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_help_outline_white_24dp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/tapiwa.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/gpa/GPAFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/collegebudddy.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CollaboApp.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/BuddieFriendsAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/BuddieProfiles.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/BuddieProfilesAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/BuddiesListActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChangeBioActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChangeDisplayNameActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChangePhotoActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChatActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChatListAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChatsAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChatsFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChooseBuddiesForNewGroupActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ChooseGroupMembersAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Collabos.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/DisplayNoteActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/FirebaseHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/GroupChatsActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/GroupImagesAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/GroupsActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/GroupsAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ImagesFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MaximizeGroupImageActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MaximizePrivateImageActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Message.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MessageNotificationsHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MyFirebaseInstanceIDService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/MyFirebaseMessagingService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NewChat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NewGroupUpload.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NewUser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Note.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/OneToOneChats.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/OnlineStatus.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/PrivateFolderContentsActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/PrivateImagesDBHelper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/PrivatesActivityAdapter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ProfileActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/RegistrationActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/RequestsFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/RequestsReceivedActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/SearchBuddiesActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/SendFeedBackActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Settings.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/SortMessages.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/collabo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/userUpload.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_active_chats.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_buddies_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_bio.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_display_name.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_photo.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chats.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chats_item_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chats_item_list_user.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_choose_friends_newgrp.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_group_chats.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_group_chats_item_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_groups.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maximize_group_image.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_privates.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_requests.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_buddies.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_profile.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/buddie_request_item_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/buddies_item_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat_list_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/collabos.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/create_new_group_item_list.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/groups_item_list.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/tapiwa/collabo/ExampleInstrumentedTest.java" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/tapiwa/collegebuddy/ExampleInstrumentedTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/AppCompatPreferenceActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/AppCompatPreferenceActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/DividerItemDecoration.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/DividerItemDecoration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/GenericServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ImageListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/ImageUpload.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/NewImage.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Login.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/authentication/LoginActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NewNote.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NewNote.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NewProjectFolder.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/NewClass.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NotesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NotesListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesListAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/NotesSQLiteDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesSQLiteDBHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/PrivateFolderContentsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/PrivatesActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/ClassesFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collabo/Welcome.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/authentication/WelcomeActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/class_contents_main_activity.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_private_folder_contents.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/group_contents_activity_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/test/java/com/example/tapiwa/collabo/ExampleUnitTest.java" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/tapiwa/collegebuddy/ExampleUnitTest.java" />
+    <list default="true" id="79a9502f-782f-48f5-bc78-5596352ee063" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_a_photo_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_close_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_content_copy_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_delete_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_help_outline_black_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_help_outline_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_keyboard_black_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_note_add_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_perm_media_black_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_perm_media_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_rotate_90_degrees_ccw_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_save_white_24px.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_search_white_24px.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/buddies_menu_activity.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/groups_activity_menu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/private_activity_menu.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/uploaded_content_menu.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notes_fragment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
@@ -124,31 +41,18 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/google-services.json" afterPath="$PROJECT_DIR$/app/google-services.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_send_feed_back.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_send_feed_back.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/image_item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/image_item_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/buddies_menu_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/buddies_menu_activity.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/gpa/GPAFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/gpa/GPAFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/groups_activity_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/groups_activity_menu.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/notes_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/notes_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/uploaded_content_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/uploaded_content_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="CollaboApp.iws" />
@@ -193,69 +97,21 @@
       <file leaf-file-name="ClassContentsMainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6345">
-              <caret line="499" column="13" selection-start-line="499" selection-start-column="13" selection-end-line="499" selection-end-column="13" />
-              <folding>
-                <element signature="e#6616#6617#0" expanded="false" />
-                <element signature="e#6672#6673#0" expanded="false" />
-                <element signature="e#7318#7319#0" expanded="false" />
-                <element signature="e#7398#7399#0" expanded="false" />
-                <element signature="e#16415#16416#0" expanded="false" />
-                <element signature="e#16453#16454#0" expanded="false" />
-                <element signature="e#17758#17759#0" expanded="false" />
-                <element signature="e#17805#17806#0" expanded="false" />
-                <element signature="e#22346#22347#0" expanded="false" />
-                <element signature="e#22378#22379#0" expanded="false" />
-                <element signature="e#22531#22532#0" expanded="false" />
-                <element signature="e#22562#22563#0" expanded="false" />
-                <element signature="e#22685#22686#0" expanded="false" />
-                <element signature="e#22718#22719#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="-5953">
+              <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-          <provider selected="true" editor-type-id="android-designer2">
+      <file leaf-file-name="notes_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/notes_menu.xml">
+          <provider editor-type-id="android-designer2">
             <state />
           </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_welcome.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -264,37 +120,42 @@
       <file leaf-file-name="ImagesFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+            <state relative-caret-position="1635">
+              <caret line="226" column="37" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
               <folding>
-                <element signature="e#7308#8060#0" expanded="true" />
-                <element signature="e#8059#8060#0" expanded="true" />
-                <element signature="e#8114#8712#0" expanded="true" />
-                <element signature="e#8711#8712#0" expanded="true" />
                 <element signature="e#8869#9019#0" expanded="true" />
-                <element signature="e#8963#8964#0" expanded="false" />
-                <element signature="e#9008#9009#0" expanded="false" />
                 <element signature="e#9018#9019#0" expanded="true" />
-                <element signature="e#10063#10398#0" expanded="true" />
-                <element signature="e#10397#10398#0" expanded="true" />
-                <element signature="e#13764#14138#0" expanded="true" />
-                <element signature="e#14137#14138#0" expanded="true" />
-                <element signature="e#14168#14321#0" expanded="true" />
-                <element signature="e#14320#14321#0" expanded="true" />
-                <element signature="e#16127#16946#0" expanded="true" />
-                <element signature="e#16540#16576#1" expanded="true" />
-                <element signature="e#16945#16946#0" expanded="true" />
-                <element signature="e#17205#17948#0" expanded="true" />
-                <element signature="e#17476#17512#1" expanded="true" />
-                <element signature="e#17947#17948#0" expanded="true" />
-                <element signature="e#17971#18241#0" expanded="true" />
-                <element signature="e#18240#18241#0" expanded="true" />
-                <element signature="e#22660#22692#0" expanded="true" />
-                <element signature="e#25367#25592#0" expanded="true" />
-                <element signature="e#25591#25592#0" expanded="true" />
-                <element signature="e#25650#25844#0" expanded="true" />
-                <element signature="e#25843#25844#0" expanded="true" />
+                <element signature="e#25372#25597#0" expanded="true" />
+                <element signature="e#25596#25597#0" expanded="true" />
+                <element signature="e#25655#25849#0" expanded="true" />
+                <element signature="e#25848#25849#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="private_folder_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/private_folder_menu.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile_activity_change_prof_pic.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_activity_change_prof_pic.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -305,21 +166,21 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+            <state relative-caret-position="318">
+              <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_notes.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml">
+      <file leaf-file-name="activity_classes.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+            <state relative-caret-position="75">
+              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -328,29 +189,31 @@
       <file leaf-file-name="MainFrntActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3975">
-              <caret line="316" column="51" selection-start-line="316" selection-start-column="51" selection-end-line="316" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#4704#4705#0" expanded="false" />
-                <element signature="e#4750#4751#0" expanded="false" />
-                <element signature="e#9096#9097#0" expanded="false" />
-                <element signature="e#9143#9144#0" expanded="false" />
-                <element signature="e#16138#16139#0" expanded="false" />
-                <element signature="e#16185#16186#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="257">
+              <caret line="368" column="57" selection-start-line="368" selection-start-column="57" selection-end-line="368" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maximize_private_image_menu.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml">
+      <file leaf-file-name="profile_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classImagesActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classImagesActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-973">
+              <caret line="558" column="12" selection-start-line="558" selection-start-column="12" selection-end-line="558" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -2576,9 +2439,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/AppCompatPreferenceActivity.java" />
-        <option value="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/PrivatesActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_privates.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/authentication/WelcomeActivity.java" />
@@ -2596,7 +2456,6 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ImagesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/images/ImagesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_private_folder_contents.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/class_contents_main_activity.xml" />
@@ -2614,19 +2473,23 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/private_folder_contents_item_lst.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/image_item_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classImagesActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_rotate_90_degrees_ccw_white_24px.svg" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/notes_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classImagesActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml" />
       </list>
     </option>
   </component>
@@ -2757,96 +2620,6 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mipmap-hdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2968,45 +2741,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="classContents" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebuddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classContents" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3039,12 +2774,12 @@
     <property name="SearchEverywhereHistoryKey" value="https://192&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout/notes" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout/miscellaneous" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout/authentication" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout/classes" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -3057,12 +2792,12 @@
       <recent name="com.example.tapiwa.collegebuddy.mainView" />
       <recent name="com.example.tapiwa.collabo" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout/notes" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout/miscellaneous" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout/authentication" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout/classes" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -3650,7 +3385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503892331010</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Fixed background color">
+      <created>1506097017938</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1506097017938</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3701,7 +3443,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed display note bugs and upload image tag bug" />
     <MESSAGE value="Removed junk code from Main function to Collabo" />
     <MESSAGE value="Fixed tag issues, Changed icon" />
     <MESSAGE value="Removed uncessary code" />
@@ -3726,7 +3467,8 @@
     <MESSAGE value="improved friends search" />
     <MESSAGE value="fixed facebook login and login screen ui" />
     <MESSAGE value="Fixed background color" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed background color" />
+    <MESSAGE value="Replaced all icons with svg type" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced all icons with svg type" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3770,66 +3512,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/DisplayNoteActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/notes/NotesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="89" column="103" selection-start-line="89" selection-start-column="103" selection-end-line="89" selection-end-column="103" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="3203" column="0" selection-start-line="3203" selection-start-column="0" selection-end-line="3203" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-fragment/25.3.1/support-fragment-25.3.1-sources.jar!/android/support/v4/app/FragmentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="407" column="0" selection-start-line="407" selection-start-column="0" selection-end-line="407" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.3.1/appcompat-v7-25.3.1-sources.jar!/android/support/v7/app/AppCompatActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.3.1/appcompat-v7-25.3.1-sources.jar!/android/support/v7/view/WindowCallbackWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.3.1/appcompat-v7-25.3.1-sources.jar!/android/support/v7/app/ToolbarActionBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.3.1/appcompat-v7-25.3.1-sources.jar!/android/support/v7/widget/Toolbar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/25.3.1/appcompat-v7-25.3.1-sources.jar!/android/support/v7/view/menu/MenuItemImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -3953,17 +3635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/note_item_list.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/privates_folders_item_list.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -4013,104 +3684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/private_folder_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/private_activity_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/groups_activity_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/group_fragment_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classImagesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="566" column="59" selection-start-line="566" selection-start-column="59" selection-end-line="566" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/buddies_menu_activity.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="17" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -4138,92 +3711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6345">
-          <caret line="499" column="13" selection-start-line="499" selection-start-column="13" selection-end-line="499" selection-end-column="13" />
-          <folding>
-            <element signature="e#6616#6617#0" expanded="false" />
-            <element signature="e#6672#6673#0" expanded="false" />
-            <element signature="e#7318#7319#0" expanded="false" />
-            <element signature="e#7398#7399#0" expanded="false" />
-            <element signature="e#16415#16416#0" expanded="false" />
-            <element signature="e#16453#16454#0" expanded="false" />
-            <element signature="e#17758#17759#0" expanded="false" />
-            <element signature="e#17805#17806#0" expanded="false" />
-            <element signature="e#22346#22347#0" expanded="false" />
-            <element signature="e#22378#22379#0" expanded="false" />
-            <element signature="e#22531#22532#0" expanded="false" />
-            <element signature="e#22562#22563#0" expanded="false" />
-            <element signature="e#22685#22686#0" expanded="false" />
-            <element signature="e#22718#22719#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3975">
-          <caret line="316" column="51" selection-start-line="316" selection-start-column="51" selection-end-line="316" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4704#4705#0" expanded="false" />
-            <element signature="e#4750#4751#0" expanded="false" />
-            <element signature="e#9096#9097#0" expanded="false" />
-            <element signature="e#9143#9144#0" expanded="false" />
-            <element signature="e#16138#16139#0" expanded="false" />
-            <element signature="e#16185#16186#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-          <folding>
-            <element signature="e#7308#8060#0" expanded="true" />
-            <element signature="e#8059#8060#0" expanded="true" />
-            <element signature="e#8114#8712#0" expanded="true" />
-            <element signature="e#8711#8712#0" expanded="true" />
-            <element signature="e#8869#9019#0" expanded="true" />
-            <element signature="e#8963#8964#0" expanded="false" />
-            <element signature="e#9008#9009#0" expanded="false" />
-            <element signature="e#9018#9019#0" expanded="true" />
-            <element signature="e#10063#10398#0" expanded="true" />
-            <element signature="e#10397#10398#0" expanded="true" />
-            <element signature="e#13764#14138#0" expanded="true" />
-            <element signature="e#14137#14138#0" expanded="true" />
-            <element signature="e#14168#14321#0" expanded="true" />
-            <element signature="e#14320#14321#0" expanded="true" />
-            <element signature="e#16127#16946#0" expanded="true" />
-            <element signature="e#16540#16576#1" expanded="true" />
-            <element signature="e#16945#16946#0" expanded="true" />
-            <element signature="e#17205#17948#0" expanded="true" />
-            <element signature="e#17476#17512#1" expanded="true" />
-            <element signature="e#17947#17948#0" expanded="true" />
-            <element signature="e#17971#18241#0" expanded="true" />
-            <element signature="e#18240#18241#0" expanded="true" />
-            <element signature="e#22660#22692#0" expanded="true" />
-            <element signature="e#25367#25592#0" expanded="true" />
-            <element signature="e#25591#25592#0" expanded="true" />
-            <element signature="e#25650#25844#0" expanded="true" />
-            <element signature="e#25843#25844#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -4240,24 +3727,266 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/note_item_list.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notes_fragment.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="74" selection-start-line="1" selection-start-column="74" selection-end-line="1" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_rotate_90_degrees_ccw_white_24px.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="135" column="59" selection-start-line="135" selection-start-column="59" selection-end-line="135" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_display_note.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-657">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/buddies_menu_activity.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/group_fragment_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/groups_activity_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/note_list_item_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/notes_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/private_activity_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/private_folder_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_activity_change_prof_pic.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/uploaded_content_menu.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classImagesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-973">
+          <caret line="558" column="12" selection-start-line="558" selection-start-column="12" selection-end-line="558" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classes/MainFrntActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="368" column="57" selection-start-line="368" selection-start-column="57" selection-end-line="368" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/ClassContentsMainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5953">
+          <caret line="200" column="40" selection-start-line="200" selection-start-column="40" selection-end-line="200" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="226" column="37" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
+          <folding>
+            <element signature="e#8869#9019#0" expanded="true" />
+            <element signature="e#9018#9019#0" expanded="true" />
+            <element signature="e#25372#25597#0" expanded="true" />
+            <element signature="e#25596#25597#0" expanded="true" />
+            <element signature="e#25655#25849#0" expanded="true" />
+            <element signature="e#25848#25849#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        <state relative-caret-position="318">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_classes.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="75">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
           <folding />
         </state>
       </provider>

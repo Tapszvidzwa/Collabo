@@ -15,9 +15,6 @@ import android.widget.ListView;
 
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,7 +42,7 @@ public class NotesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        notesView = inflater.inflate(R.layout.fragment_notes, container, false);
+        notesView = inflater.inflate(R.layout.notes_fragment, container, false);
         className = ClassContentsMainActivity.className;
 
         initialize();

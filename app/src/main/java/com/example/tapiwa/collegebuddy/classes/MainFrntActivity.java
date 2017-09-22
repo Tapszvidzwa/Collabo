@@ -355,7 +355,7 @@ public class MainFrntActivity extends AppCompatActivity {
     private void showFrontPageClassDialogueInformation() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainFrntActivity.this);
         alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24dp);
+        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
         alertBuilder.setTitle("Usage Info");
         alertBuilder.setMessage(R.string.classes_page_information);
         alertBuilder.setCancelable(true);
@@ -366,7 +366,7 @@ public class MainFrntActivity extends AppCompatActivity {
     private void getNewFolderName() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainFrntActivity.this);
-        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
+        builder.setIcon(R.drawable.ic_keyboard_black_24px);
         builder.setTitle(("Enter new class name"));
 
         int maxLength = 50;

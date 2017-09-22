@@ -28,7 +28,7 @@ public class GPAFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        gpaView = inflater.inflate(R.layout.fragment_notes, container, false);
+        gpaView = inflater.inflate(R.layout.notes_fragment, container, false);
 
         return gpaView;
 

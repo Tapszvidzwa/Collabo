@@ -144,7 +144,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         //floatingBtn
         actionButton = (FloatingActionButton) findViewById(R.id.fragment_action);
-        actionButton.setImageResource(R.drawable.ic_perm_media_white_24dp);
+        actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
         actionButton.show();
 
         //tablayout
@@ -176,7 +176,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 if(position == 0) {
                     //privates fragment
-                    actionButton.setImageResource(R.drawable.ic_perm_media_white_24dp);
+                    actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -190,7 +190,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 if(position == 1) {
                     //my notes fragment
-                    actionButton.setImageResource(R.drawable.ic_note_add_white_24dp);
+                    actionButton.setImageResource(R.drawable.ic_note_add_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -306,7 +306,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     private void imagesPageDialogueInformation() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ClassContentsMainActivity.this);
         alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24dp);
+        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
         alertBuilder.setTitle("Usage Info");
         alertBuilder.setMessage(R.string.images_page_information);
         alertBuilder.setCancelable(true);
@@ -317,7 +317,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     private void notesPageDialogueInformation() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ClassContentsMainActivity.this);
         alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24dp);
+        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
         alertBuilder.setTitle("Usage Info");
         alertBuilder.setMessage(R.string.notes_page_information);
         alertBuilder.setCancelable(true);
@@ -414,7 +414,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
         alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_perm_media_black_24dp);
+        alertBuilder.setIcon(R.drawable.ic_perm_media_black_24px);
         alertBuilder.setTitle("Access to Gallery Permission");
         alertBuilder.setMessage("Permission is necessary to select an image");
         alertBuilder.setPositiveButton("Give permission",
@@ -442,7 +442,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ClassContentsMainActivity.this);
         builder.setTitle(("Enter the image title"));
-        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
+        builder.setIcon(R.drawable.ic_keyboard_black_24px);
 
         int maxLength = 40;
         final EditText tag = new EditText(getApplicationContext());

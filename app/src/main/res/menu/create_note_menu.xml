@@ -7,14 +7,14 @@
         android:id="@+id/cancel_note_creation"
         android:orderInCategory="100"
         android:title="delete"
-        android:icon="@drawable/ic_cancel_white_24dp"
+        android:icon="@drawable/ic_close_white_24px"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/save_new_note_icon"
         android:orderInCategory="95"
         android:title="save"
-        android:icon="@drawable/ic_save_white_24dp"
+        android:icon="@drawable/ic_save_white_24px"
         app:showAsAction="ifRoom" />
 
 </menu>

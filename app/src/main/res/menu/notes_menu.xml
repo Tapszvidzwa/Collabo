@@ -7,14 +7,14 @@
         android:id="@+id/delete_note_icon"
         android:orderInCategory="100"
         android:title="delete"
-        android:icon="@drawable/ic_delete_white_24dp"
+        android:icon="@drawable/ic_delete_white_24px"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/save_note_icon"
         android:orderInCategory="95"
         android:title="save"
-        android:icon="@drawable/ic_save_white_24dp"
+        android:icon="@drawable/ic_save_white_24px"
         app:showAsAction="always" />
 
 
@@ -22,7 +22,7 @@
         android:id="@+id/copy_note_icon"
         android:orderInCategory="90"
         android:title="copy"
-        android:icon="@drawable/ic_content_copy_white_24dp"
+        android:icon="@drawable/ic_content_copy_white_24px"
         app:showAsAction="always" />
 
     <item

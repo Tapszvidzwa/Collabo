@@ -7,15 +7,15 @@
         android:id="@+id/delete_maximized_image_icon"
         android:orderInCategory="90"
         android:title="delete"
-        android:icon="@drawable/ic_delete_white_24dp"
+        android:icon="@drawable/ic_delete_white_24px"
         app:showAsAction="ifRoom" />
 
 
     <item
         android:id="@+id/rotate_private_maximized_image_icon"
         android:orderInCategory="80"
-        android:title="delete"
-        android:icon="@drawable/ic_rotate_right_white_24dp"
+        android:title="rotate_image"
+        android:icon="@drawable/ic_rotate_90_degrees_ccw_white_24px"
         app:showAsAction="ifRoom" />
 
 
@@ -23,7 +23,7 @@
         android:id="@+id/cancel_private_maximized_image"
         android:orderInCategory="100"
         android:title="delete"
-        android:icon="@drawable/ic_close_white_24dp"
+        android:icon="@drawable/ic_close_white_24px"
         app:showAsAction="ifRoom" />
 
 </menu>
