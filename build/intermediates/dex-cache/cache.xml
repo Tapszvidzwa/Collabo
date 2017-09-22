@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="92bb2cfcfefba9a6f09ce6f3b49ebcd0d4a3b1ea">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_457ae01dc460b46663b7256cff9a29f6c2efef43/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2d1cd10859f896e0f141586353ad31ed0868dbc9">
-        <dex dex="/Users/tapiwa/StudioProjects/CollaboApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_de0e0447df77022ed8c6f01edea51f1d262c9566/classes.dex" />
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9235aebe926e1af6c0d6804ba57eb1190614e743/classes.dex" />
     </item>
 
 </items>

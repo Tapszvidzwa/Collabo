@@ -18,10 +18,13 @@
     <string name="help_or_send_feedback">Help / Send Feedback</string>
     <string name="enter_feedback">Start typing your message here...</string>
     <string name="send_feedback_to_email">Send via Email</string>
-    <string name="privates_information">Click on the add folder button to create
-        a sub folder to store images for your class or project.</string>
+    <string name="classes_page_information">Click on add class button to create
+        a class folder to store images, notes and documents.</string>
 
-    <string name="private_folder_information">Click on the camera or gallery button to add an image
+    <string name="notes_page_information">Click on add note button to create
+        a new note</string>
+
+    <string name="images_page_information">Click on the camera or gallery button to add an image
     to this class/project folder.</string>
 
     <string name="group_folder_information">Click on the camera or gallery button to add an image

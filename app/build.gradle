@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.myprojects.tapiwa.collabo"
+        applicationId "com.example.tapiwa.collegebuddy"
         minSdkVersion 22
         targetSdkVersion 25
         versionCode 9
@@ -13,6 +13,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
+
+
+
+
     buildTypes {
         release {
             minifyEnabled false

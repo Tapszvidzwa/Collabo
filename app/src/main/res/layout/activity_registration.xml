@@ -9,7 +9,7 @@
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:gravity="center"
-    tools:context="com.example.tapiwa.collabo.RegistrationActivity">
+    tools:context="com.example.tapiwa.collegebuddy.authentication.RegistrationActivity">
 
         <EditText
             android:id="@+id/displaName"

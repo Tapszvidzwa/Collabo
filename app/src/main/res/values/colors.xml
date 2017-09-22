@@ -5,4 +5,5 @@
     <color name="colorAccent">@android:color/holo_blue_light</color>
     <color name="collaboColor">#0000b2</color>
     <color name="lime">#08f108</color>
+    <color name="light_gray">#F0F0F0</color>
 </resources>

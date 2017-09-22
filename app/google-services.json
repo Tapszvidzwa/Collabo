@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "285561134205",
-    "firebase_url": "https://collabo-fb280.firebaseio.com",
-    "project_id": "collabo-fb280",
-    "storage_bucket": "collabo-fb280.appspot.com"
+    "project_number": "746722619261",
+    "firebase_url": "https://collegebuddy-c41b5.firebaseio.com",
+    "project_id": "collegebuddy-c41b5",
+    "storage_bucket": "collegebuddy-c41b5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:285561134205:android:c2d01df85ec55b84",
+        "mobilesdk_app_id": "1:746722619261:android:169b97c38c09d5d4",
         "android_client_info": {
-          "package_name": "com.myprojects.tapiwa.collabo"
+          "package_name": "com.example.tapiwa.collegebuddy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "285561134205-7dcbr5r598l9inun8mqfahq09bssrpdp.apps.googleusercontent.com",
+          "client_id": "746722619261-t2m3qiepv47j9g9du7nim0nffo7gl9ma.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.myprojects.tapiwa.collabo",
+            "package_name": "com.example.tapiwa.collegebuddy",
             "certificate_hash": "1827d333342d27848a32276d6aa021a068cef869"
           }
         },
         {
-          "client_id": "285561134205-2l7g27oa4vkd4hvf709bhc76e6jesfcv.apps.googleusercontent.com",
+          "client_id": "746722619261-p6p5bjgbbd8h8hr6oimft28j6jumhrb0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB-C12aacNooVwr_8LqxtawOmgkJ0J1Z1o"
+          "current_key": "AIzaSyBZW3zf1ZKyW8Uag89LTPfaNs8JxosKabE"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "285561134205-2l7g27oa4vkd4hvf709bhc76e6jesfcv.apps.googleusercontent.com",
+              "client_id": "746722619261-p6p5bjgbbd8h8hr6oimft28j6jumhrb0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

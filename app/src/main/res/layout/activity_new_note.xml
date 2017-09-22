@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00BFFF"
-    tools:context="com.example.tapiwa.collabo.NewNote">
+    tools:context="com.example.tapiwa.collegebuddy.notes.NewNote">
     <include layout="@layout/app_bar_layout" android:id="@+id/create_new_note_toolbar"/>
 
 
