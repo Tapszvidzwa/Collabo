@@ -113,13 +113,13 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
         db.delete("personalNotes", "title = ?", whereArgs);
     }
 
-    public ArrayList<String> searchNote(String Notetitle) {
+    public ArrayList<String> searchNote(String className, String Notetitle) {
 
         ArrayList<String> array_list = new ArrayList<String>();
-        String [] args = {Notetitle + '%'};
+        String [] args = {className, Notetitle + '%'};
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase
-                .rawQuery("select * from personalNotes where title like ?", args);
+                .rawQuery("select * from personalNotes where class = ? and title like ?", args);
         res.moveToFirst();
 
         while (res.isAfterLast() == false) {

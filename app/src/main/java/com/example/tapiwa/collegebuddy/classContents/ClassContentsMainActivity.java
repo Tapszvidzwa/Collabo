@@ -279,7 +279,7 @@ public class ClassContentsMainActivity extends AppCompatActivity implements Note
          list = dbHelper.getAllTitles(className);
             Collections.reverse(list);
         } else {
-            list = dbHelper.searchNote(noteTitle);
+            list = dbHelper.searchNote(className, noteTitle);
         }
 
         notesAdapter = new NotesListAdapter(getApplicationContext(), R.layout.note_item_list, list, className);
