@@ -39,6 +39,8 @@ dependencies {
 
     //remove this one
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.alexvasilkov:gesture-views:2.3.2'
+    compile 'com.github.paolorotolo:appintro:3.3.0'
     compile 'com.github.GrenderG:Toasty:1.2.5'
     compile 'com.willowtreeapps.spruce:spruce-android:1.0.1'
     compile 'cn.pedant.sweetalert:library:1.3'

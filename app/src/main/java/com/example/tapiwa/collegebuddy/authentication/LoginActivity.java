@@ -52,6 +52,8 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
     private EditText password;
@@ -142,7 +144,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     String userfbname = object.getString("name");
                                     handleFacebookAccessToken(loginResult.getAccessToken(), userfbname);
                                 } catch (Exception e) {
-                                    Toast.makeText(LoginActivity.this, "There was a problem login in", Toast.LENGTH_SHORT).show();
+
+                                    Toasty.error(LoginActivity.this,
+                                            "There was a problem logging in",
+                                            Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             }
@@ -158,7 +163,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             @Override
             public void onError(FacebookException exception) {
-                Toast.makeText(LoginActivity.this, "error to Login Facebook", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Error to Login Facebook", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -305,8 +310,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     openLoadingMain();
                                 } else {
                                     stopLoadingSpinner();
-                                    Toast.makeText(LoginActivity.this, "Sign in failed", Toast.LENGTH_SHORT)
-                                            .show();
+                                    Toasty.error(LoginActivity.this,
+                                            "Sign in failed",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -315,16 +321,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             stopLoadingSpinner();
-                            Toast.makeText(LoginActivity.this, "You entered invalid credentials", Toast.LENGTH_SHORT)
-                                    .show();
+
+                            Toasty.error(LoginActivity.this,
+                                    "You entered invalid credentials",
+                                    Toast.LENGTH_SHORT).show();
+
                         } else if (e instanceof FirebaseAuthInvalidUserException) {
                             stopLoadingSpinner();
-                            Toast.makeText(LoginActivity.this, "No pref_account is associated with that email", Toast.LENGTH_SHORT)
-                                    .show();
+
+                            Toasty.error(LoginActivity.this,
+                                    "No pref_account is associated with that email",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
                             stopLoadingSpinner();
-                            Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT)
-                                    .show();
+                            Toasty.error(LoginActivity.this,
+                                    e.getLocalizedMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

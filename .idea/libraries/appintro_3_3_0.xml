@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="appintro-3.3.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/331ac364c7b9f760ba495bbcf7a102ae1d1e17d2/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/331ac364c7b9f760ba495bbcf7a102ae1d1e17d2/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.paolorotolo/appintro/3.3.0/fb197feff940aa4128ba8bd7059ec4905b64e84b/appintro-3.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

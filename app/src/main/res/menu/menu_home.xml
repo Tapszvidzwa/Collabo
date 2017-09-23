@@ -3,6 +3,13 @@
    >
 
     <item
+        android:id="@+id/sign_out"
+        android:orderInCategory="120"
+        android:title="Sign out"
+        app:showAsAction="never" />
+
+
+    <item
         android:id="@+id/send_feedback"
         android:title="@string/help_or_send_feedback"
         android:orderInCategory="110"

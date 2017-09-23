@@ -1,6 +1,7 @@
 package com.example.tapiwa.collegebuddy.classContents.notes;
 
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,12 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
+import com.willowtreeapps.spruce.Spruce;
+import com.willowtreeapps.spruce.animation.DefaultAnimations;
+import com.willowtreeapps.spruce.sort.InlineSort;
+import com.willowtreeapps.spruce.sort.LinearSort;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import es.dmoral.toasty.Toasty;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -29,6 +37,7 @@ public class NotesFragment extends Fragment  {
     private String className;
     public static NotesSQLiteDBHelper dbHelper;
     private View notesView;
+    private ViewGroup viewGroup;
 
 
     public NotesFragment() {
@@ -44,6 +53,7 @@ public class NotesFragment extends Fragment  {
 
         notesView = inflater.inflate(R.layout.notes_fragment, container, false);
         className = ClassContentsMainActivity.className;
+        viewGroup = (ViewGroup) notesView.findViewById(R.id.notesFragment);
 
         initialize();
         populateScreen();
@@ -93,6 +103,7 @@ public class NotesFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
+
         populateScreen();
     }
 
@@ -112,11 +123,27 @@ public class NotesFragment extends Fragment  {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()){
-            case R.id.delete_folder:
+            case R.id.delete_note:
+                deleteNote(info.position);
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void deleteNote(int position) {
+        String noteTitle = list.get(position);
+        list.remove(position);
+        Collections.reverse(list);
+
+        dbHelper.deleteNote(ClassContentsMainActivity.className, noteTitle);
+
+        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, list, className);
+        listview.setAdapter(notesAdapter);
+
+        Toasty.success(getContext(),
+                "Deleted",
+                Toast.LENGTH_SHORT).show();
     }
 
 

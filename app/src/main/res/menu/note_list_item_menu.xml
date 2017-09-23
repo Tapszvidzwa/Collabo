@@ -8,10 +8,5 @@
         android:title="Delete"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/pin_note"
-        android:orderInCategory="95"
-        android:title="Pin to the top"
-        app:showAsAction="never" />
 
 </menu>

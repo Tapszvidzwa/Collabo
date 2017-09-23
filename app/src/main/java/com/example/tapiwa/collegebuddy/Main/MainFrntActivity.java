@@ -378,6 +378,12 @@ public class MainFrntActivity extends AppCompatActivity {
             showFrontPageClassDialogueInformation();
         }
 
+        if(id == R.id.sign_out) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            this.finish();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

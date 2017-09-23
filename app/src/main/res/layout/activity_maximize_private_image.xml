@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     >
 
+    <com.alexvasilkov.gestures.views.GestureImageView
+        android:layout_width="match_parent"
+        android:id="@+id/gesture_view"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/maximize_private_image_toolbar" />
+
     <include layout="@layout/app_bar_layout" android:id="@+id/maximize_private_image_toolbar" />
 
     <FrameLayout
