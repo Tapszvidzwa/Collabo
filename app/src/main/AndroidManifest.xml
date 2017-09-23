@@ -35,8 +35,8 @@
         <activity
             android:name="com.example.tapiwa.collegebuddy.Settings"
             android:label="@string/title_activity_settings" />
-        <activity android:name="com.example.tapiwa.collegebuddy.notes.NewNote" />
-        <activity android:name="com.example.tapiwa.collegebuddy.notes.DisplayNoteActivity" />
+        <activity android:name=".classContents.notes.NewNote" />
+        <activity android:name=".classContents.notes.DisplayNoteActivity" />
 
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -76,8 +76,17 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name="com.example.tapiwa.collegebuddy.classes.MainFrntActivity" />
-        <activity android:name="com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity" />
+        <activity android:name="com.example.tapiwa.collegebuddy.Main.MainFrntActivity" />
+
+        <activity android:name="com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity">
+
+        <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter>
+        <meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable"/>
+        </activity>
+
         <activity android:name=".classContents.images.MaximizePrivateImageActivity" />
         <activity android:name="com.example.tapiwa.collegebuddy.classContents.classImagesActivity" />
         <activity android:name="com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity" />

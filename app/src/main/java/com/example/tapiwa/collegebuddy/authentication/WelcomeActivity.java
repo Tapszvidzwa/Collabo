@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classes.MainFrntActivity;
+import com.example.tapiwa.collegebuddy.Main.MainFrntActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.analytics.FirebaseAnalytics;

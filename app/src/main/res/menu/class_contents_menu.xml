@@ -3,7 +3,7 @@
     >
 
     <item
-        android:id="@+id/class_contents_search_image"
+        android:id="@+id/class_contents_search"
         android:orderInCategory="90"
         android:title="Search Image"
         app:actionViewClass="android.support.v7.widget.SearchView"

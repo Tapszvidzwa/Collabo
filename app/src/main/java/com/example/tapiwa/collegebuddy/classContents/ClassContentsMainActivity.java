@@ -20,6 +20,7 @@ package com.example.tapiwa.collegebuddy.classContents;
         import android.support.design.widget.TabLayout;
         import android.support.v4.app.ActivityCompat;
         import android.support.v4.content.ContextCompat;
+        import android.support.v4.view.MenuItemCompat;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.SearchView;
@@ -42,9 +43,10 @@ package com.example.tapiwa.collegebuddy.classContents;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.NewImage;
+        import com.example.tapiwa.collegebuddy.classContents.notes.NotesListAdapter;
         import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
-        import com.example.tapiwa.collegebuddy.notes.NewNote;
-        import com.example.tapiwa.collegebuddy.notes.NotesFragment;
+        import com.example.tapiwa.collegebuddy.classContents.notes.NewNote;
+        import com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment;
         import com.facebook.FacebookSdk;
         import com.facebook.appevents.AppEventsLogger;
         import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,12 +69,20 @@ package com.example.tapiwa.collegebuddy.classContents;
         import java.io.IOException;
         import java.io.InputStream;
         import java.text.SimpleDateFormat;
+        import java.util.ArrayList;
+        import java.util.Collections;
         import java.util.Date;
 
         import id.zelory.compressor.Compressor;
 
+        import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.dbHelper;
+        import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.list;
+        import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.listview;
+        import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesAdapter;
+        import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class ClassContentsMainActivity extends AppCompatActivity {
+
+public class ClassContentsMainActivity extends AppCompatActivity implements NotesFragment.SearchNotesInterface {
 
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
@@ -91,7 +101,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     private FirebaseStorage mStorage;
 
     public static final String PRIVATE_FOLDERS_CONTENTS = "Private_Folders_Contents";
-    public static String PRIVATE_IMAGES_THUMBNAILS ="Private_Images_Thumbnails";
+    public static String PRIVATE_IMAGES_THUMBNAILS = "Private_Images_Thumbnails";
     public static final String PRIVATE_FOLDER_CONTENTS_IMAGE_STORAGE_PATH = "Private_Folders_Photos";
     private final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1002;
     private final int PICK_IMAGE = 1001;
@@ -99,7 +109,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     private ProgressDialog mProgress;
     private String image_tag, thumb_download_url, user;
-    private  File photoFile = null;
+    private File photoFile = null;
     private Uri resultfileUri;
     File thumb_file_path;
     private Vibrator vibrate;
@@ -174,7 +184,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0) {
+                if (position == 0) {
                     //privates fragment
                     actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -188,7 +198,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                     pageNumber = 0;
                 }
 
-                if(position == 1) {
+                if (position == 1) {
                     //my notes fragment
                     actionButton.setImageResource(R.drawable.ic_note_add_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -240,13 +250,12 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-         //   resultfileUri = data.getData();
+            //   resultfileUri = data.getData();
             startUpload("imageCapture");
         }
 
@@ -262,16 +271,53 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public  void searchNote(String noteTitle) {
+        list.clear();
+
+        if(noteTitle.equals("")) {
+         list = dbHelper.getAllTitles(className);
+            Collections.reverse(list);
+        } else {
+            list = dbHelper.searchNote(noteTitle);
+        }
+
+        notesAdapter = new NotesListAdapter(getApplicationContext(), R.layout.note_item_list, list, className);
+        listview.setAdapter(notesAdapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.class_contents_menu, menu);
 
+
+        MenuItem searchItem = menu.findItem(R.id.class_contents_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+           @Override
+            public boolean onQueryTextChange(String query) {
+               searchNote(query);
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                return false;
+            }
+        });
+
+        ///////////
         return super.onCreateOptionsMenu(menu);
     }
-
-
 
 
     @Override
@@ -284,8 +330,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
 
         //// TODO: 8/1/17 Change these settings to custom settings
-        if (id == R.id.class_contents_search_image) {
-        }
+      /*  if (id == R.id.class_contents_search) {
+        } */
 
         if (id == R.id.class_contents_info) {
             showInfomation(pageNumber);
@@ -295,9 +341,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     }
 
     private void showInfomation(int pageNumber) {
-        if(pageNumber == 0) {
+        if (pageNumber == 0) {
             imagesPageDialogueInformation();
-        } else if(pageNumber == 1) {
+        } else if (pageNumber == 1) {
             notesPageDialogueInformation();
         } else
             return;
@@ -325,9 +371,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         alert.show();
     }
 
-
-
-    private  File createImageFile() throws IOException {
+    private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -341,10 +385,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         return image;
     }
 
-
     public void chooseImageFromGallery() {
 
-        if(checkPermissionREAD_EXTERNAL_STORAGE(ClassContentsMainActivity.this)) {
+        if (checkPermissionREAD_EXTERNAL_STORAGE(ClassContentsMainActivity.this)) {
             Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
             getIntent.setType("image/*");
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -376,7 +419,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         }
     }
 
-
     public boolean checkPermissionREAD_EXTERNAL_STORAGE(
             final Context context) {
         int currentAPIVersion = Build.VERSION.SDK_INT;
@@ -395,7 +437,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                     ActivityCompat
                             .requestPermissions(
                                     (Activity) context,
-                                    new String[] { Manifest.permission.READ_EXTERNAL_STORAGE },
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 }
                 return false;
@@ -407,7 +449,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             return true;
         }
     }
-
 
     public void showDialog(final String msg, final Context context,
                            final String permission) {
@@ -421,7 +462,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         ActivityCompat.requestPermissions((Activity) context,
-                                new String[] { permission },
+                                new String[]{permission},
                                 MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -435,8 +476,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         AlertDialog alert = alertBuilder.create();
         alert.show();
     }
-
-
 
     public void startUpload(final String callingFunction) {
 
@@ -470,7 +509,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         builder.show();
     }
 
-
     private void attemptImageUpload(String callingFunction) {
 
         Toast.makeText(getApplicationContext(),
@@ -485,7 +523,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
             Bitmap thumb_bitmap;
 
-            if(callingFunction.equals("imagePick")) {
+            if (callingFunction.equals("imagePick")) {
 
                 InputStream imageStream = null;
                 try {
@@ -542,7 +580,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         StorageReference filepath;
         Uri uri;
 
-        if(callingFunction.equals("imagePick")) {
+        if (callingFunction.equals("imagePick")) {
             uri = resultfileUri;
             filepath = mPrivateFullImageStorageRef.child(resultfileUri.getLastPathSegment());
         } else {
@@ -567,10 +605,10 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 NewImage imageUpload = new NewImage
                         (image_tag,
-                        url,
-                        thumb_download_url,
-                        GenericServices.date(),
-                        uploadId);
+                                url,
+                                thumb_download_url,
+                                GenericServices.date(),
+                                uploadId);
 
                 mPrivateFullImageDatabaseRef.child(uploadId).setValue(imageUpload);
 
@@ -587,13 +625,16 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         });
     }
 
-
-
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
     }
 
+    @Override
+    public void onBackPressed() {
+        searchView.onActionViewCollapsed();
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -602,11 +643,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
     }
-
-
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
 

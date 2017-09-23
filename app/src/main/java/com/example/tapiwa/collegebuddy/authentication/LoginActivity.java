@@ -4,8 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.classes.MainFrntActivity;
+import com.example.tapiwa.collegebuddy.Main.MainFrntActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
