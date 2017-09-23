@@ -13,6 +13,8 @@ import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class NewNote extends AppCompatActivity {
     
@@ -65,9 +67,8 @@ public class NewNote extends AppCompatActivity {
                 noteContents.getText().toString(),
                 GenericServices.date());
 
-        Toast.makeText(NewNote.this,
-                noteTitle.getText().toString() + " has been saved",
-                Toast.LENGTH_SHORT).show();
+        Toasty.success(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+
         NewNote.this.finish();
     }
 

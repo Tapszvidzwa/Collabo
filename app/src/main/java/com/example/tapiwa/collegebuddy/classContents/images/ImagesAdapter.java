@@ -97,6 +97,7 @@ public class ImagesAdapter extends BaseAdapter {
                         // Try again online if cache failed
                         Picasso.with(context)
                                 .load(newImage.getThumb_uri())
+                                .priority(Picasso.Priority.HIGH)
                                 .into(holderr);
                     }
                 });

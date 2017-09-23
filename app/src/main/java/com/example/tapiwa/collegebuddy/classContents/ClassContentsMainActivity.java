@@ -72,6 +72,7 @@ package com.example.tapiwa.collegebuddy.classContents;
         import java.util.Collections;
         import java.util.Date;
 
+        import es.dmoral.toasty.Toasty;
         import id.zelory.compressor.Compressor;
 
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.dbHelper;
@@ -516,10 +517,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     private void attemptImageUpload(String callingFunction) {
 
-        Toast.makeText(getApplicationContext(),
-                "Uploading... Image will be added once done",
-                Toast.LENGTH_SHORT)
-                .show();
+        Toasty.info(getApplicationContext(), "Uploading", Toast.LENGTH_SHORT).show();
 
         //Upload the picture to the Photo folder in the Storage bucket
         //// TODO: 6/29/17 change the uri so that its custom for every photo
@@ -598,10 +596,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toast.makeText(getApplicationContext(),
-                        "Uploading finished",
-                        Toast.LENGTH_SHORT)
-                        .show();
+                Toasty.success(getApplicationContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
+
 
                 @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
 
@@ -622,10 +618,14 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 mProgress.dismiss();
-                Toast.makeText(getApplicationContext(),
-                        "Uploading failed",
-                        Toast.LENGTH_SHORT)
-                        .show();
+
+                Toasty.error(
+                                getApplicationContext(),
+                                "Uploading" +
+                                        "failed, please try again",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
             }
         });
     }

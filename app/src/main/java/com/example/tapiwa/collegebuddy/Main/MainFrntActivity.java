@@ -49,6 +49,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class MainFrntActivity extends AppCompatActivity {
 
@@ -235,8 +237,10 @@ public class MainFrntActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(!task.isSuccessful()) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Failed to rename folder, try again", Toast.LENGTH_SHORT);
-                                toast.show();
+                                Toasty.error(
+                                        getApplicationContext(),
+                                        "Failed to rename folder, please try again",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
                             adapter.notifyDataSetChanged();
@@ -244,7 +248,11 @@ public class MainFrntActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please provide a new Course/Project name", Toast.LENGTH_SHORT).show();
+                    Toasty.warning
+                            (
+                                    getApplicationContext(),
+                                    "Please provide a new Course/Project name",
+                                    Toast.LENGTH_SHORT).show();
 
                 }
                 dialog.dismiss();
@@ -297,7 +305,7 @@ public class MainFrntActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if(task.isSuccessful()) {
-                                                                Toast.makeText(getApplicationContext(), "Folder deleted", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     });
@@ -391,20 +399,15 @@ public class MainFrntActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()) {
-                                Toast toast = Toast.makeText(getApplicationContext(), "New class created successfully", Toast.LENGTH_SHORT);
-                                toast.setGravity(Gravity.CENTER, 0, 0);
-                                toast.show();
+                                Toasty.success(getApplicationContext(), "Class created!", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Failed to create folder, try again", Toast.LENGTH_SHORT);
-                                toast.setGravity(Gravity.CENTER, 0, 0);
-                                toast.show();
+                                Toasty.error(getApplicationContext(), "Failed to create class, please try again", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
-
+                    Toasty.info(getApplicationContext(), "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
                 }
                 dialog.dismiss();
             }
