@@ -106,9 +106,6 @@ public class NotesFragment extends Fragment  {
 
     }
 
-    public interface SearchNotesInterface {
-        void searchNote(String noteTitle);
-    }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {

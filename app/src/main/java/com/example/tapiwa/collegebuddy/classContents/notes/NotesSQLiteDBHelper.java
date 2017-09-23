@@ -93,7 +93,7 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     // TODO: 7/6/17 fix this part
-    public boolean updateNote (String classtype, String title, String contents, String time,String pinned) {
+    public boolean updateNote (String classtype, String title, String contents, String time) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("class", classtype);
@@ -106,11 +106,11 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
     }
 
    //// TODO: 7/6/17 fix this part
-    public void deleteNote (String Notetitle) {
+    public void deleteNote (String classname, String Notetitle) {
        // String givenNote = Notetitle;
         SQLiteDatabase db = this.getReadableDatabase();
-        String [] whereArgs = {Notetitle};
-        db.delete("personalNotes", "title = ?", whereArgs);
+        String [] whereArgs = {classname, Notetitle};
+        db.delete("personalNotes", "class = ? and title = ?", whereArgs);
     }
 
     public ArrayList<String> searchNote(String className, String Notetitle) {

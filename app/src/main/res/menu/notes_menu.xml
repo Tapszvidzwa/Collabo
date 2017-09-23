@@ -25,11 +25,4 @@
         android:icon="@drawable/ic_content_copy_white_24px"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/edit_note_icon"
-        android:orderInCategory="80"
-        android:title="edit"
-        android:icon="@drawable/ic_mode_edit_white_24dp"
-        app:showAsAction="always" />
-
 </menu>

@@ -213,7 +213,7 @@ public class MainFrntActivity extends AppCompatActivity {
 
     public void renameFolder(final int position) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainFrntActivity.this);
         builder.setTitle(("Enter new Name"));
         builder.setIcon(R.drawable.ic_keyboard_black_24dp);
 
@@ -243,6 +243,10 @@ public class MainFrntActivity extends AppCompatActivity {
                                 Toasty.error(
                                         getApplicationContext(),
                                         "Failed to rename folder, please try again",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toasty.success(getApplicationContext(),
+                                        "Renamed",
                                         Toast.LENGTH_SHORT).show();
                             }
 
