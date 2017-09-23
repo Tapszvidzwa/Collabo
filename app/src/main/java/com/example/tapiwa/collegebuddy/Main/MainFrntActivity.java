@@ -150,6 +150,8 @@ public class MainFrntActivity extends AppCompatActivity {
         mFolderContentsDBRef = FirebaseDatabase.getInstance()
                 .getReference(classImagesActivity.PRIVATE_FOLDERS_CONTENTS)
                 .child(user);
+        mFolderContentsDBRef.keepSynced(true);
+
         mDatabaseRef = FirebaseDatabase.getInstance()
                 .getReference(USER_PRIVATE_LIST_OF_GROUPS)
                 .child(user);

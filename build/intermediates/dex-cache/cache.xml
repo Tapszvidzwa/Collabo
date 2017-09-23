@@ -7,8 +7,26 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="a75b623653e1c48d77a207a2568607a50724f90f">
+        sha1="742c4374eea5b77b4d5e8e3e63ada471affbbcde">
         <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/tapiwa/.android/build-cache/ae4577e166619c6eb6e86d57765c3016bee18908/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="df9b8996ea6487e7380038f91537e16258a4f9ca">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c00c2d61993eb453ac709f40222ea0a22e235a73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/tapiwa/.android/build-cache/9da65b893178c81f6191fe8e3554c309fc45e022/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5ddf2cee8a48064f374e83d49543349b43a23606/classes.dex" />
     </item>
     <item
         is-multidex="true"

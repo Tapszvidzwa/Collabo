@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.tapiwa.collegebuddy"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 9
         versionName "Collabo Beta 1.9"
@@ -39,6 +39,7 @@ dependencies {
 
     //remove this one
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.github.amanjeetsingh150:CoolProgressViews:1.0'
     compile 'me.leolin:ShortcutBadger:1.1.17@aar'
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     compile 'com.makeramen:roundedimageview:2.3.0'

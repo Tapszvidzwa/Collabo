@@ -20,10 +20,10 @@
 
 
     <item
-        android:id="@+id/cancel_private_maximized_image"
+        android:id="@+id/refresh_image"
         android:orderInCategory="100"
-        android:title="delete"
-        android:icon="@drawable/ic_close_white_24px"
+        android:title="refresh"
+        android:icon="@drawable/ic_refresh_white_24px"
         app:showAsAction="ifRoom" />
 
 </menu>
