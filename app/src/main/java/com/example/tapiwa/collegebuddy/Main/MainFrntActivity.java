@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
+import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
+import com.example.tapiwa.collegebuddy.authentication.WelcomeActivity;
 import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.classImagesActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
@@ -49,6 +51,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
 
 
@@ -276,19 +279,17 @@ public class MainFrntActivity extends AppCompatActivity {
         NewClass clickedFolder = (NewClass) adapter.getItem(position);
         final String clickedFolderProjectKey= clickedFolder.getProjectKey();
 
-        AlertDialog.Builder builder;
+        final SweetAlertDialog dg = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(MainFrntActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(MainFrntActivity.this);
-        }
+                dg.setTitleText("Are you sure?")
+                .setContentText("You won't be able to recover this folder and its contents!")
+                .setConfirmText("Yes,delete it!")
+                .setCancelText("Cancel")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(final SweetAlertDialog sweetAlertDialog) {
 
 
-        builder.setTitle("Delete Folder")
-                .setMessage("Are you sure you want to delete this folder? This will delete all its contents.")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
 
                         //remove folder from database
                         mDatabaseRef.child(clickedFolderProjectKey)
@@ -305,26 +306,40 @@ public class MainFrntActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if(task.isSuccessful()) {
-                                                                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+
+                                                                final SweetAlertDialog sdg = new SweetAlertDialog(MainFrntActivity.this, SweetAlertDialog.SUCCESS_TYPE);
+                                                                sdg.setTitleText("Deleted").setConfirmText("").show();
+
+                                                                Thread myThread = new Thread() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        try {
+                                                                            sleep(1200);
+                                                                            sdg.dismiss();
+                                                                        } catch (InterruptedException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                    }
+                                                                };
+                                                                myThread.start();
+
+
+                                                                //Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     });
                                         }
                                     }
                                 });
+                        sweetAlertDialog.dismiss();
                     }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                dg.dismissWithAnimation();
+            }
+        })
                 .show();
-
-        //delete all the notes from this folder
-        //delete all the images from this folder
-        //delete all the thumbnail from this folder
     }
 
 
@@ -363,15 +378,15 @@ public class MainFrntActivity extends AppCompatActivity {
     }
 
     private void showFrontPageClassDialogueInformation() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainFrntActivity.this);
-        alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
-        alertBuilder.setTitle("Usage Info");
-        alertBuilder.setMessage(R.string.classes_page_information);
-        alertBuilder.setCancelable(true);
-        AlertDialog alert = alertBuilder.create();
-        alert.show();
+
+        SweetAlertDialog sdg = new SweetAlertDialog(MainFrntActivity.this, SweetAlertDialog.NORMAL_TYPE);
+        sdg.setTitleText("Usage info");
+        sdg.setContentText(getResources().getString(R.string.classes_page_information));
+        sdg.setCancelable(true);
+        sdg.show();
+
     }
+
 
     private void getNewFolderName() {
 

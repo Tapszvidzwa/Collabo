@@ -3,21 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/tapiwa/.android/build-cache/d70911c1eae7759fe32313179e9154fb2acd0ed3/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9235aebe926e1af6c0d6804ba57eb1190614e743/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/.android/build-cache/dff63b109b3e505ab2cbf9338135d8429211c4a1/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5734c03faa42bb254d3f05d656f7a7036cb096b6">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_073ad81cbed1de5a27a1d7c5227381a2b1651a3a/classes.dex" />
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e131bbeb0a50d122677679ad5710de0e312f2764/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -25,17 +16,26 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="742c4374eea5b77b4d5e8e3e63ada471affbbcde">
+        sha1="52ea0258aa6ad2287819fb490ab0148e7ef4bd30">
         <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/tapiwa/.android/build-cache/9da65b893178c81f6191fe8e3554c309fc45e022/output/jars/classes.jar"
+        jar="/Users/tapiwa/.android/build-cache/f159108e90991d92fc63b7ce43feca8cabd6e718/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5ddf2cee8a48064f374e83d49543349b43a23606/classes.dex" />
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5d1db51478f0879263c2fb83aab9b512d9b69a8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9235aebe926e1af6c0d6804ba57eb1190614e743/classes.dex" />
     </item>
 
 </items>

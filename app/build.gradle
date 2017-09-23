@@ -40,6 +40,9 @@ dependencies {
     //remove this one
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.github.GrenderG:Toasty:1.2.5'
+    compile 'com.willowtreeapps.spruce:spruce-android:1.0.1'
+    compile 'cn.pedant.sweetalert:library:1.3'
+    compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
     compile 'me.leolin:ShortcutBadger:1.1.17@aar'
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     compile 'com.makeramen:roundedimageview:2.3.0'

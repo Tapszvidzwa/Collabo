@@ -6,7 +6,10 @@
     android:background="@color/light_gray"
     android:layout_height="match_parent">
 
-
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/class_contents_refresh">
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,6 +26,9 @@
        >
     </GridView>
 
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/capturePrivatePhoto"
         android:layout_width="wrap_content"
@@ -31,8 +37,8 @@
         app:srcCompat="@drawable/ic_add_a_photo_white_24px"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
-        android:layout_above="@+id/private_folders_grdV"
         android:layout_centerHorizontal="true" />
+
 
 
 </RelativeLayout>

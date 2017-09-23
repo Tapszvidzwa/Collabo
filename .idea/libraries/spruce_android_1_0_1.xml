@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="spruce-android-1.0.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/b79a06a729978fc68c44fe596ce8143b064fbaa0/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/b79a06a729978fc68c44fe596ce8143b064fbaa0/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.willowtreeapps.spruce/spruce-android/1.0.1/9394c70efec4b4f6dfaf6a94bde133a6aefefa0e/spruce-android-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

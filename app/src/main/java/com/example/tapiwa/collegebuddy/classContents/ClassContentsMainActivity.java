@@ -40,6 +40,7 @@ package com.example.tapiwa.collegebuddy.classContents;
         import android.widget.EditText;
         import android.widget.Toast;
 
+        import com.example.tapiwa.collegebuddy.Main.MainFrntActivity;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.NewImage;
@@ -72,6 +73,7 @@ package com.example.tapiwa.collegebuddy.classContents;
         import java.util.Collections;
         import java.util.Date;
 
+        import cn.pedant.SweetAlert.SweetAlertDialog;
         import es.dmoral.toasty.Toasty;
         import id.zelory.compressor.Compressor;
 
@@ -113,6 +115,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     File thumb_file_path;
     private Vibrator vibrate;
     private int pageNumber = 0;
+
+
 
 
     @Override
@@ -356,25 +360,19 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     }
 
     private void imagesPageDialogueInformation() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ClassContentsMainActivity.this);
-        alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
-        alertBuilder.setTitle("Usage Info");
-        alertBuilder.setMessage(R.string.images_page_information);
-        alertBuilder.setCancelable(true);
-        AlertDialog alert = alertBuilder.create();
-        alert.show();
+        SweetAlertDialog sdg = new SweetAlertDialog(ClassContentsMainActivity.this, SweetAlertDialog.NORMAL_TYPE);
+        sdg.setTitleText("Usage info");
+        sdg.setContentText(getResources().getString(R.string.images_page_information));
+        sdg.setCancelable(true);
+        sdg.show();
     }
 
     private void notesPageDialogueInformation() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ClassContentsMainActivity.this);
-        alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_help_outline_black_24px);
-        alertBuilder.setTitle("Usage Info");
-        alertBuilder.setMessage(R.string.notes_page_information);
-        alertBuilder.setCancelable(true);
-        AlertDialog alert = alertBuilder.create();
-        alert.show();
+        SweetAlertDialog sdg = new SweetAlertDialog(ClassContentsMainActivity.this, SweetAlertDialog.NORMAL_TYPE);
+        sdg.setTitleText("Usage info");
+        sdg.setContentText(getResources().getString(R.string.notes_page_information));
+        sdg.setCancelable(true);
+        sdg.show();
     }
 
     private File createImageFile() throws IOException {
