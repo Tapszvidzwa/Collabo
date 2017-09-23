@@ -69,7 +69,6 @@ package com.example.tapiwa.collegebuddy.classContents;
         import java.io.IOException;
         import java.io.InputStream;
         import java.text.SimpleDateFormat;
-        import java.util.ArrayList;
         import java.util.Collections;
         import java.util.Date;
 
@@ -79,10 +78,9 @@ package com.example.tapiwa.collegebuddy.classContents;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.list;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.listview;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesAdapter;
-        import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class ClassContentsMainActivity extends AppCompatActivity implements NotesFragment.SearchNotesInterface {
+public class ClassContentsMainActivity extends AppCompatActivity {
 
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
@@ -271,19 +269,27 @@ public class ClassContentsMainActivity extends AppCompatActivity implements Note
         }
     }
 
-    @Override
-    public  void searchNote(String noteTitle) {
-        list.clear();
-
-        if(noteTitle.equals("")) {
-         list = dbHelper.getAllTitles(className);
-            Collections.reverse(list);
-        } else {
-            list = dbHelper.searchNote(className, noteTitle);
+    public  void search(String title) {
+       //if current focus is on the notesFragment
+        if(pageNumber == 1) {
+            //search note in notes sqlite database
+            list.clear();
+            if (title.equals("")) {
+                list = dbHelper.getAllTitles(className);
+                Collections.reverse(list);
+            } else {
+                list = dbHelper.searchNote(className, title);
+            }
+            notesAdapter = new NotesListAdapter(getApplicationContext(), R.layout.note_item_list, list, className);
+            listview.setAdapter(notesAdapter);
         }
 
-        notesAdapter = new NotesListAdapter(getApplicationContext(), R.layout.note_item_list, list, className);
-        listview.setAdapter(notesAdapter);
+        //if current focus is on the images fragment
+        if(pageNumber == 0) {
+            //search image in firebase
+          ImagesFragment.searchImage(title);
+         return;
+        }
     }
 
     @Override
@@ -303,7 +309,7 @@ public class ClassContentsMainActivity extends AppCompatActivity implements Note
 
            @Override
             public boolean onQueryTextChange(String query) {
-               searchNote(query);
+               search(query);
                 return false;
             }
         });
@@ -318,7 +324,6 @@ public class ClassContentsMainActivity extends AppCompatActivity implements Note
         ///////////
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
