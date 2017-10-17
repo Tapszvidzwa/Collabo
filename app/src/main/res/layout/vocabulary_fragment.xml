@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main.Vocabulary.DictionaryFragment">
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:hint="Start searching word here..."
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="70dp"
+        android:id="@+id/word_to_search" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btnshape"
+        android:text="Search"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/word_to_search"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/seach_word_button" />
+
+    <TextView
+        android:id="@+id/searched_word"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/holo_blue_light"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/word_to_search"
+        android:layout_below="@+id/seach_word_button"
+        android:layout_marginTop="25dp"
+        android:text="" />
+
+
+
+    <TextView
+        android:id="@+id/meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_below="@+id/searched_word"
+        android:layout_marginTop="44dp"
+        />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="Definition: "
+        android:layout_below="@id/searched_word"/>
+
+
+</RelativeLayout>

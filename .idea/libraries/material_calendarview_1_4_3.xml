@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="material-calendarview-1.4.3">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/5846fe6fbb0c1b8c0fe67190cf458acd276ea1f1/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/5846fe6fbb0c1b8c0fe67190cf458acd276ea1f1/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.prolificinteractive/material-calendarview/1.4.3/c3d3a2e70028288e8a6af022b125a82c1a1e0e03/material-calendarview-1.4.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

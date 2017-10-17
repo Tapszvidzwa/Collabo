@@ -75,11 +75,61 @@ public class NotesListAdapter extends BaseAdapter {
 
         NotesSQLiteDBHelper dbHelper = new NotesSQLiteDBHelper(context);
         String time_last_updated = dbHelper.getTimeUpdated(className, note);
+        String card_color = dbHelper.getNoteColor(className, note);
 
 
         holder.title.setText(note);
         holder.last_time_updated.setText("last updated " + time_last_updated);
-        holder.notesItemCard.setCardBackgroundColor(Color.WHITE);
+
+        if(card_color != null) {
+
+            if(card_color.equals("black") || card_color.equals("blue")) {
+                holder.title.setTextColor(Color.WHITE);
+            } else {
+                holder.title.setTextColor(Color.BLACK);
+            }
+
+            switch (card_color) {
+                case "blue":
+                    holder.notesItemCard.setCardBackgroundColor(Color.BLUE);
+                    break;
+
+                case "white":
+                    holder.notesItemCard.setCardBackgroundColor(Color.WHITE);
+                    break;
+
+                case "magenta":
+                    holder.notesItemCard.setCardBackgroundColor(Color.MAGENTA);
+                    break;
+
+                case "red":
+                    holder.notesItemCard.setCardBackgroundColor(Color.RED);
+                    break;
+
+                case "black":
+                    holder.notesItemCard.setCardBackgroundColor(Color.BLACK);
+                    break;
+
+                case "green":
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(0,255,0));
+                    break;
+
+                case "cyan":
+                    holder.notesItemCard.setCardBackgroundColor(Color.CYAN);
+                    break;
+
+                case "yellow":
+                    holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+                    break;
+
+                default:
+                    holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+
+            }
+        } else {
+            holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+            holder.title.setTextColor(Color.BLACK);
+        }
 
         return row;
     }

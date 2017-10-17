@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Main.MainFrntActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -52,7 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     sleep(800);
 
                     if (isUser == true) {
-                        Intent openMain = new Intent(WelcomeActivity.this, MainFrntActivity.class);
+                        Intent openMain = new Intent(WelcomeActivity.this, MainFrontPage.class);
                         startActivity(openMain);
                         WelcomeActivity.this.finish();
                     } else {

@@ -3,8 +3,8 @@ package com.example.tapiwa.collegebuddy.authentication;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Main.MainFrntActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -80,6 +80,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        Boolean flag = false;
+
+        if(!flag) {
+            int tasdf = 5;
+        }
+
+
 
 
         spinner = (AVLoadingIndicatorView) findViewById(R.id.avi);
@@ -273,7 +282,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void openLoadingMain() {
-        Intent openCollaboActivity = new Intent(LoginActivity.this, MainFrntActivity.class);
+        Intent openCollaboActivity = new Intent(LoginActivity.this, MainFrontPage.class);
 
         openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         openCollaboActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

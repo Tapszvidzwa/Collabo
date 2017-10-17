@@ -3,6 +3,13 @@
     >
 
     <item
+        android:id="@+id/change_card_color"
+        android:orderInCategory="90"
+        android:title="Change color"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/delete_note"
         android:orderInCategory="100"
         android:title="Delete"

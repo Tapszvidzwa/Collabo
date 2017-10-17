@@ -1,10 +1,11 @@
 package com.example.tapiwa.collegebuddy.classContents.notes;
 
 
-import android.animation.Animator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -12,15 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
-import com.willowtreeapps.spruce.Spruce;
-import com.willowtreeapps.spruce.animation.DefaultAnimations;
-import com.willowtreeapps.spruce.sort.InlineSort;
-import com.willowtreeapps.spruce.sort.LinearSort;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,12 +33,13 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class NotesFragment extends Fragment  {
 
     public static ListView listview;
-    public static ArrayList<String> list;
+    public static ArrayList<String> notesList;
     public static NotesListAdapter notesAdapter;
     private String className;
     public static NotesSQLiteDBHelper dbHelper;
     private View notesView;
     private ViewGroup viewGroup;
+    private int selectedNote;
 
 
     public NotesFragment() {
@@ -49,7 +51,6 @@ public class NotesFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         notesView = inflater.inflate(R.layout.notes_fragment, container, false);
         className = ClassContentsMainActivity.className;
@@ -87,23 +88,21 @@ public class NotesFragment extends Fragment  {
 
     private void initialize() {
         listview = (ListView) notesView.findViewById(R.id.notesListView);
-        list = new ArrayList<>();
+        notesList = new ArrayList<>();
         dbHelper = new NotesSQLiteDBHelper(getApplicationContext());
         registerForContextMenu(listview);
-
     }
 
     public void populateScreen() {
-        list = dbHelper.getAllTitles(className);
-        Collections.reverse(list);
-        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, list, className);
+        notesList = dbHelper.getAllTitles(className);
+        Collections.reverse(notesList);
+        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, notesList, className);
         listview.setAdapter(notesAdapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         populateScreen();
     }
 
@@ -122,28 +121,112 @@ public class NotesFragment extends Fragment  {
     public boolean onContextItemSelected(MenuItem item) {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        selectedNote = info.position;
         switch(item.getItemId()){
             case R.id.delete_note:
-                deleteNote(info.position);
+               deleteNote(info.position);
                 return true;
+            case R.id.change_card_color:
+                changeColor();
             default:
                 return super.onContextItemSelected(item);
         }
     }
 
     private void deleteNote(int position) {
-        String noteTitle = list.get(position);
-        list.remove(position);
-        Collections.reverse(list);
+        String noteTitle = notesList.get(position);
+        notesList.remove(position);
+        Collections.reverse(notesList);
 
         dbHelper.deleteNote(ClassContentsMainActivity.className, noteTitle);
 
-        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, list, className);
+        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, notesList, className);
         listview.setAdapter(notesAdapter);
 
         Toasty.success(getContext(),
                 "Deleted",
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void changeColor() {
+
+
+        final String[] items = {
+                "Blue", "White" , "Magenta", "Red", "Black", "Green" , "Cyan", "Yellow"
+        };
+
+        ListAdapter adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.select_dialog_item,
+                android.R.id.text1,
+                items){
+            public View getView(int position, View convertView, ViewGroup parent) {
+                //Use super class to create the View
+                View v = super.getView(position, convertView, parent);
+                TextView tv = (TextView)v.findViewById(android.R.id.text1);
+
+                //Add margin between image and text (support various screen densities)
+                int dp5 = (int) (5 * getResources().getDisplayMetrics().density + 0.5f);
+                tv.setCompoundDrawablePadding(dp5);
+
+                return v;
+            }
+        };
+
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Choose Color")
+                .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        switch (item) {
+                            case 0:
+                                updateNoteColor("blue");
+                                break;
+                            case 1:
+                                updateNoteColor("white");
+                                break;
+                            case 2:
+                                updateNoteColor("magenta");
+                                break;
+                            case 3:
+                                updateNoteColor("red");
+                                break;
+                            case 4:
+                                updateNoteColor("black");
+                                break;
+                            case 5:
+                                updateNoteColor("green");
+                                break;
+                            case 6:
+                                updateNoteColor("cyan");
+                                break;
+                            case 7:
+                                updateNoteColor("yellow");
+                                break;
+                            //    break;
+                        }
+
+                        //...
+                    }
+                }).show();
+    }
+
+
+    private void updateNoteColor(String color) {
+
+     String contents = dbHelper.getNoteContents(ClassContentsMainActivity.className, notesList.get(selectedNote));
+        dbHelper.updateNote(
+                ClassContentsMainActivity.className,
+                notesList.get(selectedNote),
+                contents,
+                GenericServices.timeStamp(),
+                color
+        );
+
+        notesAdapter.notifyDataSetChanged();
+        listview.setAdapter(notesAdapter);
     }
 
 

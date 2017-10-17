@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.tapiwa.collegebuddy.classContents.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
 
@@ -22,6 +22,7 @@ public class NewNote extends AppCompatActivity {
     private EditText noteTitle;
     private EditText noteContents;
     private Toolbar mToolBar;
+    private String card_color;
 
 
     @Override
@@ -40,6 +41,9 @@ public class NewNote extends AppCompatActivity {
         noteContents = (EditText) findViewById(R.id.editNewNote);
 
         dbHelper = new NotesSQLiteDBHelper(this);
+        card_color = dbHelper.getNoteColor
+                (ClassContentsMainActivity.className, noteTitle.getText().toString());
+
 
        // FloatingActionButton saveNote = (FloatingActionButton) findViewById(R.id.saveNote);
      /*   saveNote.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +69,8 @@ public class NewNote extends AppCompatActivity {
         dbHelper.insertNote(ClassContentsMainActivity.className,
                 noteTitle.getText().toString(),
                 noteContents.getText().toString(),
-                GenericServices.date());
+                GenericServices.date(),
+                "yellow");
 
         Toasty.success(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/swipeCardsToolbar" />
+
+    <StackView
+        android:id="@+id/swipeCardsStack"
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="32dp"
+        android:padding="32dp"/>
+
+</FrameLayout>

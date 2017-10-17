@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimary">#0000b2</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">@android:color/holo_blue_light</color>
     <color name="collaboColor">#0000b2</color>
     <color name="lime">#08f108</color>
     <color name="light_gray">#F0F0F0</color>
+    <color name="intro_first">#00E676</color>
+    <color name="intro_second">#FFEA00</color>
+    <color name="intro_third">#FF3D00</color>
+    <color name="intro_fourth">#3D5AFE</color>
+    <color name="intro_fifth">#651FFF</color>
+    <color name="intro_sixth">#0091EA</color>
 </resources>

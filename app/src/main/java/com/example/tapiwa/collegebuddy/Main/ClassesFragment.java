@@ -27,7 +27,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.classImagesActivity;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.classImagesActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -320,7 +320,7 @@ public class ClassesFragment extends AppCompatActivity {
 
                 if(givenTitle.getText().toString().length() > 0) {
                     String projectKey = mDatabaseRef.push().getKey();
-                    NewClass newClass = new NewClass(givenTitle.getText().toString(), projectKey);
+                    NewClass newClass = new NewClass(givenTitle.getText().toString(), projectKey, "blue");
                     mDatabaseRef.child(projectKey).setValue(newClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -365,7 +365,7 @@ public class ClassesFragment extends AppCompatActivity {
 
 
         String projectKey = mDatabaseRef.push().getKey();
-        NewClass newClass = new NewClass(givenTitle, projectKey);
+        NewClass newClass = new NewClass(givenTitle, projectKey, "blue");
         mDatabaseRef.child(projectKey).setValue(newClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -15,11 +15,12 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
     public static final String NOTES_COLUMN_CONTENT = "contents";
     public static final String NOTES_COLUMN_CLASS = "class";
     public static final String NOTES_TIME_COLUMN_CONTENT = "time";
+    public static final String NOTE_COLOR_COLUMN = "cardColor";
 
 
 
     public NotesSQLiteDBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME , null, 2);
     }
 
     @Override
@@ -36,17 +37,19 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS personalNotes");
-        onCreate(db);
+        String upgradeQuery = "ALTER TABLE " + NOTES_TABLE_NAME + " ADD COLUMN " + NOTE_COLOR_COLUMN + " TEXT";
+        if (oldVersion == 1 && newVersion == 2)
+            db.execSQL(upgradeQuery);
     }
 
-    public void insertNote (String classtype, String title, String contents,String time){
+    public void insertNote (String classtype, String title, String contents,String time,String color){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("class", classtype);
         contentValues.put("title", title);
         contentValues.put("contents", contents);
         contentValues.put("time", time);
+        contentValues.put(NOTE_COLOR_COLUMN, color);
         db.insert("personalNotes", null, contentValues);
     }
 
@@ -85,6 +88,23 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public String getNoteColor(String classtype, String title) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String [] args = {classtype, title};
+        Cursor res = db.rawQuery("select * from personalNotes where class = ? and title = ?", args);
+
+        //// TODO: 7/10/17 look for a better way to implement this
+        res.moveToFirst();
+        while (res.isAfterLast() == false) {
+            if (res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE)).equals(title)) {
+                return res.getString(res.getColumnIndex(NOTE_COLOR_COLUMN));
+            }
+            res.moveToNext();
+        }
+        return null;
+    }
+
 
     public Cursor getAllNotes() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -93,13 +113,14 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
     }
 
     // TODO: 7/6/17 fix this part
-    public boolean updateNote (String classtype, String title, String contents, String time) {
+    public boolean updateNote (String classtype, String title, String contents, String time, String color) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("class", classtype);
         contentValues.put("title", title);
         contentValues.put("contents", contents);
         contentValues.put("time", time);
+        contentValues.put(NOTE_COLOR_COLUMN, color);
         String [] whereArgs = {title};
         db.update("personalNotes", contentValues, "title = ? ", whereArgs);
         return true;

@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:746722619261:android:169b97c38c09d5d4",
+        "mobilesdk_app_id": "1:746722619261:android:1e973ba604ed3ae8",
         "android_client_info": {
-          "package_name": "com.example.tapiwa.collegebuddy"
+          "package_name": "com.myprojects.tapiwa.collegebuddy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "746722619261-t2m3qiepv47j9g9du7nim0nffo7gl9ma.apps.googleusercontent.com",
+          "client_id": "746722619261-8rn4b9pbodi496oe8bnas1rjiu7t6tqs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.tapiwa.collegebuddy",
+            "package_name": "com.myprojects.tapiwa.collegebuddy",
             "certificate_hash": "1827d333342d27848a32276d6aa021a068cef869"
           }
         },

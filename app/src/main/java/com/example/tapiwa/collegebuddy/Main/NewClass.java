@@ -8,14 +8,20 @@ public class NewClass {
 
     public String projectName;
     public String projectKey;
+    public String folderColor = "blue";
 
     public NewClass() {
 
     }
 
-    public NewClass(String projectName, String projectKey) {
+    public NewClass(String projectName, String projectKey, String folderColor) {
         this.projectName = projectName;
         this.projectKey = projectKey;
+        this.folderColor = folderColor;
+    }
+
+    public String getFolderColor() {
+        return folderColor;
     }
 
     public String getProjectName() {

@@ -62,6 +62,14 @@ public class GenericServices {
         return day + " " + month + ", " + year;
     }
 
+    public static String dayOfTheWeek() {
+
+        DateTime dt = new DateTime();
+        String dayOfWeek = dt.dayOfWeek().getAsShortText().toString();
+
+        return dayOfWeek;
+    }
+
 
     public boolean isInForeGround() {
 

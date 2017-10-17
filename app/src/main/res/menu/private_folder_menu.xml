@@ -7,6 +7,11 @@
         android:title="Rename"
         app:showAsAction="never" />
 
+    <item android:id="@+id/change_folder_color"
+        android:title="Change color"
+        app:showAsAction="never"
+        />
+
     <item
         android:id="@+id/delete_folder"
         android:orderInCategory="95"

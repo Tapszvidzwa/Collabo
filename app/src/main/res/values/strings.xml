@@ -36,6 +36,7 @@
     <string name="groups_infomation">Click on the create group button, provide new group name and
     add buddies to your group. You will be able to share images in this group with your chosen buddies.</string>
 
+    <string name="assignments_infomation">Click on the add button to set a new due date for an assignment.</string>
 
     <!-- Strings related to Settings -->
 
@@ -112,4 +113,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tutorial">Tutorial</string>
+    <string name="title_activity_main_front_page">MainFrontPage</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

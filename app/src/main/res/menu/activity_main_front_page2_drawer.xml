@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_if_home_173033"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/new_features"
+            android:icon="@android:drawable/star_on"
+            android:title="New Features" />
+        <item
+            android:id="@+id/vocabulary"
+            android:icon="@drawable/ic_if_icon_30_book_315151"
+            android:title="Vocabulary" />
+
+
+        <item
+            android:id="@+id/calculator"
+            android:title="Calculator"
+            android:icon="@drawable/ic_if_131_calculator_183255"
+            />
+
+        <item
+            android:id="@+id/converter"
+            android:title="Converter"
+            android:icon="@drawable/ic_if_ilustracoes_04_03_1519776"
+            />
+    </group>
+
+</menu>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/assigments_fragment"
+    android:background="@color/light_gray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+  >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:padding="8dp"
+        android:id="@+id/date"
+        android:textColor="#fff"
+        android:text="Date"
+        android:textSize="40sp"
+        android:gravity="center_vertical"
+        android:background="#1565C0"
+        android:layout_alignParentTop="true"/>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:background="@color/light_gray"
+        android:layout_height="match_parent"
+        android:id="@+id/assignmentsListView"
+        android:layout_below="@+id/date">
+    </ListView>
+
+
+
+
+</RelativeLayout>
