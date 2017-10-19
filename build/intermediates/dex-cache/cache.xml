@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="981033b51424dd11750c9be51beb93a11e90989b">
+        sha1="febd6df78a89dee50e153ccdd8830a31c8dd1020">
         <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/.android/build-cache/c8391e52e4718fe23ea001da74bc90acc2fc7781/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5a3803c37dd1df92b56d6ef800b480027bf3add2">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_df325b3f4984704aed188c0beab72a718cffd9e6/classes.dex" />
     </item>
     <item
         is-multidex="true"

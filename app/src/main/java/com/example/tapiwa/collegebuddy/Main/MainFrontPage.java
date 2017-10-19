@@ -4,17 +4,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,21 +17,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
-import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.classContents.classContentsMain.classImagesActivity;
+import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,10 +38,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import es.dmoral.toasty.Toasty;
 
 public class MainFrontPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,11 +64,12 @@ public class MainFrontPage extends AppCompatActivity
     public final static String USER_PRIVATE_LIST_OF_GROUPS = "List_Of_Private_User_Folders";
     private final String USER_NUMBER_OF_SESSIONS = "Number_Of_Login_Sessions";
     private String user;
-    private File photoFile = null;
+    public static File photoFile = null;
     private String thumb_download_url = null;
     private FloatingActionButton createNewClass;
     public BottomNavigationBar bottomNavigationBar;
     public static Toolbar toolbar;
+    public static Uri resultFileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +104,9 @@ public class MainFrontPage extends AppCompatActivity
                     case 0:
                         openHome();
                         break;
+                    case 1:
+                        CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                        break;
                     case 2:
                         openDictionary();
                         break;
@@ -127,6 +118,27 @@ public class MainFrontPage extends AppCompatActivity
 
             }
         });
+
+       bottomNavigationBar.setOnReselectListener(new BottomNavigationBar.OnReselectListener() {
+           @Override
+           public void onReselect(int position) {
+
+               switch (position) {
+
+                   case 0:
+                       openHome();
+                       break;
+                   case 1:
+                       CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                       break;
+                   case 2:
+                       openDictionary();
+                       break;
+
+               }
+
+           }
+       });
 
 
 
@@ -197,10 +209,15 @@ public class MainFrontPage extends AppCompatActivity
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
-
-
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Intent chooseClassToUploadImage = new Intent(MainFrontPage.this, ChooseClass.class);
+            startActivity(chooseClassToUploadImage);
+        }
+    }
 
     @Override
     public void onBackPressed() {

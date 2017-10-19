@@ -1,27 +1,16 @@
 package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
 
 
-        import android.Manifest;
-        import android.app.Activity;
         import android.app.ProgressDialog;
-        import android.content.Context;
-        import android.content.DialogInterface;
         import android.content.Intent;
         import android.content.pm.PackageManager;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
         import android.graphics.Color;
         import android.net.Uri;
-        import android.os.Build;
         import android.os.Environment;
         import android.os.Vibrator;
-        import android.support.annotation.NonNull;
         import android.support.design.widget.FloatingActionButton;
         import android.support.design.widget.TabLayout;
-        import android.support.v4.app.ActivityCompat;
-        import android.support.v4.content.ContextCompat;
         import android.support.v4.view.MenuItemCompat;
-        import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.SearchView;
         import android.support.v7.widget.Toolbar;
@@ -39,21 +28,16 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
 
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
+        import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
-        import com.example.tapiwa.collegebuddy.classContents.images.NewImage;
         import com.example.tapiwa.collegebuddy.classContents.notes.NoteStackItem;
         import com.example.tapiwa.collegebuddy.classContents.notes.NotesListAdapter;
         import com.example.tapiwa.collegebuddy.classContents.notes.StackCards;
         import com.example.tapiwa.collegebuddy.classContents.stackImages.StackCardsImages;
-        import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
         import com.example.tapiwa.collegebuddy.classContents.notes.NewNote;
         import com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment;
         import com.facebook.FacebookSdk;
         import com.facebook.appevents.AppEventsLogger;
-        import com.google.android.gms.tasks.OnCompleteListener;
-        import com.google.android.gms.tasks.OnFailureListener;
-        import com.google.android.gms.tasks.OnSuccessListener;
-        import com.google.android.gms.tasks.Task;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
         import com.google.firebase.database.DatabaseReference;
@@ -62,21 +46,15 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.google.firebase.messaging.FirebaseMessaging;
         import com.google.firebase.storage.FirebaseStorage;
         import com.google.firebase.storage.StorageReference;
-        import com.google.firebase.storage.UploadTask;
 
-        import java.io.ByteArrayOutputStream;
         import java.io.File;
-        import java.io.FileNotFoundException;
         import java.io.IOException;
-        import java.io.InputStream;
         import java.text.SimpleDateFormat;
         import java.util.ArrayList;
         import java.util.Collections;
         import java.util.Date;
 
         import cn.pedant.SweetAlert.SweetAlertDialog;
-        import es.dmoral.toasty.Toasty;
-        import id.zelory.compressor.Compressor;
 
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.dbHelper;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesList;
@@ -111,9 +89,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     private ProgressDialog mProgress;
     private String image_tag, thumb_download_url, user;
-    private File photoFile = null;
-    private Uri resultfileUri;
-    File thumb_file_path;
+    public static File photoFile = null;
+    public static Uri resultfileUri;
+    public static File thumb_file_path;
     private Vibrator vibrate;
     private int pageNumber = 0;
 
@@ -181,7 +159,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseImageFromGallery();
+                CameraGalleryUpload.chooseImageFromGallery(ClassContentsMainActivity.this);
             }
         });
 
@@ -207,7 +185,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                     actionButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            chooseImageFromGallery();
+                            CameraGalleryUpload.chooseImageFromGallery(ClassContentsMainActivity.this);
                         }
                     });
                     actionButton.show();
@@ -334,9 +312,12 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        CameraGalleryUpload uploadImages = new CameraGalleryUpload(projectKey);
+        uploadImages.connectFirebaseCloud();
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            //   resultfileUri = data.getData();
-            startUpload("imageCapture");
+
+            uploadImages.attemptImageUpload(photoFile,resultfileUri,getApplicationContext());
+            return;
         }
 
 
@@ -344,8 +325,10 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
                 resultfileUri = data.getData();
-                thumb_file_path = new File(resultfileUri.toString());
-                startUpload("imagePick");
+
+                uploadImages.galleryImage = true;
+                uploadImages.attemptImageUpload(photoFile,resultfileUri,getApplicationContext());
+
             } catch (Exception e) {
             }
         }
@@ -476,21 +459,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         return image;
     }
 
-    public void chooseImageFromGallery() {
-
-        if (checkPermissionREAD_EXTERNAL_STORAGE(ClassContentsMainActivity.this)) {
-            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            getIntent.setType("image/*");
-            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickIntent.setType("image/*");
-            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
-            startActivityForResult(chooserIntent, PICK_IMAGE);
-        } else {
-            Toast.makeText(ClassContentsMainActivity.this, "You need access to media Gallery to choose images", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
@@ -508,188 +476,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                 super.onRequestPermissionsResult(requestCode, permissions,
                         grantResults);
         }
-    }
-
-    public boolean checkPermissionREAD_EXTERNAL_STORAGE(
-            final Context context) {
-        int currentAPIVersion = Build.VERSION.SDK_INT;
-        if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
-
-            if (ContextCompat.checkSelfPermission(context,
-                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        (Activity) context,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-                    showDialog("External storage", context,
-                            Manifest.permission.READ_EXTERNAL_STORAGE);
-
-                } else {
-                    ActivityCompat
-                            .requestPermissions(
-                                    (Activity) context,
-                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                }
-                return false;
-            } else {
-                return true;
-            }
-
-        } else {
-            return true;
-        }
-    }
-
-    public void showDialog(final String msg, final Context context,
-                           final String permission) {
-
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-        alertBuilder.setCancelable(true);
-        alertBuilder.setIcon(R.drawable.ic_perm_media_black_24px);
-        alertBuilder.setTitle("Access to Gallery Permission");
-        alertBuilder.setMessage("Permission is necessary to select an image");
-        alertBuilder.setPositiveButton("Give permission",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions((Activity) context,
-                                new String[]{permission},
-                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                    }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                return;
-            }
-        });
-
-        alertBuilder.setCancelable(true);
-
-        AlertDialog alert = alertBuilder.create();
-        alert.show();
-    }
-
-    public void startUpload(final String callingFunction) {
-
-        attemptImageUpload(callingFunction);
-
-    }
-
-
-
-
-    private void attemptImageUpload(String callingFunction) {
-
-        Toasty.info(getApplicationContext(), "Uploading", Toast.LENGTH_SHORT).show();
-
-        //Upload the picture to the Photo folder in the Storage bucket
-        //// TODO: 6/29/17 change the uri so that its custom for every photo
-        try {
-            //upload the thumb_uri
-
-            Bitmap thumb_bitmap;
-
-            if (callingFunction.equals("imagePick")) {
-
-                InputStream imageStream = null;
-                try {
-                    imageStream = getApplicationContext().getContentResolver().openInputStream(
-                            resultfileUri);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                thumb_bitmap = BitmapFactory.decodeStream(imageStream);
-
-            } else {
-
-                thumb_bitmap = new Compressor(getApplicationContext())
-                        .setMaxHeight(200)
-                        .setMaxWidth(200)
-                        .setQuality(60)
-                        .compressToBitmap(ImagesFragment.photoFile);
-            }
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            thumb_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-            final byte[] thumb_byte = baos.toByteArray();
-
-            //// TODO: 8/6/17 make it such that the tag is unique
-            StorageReference thumb_filePath = privateThumbNailsStorageRef;
-
-            //upload the thumbnail to storage
-            UploadTask uploadTask = thumb_filePath.putBytes(thumb_byte);
-            uploadTask.addOnCompleteListener
-                    (new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                         @Override
-                         public void onComplete
-                                 (@NonNull Task<UploadTask.TaskSnapshot> thumb_image_storage_task) {
-
-                             if (thumb_image_storage_task.isSuccessful()) {
-                                 //thumbnail uploaded successfully
-                                 @SuppressWarnings("VisibleForTests") String thumb_dwnld_uri = thumb_image_storage_task
-                                         .getResult()
-                                         .getDownloadUrl()
-                                         .toString();
-
-                                 thumb_download_url = thumb_dwnld_uri;
-                             }
-                         }
-                     }
-                    );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        StorageReference filepath;
-        Uri uri;
-
-        if (callingFunction.equals("imagePick")) {
-            uri = resultfileUri;
-            filepath = mPrivateFullImageStorageRef.child(resultfileUri.getLastPathSegment());
-        } else {
-            uri = ImagesFragment.fileUri;
-            filepath = mPrivateFullImageStorageRef
-                    .child(ImagesFragment.fileUri.getLastPathSegment());
-        }
-
-        filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                Toasty.success(getApplicationContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
-
-
-                @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
-
-                //save image info into the firebase database
-                String uploadId = mPrivateFullImageDatabaseRef.push().getKey();
-
-                NewImage imageUpload = new NewImage
-                        ("",
-                                url,
-                                thumb_download_url,
-                                GenericServices.date(),
-                                uploadId);
-
-                mPrivateFullImageDatabaseRef.child(uploadId).setValue(imageUpload);
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                mProgress.dismiss();
-
-                Toasty.error(
-                                getApplicationContext(),
-                                "Uploading" +
-                                        "failed, please try again",
-                                Toast.LENGTH_SHORT
-                        ).show();
-
-            }
-        });
     }
 
     @Override

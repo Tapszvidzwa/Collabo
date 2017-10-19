@@ -90,6 +90,7 @@
         <activity android:name=".classContents.images.MaximizePrivateImageActivity" />
         <activity android:name=".classContents.classContentsMain.classImagesActivity" />
         <activity android:name=".miscellaneous.SendFeedBackActivity" />
+        <activity android:name=".Main.ChooseClass" />
         <activity android:name=".authentication.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
