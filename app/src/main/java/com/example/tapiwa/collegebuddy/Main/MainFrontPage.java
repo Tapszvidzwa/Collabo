@@ -28,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.eightbitlab.bottomnavigationbar.BottomBarItem;
+import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
@@ -78,6 +80,7 @@ public class MainFrontPage extends AppCompatActivity
     private File photoFile = null;
     private String thumb_download_url = null;
     private FloatingActionButton createNewClass;
+    public BottomNavigationBar bottomNavigationBar;
     public static Toolbar toolbar;
 
     @Override
@@ -88,6 +91,44 @@ public class MainFrontPage extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.frnt_pg_toolbar);
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
+
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
+
+
+        //add the bottom nav bar icons
+        BottomBarItem homeIcon = new BottomBarItem(R.drawable.ic_home_black_24px);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_camera);
+        BottomBarItem dictionaryIcon = new BottomBarItem(R.drawable.ic_big_dictionary);
+
+        bottomNavigationBar.addTab(homeIcon);
+        bottomNavigationBar.addTab(cameraIcon);
+        bottomNavigationBar.addTab(dictionaryIcon);
+
+
+        //set bottom navigation bar listeners
+        bottomNavigationBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
+            @Override
+            public void onSelect(int position) {
+
+
+                switch (position) {
+
+                    case 0:
+                        openHome();
+                        break;
+                    case 2:
+                        openDictionary();
+                        break;
+
+                }
+
+
+
+
+            }
+        });
+
+
 
         final android.app.Fragment fragment = new HomePageFragment();
 
@@ -133,20 +174,6 @@ public class MainFrontPage extends AppCompatActivity
         });
 
 
-//        initializeViews();
-     //   initializeFirebase();
- //       grabClassesFromFirebase();
-  //      setOnCLickListeners();
-
-
-     //   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-    //    fab.setOnClickListener(new View.OnClickListener() {
-     //       @Override
-    //        public void onClick(View view) {
-    //         getNewFolderName();
-    //        }
-   //     });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -172,257 +199,7 @@ public class MainFrontPage extends AppCompatActivity
 
 
 
-    private void initializeFirebase() {
 
-        mStorage = FirebaseStorage.getInstance();
-        storageReference = mStorage.getReference();
-
-        mFolderContentsDBRef = FirebaseDatabase.getInstance()
-                .getReference(classImagesActivity.PRIVATE_FOLDERS_CONTENTS)
-                .child(user);
-        mFolderContentsDBRef.keepSynced(true);
-
-        mDatabaseRef = FirebaseDatabase.getInstance()
-                .getReference(USER_PRIVATE_LIST_OF_GROUPS)
-                .child(user);
-        mDatabaseRef
-                .keepSynced(true);
-    }
-
-    private void grabClassesFromFirebase() {
-
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //fetch image data from firebase
-                list.clear();
-
-                for (DataSnapshot Snapshot1 : dataSnapshot.getChildren()) {
-                    NewClass projectNames = Snapshot1.getValue(NewClass.class);
-                    list.add(projectNames);
-                }
-                Collections.reverse(list);
-
-
-                adapter = new ClassesAdapter(getApplicationContext(), R.layout.privates_folders_item_lst, list);
-                foldersListView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-    }
-
-    private void setOnCLickListeners() {
-
-        foldersListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick (AdapterView < ? > parent, View v,int position, long id){
-
-                //Get item at position
-                NewClass item = (NewClass) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), ClassContentsMainActivity.class);
-
-                intent.putExtra("projectKey", item.getProjectKey());
-                intent.putExtra("projectName", item.getProjectName());
-
-                //Start details activity
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    public void renameFolder(final int position) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainFrontPage.this);
-        builder.setTitle(("Enter new Name"));
-        builder.setIcon(R.drawable.ic_keyboard_black_24dp);
-
-        int maxLength = 50;
-        final EditText newName = new EditText(getApplicationContext());
-        newName.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-        newName.setInputType(InputType.TYPE_CLASS_TEXT);
-        newName.setTextColor(Color.BLACK);
-        newName.setVisibility(View.VISIBLE);
-        builder.setView(newName);
-
-        builder.setPositiveButton("Rename", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                if(newName.getText().toString().length() > 0) {
-
-                    NewClass projectFolder = (NewClass) adapter.getItem(position);
-
-                    String projectKey = projectFolder.getProjectKey();
-
-                    mDatabaseRef.child(projectKey).child("projectName").setValue(newName.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-                            if(!task.isSuccessful()) {
-                                Toasty.error(
-                                        getApplicationContext(),
-                                        "Failed to rename folder, please try again",
-                                        Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toasty.success(getApplicationContext(),
-                                        "Renamed",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-
-                } else {
-                    Toasty.warning
-                            (
-                                    getApplicationContext(),
-                                    "Please provide a new Course/Project name",
-                                    Toast.LENGTH_SHORT).show();
-
-                }
-                dialog.dismiss();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
-
-
-    public void continueWithDeleteFolder(int position) {
-
-
-        NewClass clickedFolder = (NewClass) adapter.getItem(position);
-        final String clickedFolderProjectKey= clickedFolder.getProjectKey();
-
-        final SweetAlertDialog dg = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
-
-        dg.setTitleText("Are you sure?")
-                .setContentText("You won't be able to recover this folder and its contents!")
-                .setConfirmText("Yes,delete it!")
-                .setCancelText("Cancel")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(final SweetAlertDialog sweetAlertDialog) {
-
-
-
-                        //remove folder from database
-                        mDatabaseRef.child(clickedFolderProjectKey)
-                                .removeValue()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()) {
-
-                                            mFolderContentsDBRef
-                                                    .child(clickedFolderProjectKey)
-                                                    .removeValue()
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if(task.isSuccessful()) {
-
-                                                                final SweetAlertDialog sdg = new SweetAlertDialog(MainFrontPage.this, SweetAlertDialog.SUCCESS_TYPE);
-                                                                sdg.setTitleText("Deleted").setConfirmText("").show();
-
-                                                                Thread myThread = new Thread() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        try {
-                                                                            sleep(1200);
-                                                                            sdg.dismiss();
-                                                                        } catch (InterruptedException e) {
-                                                                            e.printStackTrace();
-                                                                        }
-                                                                    }
-                                                                };
-                                                                myThread.start();
-
-
-                                                                //Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
-                                        }
-                                    }
-                                });
-                        sweetAlertDialog.dismiss();
-                    }
-                }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                dg.dismissWithAnimation();
-            }
-        })
-                .show();
-    }
-
-
-
-
-    private void getNewFolderName() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainFrontPage.this);
-        builder.setIcon(R.drawable.ic_keyboard_black_24px);
-        builder.setTitle(("Enter new class name"));
-
-        int maxLength = 50;
-        final EditText givenTitle = new EditText(getApplicationContext());
-        givenTitle.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-        givenTitle.setInputType(InputType.TYPE_CLASS_TEXT);
-        givenTitle.setTextColor(Color.BLACK);
-        givenTitle.setVisibility(View.VISIBLE);
-        builder.setView(givenTitle);
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                if(givenTitle.getText().toString().length() > 0) {
-                    String projectKey = mDatabaseRef.push().getKey();
-                    NewClass newClass = new NewClass(givenTitle.getText().toString(), projectKey, "blue");
-                    mDatabaseRef.child(projectKey).setValue(newClass).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-                            if(task.isSuccessful()) {
-                                Toasty.success(getApplicationContext(), "Class created!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toasty.error(getApplicationContext(), "Failed to create class, please try again", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                } else {
-                    Toasty.info(getApplicationContext(), "Please provide a Course/Project name", Toast.LENGTH_SHORT).show();
-                }
-                dialog.dismiss();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
 
 
     @Override
@@ -492,6 +269,23 @@ public class MainFrontPage extends AppCompatActivity
 
     }
 
+    private void openDictionary() {
+
+        android.app.Fragment fragment = new DictionaryFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_place_holder, fragment)
+                .commit();
+
+    }
+
+    private void openHome() {
+
+        android.app.Fragment fragment = new HomePageFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_place_holder, fragment)
+                .commit();
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -501,18 +295,11 @@ public class MainFrontPage extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.vocabulary) {
-           android.app.Fragment fragment = new DictionaryFragment();
-
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_place_holder, fragment)
-                    .commit();
+          openDictionary();
         }
 
         if (id == R.id.home) {
-            android.app.Fragment fragment = new HomePageFragment();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_place_holder, fragment)
-                    .commit();
+           openHome();
         }
 
         if(id == R.id.calculator) {

@@ -36,8 +36,7 @@ dependencies {
     //todo change the firebase to use the latest version
 
     //remove this one
-
-
+    compile 'com.eightbitlab:bottomnavigationbar:0.9.5'
     compile 'link.fls:swipestack:0.3.0'
     compile 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.8'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'

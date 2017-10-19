@@ -572,34 +572,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         attemptImageUpload(callingFunction);
 
-      /*  AlertDialog.Builder builder = new AlertDialog.Builder(ClassContentsMainActivity.this);
-        builder.setTitle(("Enter the image title"));
-        builder.setIcon(R.drawable.ic_keyboard_black_24px);
-
-        int maxLength = 40;
-        final EditText tag = new EditText(getApplicationContext());
-        tag.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-        tag.setInputType(InputType.TYPE_CLASS_TEXT);
-        tag.setTextColor(Color.BLACK);
-        tag.setVisibility(View.VISIBLE);
-        builder.setView(tag); */
-
-     /*   builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO: 7/3/17 fix such that user cannot enter empty tag
-                image_tag = tag.getText().toString();
-                attemptImageUpload(callingFunction);
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show(); */
     }
 
 

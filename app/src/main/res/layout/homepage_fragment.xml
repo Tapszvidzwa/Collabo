@@ -13,15 +13,22 @@
         >
     </ListView>
 
+
+
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addFolder"
+        android:layout_above="@id/bottom_bar"
         android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@drawable/ic_add_white_24px"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="64dp"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true" />
+
+
 
 </RelativeLayout>
