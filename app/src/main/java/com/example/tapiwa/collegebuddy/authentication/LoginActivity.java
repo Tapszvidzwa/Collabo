@@ -3,6 +3,7 @@ package com.example.tapiwa.collegebuddy.authentication;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
 import com.facebook.AccessToken;

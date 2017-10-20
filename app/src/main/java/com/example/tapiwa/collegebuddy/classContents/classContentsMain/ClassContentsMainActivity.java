@@ -26,6 +26,11 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import android.view.View;
         import android.widget.Toast;
 
+        import com.eightbitlab.bottomnavigationbar.BottomBarItem;
+        import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
+        import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+        import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+        import com.example.tapiwa.collegebuddy.Main.UserSessions;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
@@ -40,8 +45,11 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.facebook.appevents.AppEventsLogger;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
         import com.google.firebase.iid.FirebaseInstanceId;
         import com.google.firebase.messaging.FirebaseMessaging;
         import com.google.firebase.storage.FirebaseStorage;
@@ -56,6 +64,7 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
 
         import cn.pedant.SweetAlert.SweetAlertDialog;
 
+        import static com.example.tapiwa.collegebuddy.Main.MainFrontPage.mUserSessionsDBRef;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.dbHelper;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesList;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.listview;
@@ -84,6 +93,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     public static String PRIVATE_IMAGES_THUMBNAILS = "Private_Images_Thumbnails";
     public static final String PRIVATE_FOLDER_CONTENTS_IMAGE_STORAGE_PATH = "Private_Folders_Photos";
     private final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1002;
+
+
+
     private final int PICK_IMAGE = 1001;
     private final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -94,6 +106,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     public static File thumb_file_path;
     private Vibrator vibrate;
     private int pageNumber = 0;
+    private BottomNavigationBar bottomNavigationBar;
+
 
 
 
@@ -105,6 +119,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         className = getIntent().getStringExtra("projectName");
         projectKey = getIntent().getStringExtra("projectKey");
+
+        AppUsageAnalytics.incrementPageVisitCount("Images_Fragment");
 
         initializeViews();
         firebaseInitialization();
@@ -139,9 +155,16 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
         actionButton.show();
 
-        stackCardsfab = (FloatingActionButton) findViewById(R.id.stack_cards_fab);
-        stackCardsfab.show();
 
+        //bottom navigation
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.class_contents_bottom_bar);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
+        BottomBarItem cardsIcon = new BottomBarItem(R.drawable.ic_stack_of_inclined_presentation_cards);
+        BottomBarItem imagesIcon = new BottomBarItem(R.drawable.ic_image_cards);
+
+        bottomNavigationBar.addTab(imagesIcon);
+        bottomNavigationBar.addTab(cameraIcon);
+        bottomNavigationBar.addTab(cardsIcon);
 
 
         //tablayout
@@ -163,22 +186,18 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             }
         });
 
-        stackCardsfab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImagesStackCards();
-            }
-        });
 
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
+
+
                 if (position == 0) {
                     //privates fragment
                     actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
@@ -189,16 +208,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                         }
                     });
                     actionButton.show();
-
-                    stackCardsfab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                           openImagesStackCards();
-                        }
-                    });
-                    stackCardsfab.show();
-
                     pageNumber = 0;
+
                 }
 
                 if (position == 1) {
@@ -212,17 +223,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                         }
                     });
                     actionButton.show();
-
-                    stackCardsfab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            openStackCardsNotes();
-                        }
-                    });
-                    stackCardsfab.show();
-
-
-
                     pageNumber = 1;
                 }
 
@@ -237,14 +237,20 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                         }
                     });
                     actionButton.show();
-
-                    stackCardsfab.hide();
                     pageNumber = 2;
                 }
 
-
-
-
+                switch (position) {
+                    case 0:
+                        AppUsageAnalytics.incrementPageVisitCount("Images_Fragment");
+                        break;
+                    case 1:
+                        AppUsageAnalytics.incrementPageVisitCount("Notes_Fragment");
+                        break;
+                    case 2:
+                        AppUsageAnalytics.incrementPageVisitCount("DeadLines_Fragment");
+                        break;
+                }
 
             }
 
@@ -254,7 +260,51 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             }
         });
 
+        bottomNavigationBar.setOnReselectListener(new BottomNavigationBar.OnReselectListener() {
+            @Override
+            public void onReselect(int position) {
+
+
+                switch (position) {
+                    case 0:
+                        openImagesStackCards();
+                        break;
+                    case 1:
+                        CameraGalleryUpload.takePicture(ClassContentsMainActivity.this, "ClassContentsMainActivity");
+                        break;
+                    case 2:
+                       openStackCardsNotes();
+                        break;
+                }
+
+            }
+        });
+
+
+        bottomNavigationBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
+            @Override
+            public void onSelect(int position) {
+
+                switch (position) {
+                    case 0:
+                        openImagesStackCards();
+                        break;
+                    case 1:
+                        CameraGalleryUpload.takePicture(ClassContentsMainActivity.this, "ClassContentsMainActivity");
+                        break;
+                    case 2:
+                        openStackCardsNotes();
+                        break;
+                }
+
+            }
+        });
+
+
+
     }
+
+
 
     private void openStackCardsNotes() {
 
@@ -339,6 +389,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         if(pageNumber == 1) {
             //search note in notes sqlite database
             notesList.clear();
+            AppUsageAnalytics.incrementPageVisitCount("Search_Note");
+
             if (title.equals("")) {
                 notesList = dbHelper.getAllTitles(className);
                 Collections.reverse(notesList);
@@ -347,6 +399,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             }
             notesAdapter = new NotesListAdapter(getApplicationContext(), R.layout.note_item_list, notesList, className);
             listview.setAdapter(notesAdapter);
+
+
         }
 
         //if current focus is on the images fragment
@@ -413,10 +467,13 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     private void showInfomation(int pageNumber) {
         if (pageNumber == 0) {
             imagesPageDialogueInformation();
+            AppUsageAnalytics.incrementPageVisitCount("Images_Fragment_Information");
         } else if (pageNumber == 1) {
             notesPageDialogueInformation();
+            AppUsageAnalytics.incrementPageVisitCount("Notes_Fragment_Information");
         } else if(pageNumber == 2) {
             assignmentsPageDialogueInformation();
+            AppUsageAnalytics.incrementPageVisitCount("Assignments_Fragment_Information");
         }
             return;
     }
@@ -481,6 +538,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
     }
 
     @Override

@@ -22,10 +22,12 @@ import android.widget.ListView;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
 import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -62,8 +64,8 @@ public class MainFrontPage extends AppCompatActivity
     private String image_tag;
     final int REQUEST_IMAGE_CAPTURE = 1;
     public final static String USER_PRIVATE_LIST_OF_GROUPS = "List_Of_Private_User_Folders";
-    private final String USER_NUMBER_OF_SESSIONS = "Number_Of_Login_Sessions";
-    private String user;
+    public static final String USER_NUMBER_OF_SESSIONS = "Number_Of_Login_Sessions";
+    public static String user;
     public static File photoFile = null;
     private String thumb_download_url = null;
     private FloatingActionButton createNewClass;
@@ -85,7 +87,7 @@ public class MainFrontPage extends AppCompatActivity
 
         //add the bottom nav bar icons
         BottomBarItem homeIcon = new BottomBarItem(R.drawable.ic_home_black_24px);
-        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_camera);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
         BottomBarItem dictionaryIcon = new BottomBarItem(R.drawable.ic_big_dictionary);
 
         bottomNavigationBar.addTab(homeIcon);
@@ -167,25 +169,6 @@ public class MainFrontPage extends AppCompatActivity
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mUserSessionsDBRef = database.getReference(USER_NUMBER_OF_SESSIONS);
 
-        mUserSessionsDBRef.child(user).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() == null) {
-                    mUserSessionsDBRef.child(user).setValue(new UserSessions(0));
-                } else {
-                    UserSessions previousCount = dataSnapshot.getValue(UserSessions.class);
-                    int newCount = previousCount.getNum_of_sessions() + 1;
-                    mUserSessionsDBRef.child(user).setValue(new UserSessions(newCount));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -240,6 +223,8 @@ public class MainFrontPage extends AppCompatActivity
     public void onResume() {
         super.onResume();
         toolbar.setTitle("Collabo");
+        AppUsageAnalytics.incrementPageVisitCount("MainFrontPage");
+        AppUsageAnalytics.recordTime();
     }
 
     @Override
@@ -278,6 +263,8 @@ public class MainFrontPage extends AppCompatActivity
 
     private void showFrontPageClassDialogueInformation() {
 
+
+        AppUsageAnalytics.incrementPageVisitCount("Front_Page_Information");
         SweetAlertDialog sdg = new SweetAlertDialog(MainFrontPage.this, SweetAlertDialog.NORMAL_TYPE);
         sdg.setTitleText("Usage info");
         sdg.setContentText(getResources().getString(R.string.classes_page_information));

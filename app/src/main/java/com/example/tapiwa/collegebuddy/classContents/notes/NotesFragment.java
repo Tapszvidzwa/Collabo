@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
@@ -78,12 +79,9 @@ public class NotesFragment extends Fragment  {
         });
 
 
-
-
         return notesView;
 
     }
-
 
 
     private void initialize() {
@@ -95,6 +93,8 @@ public class NotesFragment extends Fragment  {
 
     public void populateScreen() {
         notesList = dbHelper.getAllTitles(className);
+
+
         Collections.reverse(notesList);
         notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, notesList, className);
         listview.setAdapter(notesAdapter);
@@ -103,8 +103,10 @@ public class NotesFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
+
         populateScreen();
     }
+
 
 
     @Override
@@ -216,6 +218,7 @@ public class NotesFragment extends Fragment  {
 
     private void updateNoteColor(String color) {
 
+        AppUsageAnalytics.incrementPageVisitCount("Change_Note_Color");
      String contents = dbHelper.getNoteContents(ClassContentsMainActivity.className, notesList.get(selectedNote));
         dbHelper.updateNote(
                 ClassContentsMainActivity.className,

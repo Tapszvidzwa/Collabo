@@ -23,9 +23,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+import com.example.tapiwa.collegebuddy.Main.UserSessions;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.text.SimpleDateFormat;
@@ -39,6 +47,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 import static android.content.ContentValues.TAG;
+import static com.example.tapiwa.collegebuddy.Main.MainFrontPage.mUserSessionsDBRef;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class AssignmentsFragment extends Fragment  {
@@ -52,6 +61,8 @@ public class AssignmentsFragment extends Fragment  {
     public static String dueDateTitle;
     public static AssignmentsSQLiteDBHelper dbHelper;
     public static AssignmentsListAdapter assignmentsAdapter;
+    public static FirebaseDatabase fireb;
+    public static DatabaseReference ref;
 
 
     public AssignmentsFragment() {
@@ -63,6 +74,7 @@ public class AssignmentsFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         assignmentsView = inflater.inflate(R.layout.assignments_fragment, container, false);
         initialize();
         return assignmentsView;
@@ -176,10 +188,10 @@ public class AssignmentsFragment extends Fragment  {
         listview.setAdapter(assignmentsAdapter);
     }
 
+
     @Override
-    public void onResume() {
-        super.onResume();
-        populateScreen();
+    public void onStop() {
+        super.onStop();
     }
 
 

@@ -14,8 +14,8 @@ import org.joda.time.DateTime;
 
 public class GenericServices {
 
-    Context context;
-    Boolean foregroundStatus = false;
+    public static Context context;
+    public static Boolean foregroundStatus = false;
 
     public GenericServices(Context cxt) {
         this.context = cxt;
@@ -23,7 +23,7 @@ public class GenericServices {
     }
 
 
-    public boolean isConnectingToInternet() {
+    public static boolean isConnectingToInternet() {
 
 
         int unicode = 0x1F64A;
@@ -37,6 +37,7 @@ public class GenericServices {
         if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
             return true;
         } else {
+
             Toast toast = Toast.makeText(context, "No internet Connection..." + emoji, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();

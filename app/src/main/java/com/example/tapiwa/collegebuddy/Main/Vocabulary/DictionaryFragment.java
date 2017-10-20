@@ -1,6 +1,7 @@
 package com.example.tapiwa.collegebuddy.Main.Vocabulary;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
@@ -12,13 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 
 //add dependencies to your class
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Scanner;
+
 import javax.net.ssl.HttpsURLConnection;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.HomePageFragment;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
@@ -38,7 +47,7 @@ public class DictionaryFragment extends Fragment {
     TextInputEditText word_to_search;
     TextView searchedWord, meaning;
     View vocabSearchView;
-    public String returnedText;
+    public String rootWordSearched, searchedMeaning;
 
         public DictionaryFragment() {
             // Required empty public constructor
@@ -88,6 +97,13 @@ public class DictionaryFragment extends Fragment {
     private void searchForWordMeaning(String rootWord) {
         new CallbackTask().execute(dictionaryEntries(rootWord));
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppUsageAnalytics.incrementPageVisitCount("Dictionary");
+    }
+
 
 
     //in android calling network requests on the main thread forbidden by default
@@ -149,6 +165,9 @@ public class DictionaryFragment extends Fragment {
             }
 
             searchedWord.setText(text);
+
+            rootWordSearched = text;
+
             new CallbackTaskWordMeaning().execute(dictionaryEntries(text));
            // returnedText = text;
         }
@@ -206,10 +225,11 @@ public class DictionaryFragment extends Fragment {
         String word_meaning = arr2.getString(0);
 
         meaning.setText(word_meaning);
+
         return;
 
             } catch (JSONException d) {
-        String s = d.toString();
+    //
 
         }
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.StackView;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -89,6 +90,8 @@ public class StackCards extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+            AppUsageAnalytics.incrementPageVisitCount("Stack_Cards");
+
     }
 
     @Override

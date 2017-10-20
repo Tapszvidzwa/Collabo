@@ -29,9 +29,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.classImagesActivity;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -176,7 +178,7 @@ View homePageView;
 
 
     public void continueWithDeleteFolder(int position) {
-
+        AppUsageAnalytics.incrementPageVisitCount("Deleted_Folders");
 
         NewClass clickedFolder = (NewClass) adapter.getItem(position);
         final String clickedFolderProjectKey= clickedFolder.getProjectKey();
@@ -311,6 +313,7 @@ View homePageView;
 
     private void chooseFolderColor() {
 
+
         final FolderColor[] items = {
                 new FolderColor("Blue", R.drawable.ic_collabofolder),
                 new FolderColor("Yellow", R.drawable.ic_collabofolderyellow),
@@ -395,6 +398,7 @@ View homePageView;
                 .child("folderColor")
                 .setValue(color);
 
+        AppUsageAnalytics.incrementPageVisitCount("Change_Folder_Color");
         //add on complete listener
 
     }

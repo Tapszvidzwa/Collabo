@@ -28,7 +28,7 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table personalNotes" +
-                        "(id integer primary key, class text, title text,contents text, time text)"
+                        "(id integer primary key, class text, title text,contents text, time text, cardColor text)"
 
                 //// TODO: 7/9/17 check if text is the right type of text to be entered here
         );
@@ -61,6 +61,9 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
         //// TODO: 7/10/17 look for a better way to implement this
         res.moveToFirst();
         while (res.isAfterLast() == false) {
+
+            String f = res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE));
+
             if (res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE)).equals(title) &&
                     res.getString(res.getColumnIndex(NOTES_COLUMN_CLASS)).equals(classtype)) {
                 return res.getString(res.getColumnIndex(NOTES_COLUMN_CONTENT));
@@ -161,6 +164,8 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
             res.moveToFirst();
 
             while (res.isAfterLast() == false) {
+                String note = res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE));
+
                 array_list.add(res.getString(res.getColumnIndex(NOTES_COLUMN_TITLE)));
                 res.moveToNext();
             }

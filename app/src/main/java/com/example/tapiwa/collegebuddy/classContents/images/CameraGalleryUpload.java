@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
@@ -222,6 +223,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
 
                 mPrivateFullImageDatabaseRef.child(uploadId).setValue(imageUpload);
 
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -240,6 +242,9 @@ public class CameraGalleryUpload extends AppCompatActivity {
 
     public static void chooseImageFromGallery(Activity activity) {
 
+
+        AppUsageAnalytics.incrementPageVisitCount("Gallery_Images");
+
         if (checkPermissionREAD_EXTERNAL_STORAGE(activity)) {
             Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
             getIntent.setType("image/*");
@@ -254,6 +259,9 @@ public class CameraGalleryUpload extends AppCompatActivity {
     }
 
     public static void takePicture(Activity activity, String callingActivity) {
+
+
+            AppUsageAnalytics.incrementPageVisitCount("Photos_Taken");
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {

@@ -66,6 +66,7 @@ public class NoteStackViewAdapter extends BaseAdapter {
             holder.title = (TextView) row.findViewById(R.id.stack_note_title);
             holder.noteContent = (TextView) row.findViewById(R.id.stack_note_contents);
 
+
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();

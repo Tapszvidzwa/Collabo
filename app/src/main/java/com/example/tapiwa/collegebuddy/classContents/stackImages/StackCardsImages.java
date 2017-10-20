@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.StackView;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.images.MaximizePrivateImageActivity;
@@ -133,6 +134,7 @@ public class StackCardsImages extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+            AppUsageAnalytics.incrementPageVisitCount("StackImages");
     }
 
     @Override

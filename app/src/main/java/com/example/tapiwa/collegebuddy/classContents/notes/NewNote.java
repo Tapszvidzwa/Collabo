@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
@@ -62,10 +63,6 @@ public class NewNote extends AppCompatActivity {
             return;
         }
 
-
-
-        String time = GenericServices.date();
-        //insert note into database
         dbHelper.insertNote(ClassContentsMainActivity.className,
                 noteTitle.getText().toString(),
                 noteContents.getText().toString(),
@@ -108,5 +105,11 @@ public class NewNote extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AppUsageAnalytics.incrementPageVisitCount("New_Note");
     }
 }
