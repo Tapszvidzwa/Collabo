@@ -87,7 +87,7 @@ public class MainFrontPage extends AppCompatActivity
 
         //add the bottom nav bar icons
         BottomBarItem homeIcon = new BottomBarItem(R.drawable.ic_home_black_24px);
-        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_collabocam__7_);
         BottomBarItem dictionaryIcon = new BottomBarItem(R.drawable.ic_big_dictionary);
 
         bottomNavigationBar.addTab(homeIcon);

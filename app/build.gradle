@@ -7,8 +7,8 @@ android {
         applicationId "com.myprojects.tapiwa.collegebuddy"
         minSdkVersion 22
         targetSdkVersion 25
-        versionCode 20
-        versionName "Collabo 1.2.5"
+        versionCode 22
+        versionName "Collabo 1.2.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true

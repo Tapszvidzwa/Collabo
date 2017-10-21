@@ -18,6 +18,7 @@
     <string name="help_or_send_feedback">Help / Send Feedback</string>
     <string name="enter_feedback">Start typing your message here...</string>
     <string name="send_feedback_to_email">Send via Email</string>
+    <string name="speech_prompt">Tap mic to speak</string>
     <string name="classes_page_information">Click on add class button to create
         a class folder to store images, notes and documents.</string>
 

@@ -158,7 +158,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         //bottom navigation
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.class_contents_bottom_bar);
-        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_collabocam__7_);
         BottomBarItem cardsIcon = new BottomBarItem(R.drawable.ic_stack_of_inclined_presentation_cards);
         BottomBarItem imagesIcon = new BottomBarItem(R.drawable.ic_image_cards);
 

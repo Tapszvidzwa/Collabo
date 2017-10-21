@@ -1,11 +1,20 @@
 package com.example.tapiwa.collegebuddy.classContents.notes;
 
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.speech.RecognizerIntent;
+import android.content.ActivityNotFoundException;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,6 +22,9 @@ import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -24,6 +36,9 @@ public class NewNote extends AppCompatActivity {
     private EditText noteContents;
     private Toolbar mToolBar;
     private String card_color;
+    private FloatingActionButton mic;
+    private final int REQUEST_CODE_SPEECH_INPUT = 100;
+    private final int REQUEST_MICROPHONE = 1023;
 
 
     @Override
@@ -33,6 +48,7 @@ public class NewNote extends AppCompatActivity {
         
         noteTitle = (EditText) findViewById(R.id.noteTitle);
         mToolBar = (Toolbar) findViewById(R.id.create_new_note_toolbar);
+        mic = (FloatingActionButton) findViewById(R.id.microphone);
         mToolBar.setTitle("Create New Note");
         setSupportActionBar(mToolBar);
 
@@ -45,6 +61,15 @@ public class NewNote extends AppCompatActivity {
         card_color = dbHelper.getNoteColor
                 (ClassContentsMainActivity.className, noteTitle.getText().toString());
 
+        mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkForMicPermision();
+                promptForSpeeach();
+
+            }
+        });
+
 
        // FloatingActionButton saveNote = (FloatingActionButton) findViewById(R.id.saveNote);
      /*   saveNote.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +78,58 @@ public class NewNote extends AppCompatActivity {
                 saveNote();
             }
         }); */
+    }
+
+    private void checkForMicPermision() {
+        if (ContextCompat.checkSelfPermission(NewNote.this,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(NewNote.this,
+                    new String[]{Manifest.permission.RECORD_AUDIO},
+                    REQUEST_MICROPHONE);
+
+        } else {
+            promptForSpeeach();
+        }
+    }
+
+    private void promptForSpeeach() {
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.speech_prompt), //correct this part
+                    Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQUEST_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    noteContents.setText(result.get(0));
+                }
+                break;
+            }
+
+        }
     }
     
     
