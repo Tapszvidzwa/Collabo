@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers.SelectUsers;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class NotesFragment extends Fragment  {
     public static NotesSQLiteDBHelper dbHelper;
     private View notesView;
     private ViewGroup viewGroup;
-    private int selectedNote;
+    public static int selectedNote;
 
 
     public NotesFragment() {
@@ -68,6 +69,8 @@ public class NotesFragment extends Fragment  {
                 //Get item at position
                 String note = (String) parent.getItemAtPosition(position);
                //  String contents = dbHelper.getNoteContents(note);
+
+                selectedNote = position;
 
                 //Pass the image title and full_image_uri to DetailsActivity
                 Intent intent = new Intent(getApplicationContext(), DisplayNoteActivity.class);
@@ -118,6 +121,11 @@ public class NotesFragment extends Fragment  {
 
     }
 
+    public void selectUserToSend() {
+        Intent openUsers = new  Intent (getActivity(), SelectUsers.class);
+        startActivity(openUsers);
+    }
+
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -131,9 +139,15 @@ public class NotesFragment extends Fragment  {
                 return true;
             case R.id.change_card_color:
                 changeColor();
+                break;
+            case R.id.send_inbox:
+                selectUserToSend();
+                break;
             default:
                 return super.onContextItemSelected(item);
         }
+
+        return true;
     }
 
     private void deleteNote(int position) {

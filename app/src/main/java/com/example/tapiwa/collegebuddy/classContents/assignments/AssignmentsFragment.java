@@ -121,7 +121,7 @@ public class AssignmentsFragment extends Fragment  {
             public void onPositiveButtonClick(Date date) {
                 String dueDate = date.toString();
                 dbHelper.insertDueDate(ClassContentsMainActivity.className, dueDateTitle, dueDate);
-                assignmentsAdapter.notifyDataSetChanged();
+                AppUsageAnalytics.incrementPageVisitCount("DeadLines_Set");
                 populateScreen();
             }
 

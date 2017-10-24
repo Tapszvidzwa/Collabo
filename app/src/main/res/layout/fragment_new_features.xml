@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+   >
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/new_features_lstV"
+        android:layout_marginTop="50dp">
+    </ListView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addFeatureBtn"
+        android:layout_above="@id/bottom_bar"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_add_white_24px"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="64dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

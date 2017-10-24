@@ -261,7 +261,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
     public static void takePicture(Activity activity, String callingActivity) {
 
 
-            AppUsageAnalytics.incrementPageVisitCount("Photos_Taken");
+        AppUsageAnalytics.incrementPageVisitCount("Photos_Taken");
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {

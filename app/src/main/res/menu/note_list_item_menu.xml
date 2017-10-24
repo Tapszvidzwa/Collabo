@@ -15,5 +15,11 @@
         android:title="Delete"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/send_inbox"
+        android:orderInCategory="110"
+        android:title="Send"
+        app:showAsAction="always"
+        />
 
 </menu>

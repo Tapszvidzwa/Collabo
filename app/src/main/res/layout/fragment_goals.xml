@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="25dp"
+    android:id="@+id/fragment_goal_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+   >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:layout_marginTop="40dp"
+        android:textSize="22sp"
+        android:paddingBottom="2dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"
+        android:id="@+id/percentage_completed"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:paddingBottom="2dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:id="@+id/progress_outer_bar"
+            android:background="@android:color/darker_gray"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:id="@+id/progress_inner_bar"
+                android:orientation="horizontal"
+                android:background="@android:color/holo_blue_light"
+                ></LinearLayout>
+
+        </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/goals_lstV"
+        android:layout_below="@id/progress_outer_bar">
+    </ListView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addGoal"
+        android:layout_above="@id/bottom_bar"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ic_add_white_24px"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="64dp"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/resetGoal"
+        android:layout_above="@id/addGoal"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginRight="8dp"
+        app:srcCompat="@drawable/ic_refresh_white_24px"
+        android:layout_marginBottom="64dp"
+        android:layout_alignParentEnd="true"
+        />
+
+
+
+
+</RelativeLayout>

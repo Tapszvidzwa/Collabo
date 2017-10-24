@@ -17,24 +17,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+import com.example.tapiwa.collegebuddy.Main.Goals.GoalsFragment;
+import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
+import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment;
 import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
 import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -56,7 +54,7 @@ public class MainFrontPage extends AppCompatActivity
     public ArrayList<NewClass> list;
     public ClassesAdapter adapter;
     public static DatabaseReference mDatabaseRef, mFolderContentsDBRef, mUserSessionsDBRef;
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
     private Toolbar mToolBar, mToolBarTwo;
     private ProgressDialog mProgress;
@@ -82,16 +80,21 @@ public class MainFrontPage extends AppCompatActivity
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
+
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
 
 
         //add the bottom nav bar icons
         BottomBarItem homeIcon = new BottomBarItem(R.drawable.ic_home_black_24px);
+        BottomBarItem inboxIcon = new BottomBarItem(R.drawable.ic_inbox_black_24px);
         BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_collabocam__7_);
+        BottomBarItem goalsIcon = new BottomBarItem(R.drawable.ic_list);
         BottomBarItem dictionaryIcon = new BottomBarItem(R.drawable.ic_big_dictionary);
 
         bottomNavigationBar.addTab(homeIcon);
+        bottomNavigationBar.addTab(inboxIcon);
         bottomNavigationBar.addTab(cameraIcon);
+        bottomNavigationBar.addTab(goalsIcon);
         bottomNavigationBar.addTab(dictionaryIcon);
 
 
@@ -107,9 +110,15 @@ public class MainFrontPage extends AppCompatActivity
                         openHome();
                         break;
                     case 1:
-                        CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                        openInbox();
                         break;
                     case 2:
+                        CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                        break;
+                    case 3:
+                        openGoals();
+                        break;
+                    case 4:
                         openDictionary();
                         break;
 
@@ -125,15 +134,22 @@ public class MainFrontPage extends AppCompatActivity
            @Override
            public void onReselect(int position) {
 
+
                switch (position) {
 
                    case 0:
                        openHome();
                        break;
                    case 1:
-                       CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                       openInbox();
                        break;
                    case 2:
+                       CameraGalleryUpload.takePicture(MainFrontPage.this, "MainFrontPage");
+                       break;
+                   case 3:
+                       openGoals();
+                       break;
+                   case 4:
                        openDictionary();
                        break;
 
@@ -282,6 +298,28 @@ public class MainFrontPage extends AppCompatActivity
 
     }
 
+    private void openInbox() {
+            android.app.Fragment fragment = new InboxFragment();
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_place_holder, fragment)
+                    .commit();
+    }
+
+    private void openGoals() {
+        android.app.Fragment fragment = new GoalsFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_place_holder, fragment)
+                .commit();
+    }
+
+    private void openInboxFragment() {
+
+        android.app.Fragment fragment = new InboxFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_place_holder, fragment)
+                .commit();
+    }
+
     private void openHome() {
 
         android.app.Fragment fragment = new HomePageFragment();
@@ -302,6 +340,14 @@ public class MainFrontPage extends AppCompatActivity
           openDictionary();
         }
 
+        if (id == R.id.inbox) {
+            openInboxFragment();
+        }
+
+        if (id == R.id.goals_list) {
+            openGoals();
+        }
+
         if (id == R.id.home) {
            openHome();
         }
@@ -311,19 +357,10 @@ public class MainFrontPage extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_place_holder, fragment)
                     .commit();
-
         }
 
-       /* if(id == R.id.GPAcalculator) {
-            android.app.Fragment fragment = new GPACalculatorFragment();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_place_holder, fragment)
-                    .commit();
-
-        } */
-
-        if(id == R.id.converter) {
-            android.app.Fragment fragment = new Conveter();
+        if(id == R.id.profile) {
+            android.app.Fragment fragment = new UserProfileFragment();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_place_holder, fragment)
                     .commit();
@@ -331,7 +368,7 @@ public class MainFrontPage extends AppCompatActivity
         }
 
         if(id == R.id.new_features) {
-            android.app.Fragment fragment = new NewFeatures();
+            android.app.Fragment fragment = new NewFeaturesFragment();
             fragmentManager.beginTransaction()
                     .replace(R.id.fragment_place_holder, fragment)
                     .commit();

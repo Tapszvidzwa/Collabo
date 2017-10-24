@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private CallbackManager callbackManager;
     private LoginButton facebookloginButton;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mDatabaseRef;
+    public static DatabaseReference mDatabaseRef, permissionsRef;
+    private static final String PERMISSIONS = "User_Permissions";
 
     private GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 0;
@@ -98,6 +99,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mFBAnalytics = FirebaseAnalytics.getInstance(this);
         mFBAnalytics.setMinimumSessionDuration(MIN_SESSION_DURATION);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(RegistrationActivity.FB_USERS_PATH);
+        connectPermissions();
+
+
+
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -189,6 +195,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
 
 
+    }
+
+    public static void connectPermissions() {
+        permissionsRef = FirebaseDatabase.getInstance().getReference(PERMISSIONS);
     }
 
 

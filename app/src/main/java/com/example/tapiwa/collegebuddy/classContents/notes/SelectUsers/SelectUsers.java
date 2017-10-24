@@ -1,0 +1,172 @@
+package com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers;
+
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
+import com.example.tapiwa.collegebuddy.Main.Inbox.InboxObject;
+import com.example.tapiwa.collegebuddy.Main.NewClass;
+import com.example.tapiwa.collegebuddy.R;
+import com.example.tapiwa.collegebuddy.authentication.NewUser;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.notes.NotesSQLiteDBHelper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import es.dmoral.toasty.Toasty;
+
+import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesList;
+import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.selectedNote;
+
+/**
+ * Created by tapiwa on 10/5/17.
+ */
+
+public class SelectUsers extends AppCompatActivity {
+
+    private ListView usersListView;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference usersDbRef;
+    private Toolbar toolbar;
+    private Button searchButton;
+    private TextInputEditText username;
+    private ArrayList<NewUser> users;
+    private SelectUsersAdapter adapter;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_choose_user);
+        initializeViews();
+        initializeFirebase();
+        setOnCLickListeners();
+
+
+    }
+
+    private void initializeViews() {
+
+        usersListView = (ListView) findViewById(R.id.users_listView);
+        username = (TextInputEditText) findViewById(R.id.user_to_search);
+        toolbar = (Toolbar) findViewById(R.id.choose_user_toolbar);
+        searchButton = (Button) findViewById(R.id.seach_user_button);
+
+        users = new ArrayList<>();
+
+        toolbar.setTitle("Choose Users");
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+
+    private void initializeFirebase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        usersDbRef = firebaseDatabase.getReference("Users");
+        usersDbRef.keepSynced(true);
+    }
+
+   private void searchUser(String name) {
+
+
+       Query searchName = usersDbRef.orderByChild("name")
+               .startAt(name)
+               .endAt(name + "\uf8ff");
+
+
+       searchName.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+
+               //fetch image data from firebase
+               users.clear();
+
+               for (DataSnapshot Snapshot1 : dataSnapshot.getChildren()) {
+                   NewUser user = Snapshot1.getValue(NewUser.class);
+                   users.add(user);
+               }
+               Collections.reverse(users);
+
+               adapter = new SelectUsersAdapter(getApplicationContext(), R.layout.select_user_item, users);
+               usersListView.setAdapter(adapter);
+               adapter.notifyDataSetChanged();
+           }
+
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+           }
+       });
+
+
+
+
+
+   }
+
+    private void setOnCLickListeners() {
+
+        usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick (AdapterView < ? > parent, View v,int position, long id){
+                //Do some stuff over here
+
+                NewUser selectedUser = (NewUser) parent.getItemAtPosition(position);
+                String usrUid = selectedUser.getUid();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference sendToInbxRef = database.getReference(InboxFragment.INBOX).child(usrUid);
+
+
+                String pushKey = sendToInbxRef.push().getKey();
+
+                //get note
+                String noteTitle = notesList.get(selectedNote);
+                NotesSQLiteDBHelper dbHelper = new NotesSQLiteDBHelper(getApplicationContext());
+
+                String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, noteTitle);
+                String note_color = dbHelper.getNoteColor(ClassContentsMainActivity.className, noteTitle);
+
+                sendToInbxRef.child(pushKey)
+                        .setValue(new InboxObject(selectedUser.getName(), noteTitle, content, note_color));
+
+                Toasty.success(getApplicationContext(), "Sent to " + selectedUser.name, Toast.LENGTH_SHORT).show();
+                SelectUsers.this.finish();
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String nameToSearch = username.getText().toString();
+                searchUser(nameToSearch);
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
+}

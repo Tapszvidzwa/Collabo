@@ -9,9 +9,21 @@
             android:title="Home" />
 
         <item
+            android:id="@+id/inbox"
+            android:icon="@drawable/ic_inbox_black_24px"
+            android:title="inbox"
+            />
+
+        <item
             android:id="@+id/new_features"
             android:icon="@android:drawable/star_on"
             android:title="New Features" />
+
+        <item
+            android:id="@+id/goals_list"
+            android:icon="@drawable/ic_list"
+            android:title="Goals" />
+
         <item
             android:id="@+id/vocabulary"
             android:icon="@drawable/ic_if_icon_30_book_315151"
@@ -25,9 +37,9 @@
             />
 
         <item
-            android:id="@+id/converter"
-            android:title="Converter"
-            android:icon="@drawable/ic_if_ilustracoes_04_03_1519776"
+            android:id="@+id/profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_man_user"
             />
     </group>
 

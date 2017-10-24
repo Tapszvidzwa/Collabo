@@ -125,6 +125,7 @@ public class NewNote extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     noteContents.setText(result.get(0));
+                    AppUsageAnalytics.incrementPageVisitCount("Notes_Mic");
                 }
                 break;
             }
@@ -134,6 +135,8 @@ public class NewNote extends AppCompatActivity {
     
     
     public void saveNote() {
+
+        AppUsageAnalytics.incrementPageVisitCount("Notes_Created");
 
         if(noteTitle.getText().toString().trim().equals("")) {
            noteTitle.setError("Please enter unique note title");

@@ -16,6 +16,7 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -32,6 +33,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
 
         <activity android:name=".authentication.LoginActivity" />
         <activity android:name=".authentication.RegistrationActivity" />
@@ -91,6 +93,9 @@
         <activity android:name=".classContents.images.MaximizePrivateImageActivity" />
         <activity android:name=".classContents.classContentsMain.classImagesActivity" />
         <activity android:name=".miscellaneous.SendFeedBackActivity" />
+        <activity android:name=".Main.NewFeatures.AddFeature" />
+        <activity android:name=".classContents.notes.SelectUsers.SelectUsers" />
+        <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"/>
         <activity android:name=".Main.ChooseClass" />
         <activity android:name=".authentication.WelcomeActivity">
             <intent-filter>

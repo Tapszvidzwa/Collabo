@@ -10,11 +10,12 @@ import com.example.tapiwa.collegebuddy.R;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
+
 public class Tutorial extends AppIntro {
 
     @Override
     public void init(Bundle savedInstanceState) {
-
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest
 

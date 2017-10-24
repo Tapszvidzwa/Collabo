@@ -55,7 +55,7 @@ public class NotesSQLiteDBHelper extends SQLiteOpenHelper {
 
     public String getNoteContents(String classtype, String title) {
 
-        // TODO: 7/6/17 fix displayNote 
+        // TODO: 7/6/17 fix displayNote
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from personalNotes", null);
         //// TODO: 7/10/17 look for a better way to implement this
