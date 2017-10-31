@@ -6,6 +6,14 @@
     android:background="@color/light_gray"
     android:layout_height="match_parent">
 
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:id="@+id/create_pdf_progress_bar"/>
+
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

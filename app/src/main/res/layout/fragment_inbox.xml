@@ -13,4 +13,23 @@
         android:layout_marginTop="50dp">
     </ListView>
 
+
+    <ImageView
+        android:layout_width="150dp"
+        android:id="@+id/cryingBaby"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_crying_baby"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id = "@+id/no_inbox_text"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:text="You don't have any note cards in you inbox"
+        android:layout_below="@id/cryingBaby"/>
+
 </RelativeLayout>

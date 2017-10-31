@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
@@ -28,18 +29,32 @@ import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment;
 import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
+import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
 import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import me.leolin.shortcutbadger.ShortcutBadger;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
+import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
 
 public class MainFrontPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,6 +90,10 @@ public class MainFrontPage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_front_page2);
+
+
+        new FinishRegistrationTask().execute();
+        ShortcutBadger.removeCount(this);
 
         toolbar = (Toolbar) findViewById(R.id.frnt_pg_toolbar);
         toolbar.setTitle(R.string.app_name);
@@ -195,6 +214,22 @@ public class MainFrontPage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        LoginActivity.connectPermissions();
+        permissionsRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue() == null) {
+                    permissionsRef.child(mAuth.getCurrentUser().getUid().toString()).setValue(0);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void initializeViews() {
@@ -261,6 +296,10 @@ public class MainFrontPage extends AppCompatActivity
         if (id == R.id.send_feedback) {
             Intent feedback = new Intent(MainFrontPage.this, SendFeedBackActivity.class);
             startActivity(feedback);
+        }
+
+        if(id == R.id.send_invite) {
+            GenericServices.sendInvitation(MainFrontPage.this);
         }
 
         if(id == R.id.class_front_page_info) {
@@ -344,9 +383,7 @@ public class MainFrontPage extends AppCompatActivity
             openInboxFragment();
         }
 
-        if (id == R.id.goals_list) {
-            openGoals();
-        }
+
 
         if (id == R.id.home) {
            openHome();
@@ -378,5 +415,39 @@ public class MainFrontPage extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
+    }
+
+
+
+
+    public static class FinishRegistrationTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            //initialize firebasetokens
+            FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+            String token = FirebaseInstanceId.getInstance().getToken();
+
+
+            OkHttpClient client = new OkHttpClient();
+
+            okhttp3.RequestBody body = new FormBody.Builder()
+                    .add("Uid", GenericServices.getCurrentUid())
+                    .add("Token", token)
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url("http://132.161.242.110/test/registerUserToCollabo.php")
+                    .post(body)
+                    .build();
+
+            try {
+                client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 }

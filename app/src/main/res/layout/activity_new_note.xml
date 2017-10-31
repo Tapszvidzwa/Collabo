@@ -47,6 +47,8 @@
 
             <EditText
                 android:id="@+id/editNewNote"
+                android:linksClickable="true"
+                android:autoLink="all"
                 android:layout_marginTop="8dp"
                 android:layout_below="@id/noteTitle"
                 android:gravity="top"

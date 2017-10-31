@@ -1,6 +1,8 @@
 package com.example.tapiwa.collegebuddy.Main.Inbox;
 
 import android.app.Fragment;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,8 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.tapiwa.collegebuddy.Main.HomePageFragment;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.AddFeature;
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeature;
@@ -25,6 +31,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import me.leolin.shortcutbadger.Badger;
+import me.leolin.shortcutbadger.ShortcutBadgeException;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -39,6 +50,9 @@ public class InboxFragment extends Fragment {
     public static FirebaseDatabase firebaseDatabase;
     public static DatabaseReference inboxRef;
     private View inboxView;
+    private ImageView cryingBaby;
+    private TextView noInboxTxt;
+    private Badger inboxNotification;
     private ArrayList<InboxObject> list;
     private InboxAdapter adapter;
     public static final String INBOX = "INBOX";
@@ -69,6 +83,9 @@ public class InboxFragment extends Fragment {
         list = new ArrayList<>();
         adapter = new InboxAdapter(getApplicationContext(), R.layout.new_feature_list_item, list);
         inboxList.setAdapter(adapter);
+
+        cryingBaby = (ImageView) inboxView.findViewById(R.id.cryingBaby);
+        noInboxTxt = (TextView) inboxView.findViewById(R.id.no_inbox_text);
 
 
         inboxList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,6 +127,13 @@ public class InboxFragment extends Fragment {
                 inboxList.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
+                if(list.size() == 0) {
+
+                    cryingBaby.setVisibility(View.VISIBLE);
+                    noInboxTxt.setVisibility(View.VISIBLE);
+
+                }
+
             }
 
             @Override
@@ -117,6 +141,8 @@ public class InboxFragment extends Fragment {
 
             }
         });
+
+
     }
 }
 

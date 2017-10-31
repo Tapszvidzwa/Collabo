@@ -3,21 +3,26 @@ package com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
 import com.example.tapiwa.collegebuddy.Main.Inbox.InboxObject;
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.Main.NewClass;
+import com.example.tapiwa.collegebuddy.Notifications.SendNotification;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.authentication.NewUser;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.notes.NotesSQLiteDBHelper;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,9 +49,10 @@ public class SelectUsers extends AppCompatActivity {
     private DatabaseReference usersDbRef;
     private Toolbar toolbar;
     private Button searchButton;
-    private TextInputEditText username;
+    private SearchView username;
     private ArrayList<NewUser> users;
     private SelectUsersAdapter adapter;
+    public static String currentUserName;
 
 
     @Override
@@ -63,7 +69,7 @@ public class SelectUsers extends AppCompatActivity {
     private void initializeViews() {
 
         usersListView = (ListView) findViewById(R.id.users_listView);
-        username = (TextInputEditText) findViewById(R.id.user_to_search);
+        username = (SearchView) findViewById(R.id.user_to_search);
         toolbar = (Toolbar) findViewById(R.id.choose_user_toolbar);
         searchButton = (Button) findViewById(R.id.seach_user_button);
 
@@ -74,6 +80,23 @@ public class SelectUsers extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        username.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchUser(newText);
+                return false;
+            }
+        });
+
+
+
     }
 
 
@@ -122,6 +145,19 @@ public class SelectUsers extends AppCompatActivity {
 
     private void setOnCLickListeners() {
 
+        //getCurrentUserName
+        usersDbRef.child(MainFrontPage.user).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                currentUserName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick (AdapterView < ? > parent, View v,int position, long id){
@@ -144,7 +180,13 @@ public class SelectUsers extends AppCompatActivity {
                 String note_color = dbHelper.getNoteColor(ClassContentsMainActivity.className, noteTitle);
 
                 sendToInbxRef.child(pushKey)
-                        .setValue(new InboxObject(selectedUser.getName(), noteTitle, content, note_color));
+                        .setValue(new InboxObject(currentUserName, noteTitle, content, note_color));
+
+
+                SendNotification sendNotification = new SendNotification(usrUid, currentUserName);
+                sendNotification.executeSendNotification();
+
+
 
                 Toasty.success(getApplicationContext(), "Sent to " + selectedUser.name, Toast.LENGTH_SHORT).show();
                 SelectUsers.this.finish();
@@ -155,7 +197,7 @@ public class SelectUsers extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String nameToSearch = username.getText().toString();
+                String nameToSearch = username.getQuery().toString();
                 searchUser(nameToSearch);
             }
         });

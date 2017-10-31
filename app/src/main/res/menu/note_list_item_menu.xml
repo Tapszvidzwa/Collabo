@@ -16,6 +16,13 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/print_note_item"
+        android:orderInCategory="100"
+        android:title="Send Pdf to Email"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/send_inbox"
         android:orderInCategory="110"
         android:title="Send"

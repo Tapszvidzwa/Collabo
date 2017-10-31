@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +49,8 @@ public class DisplayInboxNoteActivity extends AppCompatActivity {
 
         displayNoteTitle.setText(noteTitle);
         displayNoteContents.setText(noteContents);
+
+        Linkify.addLinks(displayNoteContents, Linkify.ALL);
     }
 
 

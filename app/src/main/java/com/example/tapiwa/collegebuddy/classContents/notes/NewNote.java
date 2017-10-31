@@ -12,6 +12,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +60,7 @@ public class NewNote extends AppCompatActivity {
 
         noteContents = (EditText) findViewById(R.id.editNewNote);
 
+
         dbHelper = new NotesSQLiteDBHelper(this);
         card_color = dbHelper.getNoteColor
                 (ClassContentsMainActivity.className, noteTitle.getText().toString());
@@ -66,6 +70,26 @@ public class NewNote extends AppCompatActivity {
             public void onClick(View v) {
                 checkForMicPermision();
                 promptForSpeeach();
+
+            }
+        });
+
+        noteContents.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                Linkify.addLinks(noteContents, Linkify.ALL);
 
             }
         });
@@ -124,7 +148,7 @@ public class NewNote extends AppCompatActivity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    noteContents.setText(result.get(0));
+                    noteContents.append(result.get(0));
                     AppUsageAnalytics.incrementPageVisitCount("Notes_Mic");
                 }
                 break;
@@ -154,6 +178,10 @@ public class NewNote extends AppCompatActivity {
         NewNote.this.finish();
     }
 
+    private void addBullet() {
+        noteContents.append("\n\n" + "\u2022" + " ");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -176,6 +204,10 @@ public class NewNote extends AppCompatActivity {
 
         if (id == R.id.save_new_note_icon) {
             saveNote();
+        }
+
+        if(id == R.id.add_bullet) {
+            addBullet();
         }
 
         return super.onOptionsItemSelected(item);

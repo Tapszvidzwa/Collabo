@@ -3,6 +3,7 @@ package com.example.tapiwa.collegebuddy.classContents.notes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -20,11 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers.SelectUsers;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
+import com.itextpdf.text.DocumentException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -73,8 +77,20 @@ public class NotesFragment extends Fragment  {
                 selectedNote = position;
 
                 //Pass the image title and full_image_uri to DetailsActivity
+
+
+
+
+
+                //initial activity
                 Intent intent = new Intent(getApplicationContext(), DisplayNoteActivity.class);
                 intent.putExtra("title", note);
+
+
+
+
+
+
 
                 //Start details activity
                 startActivity(intent);
@@ -126,6 +142,16 @@ public class NotesFragment extends Fragment  {
         startActivity(openUsers);
     }
 
+    private void printNote() throws IOException, DocumentException {
+
+      String title = notesList.get(selectedNote);
+        String contents = dbHelper.getNoteContents(ClassContentsMainActivity.className, title);
+
+        GenericServices.createPDF(title,contents,getActivity());
+
+
+    }
+
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -139,6 +165,15 @@ public class NotesFragment extends Fragment  {
                 return true;
             case R.id.change_card_color:
                 changeColor();
+                break;
+            case R.id.print_note_item:
+                try {
+                    printNote();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.send_inbox:
                 selectUserToSend();

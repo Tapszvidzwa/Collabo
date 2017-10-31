@@ -71,8 +71,7 @@ public class StackCards extends AppCompatActivity {
                 stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this);
                 stackView.setAdapter(stackViewAdapter);
 
-
-        stackView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                stackView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 NoteStackItem noteStackItem = noteCards.get(position);
@@ -83,6 +82,16 @@ public class StackCards extends AppCompatActivity {
             }
         });
             }
+
+
+
+
+
+
+
+
+
+
 
 
 

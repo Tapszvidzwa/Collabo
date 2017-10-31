@@ -2,13 +2,23 @@ package com.example.tapiwa.collegebuddy.authentication;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.R;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
 
@@ -18,6 +28,7 @@ public class Tutorial extends AppIntro {
     public void init(Bundle savedInstanceState) {
         // Instead of fragments, you can also use our default slide
         // Just set a title, description, background and image. AppIntro will do the rest
+
 
         /*this one works*/
         addSlide(AppIntroFragment.newInstance("Adding classes",

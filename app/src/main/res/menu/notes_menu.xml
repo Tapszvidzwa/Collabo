@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".classContentsCount.notes.DisplayNoteActivity">
 
+
+
+    <item
+        android:id="@+id/print_pdf"
+        android:orderInCategory="80"
+        android:title="print pdf"
+        android:icon="@drawable/ic_pdf"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/delete_note_icon"
         android:orderInCategory="100"
@@ -27,7 +36,7 @@
 
     <item
         android:id="@+id/send_note_icon"
-        android:orderInCategory="100"
+        android:orderInCategory="110"
         android:title="send"
         android:icon="@drawable/ic_send"
         app:showAsAction="always" />

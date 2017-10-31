@@ -12,6 +12,7 @@
         android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -97,6 +98,7 @@
         <activity android:name=".classContents.notes.SelectUsers.SelectUsers" />
         <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"/>
         <activity android:name=".Main.ChooseClass" />
+        <activity android:name=".Main.Vocabulary.WordsListActivity"/>
         <activity android:name=".authentication.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -113,6 +115,18 @@
             android:name=".Main.MainFrontPage"
             android:label="@string/title_activity_main_front_page"
             android:theme="@style/AppTheme" />
+
+        <service android:name=".Notifications.FirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".Notifications.FirebaseInstanceIdService" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

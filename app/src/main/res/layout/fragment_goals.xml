@@ -22,7 +22,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:paddingBottom="2dp"
             android:orientation="horizontal"
             android:layout_marginTop="80dp"
             android:layout_marginLeft="8dp"
@@ -35,7 +34,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp"
                 android:id="@+id/progress_inner_bar"
                 android:orientation="horizontal"
                 android:background="@android:color/holo_blue_light"
@@ -47,8 +45,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/goals_lstV"
+        android:layout_marginBottom="55dp"
         android:layout_below="@id/progress_outer_bar">
+
     </ListView>
+
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_resting"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:id="@+id/resting_dude"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_goals_text"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="You have no goals set"
+        android:layout_below="@id/resting_dude"/>
 
 
     <android.support.design.widget.FloatingActionButton

@@ -8,13 +8,15 @@
 
     <include layout="@layout/app_bar_layout" android:id="@+id/choose_user_toolbar"/>
 
-    <android.support.design.widget.TextInputEditText
+    <android.support.v7.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="8dp"
+        android:background="@color/light_gray"
+        app:defaultQueryHint="Enter username here..."
         android:textColor="@android:color/holo_blue_light"
-        android:hint="Enter username here..."
         android:layout_marginRight="32dp"
+        app:queryHint="Enter username here..."
         android:layout_marginTop="70dp"
         android:id="@+id/user_to_search" />
 

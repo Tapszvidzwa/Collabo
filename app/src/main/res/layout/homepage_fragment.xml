@@ -10,10 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/privates_folders_lstV"
+        android:layout_marginBottom="53dp"
         >
     </ListView>
 
-
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:visibility="invisible"
+        android:id="@+id/inbx_notification"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="103dp"
+        android:src="@drawable/ic_circle"></ImageView>
 
 
     <android.support.design.widget.FloatingActionButton

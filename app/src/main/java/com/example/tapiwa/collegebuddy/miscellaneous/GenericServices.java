@@ -1,12 +1,62 @@
 package com.example.tapiwa.collegebuddy.miscellaneous;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.constraint.solver.widgets.Rectangle;
+import android.support.v4.content.FileProvider;
 import android.view.Gravity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+import com.example.tapiwa.collegebuddy.Main.ChooseClass;
+import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
+import com.example.tapiwa.collegebuddy.authentication.WelcomeActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Header;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
+
 import org.joda.time.DateTime;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created by tapiwa on 8/3/17.
@@ -16,6 +66,8 @@ public class GenericServices {
 
     public static Context context;
     public static Boolean foregroundStatus = false;
+    public static String thisUserName = "Your friend ";
+    public static String thisUid;
 
     public GenericServices(Context cxt) {
         this.context = cxt;
@@ -77,6 +129,213 @@ public class GenericServices {
         return this.foregroundStatus;
 
     }
+
+
+    public static String getCurrentUserName() {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Users");
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String uid = auth.getCurrentUser().getUid().toString();
+
+        //getCurrentUserName
+        ref.child(uid).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                thisUserName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return thisUserName;
+    }
+
+
+    public static void sendInvitation(Activity context) {
+        Intent Text = new Intent(Intent.ACTION_SEND);
+        Text.setType("text/email");
+        Text.putExtra(Intent.EXTRA_TEXT, "Hi, I joined Collabo and would like to invite you to be my contact. " +
+                "Click on the link below " +
+                "to download it on playstore" + "\n\n" + "https://play.google.com/store/apps/details?id=com.myprojects." +
+                "tapiwa.collegebuddy&hl=en");
+        context.startActivity(Intent.createChooser(Text, "Select contact"));
+    }
+
+    public static void hideKeyboard(EditText editText, Context context) {
+        //Hide the keyboard
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
+
+
+    public static String getCurrentUid() {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Users");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        return  auth.getCurrentUser().getUid().toString();
+
+    }
+
+
+    public static void createPDF (String title, String content, Activity context) throws IOException, DocumentException {
+
+        //Code snippet taken from
+//https://www.codeproject.com/Articles/986574/Android-iText-Pdf-Example
+
+        //Create time stamp
+        Date date = new Date() ;
+
+        File myFile = createNewPDFFile(context, title);
+
+        if(!myFile.exists()) {
+            myFile.createNewFile();
+        }
+
+        OutputStream output = new FileOutputStream(myFile);
+
+        //Step 1
+        Document document = new Document();
+
+        //Step 2
+        PdfWriter.getInstance(document, output);
+
+        //Step 3
+        document.open();
+
+        //Step 4 Add content
+
+        Font f = new Font(Font.FontFamily.HELVETICA,30.0f,Font.BOLD, BaseColor.BLUE);
+        Font f2 = new Font(Font.FontFamily.HELVETICA,20.0f,Font.BOLD, BaseColor.BLACK);
+
+        Paragraph collaboHeading = new Paragraph("Collabo Notes", f);
+        collaboHeading.setAlignment(Element.ALIGN_CENTER);
+        collaboHeading.setSpacingAfter(5f);
+
+        Paragraph heading = new Paragraph(title, f2);
+        heading.setAlignment(Element.ALIGN_LEFT);
+        heading.setSpacingAfter(3f);
+
+        document.add(collaboHeading);
+        document.add(heading);
+        document.add(new Paragraph(content));
+
+        //Step 5: Close the document
+        document.close();
+
+         AppUsageAnalytics.incrementPageVisitCount("Pdf_docs_created");
+        Intent email = new Intent(Intent.ACTION_SEND);
+        Uri contentUri = FileProvider.getUriForFile(context, "com.example.android.fileprovider", myFile);
+        email.putExtra(Intent.EXTRA_STREAM, contentUri);
+        email.setType("message/rfc822");
+        context.startActivity(email);
+
+    }
+
+    public static File createNewPDFFile(Context context, String name) throws IOException {
+        // Create an image file name
+        String imageFileName = name + "_PDF" + "_";
+        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File pdfFile = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".pdf",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        return pdfFile;
+    }
+
+    public static File createNewPDFFile2(Context context, String name) throws IOException {
+        // Create an image file name
+        String imageFileName = name + "_PDF" + "_";
+        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File pdfFile = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        return pdfFile;
+    }
+
+
+
+
+    public static void sendImagePdf(final Context context, String url) throws IOException, DocumentException {
+
+        final File myFile = createNewPDFFile(context, "Collabo Image");
+
+        if(!myFile.exists()) {
+            myFile.createNewFile();
+        }
+
+        OutputStream output = new FileOutputStream(myFile);
+
+        //Step 1
+        final Document doc = new Document();
+
+        //Step 2
+        PdfWriter.getInstance(doc, output);
+
+        //Step 3
+        doc.open();
+
+
+            doc.open();
+
+            // Creating image from a URL
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+//
+            StorageReference httpsReference = storage.getReferenceFromUrl(url);
+
+            httpsReference.getFile(myFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                    Image image = null;
+                    try {
+                        image = Image.getInstance(myFile.getAbsolutePath());
+                    } catch (BadElementException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    image.scaleToFit(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+
+                    try {
+                        doc.add(image);
+                        doc.close();
+
+
+                        Intent email = new Intent(Intent.ACTION_SEND);
+                        Uri contentUri = FileProvider.getUriForFile(context, "com.example.android.fileprovider", myFile);
+                        email.putExtra(Intent.EXTRA_STREAM, contentUri);
+                        email.setType("message/rfc822");
+                        context.startActivity(email);
+
+                        AppUsageAnalytics.incrementPageVisitCount("Image_Pdfs_created");
+
+                    } catch (DocumentException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toasty.error(context, "Failed to produce pdf, please try again", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+    }
+
 
 
 }

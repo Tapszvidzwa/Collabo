@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="8dp"
+        android:background="@color/light_gray"
         android:textColor="@android:color/holo_blue_light"
         android:hint="Start searching word here..."
         android:layout_marginRight="32dp"
@@ -45,6 +46,7 @@
         android:id="@+id/meaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:layout_marginLeft="8dp"
         android:textColor="@android:color/holo_orange_dark"
         android:layout_below="@+id/searched_word"
@@ -61,6 +63,22 @@
         android:textStyle="bold"
         android:text="Definition: "
         android:layout_below="@id/searched_word"/>
+
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/searched_list"
+        android:layout_above="@id/bottom_bar"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_vocabulary"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="64dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

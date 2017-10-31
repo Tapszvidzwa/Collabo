@@ -17,4 +17,13 @@
         android:icon="@drawable/ic_save_white_24px"
         app:showAsAction="ifRoom" />
 
+
+    <item
+        android:id="@+id/add_bullet"
+        android:orderInCategory="90"
+        android:title="save"
+        android:icon="@drawable/ic_bullets_new"
+        app:showAsAction="ifRoom" />
+
+
 </menu>

@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -58,6 +59,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class GoalsFragment extends Fragment {
 
     private ListView goalsList;
+    private ImageView restingDude;
+    private TextView noGoalsText;
     private FirebaseDatabase firebaseDatabase;
     public static DatabaseReference goalsDbRef;
     private View goalsPageView;
@@ -105,6 +108,8 @@ public class GoalsFragment extends Fragment {
         MainFrontPage.toolbar.setTitle("Weekly Goals");
         addGoal = (FloatingActionButton) goalsPageView.findViewById(R.id.addGoal);
         resetGoals = (FloatingActionButton) goalsPageView.findViewById(R.id.resetGoal);
+        restingDude = (ImageView) goalsPageView.findViewById(R.id.resting_dude);
+        noGoalsText = (TextView) goalsPageView.findViewById(R.id.no_goals_text);
 
         progressBar = (LinearLayout) goalsPageView.findViewById(R.id.progress_inner_bar);
 
@@ -180,6 +185,8 @@ public class GoalsFragment extends Fragment {
 
                             if(task.isSuccessful()) {
                                 Toasty.success(getApplicationContext(), "Goal set!", Toast.LENGTH_SHORT).show();
+                                restingDude.setVisibility(View.INVISIBLE);
+                                noGoalsText.setVisibility(View.INVISIBLE);
                             } else {
                                 Toasty.error(getApplicationContext(), "Failed to set Goal, please try again", Toast.LENGTH_SHORT).show();
                             }
@@ -257,6 +264,11 @@ public class GoalsFragment extends Fragment {
 
                 loadingBar.updateCompletionBar(completedGoals, uncompletedGoals, initialBarlength, progressBar, percentage);
                 congratulateIfCompleted();
+
+                if(list.size() == 0) {
+                    restingDude.setVisibility(View.VISIBLE);
+                    noGoalsText.setVisibility(View.VISIBLE);
+                }
             }
 
             private void congratulateIfCompleted() {

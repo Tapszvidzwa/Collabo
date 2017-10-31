@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -73,6 +74,7 @@ public class HomePageFragment extends Fragment {
     private DatabaseReference mDatabaseRef, mFolderContentsDBRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
+    public static ImageView inbxNotification;
     private Toolbar mToolBar, mToolBarTwo;
     private ProgressDialog mProgress;
     private StorageReference storageReference;
@@ -256,6 +258,7 @@ View homePageView;
         adapter = new ClassesAdapter(getApplicationContext(), R.layout.privates_folders_item_lst, list);
         foldersListView.setAdapter(adapter);
         registerForContextMenu(foldersListView);
+        inbxNotification = (ImageView) homePageView.findViewById(R.id.inbx_notification);
 
     }
 

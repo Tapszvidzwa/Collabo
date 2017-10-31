@@ -77,6 +77,7 @@ public class AssignmentsFragment extends Fragment  {
 
         assignmentsView = inflater.inflate(R.layout.assignments_fragment, container, false);
         initialize();
+        populateScreen();
         return assignmentsView;
 
     }
