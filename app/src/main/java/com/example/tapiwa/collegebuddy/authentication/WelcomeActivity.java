@@ -15,6 +15,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashSet;
+
 import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
 
 
@@ -88,6 +90,8 @@ public class WelcomeActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
 }
 
 
