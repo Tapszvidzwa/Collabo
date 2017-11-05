@@ -32,6 +32,7 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
         import com.example.tapiwa.collegebuddy.Main.UserSessions;
         import com.example.tapiwa.collegebuddy.R;
+        import com.example.tapiwa.collegebuddy.classContents.DOCS.DocsFragment;
         import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
@@ -228,15 +229,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 if (position == 2) {
                     //my notes fragment
-                    actionButton.setImageResource(R.drawable.ic_add_white_24px);
-                    actionButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            AssignmentsFragment.getTitleOfAssignment(ClassContentsMainActivity.this);
-                         //   AssignmentsFragment.getDate(AssignmentsFragment.fragmentManager);
-                        }
-                    });
-                    actionButton.show();
+                    actionButton.hide();
                     pageNumber = 2;
                 }
 
@@ -409,6 +402,13 @@ public class ClassContentsMainActivity extends AppCompatActivity {
           ImagesFragment.searchImage(title);
          return;
         }
+
+        //if current focus is on the images fragment
+        if(pageNumber == 2) {
+            //search image in firebase
+           DocsFragment.searchDocument(title);
+            return;
+        }
     }
 
     @Override
@@ -420,7 +420,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         MenuItem searchItem = menu.findItem(R.id.class_contents_search);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -454,11 +454,15 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
 
         //// TODO: 8/1/17 Change these settings to custom settings
-      /*  if (id == R.id.class_contents_search) {
-        } */
+     //   if (id == R.id.class_contents_search) {
+      //  }
 
-        if (id == R.id.class_contents_info) {
-            showInfomation(pageNumber);
+        if (id == R.id.revision_cards) {
+            openStackCardsNotes();
+        }
+
+        if (id == R.id.revision_images) {
+          openImagesStackCards();
         }
 
         return super.onOptionsItemSelected(item);
@@ -576,9 +580,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                     NotesFragment notesFragment = new NotesFragment();
                     return notesFragment;
                 case 2:
-                    AssignmentsFragment assignmentsFragment = new AssignmentsFragment();
-                    return assignmentsFragment;
-
+                    DocsFragment docsFragment = new DocsFragment();
+                    return docsFragment;
 
                 default:
                     return null;
@@ -597,9 +600,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                 case 0:
                     return "IMAGES";
                 case 1:
-                    return "CARDS";
+                    return "NOTES";
                 case 2:
-                    return "DEADLINES";
+                    return "DOCS";
             }
             return null;
         }

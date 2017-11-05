@@ -7,19 +7,26 @@
     <item
         android:id="@+id/send_image_pdf"
         android:orderInCategory="80"
-        android:title="Send Pdf"
+        android:title="Create PDF and Share"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/save_pdf"
+        android:orderInCategory="90"
+        android:title="Create PDF and Save in Docs"
         app:showAsAction="never" />
     <item
 
         android:id="@+id/images_rename"
-        android:orderInCategory="90"
-        android:title="Rename"
+        android:orderInCategory="60"
+        android:title="Rename Image"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/images_delete"
         android:orderInCategory="100"
-        android:title="Delete"
+        android:title="Delete Image"
         app:showAsAction="never" />
 
 

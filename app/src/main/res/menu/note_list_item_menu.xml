@@ -5,27 +5,35 @@
     <item
         android:id="@+id/change_card_color"
         android:orderInCategory="90"
-        android:title="Change color"
+        android:title="Change Card color"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/delete_note"
-        android:orderInCategory="100"
-        android:title="Delete"
+        android:orderInCategory="130"
+        android:title="Delete Card"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/print_note_item"
         android:orderInCategory="100"
-        android:title="Send Pdf to Email"
+        android:title="Create PDF and Share"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/send_inbox"
+        android:id="@+id/create_note_pdf"
         android:orderInCategory="110"
-        android:title="Send"
+        android:title="Create PDF and Save in Docs"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:id="@+id/send_inbox"
+        android:orderInCategory="120"
+        android:title="Share Card in Collabo"
         app:showAsAction="always"
         />
 

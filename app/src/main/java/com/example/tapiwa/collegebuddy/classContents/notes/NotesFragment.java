@@ -178,11 +178,26 @@ public class NotesFragment extends Fragment  {
             case R.id.send_inbox:
                 selectUserToSend();
                 break;
+            case R.id.create_note_pdf:
+                createNotePdf(info.position);
             default:
                 return super.onContextItemSelected(item);
         }
 
         return true;
+    }
+
+    private void createNotePdf(int pos) {
+        Toasty.info(getContext(), "Creating pdf...", Toast.LENGTH_LONG).show();
+        String title = notesList.get(pos);
+        String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, title);
+        try {
+            GenericServices.saveNotePdf(title, content, getActivity());
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteNote(int position) {

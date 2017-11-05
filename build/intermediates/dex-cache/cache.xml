@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1bd70d249324147236e2d47e8a037bdaa0ae06ee">
+        sha1="83a3781049152fc2132a00fd0d67d2b6ffc5396b">
         <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextg/5.5.10/247811bfc4d8f4e99c909236eadf4dfc6dfa1615/itextg-5.5.10.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="247811bfc4d8f4e99c909236eadf4dfc6dfa1615">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/release/folders/1000/10/itextg-5.5.10_af276a0b8abb22027631dc95c7d3eff8f4a61603/classes.dex" />
     </item>
     <item
         is-multidex="true"

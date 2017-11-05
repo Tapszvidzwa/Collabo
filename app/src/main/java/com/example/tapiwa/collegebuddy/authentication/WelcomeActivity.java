@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashSet;
 
 import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
+import static com.example.tapiwa.collegebuddy.miscellaneous.GenericServices.context;
 
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -38,9 +39,12 @@ public class WelcomeActivity extends AppCompatActivity {
         mFBAnalytics = FirebaseAnalytics.getInstance(this);
         mAuth = FirebaseAuth.getInstance();
 
+
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
@@ -90,6 +94,8 @@ public class WelcomeActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
 
 
 }

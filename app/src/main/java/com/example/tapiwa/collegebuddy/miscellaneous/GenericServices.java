@@ -22,8 +22,13 @@ import com.example.tapiwa.collegebuddy.Main.ChooseClass;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
 import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
 import com.example.tapiwa.collegebuddy.authentication.WelcomeActivity;
+import com.example.tapiwa.collegebuddy.classContents.DOCS.DOC;
+import com.example.tapiwa.collegebuddy.classContents.DOCS.DocsFragment;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -238,6 +244,95 @@ public class GenericServices {
 
     }
 
+
+    public static void saveNotePdf (final String title, String content, final Activity context) throws IOException, DocumentException {
+
+        //Code snippet taken from
+//https://www.codeproject.com/Articles/986574/Android-iText-Pdf-Example
+
+        //Create time stamp
+        File myFile = createNewPDFFile(context, title);
+
+        if(!myFile.exists()) {
+            myFile.createNewFile();
+        }
+
+        OutputStream output = new FileOutputStream(myFile);
+
+        //Step 1
+        Document document = new Document();
+
+        //Step 2
+        PdfWriter.getInstance(document, output);
+
+        //Step 3
+        document.open();
+
+        //Step 4 Add content
+
+        Font f = new Font(Font.FontFamily.HELVETICA,30.0f,Font.BOLD, BaseColor.BLUE);
+        Font f2 = new Font(Font.FontFamily.HELVETICA,20.0f,Font.BOLD, BaseColor.BLACK);
+
+        Paragraph collaboHeading = new Paragraph("Collabo Notes", f);
+        collaboHeading.setAlignment(Element.ALIGN_CENTER);
+        collaboHeading.setSpacingAfter(5f);
+
+        Paragraph heading = new Paragraph(title, f2);
+        heading.setAlignment(Element.ALIGN_LEFT);
+        heading.setSpacingAfter(3f);
+
+        document.add(collaboHeading);
+        document.add(heading);
+        document.add(new Paragraph(content));
+
+        //Step 5: Close the document
+        document.close();
+
+        // Creating image from a URL
+
+
+        final Uri contentUri = FileProvider.getUriForFile(context, "com.example.android.fileprovider", myFile);
+
+        StorageReference noteStorage = FirebaseStorage
+                            .getInstance()
+                            .getReference(DocsFragment.DOCS_STORAGE_REF).child(MainFrontPage.user)
+                            .child(ClassContentsMainActivity.projectKey)
+                            .child(contentUri.getLastPathSegment());
+
+
+                    final DatabaseReference noteDatabaseRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference(DocsFragment.DOCS_DATABASE_REF);
+
+
+
+                    noteStorage.putFile(contentUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                            String uploadKey = noteDatabaseRef.push().getKey();
+
+                            @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
+                                    .getDownloadUrl().toString();
+
+                            DOC doc1 = new DOC(title, GenericServices.date(), "pdf", downloadUri, uploadKey);
+
+                            noteDatabaseRef.child(MainFrontPage.user).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toasty.success(context, "Saved to Docs", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                        }
+                    });
+
+                    AppUsageAnalytics.incrementPageVisitCount("Note_PDF_Saved");
+
+    }
+
+
     public static File createNewPDFFile(Context context, String name) throws IOException {
         // Create an image file name
         String imageFileName = name + "_PDF" + "_";
@@ -337,5 +432,100 @@ public class GenericServices {
     }
 
 
+    public static void saveImagePdf(final Context context, String url, final String imageName) throws IOException, DocumentException {
+
+        final File myFile = createNewPDFFile(context, "Collabo Image");
+
+        if(!myFile.exists()) {
+            myFile.createNewFile();
+        }
+
+        OutputStream output = new FileOutputStream(myFile);
+
+        //Step 1
+        final Document doc = new Document();
+
+        //Step 2
+        PdfWriter.getInstance(doc, output);
+
+        //Step 3
+        doc.open();
+
+
+        doc.open();
+
+        // Creating image from a URL
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+//
+        StorageReference httpsReference = storage.getReferenceFromUrl(url);
+
+        httpsReference.getFile(myFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                Image image = null;
+                try {
+                    image = Image.getInstance(myFile.getAbsolutePath());
+                } catch (BadElementException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                image.scaleToFit(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+
+                try {
+                    doc.add(image);
+                    doc.close();
+
+                    final Uri contentUri = FileProvider.getUriForFile(context, "com.example.android.fileprovider", myFile);
+
+                   StorageReference pdfStorage = FirebaseStorage
+                           .getInstance()
+                           .getReference(DocsFragment.DOCS_STORAGE_REF);
+
+                    final DatabaseReference pdfDatabaseRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference(DocsFragment.DOCS_DATABASE_REF);
+
+                    pdfStorage.child(MainFrontPage.user).putFile(contentUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                            String uploadKey = pdfDatabaseRef.push().getKey();
+
+                            @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
+                                    .getDownloadUrl().toString();
+
+                            DOC doc1 = new DOC(imageName, GenericServices.date(), "pdf", downloadUri, uploadKey);
+
+                            pdfDatabaseRef.child(MainFrontPage.user).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toasty.success(context, "Saved to Docs", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                        }
+                    });
+
+
+                    AppUsageAnalytics.incrementPageVisitCount("PDF_Saved");
+
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toasty.error(context, "Failed to save PDF, please try again", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+    }
 
 }

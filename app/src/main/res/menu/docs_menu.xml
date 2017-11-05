@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/delete_pdf"
+        android:orderInCategory="80"
+        android:title="Delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/share_doc_pdf"
+        android:orderInCategory="70"
+        android:title="Share PDF"
+        app:showAsAction="never" />
+
+</menu>
