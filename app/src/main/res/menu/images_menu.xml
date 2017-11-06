@@ -4,12 +4,19 @@
 
 
 
+
+
     <item
         android:id="@+id/send_image_pdf"
         android:orderInCategory="80"
         android:title="Create PDF and Share"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/share_image_in_collabo"
+        android:orderInCategory="80"
+        android:title="Share image in Collabo"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/save_pdf"

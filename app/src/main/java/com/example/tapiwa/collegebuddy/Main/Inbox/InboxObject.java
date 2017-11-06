@@ -10,6 +10,11 @@ public class InboxObject {
     private String title;
     private String content;
     private String note_color;
+    private String type;
+    private String url;
+
+
+    private String pushKey;
 
     public String getNote_color() {
         return note_color;
@@ -27,16 +32,38 @@ public class InboxObject {
         return content;
     }
 
-    public InboxObject(String senderName, String title, String content, String noteColor) {
+    public InboxObject(String senderName, String title, String content, String noteColor, String type, String pushKey) {
         this.senderName = senderName;
         this.title = title;
         this.content = content;
         this.note_color = noteColor;
+        this.type = type;
+        this.pushKey = pushKey;
+    }
+
+    public InboxObject(String senderName, String title, String type, String url, String pushKey) {
+        this.senderName = senderName;
+        this.title = title;
+        this.type = type;
+        this.url = url;
+        this.pushKey = pushKey;
     }
 
     public InboxObject() {
     }
 
+
+    public String getType() {
+        return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getPushKey() {
+        return pushKey;
+    }
 
 
 }

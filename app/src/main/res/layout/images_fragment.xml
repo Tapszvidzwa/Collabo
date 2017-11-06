@@ -7,13 +7,6 @@
     android:layout_height="match_parent">
 
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"
-        android:id="@+id/create_pdf_progress_bar"/>
-
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,5 +22,25 @@
         android:layout_alignParentStart="true"
        >
     </GridView>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:id="@+id/no_images"
+        android:layout_height="150dp"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_picture"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id = "@+id/no_image_text"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:text="You don't have any images saved yet"
+        android:layout_below="@id/no_images"/>
+
+
 
 </RelativeLayout>

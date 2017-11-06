@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +31,7 @@ import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
 import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
+import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
 import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
@@ -106,7 +108,7 @@ public class MainFrontPage extends AppCompatActivity
         //add the bottom nav bar icons
         BottomBarItem homeIcon = new BottomBarItem(R.drawable.ic_home_black_24px);
         BottomBarItem inboxIcon = new BottomBarItem(R.drawable.ic_inbox_black_24px);
-        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_collabocam__7_);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
         BottomBarItem goalsIcon = new BottomBarItem(R.drawable.ic_list);
         BottomBarItem dictionaryIcon = new BottomBarItem(R.drawable.ic_big_dictionary);
 
@@ -337,6 +339,7 @@ public class MainFrontPage extends AppCompatActivity
 
     }
 
+
     private void openInbox() {
             android.app.Fragment fragment = new InboxFragment();
             getFragmentManager().beginTransaction()
@@ -375,10 +378,6 @@ public class MainFrontPage extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.vocabulary) {
-          openDictionary();
-        }
-
         if (id == R.id.inbox) {
             openInboxFragment();
         }
@@ -389,12 +388,6 @@ public class MainFrontPage extends AppCompatActivity
            openHome();
         }
 
-        if(id == R.id.calculator) {
-            android.app.Fragment fragment = new Calculator();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_place_holder, fragment)
-                    .commit();
-        }
 
         if(id == R.id.profile) {
             android.app.Fragment fragment = new UserProfileFragment();

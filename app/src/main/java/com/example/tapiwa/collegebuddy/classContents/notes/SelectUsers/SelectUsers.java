@@ -20,7 +20,11 @@ import com.example.tapiwa.collegebuddy.Main.NewClass;
 import com.example.tapiwa.collegebuddy.Notifications.SendNotification;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.authentication.NewUser;
+import com.example.tapiwa.collegebuddy.classContents.DOCS.DOC;
+import com.example.tapiwa.collegebuddy.classContents.DOCS.DocsFragment;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
+import com.example.tapiwa.collegebuddy.classContents.images.NewImage;
 import com.example.tapiwa.collegebuddy.classContents.notes.NotesSQLiteDBHelper;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.google.firebase.database.DataSnapshot;
@@ -52,13 +56,20 @@ public class SelectUsers extends AppCompatActivity {
     private SearchView username;
     private ArrayList<NewUser> users;
     private SelectUsersAdapter adapter;
+    public static final String NOTE_TYPE = "note";
     public static String currentUserName;
+    private String Url, callingIntent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_user);
+
+
+        callingIntent = getIntent().getStringExtra("callingIntent");
+        Url = getIntent().getStringExtra("Url");
+
         initializeViews();
         initializeFirebase();
         setOnCLickListeners();
@@ -172,16 +183,32 @@ public class SelectUsers extends AppCompatActivity {
 
                 String pushKey = sendToInbxRef.push().getKey();
 
-                //get note
-                String noteTitle = notesList.get(selectedNote);
-                NotesSQLiteDBHelper dbHelper = new NotesSQLiteDBHelper(getApplicationContext());
 
-                String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, noteTitle);
-                String note_color = dbHelper.getNoteColor(ClassContentsMainActivity.className, noteTitle);
+                if(callingIntent.equals("notesFragment")) {
+                    //get note
+                    String noteTitle = notesList.get(selectedNote);
+                    NotesSQLiteDBHelper dbHelper = new NotesSQLiteDBHelper(getApplicationContext());
 
-                sendToInbxRef.child(pushKey)
-                        .setValue(new InboxObject(currentUserName, noteTitle, content, note_color));
+                    String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, noteTitle);
+                    String note_color = dbHelper.getNoteColor(ClassContentsMainActivity.className, noteTitle);
 
+                    sendToInbxRef.child(pushKey)
+                            .setValue(new InboxObject(currentUserName, noteTitle, content, note_color, NOTE_TYPE, pushKey));
+                }
+                else if(callingIntent.equals("imagesFragment")) {
+
+                    NewImage img = ImagesFragment.list.get(ImagesFragment.selectedImage);
+                    InboxObject imageObject = new InboxObject(currentUserName, img.getTag(), "image", img.getFull_image_uri(), pushKey);
+
+                    sendToInbxRef.child(pushKey).setValue(imageObject);
+                } else if(callingIntent.equals("DocsFragment")) {
+
+                    DOC doc = DocsFragment.list.get(DocsFragment.selectedDocument);
+                    InboxObject docObject = new InboxObject(currentUserName, doc.getDoc_name(), "pdf", doc.getDoc_uri(), pushKey);
+
+                    sendToInbxRef.child(pushKey).setValue(docObject);
+
+                }
 
                 SendNotification sendNotification = new SendNotification(usrUid, currentUserName);
                 sendNotification.executeSendNotification();

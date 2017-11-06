@@ -20,17 +20,6 @@
             android:title="New Features" />
 
         <item
-            android:id="@+id/goals_list"
-            android:icon="@drawable/ic_list"
-            android:title="Goals" />
-
-        <item
-            android:id="@+id/vocabulary"
-            android:icon="@drawable/ic_if_icon_30_book_315151"
-            android:title="Vocabulary" />
-
-
-        <item
             android:id="@+id/calculator"
             android:title="Calculator"
             android:icon="@drawable/ic_if_131_calculator_183255"
@@ -41,6 +30,10 @@
             android:title="Profile"
             android:icon="@drawable/ic_man_user"
             />
+
+
+
+
     </group>
 
 </menu>

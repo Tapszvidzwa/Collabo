@@ -33,6 +33,7 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.example.tapiwa.collegebuddy.Main.UserSessions;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.DOCS.DocsFragment;
+        import com.example.tapiwa.collegebuddy.classContents.assignments.Assignment;
         import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
@@ -42,6 +43,7 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.example.tapiwa.collegebuddy.classContents.stackImages.StackCardsImages;
         import com.example.tapiwa.collegebuddy.classContents.notes.NewNote;
         import com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment;
+        import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
         import com.facebook.FacebookSdk;
         import com.facebook.appevents.AppEventsLogger;
         import com.google.firebase.auth.FirebaseAuth;
@@ -94,6 +96,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     public static String PRIVATE_IMAGES_THUMBNAILS = "Private_Images_Thumbnails";
     public static final String PRIVATE_FOLDER_CONTENTS_IMAGE_STORAGE_PATH = "Private_Folders_Photos";
     private final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1002;
+    private final int SELECT_FILE_FROM_SYSTEM = 1236;
 
 
 
@@ -159,13 +162,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         //bottom navigation
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.class_contents_bottom_bar);
-        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_collabocam__7_);
-        BottomBarItem cardsIcon = new BottomBarItem(R.drawable.ic_stack_of_inclined_presentation_cards);
-        BottomBarItem imagesIcon = new BottomBarItem(R.drawable.ic_image_cards);
-
-        bottomNavigationBar.addTab(imagesIcon);
+        BottomBarItem cameraIcon = new BottomBarItem(R.drawable.ic_photo_cameraa);
         bottomNavigationBar.addTab(cameraIcon);
-        bottomNavigationBar.addTab(cardsIcon);
+
 
 
         //tablayout
@@ -229,8 +228,30 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 if (position == 2) {
                     //my notes fragment
-                    actionButton.hide();
+                    actionButton.setImageResource(R.drawable.ic_add_white_24px);
+                    actionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                         chooseFileToUpload();
+                        }
+                    });
+
+                    actionButton.show();
                     pageNumber = 2;
+                }
+
+                if (position == 3) {
+                    //my notes fragment
+                    actionButton.setImageResource(R.drawable.ic_add_white_24px);
+                    actionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AssignmentsFragment.getTitleOfAssignment(ClassContentsMainActivity.this);
+                        }
+                    });
+
+                    actionButton.show();
+                    pageNumber = 3;
                 }
 
                 switch (position) {
@@ -241,6 +262,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                         AppUsageAnalytics.incrementPageVisitCount("Notes_Fragment");
                         break;
                     case 2:
+                        AppUsageAnalytics.incrementPageVisitCount("Docs_Fragment");
+                        break;
+                    case 3:
                         AppUsageAnalytics.incrementPageVisitCount("DeadLines_Fragment");
                         break;
                 }
@@ -260,13 +284,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        openImagesStackCards();
-                        break;
-                    case 1:
                         CameraGalleryUpload.takePicture(ClassContentsMainActivity.this, "ClassContentsMainActivity");
-                        break;
-                    case 2:
-                       openStackCardsNotes();
                         break;
                 }
 
@@ -280,13 +298,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        openImagesStackCards();
-                        break;
-                    case 1:
                         CameraGalleryUpload.takePicture(ClassContentsMainActivity.this, "ClassContentsMainActivity");
-                        break;
-                    case 2:
-                        openStackCardsNotes();
                         break;
                 }
 
@@ -296,6 +308,23 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
 
     }
+
+    private void chooseFileToUpload() {
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        try {
+            startActivityForResult(
+                    Intent.createChooser(intent, "Select a File to Upload"),
+                    SELECT_FILE_FROM_SYSTEM);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "Please install a File Manager.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 
@@ -361,6 +390,10 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
             uploadImages.attemptImageUpload(photoFile,resultfileUri,getApplicationContext());
             return;
+        }
+
+        if(requestCode == SELECT_FILE_FROM_SYSTEM) {
+            GenericServices.uploadFiletoFireBase(data.getData(),ClassContentsMainActivity.projectKey, getApplicationContext());
         }
 
 
@@ -582,6 +615,9 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                 case 2:
                     DocsFragment docsFragment = new DocsFragment();
                     return docsFragment;
+                case 3:
+                    AssignmentsFragment assignmentsFragment= new AssignmentsFragment();
+                    return assignmentsFragment;
 
                 default:
                     return null;
@@ -591,7 +627,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -603,6 +639,8 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                     return "NOTES";
                 case 2:
                     return "DOCS";
+                case 3:
+                    return "DEADLINES";
             }
             return null;
         }

@@ -40,9 +40,10 @@
             <TextView
                 android:id="@+id/note_last_updated_time"
                 android:layout_width="wrap_content"
+                android:paddingRight="10dp"
                 android:layout_height="wrap_content"
                 android:text="last updated"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@android:color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:textStyle="italic"/>

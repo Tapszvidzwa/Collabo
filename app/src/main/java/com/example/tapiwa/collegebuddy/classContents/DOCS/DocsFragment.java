@@ -3,6 +3,8 @@ package com.example.tapiwa.collegebuddy.classContents.DOCS;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +28,7 @@ import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.classContents.images.ImagesAdapter;
 import com.example.tapiwa.collegebuddy.classContents.images.NewImage;
+import com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers.SelectUsers;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +48,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -62,6 +66,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
     public static ListView docsListView;
     private View docsView;
     private ImageView noDocsImg;
+    public static int selectedDocument;
     private TextView noDocsTxtV;
 
 
@@ -102,7 +107,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                 StorageReference httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(doc.getDoc_uri());
 
                     try {
-                        final File myFile = GenericServices.createNewPDFFile(getContext(), "Collabo PDF");
+                        final File myFile = GenericServices.createNewPDFFile(getContext(), doc.getDoc_name());
 
                         if (!myFile.exists()) {
                             myFile.createNewFile();
@@ -115,7 +120,20 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                                 Uri path = FileProvider.getUriForFile(getContext(), "com.example.android.fileprovider", myFile);
                                 Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
                                 pdfIntent.setDataAndType(path, "application/pdf");
-                                pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);startActivity(pdfIntent);
+                                pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                // Verify it resolves
+                                PackageManager packageManager = getApplicationContext().getPackageManager();
+                                List<ResolveInfo> activities = packageManager.queryIntentActivities(pdfIntent, 0);
+                                boolean isIntentSafe = activities.size() > 0;
+
+                                if (isIntentSafe) {
+                                    startActivity(Intent.createChooser(pdfIntent, "Open pdf file"));
+                                    Toasty.info(getApplicationContext(), "Some pdf readers will not work", Toast.LENGTH_SHORT).show();
+                                } else {
+                                Toasty.error(getApplicationContext(), "No pdf reader installed", Toast.LENGTH_SHORT).show();
+                                }
+
 
                             }
                         });
@@ -124,7 +142,6 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                     } catch (IOException e) {
 
                     }
-
             }
         });
 
@@ -213,7 +230,9 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                 .getInstance()
                 .getReference(DOCS_STORAGE_REF);
 
-        pdfDatabaseReference.child(MainFrontPage.user).addValueEventListener(new ValueEventListener() {
+        pdfDatabaseReference.child(MainFrontPage.user)
+                .child(ClassContentsMainActivity.projectKey)
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -230,6 +249,9 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                 if(list.size() == 0) {
                    noDocsImg.setVisibility(View.VISIBLE);
                     noDocsTxtV.setVisibility(View.VISIBLE);
+                } else {
+                    noDocsImg.setVisibility(View.INVISIBLE);
+                    noDocsTxtV.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -238,8 +260,16 @@ public class DocsFragment extends android.support.v4.app.Fragment {
 
             }
         });
+    }
 
+    private void shareInCollabo(int pos) {
 
+        DOC doc = list.get(pos);
+        String Url = doc.getDoc_uri();
+        Intent selectUser = new Intent(getActivity(), SelectUsers.class);
+        selectUser.putExtra("callingIntent", "DocsFragment");
+        selectUser.putExtra("Url", Url);
+        startActivity(selectUser);
     }
 
 
@@ -249,6 +279,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
         final String storageUrl = doc.getDoc_uri();
 
         pdfDatabaseReference.child(MainFrontPage.user)
+                .child(MainFrontPage.user)
                 .child(doc.getDoc_key())
                 .removeValue()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -282,13 +313,21 @@ public class DocsFragment extends android.support.v4.app.Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
+
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+       selectedDocument = info.position;
+
         switch (item.getItemId()) {
             case R.id.delete_pdf:
                 deletePdf(info.position);
                 return true;
             case R.id.share_doc_pdf:
                 sharePdf(info.position);
+                return true;
+            case R.id.share_doc_in_collabo:
+                shareInCollabo(info.position);
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }

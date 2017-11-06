@@ -3,10 +3,12 @@ package com.example.tapiwa.collegebuddy.miscellaneous;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.support.v4.content.FileProvider;
@@ -245,7 +247,7 @@ public class GenericServices {
     }
 
 
-    public static void saveNotePdf (final String title, String content, final Activity context) throws IOException, DocumentException {
+    public static void saveNotePdf (final String title, String content, final Activity context, final String projectKey) throws IOException, DocumentException {
 
         //Code snippet taken from
 //https://www.codeproject.com/Articles/986574/Android-iText-Pdf-Example
@@ -317,7 +319,7 @@ public class GenericServices {
 
                             DOC doc1 = new DOC(title, GenericServices.date(), "pdf", downloadUri, uploadKey);
 
-                            noteDatabaseRef.child(MainFrontPage.user).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            noteDatabaseRef.child(MainFrontPage.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toasty.success(context, "Saved to Docs", Toast.LENGTH_SHORT).show();
@@ -337,6 +339,19 @@ public class GenericServices {
         // Create an image file name
         String imageFileName = name + "_PDF" + "_";
         File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File pdfFile = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".pdf",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        return pdfFile;
+    }
+
+    public static File createNewPDFFileOpening(Context context, String name) throws IOException {
+        // Create an image file name
+        String imageFileName = name + "_PDF" + "_";
+        File storageDir = Environment.getExternalStorageDirectory();
         File pdfFile = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".pdf",         /* suffix */
@@ -432,9 +447,9 @@ public class GenericServices {
     }
 
 
-    public static void saveImagePdf(final Context context, String url, final String imageName) throws IOException, DocumentException {
+    public static void saveImagePdf(final Context context, String url, final String imageName, final String projectKey) throws IOException, DocumentException {
 
-        final File myFile = createNewPDFFile(context, "Collabo Image");
+        final File myFile = createNewPDFFile(context, imageName);
 
         if(!myFile.exists()) {
             myFile.createNewFile();
@@ -498,7 +513,7 @@ public class GenericServices {
 
                             DOC doc1 = new DOC(imageName, GenericServices.date(), "pdf", downloadUri, uploadKey);
 
-                            pdfDatabaseRef.child(MainFrontPage.user).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            pdfDatabaseRef.child(MainFrontPage.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toasty.success(context, "Saved to Docs", Toast.LENGTH_SHORT).show();
@@ -526,6 +541,59 @@ public class GenericServices {
 
 
 
+    }
+
+
+    public static void uploadFiletoFireBase(Uri uri, final String projectKey, final Context context) {
+
+        Cursor returnCursor =
+                context.getContentResolver().query(uri, null, null, null, null);
+    /*
+     * Get the column indexes of the data in the Cursor,
+     * move to the first row in the Cursor, get the data,
+     * and display it.
+     */int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+
+       final String filename = returnCursor.getString(nameIndex);
+
+        StringBuilder builder = new StringBuilder();
+
+        int i = 0;
+        while(filename.charAt(i) != '.') {
+            builder.append(filename.charAt(i));
+            i++;
+        }
+
+        final  String trimmedFileName = builder.toString();
+
+                    StorageReference pdfStorage = FirebaseStorage
+                            .getInstance()
+                            .getReference(DocsFragment.DOCS_STORAGE_REF);
+
+                    final DatabaseReference pdfDatabaseRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference(DocsFragment.DOCS_DATABASE_REF);
+
+                    pdfStorage.child(MainFrontPage.user).putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                            String uploadKey = pdfDatabaseRef.push().getKey();
+
+                            @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
+                                    .getDownloadUrl().toString();
+
+                            DOC doc1 = new DOC(trimmedFileName, GenericServices.date(), "pdf", downloadUri, uploadKey);
+
+                            pdfDatabaseRef.child(MainFrontPage.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toasty.success(context, "Saved to Docs", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
     }
 
 }

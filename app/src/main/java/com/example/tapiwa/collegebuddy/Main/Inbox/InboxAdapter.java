@@ -65,7 +65,6 @@ public class InboxAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.text  = (TextView) row.findViewById(R.id.inbox_title);
-            holder.card = (CardView) row.findViewById(R.id.inbox_card_item);
             holder.sender_name = (TextView) row.findViewById(R.id.inbox_sent_by);
             holder.star = (ImageView) row.findViewById(R.id.inbox_sender_img);
 
@@ -79,63 +78,16 @@ public class InboxAdapter extends BaseAdapter {
         holder.text.setText(inboxObject.getTitle());
         holder.sender_name.setText(inboxObject.getSenderName());
 
-        String card_color = inboxObject.getNote_color();
 
-        if(card_color != null) {
-
-            if(card_color.equals("black") || card_color.equals("blue")) {
-                holder.text.setTextColor(Color.WHITE);
-            } else {
-                holder.text.setTextColor(Color.BLACK);
-            }
-
-            switch (card_color) {
-                case "blue":
-                    holder.card.setCardBackgroundColor(Color.BLUE);
-                    break;
-
-                case "white":
-                    holder.card.setCardBackgroundColor(Color.WHITE);
-                    break;
-
-                case "magenta":
-                    holder.card.setCardBackgroundColor(Color.MAGENTA);
-                    break;
-
-                case "red":
-                    holder.card.setCardBackgroundColor(Color.RED);
-                    break;
-
-                case "black":
-                    holder.card.setCardBackgroundColor(Color.BLACK);
-                    break;
-
-                case "green":
-                    holder.card.setCardBackgroundColor(Color.rgb(0,255,0));
-                    break;
-
-                case "cyan":
-                    holder.card.setCardBackgroundColor(Color.CYAN);
-                    break;
-
-                case "yellow":
-                    holder.card.setCardBackgroundColor(Color.YELLOW);
-                    break;
-
-                default:
-                    holder.card.setCardBackgroundColor(Color.YELLOW);
-
-            }
+        if(inboxObject.getType().equals("pdf")) {
+            holder.star.setImageResource(R.drawable.ic_pdf_new);
+        } else if(inboxObject.getType().equals("image")) {
+            holder.star.setImageResource(R.drawable.ic_image_file);
+        } else if(inboxObject.getType().equals("note")) {
+                holder.star.setImageResource(R.drawable.ic_sticky_note);
         } else {
-            holder.card.setCardBackgroundColor(Color.YELLOW);
-            holder.text.setTextColor(Color.BLACK);
+            holder.star.setImageResource(R.drawable.ic_file_new);
         }
-
-
-
-
-
-
 
         return row;
     }

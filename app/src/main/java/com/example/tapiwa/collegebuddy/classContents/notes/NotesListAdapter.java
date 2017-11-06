@@ -83,7 +83,7 @@ public class NotesListAdapter extends BaseAdapter {
 
         if(card_color != null) {
 
-            if(card_color.equals("black") || card_color.equals("blue")) {
+            if(card_color.equals("black")) {
                 holder.title.setTextColor(Color.WHITE);
             } else {
                 holder.title.setTextColor(Color.BLACK);
@@ -91,43 +91,43 @@ public class NotesListAdapter extends BaseAdapter {
 
             switch (card_color) {
                 case "blue":
-                    holder.notesItemCard.setCardBackgroundColor(Color.BLUE);
+                    holder.notesItemCard.setBackgroundColor(Color.rgb(52, 152, 219));
                     break;
 
                 case "white":
-                    holder.notesItemCard.setCardBackgroundColor(Color.WHITE);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(236, 240, 241));
                     break;
 
                 case "magenta":
-                    holder.notesItemCard.setCardBackgroundColor(Color.MAGENTA);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(155, 89, 182));
                     break;
 
                 case "red":
-                    holder.notesItemCard.setCardBackgroundColor(Color.RED);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(231, 76, 60));
                     break;
 
                 case "black":
-                    holder.notesItemCard.setCardBackgroundColor(Color.BLACK);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(65,74,76));
                     break;
 
                 case "green":
-                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(0,255,0));
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(144,238,144));
                     break;
 
                 case "cyan":
-                    holder.notesItemCard.setCardBackgroundColor(Color.CYAN);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(51,85,96));
                     break;
 
                 case "yellow":
-                    holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(241, 196, 15));
                     break;
 
                 default:
-                    holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+                    holder.notesItemCard.setCardBackgroundColor(Color.rgb(52,152,219));
 
             }
         } else {
-            holder.notesItemCard.setCardBackgroundColor(Color.YELLOW);
+            holder.notesItemCard.setCardBackgroundColor(Color.rgb(52,152,219));
             holder.title.setTextColor(Color.BLACK);
         }
 

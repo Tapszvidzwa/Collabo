@@ -80,7 +80,11 @@ public class DocsAdapter extends BaseAdapter {
 
          if(doc.getDoc_type().equals("pdf")) {
              holder.docIcon.setBackgroundResource(R.drawable.ic_pdf_new);
-         }
+         } else {
+             holder.docIcon.setBackgroundResource(R.drawable.ic_doc_word);
+             }
+
+
         return row;
     }
 }

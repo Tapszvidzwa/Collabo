@@ -14,4 +14,10 @@
         android:title="Share PDF"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/share_doc_in_collabo"
+        android:orderInCategory="70"
+        android:title="Share in Collabo"
+        app:showAsAction="never" />
+
 </menu>

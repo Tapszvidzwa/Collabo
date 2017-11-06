@@ -78,17 +78,9 @@ public class NotesFragment extends Fragment  {
 
                 //Pass the image title and full_image_uri to DetailsActivity
 
-
-
-
-
                 //initial activity
                 Intent intent = new Intent(getApplicationContext(), DisplayNoteActivity.class);
                 intent.putExtra("title", note);
-
-
-
-
 
 
 
@@ -139,6 +131,8 @@ public class NotesFragment extends Fragment  {
 
     public void selectUserToSend() {
         Intent openUsers = new  Intent (getActivity(), SelectUsers.class);
+        openUsers.putExtra("callingIntent", "notesFragment");
+        openUsers.putExtra("Url", "nothing");
         startActivity(openUsers);
     }
 
@@ -192,7 +186,7 @@ public class NotesFragment extends Fragment  {
         String title = notesList.get(pos);
         String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, title);
         try {
-            GenericServices.saveNotePdf(title, content, getActivity());
+            GenericServices.saveNotePdf(title, content, getActivity(), ClassContentsMainActivity.projectKey);
         } catch (java.io.IOException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
