@@ -69,27 +69,9 @@ public class DisplayInboxNoteActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.copy_note_icon) {
-            copynote();
-        }
-
-
         return super.onOptionsItemSelected(item);
     }
 
-
-    private void copynote() {
-
-        String text = displayNoteTitle.getText().toString() + "\n\n" + displayNoteContents.getText().toString();
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("copied text", text);
-        clipboard.setPrimaryClip(clip);
-
-        Toast toast = Toast.makeText(DisplayInboxNoteActivity.this, "Copied", Toast.LENGTH_SHORT);
-
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
 
     @Override
     public boolean onSupportNavigateUp() {

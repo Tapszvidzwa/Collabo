@@ -7,7 +7,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="70dp"
             android:orientation="horizontal"
             android:paddingLeft="8dp"
             android:layout_gravity="center_vertical"
@@ -15,8 +15,7 @@
 
             <TextView
                 android:id="@+id/assignment_title"
-                android:textStyle="bold"
-                android:textSize="20dp"
+                android:textSize="22dp"
                 android:textColor="@android:color/black"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
@@ -30,6 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Due date"
+                android:paddingRight="8dp"
+                android:textSize="20dp"
                 android:layout_alignBottom="@id/assignment_title"
                 android:textColor="@android:color/holo_blue_light"
                 android:layout_alignParentBottom="true"

@@ -1,6 +1,7 @@
 package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
 
 
+        import android.app.Activity;
         import android.app.ProgressDialog;
         import android.content.Intent;
         import android.content.pm.PackageManager;
@@ -29,11 +30,8 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.eightbitlab.bottomnavigationbar.BottomBarItem;
         import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
         import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-        import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-        import com.example.tapiwa.collegebuddy.Main.UserSessions;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.classContents.DOCS.DocsFragment;
-        import com.example.tapiwa.collegebuddy.classContents.assignments.Assignment;
         import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
         import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
         import com.example.tapiwa.collegebuddy.classContents.images.ImagesFragment;
@@ -48,11 +46,8 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
         import com.facebook.appevents.AppEventsLogger;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
         import com.google.firebase.database.DatabaseReference;
         import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
         import com.google.firebase.iid.FirebaseInstanceId;
         import com.google.firebase.messaging.FirebaseMessaging;
         import com.google.firebase.storage.FirebaseStorage;
@@ -67,7 +62,6 @@ package com.example.tapiwa.collegebuddy.classContents.classContentsMain;
 
         import cn.pedant.SweetAlert.SweetAlertDialog;
 
-        import static com.example.tapiwa.collegebuddy.Main.MainFrontPage.mUserSessionsDBRef;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.dbHelper;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.notesList;
         import static com.example.tapiwa.collegebuddy.classContents.notes.NotesFragment.listview;
@@ -87,10 +81,12 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     public static StorageReference mPrivateFullImageStorageRef;
     public static StorageReference privateThumbNailsStorageRef;
     public static DatabaseReference mPrivateFullImageDatabaseRef;
+    public static DatabaseReference mFolderPropertiesDBRef;
 
     private Menu mMenu;
     private SearchView searchView;
     private FirebaseStorage mStorage;
+    public static Activity activity;
 
     public static final String PRIVATE_FOLDERS_CONTENTS = "Private_Folders_Contents";
     public static String PRIVATE_IMAGES_THUMBNAILS = "Private_Images_Thumbnails";
@@ -123,6 +119,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
         className = getIntent().getStringExtra("projectName");
         projectKey = getIntent().getStringExtra("projectKey");
+        activity = this;
 
         AppUsageAnalytics.incrementPageVisitCount("Images_Fragment");
 
@@ -366,6 +363,10 @@ public class ClassContentsMainActivity extends AppCompatActivity {
                 .getInstance()
                 .getReference()
                 .child(PRIVATE_IMAGES_THUMBNAILS)
+                .child(user)
+                .child(projectKey);
+
+        mFolderPropertiesDBRef = FirebaseDatabase.getInstance().getReference(PRIVATE_FOLDERS_CONTENTS)
                 .child(user)
                 .child(projectKey);
 

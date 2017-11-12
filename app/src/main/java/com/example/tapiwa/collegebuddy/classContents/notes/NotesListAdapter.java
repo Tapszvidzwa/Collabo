@@ -96,6 +96,7 @@ public class NotesListAdapter extends BaseAdapter {
 
                 case "white":
                     holder.notesItemCard.setCardBackgroundColor(Color.rgb(236, 240, 241));
+                    holder.last_time_updated.setTextColor(Color.BLACK);
                     break;
 
                 case "magenta":

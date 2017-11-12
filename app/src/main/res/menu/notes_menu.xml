@@ -26,14 +26,6 @@
         android:icon="@drawable/ic_save_white_24px"
         app:showAsAction="always" />
 
-
-    <item
-        android:id="@+id/copy_note_icon"
-        android:orderInCategory="90"
-        android:title="copy"
-        android:icon="@drawable/ic_content_copy_white_24px"
-        app:showAsAction="always" />
-
     <item
         android:id="@+id/send_note_icon"
         android:orderInCategory="110"

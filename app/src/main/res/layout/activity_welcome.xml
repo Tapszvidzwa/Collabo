@@ -27,6 +27,6 @@
         android:layout_alignBottom="@+id/aviWelcome"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="82dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/collabo_icon" />
 
 </RelativeLayout>

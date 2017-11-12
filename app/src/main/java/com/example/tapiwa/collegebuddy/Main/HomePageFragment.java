@@ -81,6 +81,10 @@ public class HomePageFragment extends Fragment {
     private String image_tag;
     final int REQUEST_IMAGE_CAPTURE = 1;
     public final static String USER_PRIVATE_LIST_OF_GROUPS = "List_Of_Private_User_Folders";
+    public final static String NUMBER_OF_IMAGES = "Number_Of_Images_In_Folder";
+    public final static String NUMBER_OF_DOCUMENTS = "Number_Of_Documents_In_Folder";
+    public final static String NUMBER_OF_NOTES = "Number_Of_Notes_In_Folder";
+    public final static String NUMBER_OF_DEADLINES = "Number_Of_Deadlines_In_Folder";
     private String user;
     private File photoFile = null;
     private String thumb_download_url = null;
@@ -332,6 +336,7 @@ View homePageView;
                 android.R.layout.select_dialog_item,
                 android.R.id.text1,
                 items){
+
             public View getView(int position, View convertView, ViewGroup parent) {
                 //Use super class to create the View
                 View v = super.getView(position, convertView, parent);

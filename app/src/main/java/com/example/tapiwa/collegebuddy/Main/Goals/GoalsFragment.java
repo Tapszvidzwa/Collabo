@@ -130,7 +130,7 @@ public class GoalsFragment extends Fragment {
         resetGoals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goalsDbRef.removeValue();
+                continueResetingGoals();
                 // loadingBar.updateCompletionBar(0, 0, outerProgressBar, percentage);
             }
         });
@@ -152,6 +152,30 @@ public class GoalsFragment extends Fragment {
                 }
             }
         });
+
+    }
+
+    public void continueResetingGoals() {
+
+        final SweetAlertDialog dg = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
+
+        dg.setTitleText("Are you sure?")
+                .setContentText("This will reset all goals")
+                .setConfirmText("Yes,reset")
+                .setCancelText("Cancel")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        goalsDbRef.removeValue();
+                        dg.dismiss();
+                    }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dg.dismiss();
+            }
+        });
+        dg.show();
 
     }
 

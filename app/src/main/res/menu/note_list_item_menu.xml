@@ -5,27 +5,27 @@
     <item
         android:id="@+id/change_card_color"
         android:orderInCategory="90"
-        android:title="Change Card color"
+        android:title="Change color"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/delete_note"
         android:orderInCategory="130"
-        android:title="Delete Card"
+        android:title="Delete"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/print_note_item"
         android:orderInCategory="100"
-        android:title="Create PDF and Share"
+        android:title="Convert to PDF"
         app:showAsAction="never"
         />
 
     <item
         android:id="@+id/create_note_pdf"
         android:orderInCategory="110"
-        android:title="Create PDF and Save in Docs"
+        android:title="Convert to PDF and Save"
         app:showAsAction="never"
         />
 
@@ -33,7 +33,7 @@
     <item
         android:id="@+id/send_inbox"
         android:orderInCategory="120"
-        android:title="Share Card in Collabo"
+        android:title="Share in Collabo"
         app:showAsAction="always"
         />
 

@@ -75,6 +75,17 @@
         android:layout_below="@+id/accessAccountBtn"
          />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:id="@+id/forgot_password"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/registrationActivityBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:clickable="true"/>
+
 
     <TextView
         android:id="@+id/textView"

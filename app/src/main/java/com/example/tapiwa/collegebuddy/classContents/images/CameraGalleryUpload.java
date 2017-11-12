@@ -162,7 +162,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
 
     public static void attemptImageUpload(File photoFile, Uri fileUri, Context context) {
 
-        Toasty.info(context, "Uploading", Toast.LENGTH_SHORT).show();
+        Toasty.info(context, "Saving", Toast.LENGTH_SHORT).show();
         uploadThumbNail(context,fileUri,photoFile);
         uploadImage(fileUri, context);
 
@@ -207,7 +207,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                Toasty.success(context, "Uploaded!", Toast.LENGTH_SHORT).show();
+                Toasty.success(context, "Saved!", Toast.LENGTH_SHORT).show();
 
                 @SuppressWarnings("VisibleForTests") String url = taskSnapshot.getDownloadUrl().toString();
 
@@ -231,7 +231,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
 
                 Toasty.error(
                         context,
-                        "Uploading" +
+                        "Saving" +
                                 "failed, please try again",
                         Toast.LENGTH_SHORT
                 ).show();

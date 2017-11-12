@@ -9,6 +9,10 @@ public class NewClass {
     public String projectName;
     public String projectKey;
     public String folderColor = "blue";
+    public int num_folders = 0;
+    public int num_docs = 0;
+    public int num_notes = 0;
+    public int num_images = 0;
 
     public NewClass() {
 
@@ -18,6 +22,22 @@ public class NewClass {
         this.projectName = projectName;
         this.projectKey = projectKey;
         this.folderColor = folderColor;
+    }
+
+    public int getNum_folders() {
+        return num_folders;
+    }
+
+    public int getNum_docs() {
+        return num_docs;
+    }
+
+    public int getNum_notes() {
+        return num_notes;
+    }
+
+    public int getNum_images() {
+        return num_images;
     }
 
     public String getFolderColor() {

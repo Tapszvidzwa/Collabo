@@ -94,7 +94,7 @@ public class ChooseClass extends AppCompatActivity {
         foldersListView = (ListView) findViewById(R.id.folders_to_choose_from_lstV);
 
         mToolBar = (Toolbar) findViewById(R.id.choose_class_toolbar);
-        mToolBar.setTitle("Select a Class");
+        mToolBar.setTitle("Select a class to put the image");
 
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

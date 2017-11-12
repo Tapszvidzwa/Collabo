@@ -58,7 +58,7 @@ public class SelectUsers extends AppCompatActivity {
     private SelectUsersAdapter adapter;
     public static final String NOTE_TYPE = "note";
     public static String currentUserName;
-    private String Url, callingIntent;
+    private String Url, callingIntent, noteTitle, noteContents;
 
 
     @Override
@@ -69,6 +69,8 @@ public class SelectUsers extends AppCompatActivity {
 
         callingIntent = getIntent().getStringExtra("callingIntent");
         Url = getIntent().getStringExtra("Url");
+        noteTitle = getIntent().getStringExtra("noteTitle");
+        noteContents = getIntent().getStringExtra("noteContents");
 
         initializeViews();
         initializeFirebase();
@@ -208,6 +210,10 @@ public class SelectUsers extends AppCompatActivity {
 
                     sendToInbxRef.child(pushKey).setValue(docObject);
 
+                } else if(callingIntent.equals("displayNoteActivity") || callingIntent.equals("newNote")) {
+
+                    sendToInbxRef.child(pushKey)
+                            .setValue(new InboxObject(currentUserName, noteTitle , noteContents, "yellow", NOTE_TYPE, pushKey));
                 }
 
                 SendNotification sendNotification = new SendNotification(usrUid, currentUserName);

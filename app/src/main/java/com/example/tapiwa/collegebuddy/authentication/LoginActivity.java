@@ -1,10 +1,13 @@
 package com.example.tapiwa.collegebuddy.authentication;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+import com.example.tapiwa.collegebuddy.Main.NewClass;
 import com.example.tapiwa.collegebuddy.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -42,18 +45,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -64,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseAuth.AuthStateListener mAuthListener;
     public static DatabaseReference mDatabaseRef, permissionsRef;
     private static final String PERMISSIONS = "User_Permissions";
+    private TextView forgotPassword;
 
     private GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 0;
@@ -138,6 +148,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         password = (EditText) findViewById(R.id.loginPassword);
         email = (EditText) findViewById(R.id.loginEmail);
+        forgotPassword = (TextView) findViewById(R.id.forgot_password);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendPasswordToEmail();
+            }
+        });
 
 
         //Get a reference to the Firebase Auth
@@ -268,6 +286,53 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void stopLoadingSpinner() {
         spinner.setVisibility(View.INVISIBLE);
     }
+
+    private void sendPasswordToEmail() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setIcon(R.drawable.ic_keyboard_black_24px);
+        builder.setTitle(("Enter your email address"));
+
+        int maxLength = 100;
+        final EditText email = new EditText(getApplicationContext());
+        email.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+        email.setInputType(InputType.TYPE_CLASS_TEXT);
+        email.setTextColor(Color.BLACK);
+        email.setVisibility(View.VISIBLE);
+        builder.setView(email);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String emailAddress = email.getText().toString() ;
+
+                auth.sendPasswordResetEmail(emailAddress)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toasty.success(getApplicationContext(), "Email Sent", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toasty.success(getApplicationContext(), "Email not found", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+
 
     public boolean checkLoginFieldsCompleted() {
         String userEmail, userPassword;

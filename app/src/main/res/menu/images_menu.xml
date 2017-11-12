@@ -9,19 +9,19 @@
     <item
         android:id="@+id/send_image_pdf"
         android:orderInCategory="80"
-        android:title="Create PDF and Share"
+        android:title="Convert to PDF"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/share_image_in_collabo"
-        android:orderInCategory="80"
-        android:title="Share image in Collabo"
+        android:orderInCategory="100"
+        android:title="Share in Collabo"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/save_pdf"
         android:orderInCategory="90"
-        android:title="Create PDF and Save in Docs"
+        android:title="Convert to PDF and Save"
         app:showAsAction="never" />
     <item
 
@@ -32,8 +32,8 @@
 
     <item
         android:id="@+id/images_delete"
-        android:orderInCategory="100"
-        android:title="Delete Image"
+        android:orderInCategory="110"
+        android:title="Delete"
         app:showAsAction="never" />
 
 

@@ -2,6 +2,7 @@ package com.example.tapiwa.collegebuddy.classContents.notes;
 
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.speech.RecognizerIntent;
@@ -23,12 +24,14 @@ import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers.SelectUsers;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
 
 
@@ -42,6 +45,7 @@ public class NewNote extends AppCompatActivity {
     private FloatingActionButton mic;
     private final int REQUEST_CODE_SPEECH_INPUT = 100;
     private final int REQUEST_MICROPHONE = 1023;
+    private boolean noteSaved = false;
 
 
     @Override
@@ -52,7 +56,7 @@ public class NewNote extends AppCompatActivity {
         noteTitle = (EditText) findViewById(R.id.noteTitle);
         mToolBar = (Toolbar) findViewById(R.id.create_new_note_toolbar);
         mic = (FloatingActionButton) findViewById(R.id.microphone);
-        mToolBar.setTitle("Create New Note");
+        mToolBar.setTitle("New Note");
         setSupportActionBar(mToolBar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -148,7 +152,7 @@ public class NewNote extends AppCompatActivity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    noteContents.append(result.get(0));
+                    noteContents.append(" " + result.get(0));
                     AppUsageAnalytics.incrementPageVisitCount("Notes_Mic");
                 }
                 break;
@@ -174,7 +178,7 @@ public class NewNote extends AppCompatActivity {
                 "yellow");
 
         Toasty.success(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-
+        noteSaved = true;
         NewNote.this.finish();
     }
 
@@ -182,6 +186,23 @@ public class NewNote extends AppCompatActivity {
         noteContents.append("\n\n" + "\u2022" + " ");
     }
 
+    private void sendNote() {
+        if(noteTitle.getText().toString().length() == 0) {
+            Toasty.error(this, "Please enter note title", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(noteContents.getText().toString().length() == 0) {
+            Toasty.error(this, "Please enter text to send", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent sendNote = new Intent(NewNote.this, SelectUsers.class);
+        sendNote.putExtra("noteTitle", noteTitle.getText().toString());
+        sendNote.putExtra("noteContents", noteContents.getText().toString());
+        sendNote.putExtra("callingIntent", "newNote");
+        startActivity(sendNote);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,6 +227,10 @@ public class NewNote extends AppCompatActivity {
             saveNote();
         }
 
+        if(id == R.id.send_note_in_create_note) {
+            sendNote();
+        }
+
         if(id == R.id.add_bullet) {
             addBullet();
         }
@@ -213,9 +238,35 @@ public class NewNote extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void continueWithoutSaving() {
+
+        final SweetAlertDialog dg = new SweetAlertDialog(NewNote.this, SweetAlertDialog.WARNING_TYPE);
+
+        dg.setTitleText("Exit without saving??")
+                .setContentText("The information in this note will be lost")
+                .setConfirmText("Exit without saving")
+                .setCancelText("Cancel")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                       onBackPressed();
+                        dg.dismiss();
+                    }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dg.dismiss();
+            }
+        });
+        dg.show();
+
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        continueWithoutSaving();
+       // onBackPressed();
         return true;
     }
 
