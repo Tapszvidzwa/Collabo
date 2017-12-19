@@ -581,7 +581,6 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-      //  searchView.onActionViewCollapsed();
 
         if(!searchView.isIconified()) {
         searchView.onActionViewCollapsed();

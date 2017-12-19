@@ -3,9 +3,6 @@
     >
 
 
-
-
-
     <item
         android:id="@+id/send_image_pdf"
         android:orderInCategory="80"
