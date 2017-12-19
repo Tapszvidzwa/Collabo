@@ -94,11 +94,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
 
 
-        Boolean flag = false;
-
-        if(!flag) {
-            int tasdf = 5;
-        }
+        //
 
 
 

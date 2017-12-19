@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -45,6 +46,8 @@ import com.google.firebase.storage.StorageReference;
 import com.itextpdf.text.DocumentException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,6 +65,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
     public static final String DOCS_DATABASE_REF = "DOCS_REF";
     public static final String DOCS_STORAGE_REF = "DOCS_STORAGE";
     public static  ArrayList<DOC> list;
+    private WebView pdfView;
     public static DocsAdapter adapter;
     public static ListView docsListView;
     private View docsView;
@@ -92,58 +96,74 @@ public class DocsFragment extends android.support.v4.app.Fragment {
 
         docsListView = (ListView) docsView.findViewById(R.id.docs_listV);
         list = new ArrayList<>();
+        pdfView = (WebView) docsListView.findViewById(R.id.docs_pdfView);
         noDocsImg = (ImageView) docsView.findViewById(R.id.no_documents_img);
         noDocsTxtV = (TextView) docsView.findViewById(R.id.no_docs_txtV);
 
         registerForContextMenu(docsListView);
     }
 
-    private void setListeners()  {
+    private void setListeners() {
 
         docsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DOC doc = list.get(position);
+
+                final DOC doc = list.get(position);
+
                 StorageReference httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(doc.getDoc_uri());
 
-                    try {
-                        final File myFile = GenericServices.createNewPDFFile(getContext(), doc.getDoc_name());
+                try {
+                    final File myFile = GenericServices.createNewPDFFile(getContext(), doc.getDoc_name());
 
-                        if (!myFile.exists()) {
-                            myFile.createNewFile();
-                        }
+                    if (!myFile.exists()) {
+                        myFile.createNewFile();
 
-                        httpsReference.getFile(myFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                        httpsReference.getFile(myFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                             @Override
-                            public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                                Uri path = FileProvider.getUriForFile(getContext(), "com.example.android.fileprovider", myFile);
-                                Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-                                pdfIntent.setDataAndType(path, "application/pdf");
-                                pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                                // Verify it resolves
-                                PackageManager packageManager = getApplicationContext().getPackageManager();
-                                List<ResolveInfo> activities = packageManager.queryIntentActivities(pdfIntent, 0);
-                                boolean isIntentSafe = activities.size() > 0;
-
-                                if (isIntentSafe) {
-                                    startActivity(Intent.createChooser(pdfIntent, "Open pdf file"));
-                                    Toasty.info(getApplicationContext(), "Some pdf readers will not work", Toast.LENGTH_SHORT).show();
-                                } else {
-                                Toasty.error(getApplicationContext(), "No pdf reader installed", Toast.LENGTH_SHORT).show();
-                                }
+//
+          //                     openFile(doc.getDoc_uri());
 
 
                             }
                         });
-
-
-                    } catch (IOException e) {
-
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         });
+    }
+
+
+    private void openFile(String url) {
+
+
+    //    pdfView.getSettings();
+    //    pdfView.loadUrl(url;
+
+   // pdfView.fromUri(path);
+
+
+ /* //  Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+/                                    pdfIntent.setDataAndType(path, "application/pdf");
+                                    pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+    // Verify it resolves
+    PackageManager packageManager = getApplicationContext().getPackageManager();
+    List<ResolveInfo> activities = packageManager.queryIntentActivities(pdfIntent, 0);
+    boolean isIntentSafe = activities.size() > 0;
+
+        if (isIntentSafe) {
+        startActivity(Intent.createChooser(pdfIntent, "Open pdf file"));
+        Toasty.info(getApplicationContext(), "Some pdf readers will not work", Toast.LENGTH_SHORT).show();
+    } else {
+        Toasty.error(getApplicationContext(), "No pdf reader installed", Toast.LENGTH_SHORT).show();
+    } */
 
     }
 

@@ -94,8 +94,6 @@ public class InboxFragment extends Fragment {
             return inboxView;
     }
 
-
-
     private void initializeViews() {
 
         MainFrontPage.toolbar.setTitle("Inbox");
@@ -205,14 +203,12 @@ public class InboxFragment extends Fragment {
 
     }
 
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.inbox_item_select_menu, menu);
     }
-
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -271,8 +267,8 @@ public class InboxFragment extends Fragment {
 
             }
         });
-
-
     }
+
+
 }
 

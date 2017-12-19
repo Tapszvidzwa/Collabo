@@ -65,8 +65,7 @@ public class MainFrontPage extends AppCompatActivity
     private String[] drawerTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-
-
+    public static String CurrentFragment;
     private Vibrator vibrate;
     public ArrayList<NewClass> list;
     public ClassesAdapter adapter;
@@ -260,6 +259,8 @@ public class MainFrontPage extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (!CurrentFragment.equals("Home")) {
+            openHome();
         } else {
             super.onBackPressed();
         }
@@ -332,6 +333,7 @@ public class MainFrontPage extends AppCompatActivity
 
     private void openDictionary() {
 
+        CurrentFragment = "Dictionary";
         android.app.Fragment fragment = new DictionaryFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
@@ -339,8 +341,9 @@ public class MainFrontPage extends AppCompatActivity
 
     }
 
-
     private void openInbox() {
+
+        CurrentFragment = "Inbox";
             android.app.Fragment fragment = new InboxFragment();
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_place_holder, fragment)
@@ -348,6 +351,8 @@ public class MainFrontPage extends AppCompatActivity
     }
 
     private void openGoals() {
+
+        CurrentFragment = "Goals";
         android.app.Fragment fragment = new GoalsFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
@@ -356,6 +361,7 @@ public class MainFrontPage extends AppCompatActivity
 
     private void openInboxFragment() {
 
+        CurrentFragment = "Inbox";
         android.app.Fragment fragment = new InboxFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
@@ -364,12 +370,12 @@ public class MainFrontPage extends AppCompatActivity
 
     private void openHome() {
 
+        CurrentFragment = "Home";
         android.app.Fragment fragment = new HomePageFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
                 .commit();
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -409,9 +415,6 @@ public class MainFrontPage extends AppCompatActivity
         return true;
 
     }
-
-
-
 
     public static class FinishRegistrationTask extends AsyncTask<Void, Void, Void> {
         @Override

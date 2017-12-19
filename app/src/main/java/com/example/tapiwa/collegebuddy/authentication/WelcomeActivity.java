@@ -28,7 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
     private FirebaseAnalytics mFBAnalytics;
     private Boolean isUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,10 +93,6 @@ public class WelcomeActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
-
-
-
 }
 
 

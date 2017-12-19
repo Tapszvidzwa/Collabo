@@ -154,7 +154,7 @@ public class AssignmentsFragment extends Fragment  {
     public static void setDefaultReminder(Date date, Activity activity) {
 
         Intent reminderIntent = new Intent(activity, NotificationReceiver.class);
-        reminderIntent.putExtra("assignmentTitle", dueDateTitle);
+        reminderIntent.putExtra("Dude " + "assignmentTitle", dueDateTitle);
         reminderIntent.putExtra("numDaysLeft", 1);
 
         PendingIntent pendingIntent = PendingIntent
@@ -184,7 +184,6 @@ public class AssignmentsFragment extends Fragment  {
                 Toasty
                         .info(getApplicationContext(), "Reminder set " + daysToRemind + " days before deadline", Toast.LENGTH_SHORT)
                         .show();
-
 
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
