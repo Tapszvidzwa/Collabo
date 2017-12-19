@@ -5,17 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.StackView;
+import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
+import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.classContents.notes.SelectUsers.SelectUsers;
+import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class StackCards extends AppCompatActivity {
@@ -26,6 +34,7 @@ public class StackCards extends AppCompatActivity {
     private StackView stackView;
     private Toolbar mToolbar;
     private ArrayList<NoteStackItem> noteCards;
+    private boolean codeMode = false;
 
 
 
@@ -50,7 +59,7 @@ public class StackCards extends AppCompatActivity {
         listCards = new ArrayList<>();
         stackView = (StackView) findViewById(R.id.swipeCardsStack);
         mToolbar = (Toolbar) findViewById(R.id.swipeCardsToolbar);
-        mToolbar.setTitle("Cards");
+        mToolbar.setTitle(ClassContentsMainActivity.className + " Notes");
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,16 +69,11 @@ public class StackCards extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         noteCards = (ArrayList<NoteStackItem>) args.getSerializable("ARRAYLIST");
 
-        //swipeStackAdapter = new SwipeStackAdapter(listCards, StackCardsImages.this);
-       // stackView.setAdapter(swipeStackAdapter);
-
+        stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, false);
+        stackView.setAdapter(stackViewAdapter);
     }
 
     private void initializeListeners() {
-
-               // Collections.reverse(noteCards);
-                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this);
-                stackView.setAdapter(stackViewAdapter);
 
                 stackView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,19 +85,44 @@ public class StackCards extends AppCompatActivity {
                 startActivity(openDisplayNote);
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.stack_cards_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Main/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //// TODO: 8/1/17 Change these settings to custom settings
+        if (id == R.id.stack_cards_new_note_mode) {
+            if(!codeMode) {
+                codeMode = true;
+                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, codeMode);
+                Toasty.info(getApplicationContext(), getString(R.string.code_mode_activate), Toast.LENGTH_SHORT).show();
+
+            } else {
+                codeMode = false;
+                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, codeMode);
+                Toasty.info(getApplicationContext(), getString(R.string.code_mode_deactivate), Toast.LENGTH_SHORT).show();
             }
 
 
+            stackView.setAdapter(stackViewAdapter);
+            stackViewAdapter.notifyDataSetChanged();
 
+        }
 
-
-
-
-
-
-
-
-
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override

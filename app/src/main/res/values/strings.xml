@@ -39,6 +39,10 @@
 
     <string name="assignments_infomation">Click on the add button to set a new due date for an assignment.</string>
 
+    <!-- Strings related to Toast Messages -->
+    <string name="code_mode_activate">Code View activated</string>
+    <string name="code_mode_deactivate">Code View deactivated</string>
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
