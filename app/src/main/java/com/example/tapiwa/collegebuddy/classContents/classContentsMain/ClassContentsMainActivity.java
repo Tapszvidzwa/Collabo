@@ -581,7 +581,16 @@ public class ClassContentsMainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+      //  searchView.onActionViewCollapsed();
+
+        if(!searchView.isIconified()) {
         searchView.onActionViewCollapsed();
+            return;
+        } else if(pageNumber > 0) {
+          mViewPager.setCurrentItem(0);
+            return;
+        }
+
         super.onBackPressed();
     }
 
