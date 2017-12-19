@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -12,11 +14,13 @@ import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.support.v4.content.FileProvider;
+import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
@@ -138,6 +142,32 @@ public class GenericServices {
 
     }
 
+    public static void activateCodeMode(TextView title, TextView noteContents, CardView cardview, Context context) {
+
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/sourcecodeproregular.ttf");
+            noteContents.setTypeface(typeface);
+            noteContents.setTextSize(15);
+            noteContents.setBackgroundColor(Color.GRAY);
+            title.setBackgroundColor(Color.GRAY);
+            noteContents.setTextColor(Color.WHITE);
+            cardview.setCardBackgroundColor(Color.GRAY);
+
+            Toasty.info(context, "Code mode activated", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void deactivateCodeMode(TextView title, TextView noteContents, CardView cardView, Context context) {
+
+        Typeface typeface = Typeface.DEFAULT;
+        noteContents.setTypeface(typeface);
+        cardView.setCardBackgroundColor(Color.WHITE);
+        title.setTextColor(Color.BLACK);
+        title.setBackgroundColor(Color.WHITE);
+        noteContents.setTextColor(Color.BLACK);
+        noteContents.setBackgroundColor(Color.WHITE);
+
+        Toasty.info(context, "Code mode deactivated", Toast.LENGTH_SHORT).show();
+    }
+
 
     public static String getCurrentUserName() {
 
@@ -163,7 +193,6 @@ public class GenericServices {
         return thisUserName;
     }
 
-
     public static void sendInvitation(Activity context) {
         Intent Text = new Intent(Intent.ACTION_SEND);
         Text.setType("text/email");
@@ -180,7 +209,6 @@ public class GenericServices {
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
-
     public static String getCurrentUid() {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -190,7 +218,6 @@ public class GenericServices {
         return  auth.getCurrentUser().getUid().toString();
 
     }
-
 
     public static void createPDF (String title, String content, Activity context) throws IOException, DocumentException {
 
@@ -245,7 +272,6 @@ public class GenericServices {
         context.startActivity(email);
 
     }
-
 
     public static void saveNotePdf (final String title, String content, final Activity context, final String projectKey) throws IOException, DocumentException {
 
@@ -373,9 +399,6 @@ public class GenericServices {
 
         return pdfFile;
     }
-
-
-
 
     public static void sendImagePdf(final Context context, String url) throws IOException, DocumentException {
 
