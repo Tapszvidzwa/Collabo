@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,7 +40,9 @@ public class NewNote extends AppCompatActivity {
     
     private NotesSQLiteDBHelper dbHelper;
     private EditText noteTitle;
+    private boolean codeMode = false;
     private EditText noteContents;
+    private CardView cardView;
     private Toolbar mToolBar;
     private String card_color;
     private FloatingActionButton mic;
@@ -63,6 +66,7 @@ public class NewNote extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         noteContents = (EditText) findViewById(R.id.editNewNote);
+        cardView = findViewById(R.id.new_note_cardView);
 
 
         dbHelper = new NotesSQLiteDBHelper(this);
@@ -219,8 +223,14 @@ public class NewNote extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.cancel_note_creation) {
-            finish();
+        if (id == R.id.code_mode_new_note) {
+            if(!codeMode) {
+                codeMode = true;
+                GenericServices.activateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
+            } else {
+                codeMode = false;
+                GenericServices.deactivateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
+            }
         }
 
         if (id == R.id.save_new_note_icon) {

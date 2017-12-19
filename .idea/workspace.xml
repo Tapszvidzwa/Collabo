@@ -28,7 +28,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" />
     </list>
     <ignored path="CollaboApp.iws" />
@@ -70,32 +71,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="maximize_private_image_menu.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/maximize_private_image_menu.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="note_list_item_menu.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/note_list_item_menu.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="notes_menu_inbox.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/notes_menu_inbox.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -135,7 +110,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DisplayNoteActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DisplayNoteActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/DisplayNoteActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="750">
@@ -147,6 +122,29 @@
                 <element signature="method#onResume#0;class#DisplayNoteActivity#0" expanded="false" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewNote.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="915">
+              <caret line="230" column="33" selection-start-line="230" selection-start-column="33" selection-end-line="230" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_new_note.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -2618,7 +2616,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/class_contents_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/DOCS/DocsAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxObject.java" />
@@ -2651,7 +2648,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/note_list_item_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NotesListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ChooseClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/assignments/AssignmentsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/docs_fragment.xml" />
@@ -2669,6 +2665,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/create_note_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/DisplayNoteActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java" />
       </list>
     </option>
   </component>
@@ -2799,6 +2797,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3369,13 +3397,6 @@
       <option name="presentableId" value="Default" />
       <updated>1493444438002</updated>
     </task>
-    <task id="LOCAL-00010" summary="Fixed display note bugs and upload image tag bug">
-      <created>1499758922326</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1499758922326</updated>
-    </task>
     <task id="LOCAL-00011" summary="Removed junk code from Main function to Collabo">
       <created>1499767585997</created>
       <option name="number" value="00011" />
@@ -3712,7 +3733,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513657042191</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Improvements to code Mode">
+      <created>1513658855551</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1513658855551</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3733,7 +3761,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.784153" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.42487884" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.083333336" sideWeight="0.84153" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3234127" sideWeight="0.84153" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15024233" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24900794" sideWeight="0.89480877" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3797,7 +3825,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed facebook login and login screen ui" />
     <MESSAGE value="Fixed background color" />
     <MESSAGE value="Replaced all icons with svg type" />
     <MESSAGE value="Included notes search" />
@@ -3822,7 +3849,8 @@
     <MESSAGE value="Fixed scroll back to Front Page onBackPressed" />
     <MESSAGE value="Fixed on scroll back for ClassContents" />
     <MESSAGE value="Added code mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added code mode" />
+    <MESSAGE value="Improvements to code Mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvements to code Mode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3878,13 +3906,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="3051" column="0" selection-start-line="3051" selection-start-column="0" selection-end-line="3051" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Notifications/SendNotification.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -3965,13 +3986,6 @@
         <state relative-caret-position="285">
           <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="267" column="29" selection-start-line="267" selection-start-column="29" selection-end-line="267" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -4425,6 +4439,25 @@
             <element signature="method#onSupportNavigateUp#0;class#DisplayNoteActivity#0" expanded="false" />
             <element signature="method#onResume#0;class#DisplayNoteActivity#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_new_note.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NewNote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="230" column="33" selection-start-line="230" selection-start-column="33" selection-end-line="230" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
