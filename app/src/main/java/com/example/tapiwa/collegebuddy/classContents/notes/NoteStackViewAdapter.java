@@ -3,6 +3,11 @@ package com.example.tapiwa.collegebuddy.classContents.notes;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +55,19 @@ public class NoteStackViewAdapter extends BaseAdapter {
     }
 
 
+    private void fontcolor(String text,int color, TextView noteContents) {
+
+        Spannable raw=new SpannableString(noteContents.getText());
+        int index= TextUtils.indexOf(raw, text);
+        while (index >= 0) {
+            raw.setSpan(new ForegroundColorSpan(color), index, index
+                    + text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            index=TextUtils.indexOf(raw, text, index + text.length());
+        }
+        noteContents.setText(raw);
+    }
+
+
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -77,11 +95,20 @@ public class NoteStackViewAdapter extends BaseAdapter {
 
         if(codeModeActivated) {
 
-            holder.noteContent.setBackgroundColor(Color.GRAY);
+            holder.noteContent.setBackgroundColor(Color.BLACK);
 
             Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/sourcecodeproregular.ttf");
             holder.noteContent.setTypeface(typeface);
-            holder.noteContent.setTextColor(Color.WHITE);
+            holder.noteContent.setTextColor(Color.GREEN);
+
+
+            String [] keywordspurple = {"String","string","Boolean", "boolean", "if", "for", "int", "new", "public", "private", ";",
+            "null", "return", "static", "while"};
+            for(String y:keywordspurple)
+            {
+                fontcolor(y,Color.rgb(255,165,0), holder.noteContent);
+            }
+
         } else {
 
 
