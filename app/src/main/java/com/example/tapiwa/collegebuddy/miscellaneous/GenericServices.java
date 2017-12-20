@@ -15,6 +15,11 @@ import android.support.annotation.NonNull;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.support.v4.content.FileProvider;
 import android.support.v7.widget.CardView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -147,26 +152,61 @@ public class GenericServices {
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/sourcecodeproregular.ttf");
             noteContents.setTypeface(typeface);
             noteContents.setTextSize(15);
-            noteContents.setBackgroundColor(Color.GRAY);
-            title.setBackgroundColor(Color.GRAY);
-            noteContents.setTextColor(Color.WHITE);
-            cardview.setCardBackgroundColor(Color.GRAY);
+            noteContents.setBackgroundColor(Color.DKGRAY);
+            title.setBackgroundColor(Color.DKGRAY);
+            noteContents.setTextColor(Color.rgb(0,206,0));
+            cardview.setCardBackgroundColor(Color.DKGRAY);
+
+        String [] keywordsOrange = {"String","string","Boolean", "boolean", "if", "for", "int", "new", "public", "private", ";",
+                "return", "static", "while", "else", "catch", "try", "null", "case", "switch", ",", "Char", "char", "Integer",
+                "Character", "HashMap", "HashSet", "Set", "throw", "long", "Double"};
+
+        for(String y:keywordsOrange)
+        {
+            fontcolor(y,Color.rgb(255,165,0), noteContents);
+        }
+
+        String [] keywordsPurple = {"true", "false", "=", "+" , "<", "<", "&", "%", "[", "]"};
+        for(String y:keywordsPurple)
+        {
+            fontcolor(y,Color.rgb(214,82,148), noteContents);
+        }
 
             Toasty.info(context, "Code mode activated", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public static void fontcolor(String text,int color, TextView noteContents) {
+
+        Spannable raw=new SpannableString(noteContents.getText());
+
+        int index= TextUtils.indexOf(raw, text);
+        while (index >= 0) {
+            raw.setSpan(new ForegroundColorSpan(color), index, index
+                    + text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            index=TextUtils.indexOf(raw, text, index + text.length());
+        }
+        noteContents.setText(raw);
     }
 
     public static void deactivateCodeMode(TextView title, TextView noteContents, CardView cardView, Context context) {
 
         Typeface typeface = Typeface.DEFAULT;
         noteContents.setTypeface(typeface);
+
         cardView.setCardBackgroundColor(Color.WHITE);
         title.setTextColor(Color.BLACK);
+
         title.setBackgroundColor(Color.WHITE);
-        noteContents.setTextColor(Color.BLACK);
         noteContents.setBackgroundColor(Color.WHITE);
+
+        noteContents.setTextColor(Color.BLACK);
+
 
         Toasty.info(context, "Code mode deactivated", Toast.LENGTH_SHORT).show();
     }
+
+
 
 
     public static String getCurrentUserName() {

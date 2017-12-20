@@ -58,6 +58,7 @@ public class NoteStackViewAdapter extends BaseAdapter {
     private void fontcolor(String text,int color, TextView noteContents) {
 
         Spannable raw=new SpannableString(noteContents.getText());
+
         int index= TextUtils.indexOf(raw, text);
         while (index >= 0) {
             raw.setSpan(new ForegroundColorSpan(color), index, index
@@ -95,18 +96,26 @@ public class NoteStackViewAdapter extends BaseAdapter {
 
         if(codeModeActivated) {
 
-            holder.noteContent.setBackgroundColor(Color.BLACK);
+            holder.noteContent.setBackgroundColor(Color.DKGRAY);
 
             Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/sourcecodeproregular.ttf");
             holder.noteContent.setTypeface(typeface);
-            holder.noteContent.setTextColor(Color.GREEN);
+            holder.noteContent.setTextColor(Color.rgb(0,206,0));
 
 
-            String [] keywordspurple = {"String","string","Boolean", "boolean", "if", "for", "int", "new", "public", "private", ";",
-            "null", "return", "static", "while"};
-            for(String y:keywordspurple)
+            String [] keywordsOrange = {"String","string","Boolean", "boolean", "if", "for", "int", "new", "public", "private", ";",
+            "return", "static", "while", "else", "catch", "try", "null", "case", "switch", ",", "Char", "char", "Integer",
+            "Character", "HashMap", "HashSet", "Set", "throw", "long", "Double"};
+
+            for(String y:keywordsOrange)
             {
                 fontcolor(y,Color.rgb(255,165,0), holder.noteContent);
+            }
+
+            String [] keywordsPurple = {"true", "false", "=", "+" , "<", "<", "&", "%", "[", "]"};
+            for(String y:keywordsPurple)
+            {
+                fontcolor(y,Color.rgb(214,82,148), holder.noteContent);
             }
 
         } else {
