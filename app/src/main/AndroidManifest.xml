@@ -43,10 +43,11 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
+
         <activity android:name=".classContents.notes.NewNote"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
         <activity android:name=".classContents.notes.DisplayNoteActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
 
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.

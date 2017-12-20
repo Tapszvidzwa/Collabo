@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
@@ -31,7 +31,6 @@ import com.example.tapiwa.collegebuddy.Main.Vocabulary.DictionaryFragment;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings;
 import com.example.tapiwa.collegebuddy.authentication.LoginActivity;
-import com.example.tapiwa.collegebuddy.classContents.assignments.AssignmentsFragment;
 import com.example.tapiwa.collegebuddy.classContents.images.CameraGalleryUpload;
 import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.miscellaneous.SendFeedBackActivity;
@@ -80,6 +79,7 @@ public class MainFrontPage extends AppCompatActivity
     public final static String USER_PRIVATE_LIST_OF_GROUPS = "List_Of_Private_User_Folders";
     public static final String USER_NUMBER_OF_SESSIONS = "Number_Of_Login_Sessions";
     public static String user;
+    private int permissionCode;
     public static File photoFile = null;
     private String thumb_download_url = null;
     private FloatingActionButton createNewClass;
@@ -99,6 +99,8 @@ public class MainFrontPage extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.frnt_pg_toolbar);
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
+
+        CurrentFragment = "Home";
 
 
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
@@ -218,11 +220,14 @@ public class MainFrontPage extends AppCompatActivity
 
 
         LoginActivity.connectPermissions();
+
         permissionsRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() == null) {
                     permissionsRef.child(mAuth.getCurrentUser().getUid().toString()).setValue(0);
+                } else if(dataSnapshot.getValue().toString().equals("1")) {
+                    permissionCode = 1;
                 }
             }
 
@@ -306,7 +311,7 @@ public class MainFrontPage extends AppCompatActivity
         }
 
         if(id == R.id.class_front_page_info) {
-           showFrontPageClassDialogueInformation();
+           showGrinnellTime();
         }
 
         if(id == R.id.sign_out) {
@@ -319,16 +324,29 @@ public class MainFrontPage extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void showFrontPageClassDialogueInformation() {
+    private void showGrinnellTime() {
+
+   if(permissionCode == 1) {
 
 
-        AppUsageAnalytics.incrementPageVisitCount("Front_Page_Information");
-        SweetAlertDialog sdg = new SweetAlertDialog(MainFrontPage.this, SweetAlertDialog.NORMAL_TYPE);
-        sdg.setTitleText("Usage info");
-        sdg.setContentText(getResources().getString(R.string.classes_page_information));
-        sdg.setCancelable(true);
-        sdg.show();
+       String time = GenericServices.timeStamp();
 
+       Integer hour = Math.abs((Integer.parseInt(time.substring(0, 2)) - 8));
+       if (hour < 12) {
+           hour = 24 - hour;
+       }
+
+       String grinnellTime = hour + time.substring(3, 5) + "hrs";
+
+       AppUsageAnalytics.incrementPageVisitCount("Front_Page_Information");
+       SweetAlertDialog sdg = new SweetAlertDialog(MainFrontPage.this, SweetAlertDialog.NORMAL_TYPE);
+       sdg.setTitleText("Grinnell Time");
+       sdg.setContentText(grinnellTime);
+       sdg.setCancelable(true);
+       sdg.show();
+
+
+   }
     }
 
     private void openDictionary() {

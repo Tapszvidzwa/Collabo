@@ -20,6 +20,7 @@ import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -67,6 +68,8 @@ public class NewNote extends AppCompatActivity {
 
         noteContents = (EditText) findViewById(R.id.editNewNote);
         cardView = findViewById(R.id.new_note_cardView);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
         dbHelper = new NotesSQLiteDBHelper(this);
