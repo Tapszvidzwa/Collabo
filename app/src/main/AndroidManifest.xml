@@ -43,8 +43,10 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".classContents.notes.NewNote" />
-        <activity android:name=".classContents.notes.DisplayNoteActivity" />
+        <activity android:name=".classContents.notes.NewNote"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
+        <activity android:name=".classContents.notes.DisplayNoteActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
 
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -98,7 +100,8 @@
         <activity android:name=".miscellaneous.SendFeedBackActivity" />
         <activity android:name=".Main.NewFeatures.AddFeature" />
         <activity android:name=".classContents.notes.SelectUsers.SelectUsers" />
-        <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"/>
+        <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
         <activity android:name=".Main.ChooseClass" />
         <activity android:name=".Main.Vocabulary.WordsListActivity"/>
         <activity android:name=".authentication.WelcomeActivity">

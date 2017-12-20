@@ -399,6 +399,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="0a79b2bc4a3df9fd95e6902dfdaa8d1f971c653a">
+        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/tapiwa/.android/build-cache/6579356582b7afa149c4a2d639ea3cebcae8b167/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -414,15 +423,6 @@
         revision="26.0.1"
         sha1="82ea5a937ab84229fbd2f3fc8cf2a72cbdf0ee0f">
         <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9848b01f1b8b9cb029c283de54503deb525b0cff/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="9e5fcbe8be73ff605e018d929af5f6c910fe8279">
-        <dex dex="/Users/tapiwa/StudioProjects/collegebudddy/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c32524b061beffc47efe6a3c123e8dcc1539f928/classes.dex" />
     </item>
     <item
         is-multidex="true"
