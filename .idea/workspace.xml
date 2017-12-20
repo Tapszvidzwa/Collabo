@@ -24,9 +24,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="CollaboApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,34 +101,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoteStackItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NoteStackItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NotesListAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/NotesListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1515">
               <caret line="118" column="16" selection-start-line="118" selection-start-column="16" selection-end-line="118" selection-end-column="16" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdapterViewAnimator.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-26/android.jar!/android/widget/AdapterViewAnimator.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="115" column="45" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
-              <folding>
-                <element signature="e#3358#3359#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -158,15 +136,57 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="720">
               <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaximizePrivateImageActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1941">
+              <caret line="188" column="13" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+              <folding>
+                <element signature="e#7215#9135#0" expanded="true" />
+                <element signature="e#7631#9014#0" expanded="true" />
+                <element signature="e#9013#9014#0" expanded="true" />
+                <element signature="e#9134#9135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImagesFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-258">
+              <caret line="195" column="79" selection-start-line="195" selection-start-column="79" selection-end-line="195" selection-end-column="79" />
+              <folding>
+                <element signature="method#onActivityResult#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="class#5345:6411" expanded="false" />
+                <element signature="e#6512#7384#0" expanded="true" />
+                <element signature="e#7383#7384#0" expanded="true" />
+                <element signature="method#reload#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#initializeFirebase#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#initializeViews#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#searchImage#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#continueDeleteDialogue#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#onCreateContextMenu#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#sendImagePdf#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#savePdf#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#onContextItemSelected#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#selectUserToShare#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#getNewName#0;class#ImagesFragment#0" expanded="false" />
+                <element signature="method#renameImage#0;class#ImagesFragment#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2605,7 +2625,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/docs_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/inbox_list_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_main_front_page2_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/images_fragment.xml" />
@@ -2638,7 +2657,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/DOCS/DocsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/authentication/WelcomeActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/MainFrontPage.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/classContentsMain/ClassContentsMainActivity.java" />
@@ -2656,6 +2674,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/notes/DisplayNoteActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/miscellaneous/GenericServices.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java" />
       </list>
     </option>
   </component>
@@ -2894,6 +2914,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="notes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebuddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classContents" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3330,13 +3388,6 @@
       <option name="presentableId" value="Default" />
       <updated>1493444438002</updated>
     </task>
-    <task id="LOCAL-00015" summary="Last working code with Notifications included">
-      <created>1499989823568</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1499989823568</updated>
-    </task>
     <task id="LOCAL-00016" summary="Fixed Notifications, poster does not receive own notification">
       <created>1499992369426</created>
       <option name="number" value="00016" />
@@ -3673,7 +3724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513735562729</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="soft window input fixed">
+      <created>1513736037639</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1513736037639</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3699,7 +3757,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24900794" sideWeight="0.89480877" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10519125" sideWeight="0.5024233" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10519125" sideWeight="0.5024233" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26332796" sideWeight="0.15846995" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3758,7 +3816,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed search so that search results only return notes from that class" />
     <MESSAGE value="added search image" />
     <MESSAGE value="added progress bar for maximized image" />
     <MESSAGE value="added new colorful toasts" />
@@ -3783,7 +3840,8 @@
     <MESSAGE value="Code view to stack cards" />
     <MESSAGE value="Code mode improved" />
     <MESSAGE value="Code mode improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code mode improvements" />
+    <MESSAGE value="soft window input fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="soft window input fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3834,7 +3892,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="709" />
+      <option name="time" value="712" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3917,36 +3975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="491" column="4" selection-start-line="491" selection-start-column="4" selection-end-line="491" selection-end-column="4" />
-          <folding>
-            <element signature="method#onActivityResult#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="class#5345:6411" expanded="false" />
-            <element signature="method#reload#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#initializeFirebase#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#initializeViews#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#searchImage#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#continueDeleteDialogue#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#onCreateContextMenu#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#sendImagePdf#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#savePdf#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#onContextItemSelected#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#selectUserToShare#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#getNewName#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="method#renameImage#0;class#ImagesFragment#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="126" column="13" selection-start-line="125" selection-start-column="0" selection-end-line="130" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -3958,6 +3986,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1554">
           <caret line="437" column="2" selection-start-line="437" selection-start-column="2" selection-end-line="487" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4352,9 +4381,47 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="720">
           <caret line="48" column="64" selection-start-line="48" selection-start-column="64" selection-end-line="48" selection-end-column="64" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/MaximizePrivateImageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1941">
+          <caret line="188" column="13" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+          <folding>
+            <element signature="e#7215#9135#0" expanded="true" />
+            <element signature="e#7631#9014#0" expanded="true" />
+            <element signature="e#9013#9014#0" expanded="true" />
+            <element signature="e#9134#9135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/classContents/images/ImagesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-258">
+          <caret line="195" column="79" selection-start-line="195" selection-start-column="79" selection-end-line="195" selection-end-column="79" />
+          <folding>
+            <element signature="method#onActivityResult#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="class#5345:6411" expanded="false" />
+            <element signature="e#6512#7384#0" expanded="true" />
+            <element signature="e#7383#7384#0" expanded="true" />
+            <element signature="method#reload#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#initializeFirebase#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#initializeViews#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#searchImage#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#continueDeleteDialogue#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#onCreateContextMenu#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#sendImagePdf#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#savePdf#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#onContextItemSelected#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#selectUserToShare#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#getNewName#0;class#ImagesFragment#0" expanded="false" />
+            <element signature="method#renameImage#0;class#ImagesFragment#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
