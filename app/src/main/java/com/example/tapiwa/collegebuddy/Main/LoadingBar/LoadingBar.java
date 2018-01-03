@@ -1,20 +1,9 @@
 package com.example.tapiwa.collegebuddy.Main.LoadingBar;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.DrawableRes;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-import com.example.tapiwa.collegebuddy.R;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import es.dmoral.toasty.Toasty;
 
 /**
  * Created by tapiwa on 10/23/17.

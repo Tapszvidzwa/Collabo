@@ -1,14 +1,6 @@
 package com.example.tapiwa.collegebuddy.Notifications;
 
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.squareup.okhttp.RequestBody;
 
 import java.io.IOException;
 

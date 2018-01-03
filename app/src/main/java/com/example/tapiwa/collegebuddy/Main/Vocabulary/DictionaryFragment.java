@@ -21,9 +21,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,7 +60,7 @@ public class DictionaryFragment extends Fragment {
             // Inflate the layout for this fragment
             vocabSearchView = inflater.inflate(R.layout.vocabulary_fragment, container, false);
 
-            MainFrontPage.toolbar.setTitle("Vocabulary");
+            MainFrontPageActivity.toolbar.setTitle("Vocabulary");
 
             searchButton = (Button) vocabSearchView.findViewById(R.id.seach_word_button);
             word_to_search = (TextInputEditText) vocabSearchView.findViewById(R.id.word_to_search);

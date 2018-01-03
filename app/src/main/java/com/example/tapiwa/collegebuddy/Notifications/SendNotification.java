@@ -2,10 +2,6 @@ package com.example.tapiwa.collegebuddy.Notifications;
 
 import android.os.AsyncTask;
 
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-
 import java.io.IOException;
 
 import okhttp3.FormBody;

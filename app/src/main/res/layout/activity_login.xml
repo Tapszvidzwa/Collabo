@@ -9,7 +9,7 @@
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:gravity="center_horizontal"
-    tools:context="com.example.tapiwa.collegebuddy.authentication.LoginActivity"
+    tools:context="com.example.tapiwa.collegebuddy.Authentication.LoginActivity"
     android:weightSum="1">
 
 

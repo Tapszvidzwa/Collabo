@@ -1,25 +1,15 @@
 package com.example.tapiwa.collegebuddy.Main.Inbox;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.util.Linkify;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.classContents.notes.NotesSQLiteDBHelper;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
-
-import es.dmoral.toasty.Toasty;
 
 public class DisplayInboxNoteActivity extends AppCompatActivity {
 

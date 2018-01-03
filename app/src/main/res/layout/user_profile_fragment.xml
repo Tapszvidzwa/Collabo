@@ -26,4 +26,17 @@
         android:layout_below="@id/profile_photo"
         android:layout_marginTop="30dp"/>
 
+
+    <Button
+        android:id ="@+id/upload_profile_photo_btn"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/user_name"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_profile_photo"
+        android:background="@drawable/curved_button"
+        android:padding="15dp"
+        />
+
 </RelativeLayout>

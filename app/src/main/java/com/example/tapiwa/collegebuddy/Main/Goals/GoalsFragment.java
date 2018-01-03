@@ -1,22 +1,17 @@
 package com.example.tapiwa.collegebuddy.Main.Goals;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,11 +23,7 @@ import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.LoadingBar.LoadingBar;
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-import com.example.tapiwa.collegebuddy.Main.NewClass;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.AddFeature;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeature;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesAdapter;
+import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,13 +34,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
 
-import static com.example.tapiwa.collegebuddy.Main.MainFrontPage.user;
-import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
+import static com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity.user;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -105,7 +94,7 @@ public class GoalsFragment extends Fragment {
     private void initializeViews() {
 
         percentage = (TextView) goalsPageView.findViewById(R.id.percentage_completed);
-        MainFrontPage.toolbar.setTitle("Weekly Goals");
+        MainFrontPageActivity.toolbar.setTitle("Weekly Goals");
         addGoal = (FloatingActionButton) goalsPageView.findViewById(R.id.addGoal);
         resetGoals = (FloatingActionButton) goalsPageView.findViewById(R.id.resetGoal);
         restingDude = (ImageView) goalsPageView.findViewById(R.id.resting_dude);

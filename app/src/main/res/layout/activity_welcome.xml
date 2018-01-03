@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/collaboColor"
-    tools:context="com.example.tapiwa.collegebuddy.authentication.WelcomeActivity"
+    tools:context="com.example.tapiwa.collegebuddy.Authentication.WelcomeActivity"
     >
 
     <com.wang.avi.AVLoadingIndicatorView

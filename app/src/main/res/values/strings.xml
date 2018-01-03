@@ -43,7 +43,21 @@
     <string name="code_mode_activate">Code View activated</string>
     <string name="code_mode_deactivate">Code View deactivated</string>
 
-    <!-- Strings related to Settings -->
+    <!-- Strings related to Buttons -->
+    <string name="upload_profile_photo">Upload profile photo</string>
+    <string name="upload_from_camera">Capture</string>
+    <string name="upload_from_gallery">Select from Gallery</string>
+
+    <!-- Strings related to Database References -->
+    <string name="profile_photos">Profile_Pictures</string>
+
+
+    <!-- Strings related to Fragments and Activities -->
+    <string name="profile_fragment">Profile_Fragment</string>
+    <string name="images_fragment">Images_Fragment</string>
+
+    <string name="select_from_gallery_activity">Select_From_Gallery_Activity</string>
+    <string name="main_front_page_activity">Main_Front_Page_Activity</string>
 
     <!-- Example General settings -->
     <string name="pref_header_general">Account</string>

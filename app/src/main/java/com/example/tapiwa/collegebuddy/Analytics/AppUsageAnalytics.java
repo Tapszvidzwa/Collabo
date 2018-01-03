@@ -1,9 +1,7 @@
 package com.example.tapiwa.collegebuddy.Analytics;
 
-import android.content.Intent;
-
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +26,7 @@ public class AppUsageAnalytics {
     public static void connectFirebaseAnalytics() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         analyticsRef = firebaseDatabase.getReference(ANALYTICS);
-        user = MainFrontPage.user;
+        user = MainFrontPageActivity.user;
 
     }
 

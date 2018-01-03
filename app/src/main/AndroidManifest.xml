@@ -38,15 +38,15 @@
         </provider>
 
 
-        <activity android:name=".authentication.LoginActivity" />
-        <activity android:name=".authentication.RegistrationActivity" />
+        <activity android:name=".Authentication.LoginActivity" />
+        <activity android:name=".Authentication.RegistrationActivity" />
         <activity
-            android:name=".Settings"
+            android:name=".Settings.Settings"
             android:label="@string/title_activity_settings" />
 
-        <activity android:name=".classContents.notes.NewNote"
+        <activity android:name=".Main.ClassContents.Notes.NewNote"
             android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
-        <activity android:name=".classContents.notes.DisplayNoteActivity"
+        <activity android:name=".Main.ClassContents.Notes.DisplayNoteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
 
         <!--
@@ -86,7 +86,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".classContents.classContentsMain.ClassContentsMainActivity">
+        <activity android:name=".Main.ClassContents.ClassContentsMain.ClassContentsMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -95,30 +95,30 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".classContents.notes.StackCards" />
-        <activity android:name=".classContents.images.MaximizePrivateImageActivity" />
-        <activity android:name=".classContents.classContentsMain.classImagesActivity" />
-        <activity android:name=".miscellaneous.SendFeedBackActivity" />
+        <activity android:name=".Main.ClassContents.Notes.StackCards" />
+        <activity android:name=".Main.ClassContents.Images.MaximizePrivateImageActivity" />
+        <activity android:name=".Main.ClassContents.ClassContentsMain.classImagesActivity" />
+        <activity android:name=".Miscellaneous.SendFeedBackActivity" />
         <activity android:name=".Main.NewFeatures.AddFeature" />
-        <activity android:name=".classContents.notes.SelectUsers.SelectUsers" />
+        <activity android:name=".Main.ClassContents.Notes.SelectUsers.SelectUsers" />
         <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
-        <activity android:name=".Main.ChooseClass" />
+        <activity android:name=".Main.Class.ChooseClass" />
         <activity android:name=".Main.Vocabulary.WordsListActivity"/>
-        <activity android:name=".authentication.WelcomeActivity">
+        <activity android:name=".Authentication.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".classContents.stackImages.StackCardsImages" />
+        <activity android:name=".Main.ClassContents.StackImages.StackCardsImages" />
         <activity
-            android:name=".authentication.Tutorial"
+            android:name=".Authentication.Tutorial"
             android:label="@string/title_activity_tutorial"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Main.MainFrontPage"
+            android:name=".Main.HomePage.MainFrontPageActivity"
             android:label="@string/title_activity_main_front_page"
             android:theme="@style/AppTheme" />
 

@@ -1,17 +1,13 @@
 package com.example.tapiwa.collegebuddy.Main.Inbox;
 
 import android.app.Fragment;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.FileProvider;
-import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -21,20 +17,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tapiwa.collegebuddy.Main.HomePageFragment;
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.AddFeature;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeature;
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesAdapter;
+import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.DOCS.DOC;
-import com.example.tapiwa.collegebuddy.classContents.images.MaximizePrivateImageActivity;
-import com.example.tapiwa.collegebuddy.classContents.notes.DisplayNoteActivity;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Main.ClassContents.Images.MaximizePrivateImageActivity;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.itextpdf.text.DocumentException;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,10 +43,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import me.leolin.shortcutbadger.Badger;
-import me.leolin.shortcutbadger.ShortcutBadgeException;
-import me.leolin.shortcutbadger.ShortcutBadger;
 
-import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -96,7 +81,7 @@ public class InboxFragment extends Fragment {
 
     private void initializeViews() {
 
-        MainFrontPage.toolbar.setTitle("Inbox");
+        MainFrontPageActivity.toolbar.setTitle("Inbox");
 
         inboxList = (ListView) inboxView.findViewById(R.id.inbox_lstV);
         registerForContextMenu(inboxList);
@@ -194,7 +179,7 @@ public class InboxFragment extends Fragment {
 
         InboxObject item = list.get(position);
 
-        inboxRef.child(MainFrontPage.user).child(item.getPushKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+        inboxRef.child(MainFrontPageActivity.user).child(item.getPushKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toasty.success(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
@@ -231,7 +216,7 @@ public class InboxFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         inboxRef = firebaseDatabase.getReference(INBOX);
 
-        inboxRef.child(MainFrontPage.user).addValueEventListener(new ValueEventListener() {
+        inboxRef.child(MainFrontPageActivity.user).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.tapiwa.collegebuddy.Main.MainFrontPage;
+import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.example.tapiwa.collegebuddy.authentication.LoginActivity.permissionsRef;
+import static com.example.tapiwa.collegebuddy.Authentication.LoginActivity.permissionsRef;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -60,7 +59,7 @@ public class NewFeaturesFragment extends Fragment {
 
     private void initializeViews() {
 
-        MainFrontPage.toolbar.setTitle("New Features");
+        MainFrontPageActivity.toolbar.setTitle("New Features");
         addFeature = (FloatingActionButton) featuresPageView.findViewById(R.id.addFeatureBtn);
 
         featuresList = (ListView) featuresPageView.findViewById(R.id.new_features_lstV);
@@ -69,7 +68,7 @@ public class NewFeaturesFragment extends Fragment {
         featuresList.setAdapter(adapter);
 
 
-        permissionsRef.child(MainFrontPage.user).addValueEventListener(new ValueEventListener() {
+        permissionsRef.child(MainFrontPageActivity.user).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

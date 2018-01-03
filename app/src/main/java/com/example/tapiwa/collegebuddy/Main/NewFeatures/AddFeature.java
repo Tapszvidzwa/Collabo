@@ -1,33 +1,14 @@
 package com.example.tapiwa.collegebuddy.Main.NewFeatures;
 
 
-import android.Manifest;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.classContents.classContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.classContents.notes.NotesSQLiteDBHelper;
-import com.example.tapiwa.collegebuddy.miscellaneous.GenericServices;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import es.dmoral.toasty.Toasty;
 
 import static com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment.featuresDbRef;
 
