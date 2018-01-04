@@ -1,19 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26 // old 25
-    buildToolsVersion "26.0.1"  // old 25.0.2
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.myprojects.tapiwa.collegebuddy"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 46
-        versionName "Collabo 1.5.1"
+        versionCode 47
+        versionName "Collabo 1.5.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
     }
-
 
     buildTypes {
         release {

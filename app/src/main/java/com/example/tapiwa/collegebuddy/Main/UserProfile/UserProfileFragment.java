@@ -82,7 +82,7 @@ public class UserProfileFragment extends Fragment {
 
                 final NewImage prof_pic = dataSnapshot.getValue(NewImage.class);
                 Picasso.with(getActivity())
-                        .load(prof_pic.getThumb_uri())
+                        .load(prof_pic.getFull_image_uri())
                         .fit()
                         .placeholder(R.drawable.ic_user)
                         .priority(Picasso.Priority.HIGH)
@@ -95,7 +95,7 @@ public class UserProfileFragment extends Fragment {
                             public void onError() {
                                 // Try again online if cache failed
                                 Picasso.with(getActivity())
-                                        .load(prof_pic.getThumb_uri())
+                                        .load(prof_pic.getFull_image_uri())
                                         .fit()
                                         .priority(Picasso.Priority.HIGH)
                                         .into(user_profile_photo);
