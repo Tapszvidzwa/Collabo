@@ -3,6 +3,7 @@ package com.example.tapiwa.collegebuddy.Miscellaneous;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -30,6 +31,7 @@ import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Docs.DOC;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Docs.DocsFragment;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -647,6 +649,38 @@ public class GenericServices {
                             });
                         }
                     });
+    }
+
+
+    public static void saveUserCredentialsLocally(Activity activity, String name, String email, String userId) {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences
+                        (activity.getString(R.string.sharedPreference_file),
+                        Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(activity.getString(R.string.user_name), name);
+        editor.putString(activity.getString(R.string.user_email), email);
+        editor.putString(activity.getString(R.string.user_id), userId);
+
+        editor.commit();
+    }
+
+    public static String getStringFromSharedPreference(Activity activity, String itemToGet) {
+        //returns "none" if there is no string stored in sharedPreferences
+        SharedPreferences sharedPreferences = activity.getSharedPreferences
+                (activity.getString(R.string.sharedPreference_file),
+                Context.MODE_PRIVATE);
+        String result =  sharedPreferences.getString(itemToGet, "none");
+        return result;
+    }
+
+    public static int getIntFromSharedPreferences(Activity activity, String item) {
+        //returns "-1 if there is no int stored in sharedPreferences
+        SharedPreferences sharedPreferences = activity.getSharedPreferences
+                (activity.getString(R.string.sharedPreference_file),
+                        Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(item, -1);
     }
 
 }

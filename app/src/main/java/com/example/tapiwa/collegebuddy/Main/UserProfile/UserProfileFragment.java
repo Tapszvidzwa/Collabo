@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.NewImage;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.CameraGalleryUpload;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,6 +55,9 @@ public class UserProfileFragment extends Fragment {
         username = profileView.findViewById(R.id.user_name);
         user_profile_photo = profileView.findViewById(R.id.profile_photo);
         uploadProfilePhotoBtn = profileView.findViewById(R.id.upload_profile_photo_btn);
+
+
+        username.setText(GenericServices.getStringFromSharedPreference(getActivity(), getString(R.string.user_name)));
 
 
         FirebaseAuth auth = MainFrontPageActivity.mAuth;

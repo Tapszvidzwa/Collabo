@@ -50,7 +50,14 @@
 
     <!-- Strings related to Database References -->
     <string name="profile_photos">Profile_Pictures</string>
+    <string name="users">Users</string>
 
+
+    <!-- Strings related to Shared Preferences -->
+    <string name="sharedPreference_file">sharedPreference_file</string>
+    <string name="user_name">user_name</string>
+    <string name="user_email">user_email</string>
+    <string name="user_id">user_id</string>
 
     <!-- Strings related to Fragments and Activities -->
     <string name="profile_fragment">Profile_Fragment</string>
