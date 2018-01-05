@@ -27,7 +27,7 @@ import android.widget.Toast;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Notes.SelectUsers.SelectUsers;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.example.tapiwa.collegebuddy.R;
 
 import java.util.ArrayList;
@@ -181,7 +181,7 @@ public class NewNote extends AppCompatActivity {
         dbHelper.insertNote(ClassContentsMainActivity.className,
                 noteTitle.getText().toString(),
                 noteContents.getText().toString(),
-                GenericServices.date(),
+                GenericMethods.date(),
                 "yellow");
 
         Toasty.success(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
@@ -229,10 +229,10 @@ public class NewNote extends AppCompatActivity {
         if (id == R.id.code_mode_new_note) {
             if(!codeMode) {
                 codeMode = true;
-                GenericServices.activateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
+                GenericMethods.activateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
             } else {
                 codeMode = false;
-                GenericServices.deactivateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
+                GenericMethods.deactivateCodeMode(noteTitle, noteContents, cardView, getApplicationContext());
             }
         }
 

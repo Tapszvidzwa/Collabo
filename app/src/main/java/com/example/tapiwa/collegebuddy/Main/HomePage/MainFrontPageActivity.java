@@ -34,7 +34,7 @@ import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Settings.Settings;
 import com.example.tapiwa.collegebuddy.Authentication.LoginActivity;
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.CameraGalleryUpload;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.example.tapiwa.collegebuddy.Miscellaneous.SendFeedBackActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -340,7 +340,7 @@ public class MainFrontPageActivity extends AppCompatActivity
         }
 
         if(id == R.id.send_invite) {
-            GenericServices.sendInvitation(MainFrontPageActivity.this);
+            GenericMethods.sendInvitation(MainFrontPageActivity.this);
         }
 
         if(id == R.id.class_front_page_info) {
@@ -362,7 +362,7 @@ public class MainFrontPageActivity extends AppCompatActivity
    if(permissionCode == 1) {
 
 
-       String time = GenericServices.timeStamp();
+       String time = GenericMethods.timeStamp();
 
        Integer hour = Math.abs((Integer.parseInt(time.substring(0, 2)) - 8));
        if (hour < 12) {
@@ -477,7 +477,7 @@ public class MainFrontPageActivity extends AppCompatActivity
             OkHttpClient client = new OkHttpClient();
 
             okhttp3.RequestBody body = new FormBody.Builder()
-                    .add("Uid", GenericServices.getCurrentUid())
+                    .add("Uid", GenericMethods.getCurrentUid())
                     .add("Token", token)
                     .build();
 

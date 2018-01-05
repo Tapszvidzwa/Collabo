@@ -89,7 +89,7 @@ public class StackCardsImages extends AppCompatActivity {
                     listImages.add(privateImage);
                 }
                 Collections.reverse(listImages);
-                stackViewAdapter = new StackViewAdapter(listImages, R.layout.stack_image_item, StackCardsImages.this);
+                stackViewAdapter = new StackViewAdapter(listImages, R.layout.item_stack_image, StackCardsImages.this);
                 stackView.setAdapter(stackViewAdapter);
                 //  swipeStackAdapter.notifyDataSetChanged();
             }

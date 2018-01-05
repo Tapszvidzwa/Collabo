@@ -98,7 +98,7 @@ View homePageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        homePageView = inflater.inflate(R.layout.homepage_fragment, container, false);
+        homePageView = inflater.inflate(R.layout.fragment_homepage, container, false);
 
         initializeViews();
         initializeFirebase();

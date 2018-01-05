@@ -1,16 +1,14 @@
 package com.example.tapiwa.collegebuddy.Authentication;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.example.tapiwa.collegebuddy.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,7 +86,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private void confirmUserCredentialsStoredLocally() {
 
 
-        String username = GenericServices.getStringFromSharedPreference(activity,
+        String username = GenericMethods.getStringFromSharedPreference(activity,
                 getString(R.string.user_name));
 
 
@@ -105,7 +103,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     NewUser user = dataSnapshot.getValue(NewUser.class);
-                    GenericServices.saveUserCredentialsLocally(
+                    GenericMethods.saveUserCredentialsLocally(
                             activity,
                             user.name,
                             user_email,

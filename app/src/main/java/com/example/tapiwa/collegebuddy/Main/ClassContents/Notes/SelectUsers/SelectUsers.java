@@ -135,7 +135,7 @@ public class SelectUsers extends AppCompatActivity {
                }
                Collections.reverse(users);
 
-               adapter = new SelectUsersAdapter(getApplicationContext(), R.layout.select_user_item, users);
+               adapter = new SelectUsersAdapter(getApplicationContext(), R.layout.item_select_user, users);
                usersListView.setAdapter(adapter);
                adapter.notifyDataSetChanged();
            }

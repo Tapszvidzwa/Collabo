@@ -46,7 +46,7 @@ public class WordsListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        wordsListAdapter = new WordsListAdapter(getApplicationContext(), R.layout.word_list_item, list);
+        wordsListAdapter = new WordsListAdapter(getApplicationContext(), R.layout.item_word_list, list);
 
         grabWordsFromFirebase();
 
@@ -82,7 +82,7 @@ public class WordsListActivity extends AppCompatActivity {
                 Collections.reverse(list);
 
 
-                wordsListAdapter = new WordsListAdapter(getApplicationContext(), R.layout.word_list_item, list);
+                wordsListAdapter = new WordsListAdapter(getApplicationContext(), R.layout.item_word_list, list);
                 WordsList.setAdapter(wordsListAdapter);
             }
 

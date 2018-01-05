@@ -23,7 +23,7 @@ import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Notes.SelectUsers.SelectUsers;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class NotesFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        notesView = inflater.inflate(R.layout.notes_fragment, container, false);
+        notesView = inflater.inflate(R.layout.fragment_notes, container, false);
         className = ClassContentsMainActivity.className;
         viewGroup = (ViewGroup) notesView.findViewById(R.id.notesFragment);
 
@@ -105,7 +105,7 @@ public class NotesFragment extends Fragment  {
 
 
         Collections.reverse(notesList);
-        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, notesList, className);
+        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.item_note_list, notesList, className);
         listview.setAdapter(notesAdapter);
     }
 
@@ -139,7 +139,7 @@ public class NotesFragment extends Fragment  {
       String title = notesList.get(selectedNote);
         String contents = dbHelper.getNoteContents(ClassContentsMainActivity.className, title);
 
-        GenericServices.createPDF(title,contents,getActivity());
+        GenericMethods.createPDF(title,contents,getActivity());
 
 
     }
@@ -184,7 +184,7 @@ public class NotesFragment extends Fragment  {
         String title = notesList.get(pos);
         String content = dbHelper.getNoteContents(ClassContentsMainActivity.className, title);
         try {
-            GenericServices.saveNotePdf(title, content, getActivity(), ClassContentsMainActivity.projectKey);
+            GenericMethods.saveNotePdf(title, content, getActivity(), ClassContentsMainActivity.projectKey);
         } catch (java.io.IOException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
@@ -199,7 +199,7 @@ public class NotesFragment extends Fragment  {
 
         dbHelper.deleteNote(ClassContentsMainActivity.className, noteTitle);
 
-        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.note_item_list, notesList, className);
+        notesAdapter = new NotesListAdapter(getApplicationContext(),R.layout.item_note_list, notesList, className);
         listview.setAdapter(notesAdapter);
 
         Toasty.success(getContext(),
@@ -280,7 +280,7 @@ public class NotesFragment extends Fragment  {
                 ClassContentsMainActivity.className,
                 notesList.get(selectedNote),
                 contents,
-                GenericServices.timeStamp(),
+                GenericMethods.timeStamp(),
                 color
         );
 

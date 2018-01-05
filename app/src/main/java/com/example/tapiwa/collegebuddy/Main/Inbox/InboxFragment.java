@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Images.MaximizePrivateImageActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -86,7 +86,7 @@ public class InboxFragment extends Fragment {
         inboxList = (ListView) inboxView.findViewById(R.id.inbox_lstV);
         registerForContextMenu(inboxList);
         list = new ArrayList<>();
-        adapter = new InboxAdapter(getApplicationContext(), R.layout.new_feature_list_item, list);
+        adapter = new InboxAdapter(getApplicationContext(), R.layout.item_new_features_list, list);
         inboxList.setAdapter(adapter);
 
         cryingBaby = (ImageView) inboxView.findViewById(R.id.cryingBaby);
@@ -136,7 +136,7 @@ public class InboxFragment extends Fragment {
         StorageReference httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(item.getUrl());
 
         try {
-            final File myFile = GenericServices.createNewPDFFile(getApplicationContext(), item.getTitle());
+            final File myFile = GenericMethods.createNewPDFFile(getApplicationContext(), item.getTitle());
 
             if (!myFile.exists()) {
                 myFile.createNewFile();
@@ -231,7 +231,7 @@ public class InboxFragment extends Fragment {
                 Collections.reverse(list);
                 inboxRef.keepSynced(true);
 
-                adapter = new InboxAdapter(getApplicationContext(), R.layout.inbox_list_item, list);
+                adapter = new InboxAdapter(getApplicationContext(), R.layout.item_inbox_list, list);
                 inboxList.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 

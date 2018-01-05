@@ -66,7 +66,7 @@ public class StackCards extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         noteCards = (ArrayList<NoteStackItem>) args.getSerializable("ARRAYLIST");
 
-        stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, false);
+        stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.item_stack_note, StackCards.this, false);
         stackView.setAdapter(stackViewAdapter);
     }
 
@@ -103,12 +103,12 @@ public class StackCards extends AppCompatActivity {
         if (id == R.id.stack_cards_new_note_mode) {
             if(!codeMode) {
                 codeMode = true;
-                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, codeMode);
+                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.item_stack_note, StackCards.this, codeMode);
                 Toasty.info(getApplicationContext(), getString(R.string.code_mode_activate), Toast.LENGTH_SHORT).show();
 
             } else {
                 codeMode = false;
-                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.stack_note_item, StackCards.this, codeMode);
+                stackViewAdapter = new NoteStackViewAdapter(noteCards, R.layout.item_stack_note, StackCards.this, codeMode);
                 Toasty.info(getApplicationContext(), getString(R.string.code_mode_deactivate), Toast.LENGTH_SHORT).show();
             }
 

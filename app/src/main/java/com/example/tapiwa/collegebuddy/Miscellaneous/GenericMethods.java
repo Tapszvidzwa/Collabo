@@ -71,14 +71,14 @@ import es.dmoral.toasty.Toasty;
  * Created by tapiwa on 8/3/17.
  */
 
-public class GenericServices {
+public class GenericMethods {
 
     public static Context context;
     public static Boolean foregroundStatus = false;
     public static String thisUserName = "Your friend ";
     public static String thisUid;
 
-    public GenericServices(Context cxt) {
+    public GenericMethods(Context cxt) {
         this.context = cxt;
 
     }
@@ -375,7 +375,7 @@ public class GenericServices {
                             @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
                                     .getDownloadUrl().toString();
 
-                            DOC doc1 = new DOC(title, GenericServices.date(), "pdf", downloadUri, uploadKey);
+                            DOC doc1 = new DOC(title, GenericMethods.date(), "pdf", downloadUri, uploadKey);
 
                             noteDatabaseRef.child(MainFrontPageActivity.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -566,7 +566,7 @@ public class GenericServices {
                             @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
                                     .getDownloadUrl().toString();
 
-                            DOC doc1 = new DOC(imageName, GenericServices.date(), "pdf", downloadUri, uploadKey);
+                            DOC doc1 = new DOC(imageName, GenericMethods.date(), "pdf", downloadUri, uploadKey);
 
                             pdfDatabaseRef.child(MainFrontPageActivity.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -639,7 +639,7 @@ public class GenericServices {
                             @SuppressWarnings("VisibleForTests") String downloadUri = task.getResult()
                                     .getDownloadUrl().toString();
 
-                            DOC doc1 = new DOC(trimmedFileName, GenericServices.date(), "pdf", downloadUri, uploadKey);
+                            DOC doc1 = new DOC(trimmedFileName, GenericMethods.date(), "pdf", downloadUri, uploadKey);
 
                             pdfDatabaseRef.child(MainFrontPageActivity.user).child(projectKey).child(uploadKey).setValue(doc1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

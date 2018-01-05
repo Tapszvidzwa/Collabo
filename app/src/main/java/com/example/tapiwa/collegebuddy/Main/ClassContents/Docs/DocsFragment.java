@@ -24,7 +24,7 @@ import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.Notes.SelectUsers.SelectUsers;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -72,7 +72,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        docsView = inflater.inflate(R.layout.docs_fragment, container, false);
+        docsView = inflater.inflate(R.layout.fragment_docs, container, false);
 
         initializeViews();
         setListeners();
@@ -104,7 +104,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                 StorageReference httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(doc.getDoc_uri());
 
                 try {
-                    final File myFile = GenericServices.createNewPDFFile(getContext(), doc.getDoc_name());
+                    final File myFile = GenericMethods.createNewPDFFile(getContext(), doc.getDoc_name());
 
                     if (!myFile.exists()) {
                         myFile.createNewFile();
@@ -180,7 +180,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                 Collections.reverse(list);
 
 
-                adapter = new DocsAdapter(getApplicationContext(), R.layout.doc_item_list, list);
+                adapter = new DocsAdapter(getApplicationContext(), R.layout.item_doc_list, list);
                 docsListView.setAdapter(adapter);
             }
 
@@ -198,7 +198,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
         StorageReference httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(doc.getDoc_uri());
 
         try {
-            final File myFile = GenericServices.createNewPDFFile(getContext(), "Collabo PDF");
+            final File myFile = GenericMethods.createNewPDFFile(getContext(), "Collabo PDF");
 
             if (!myFile.exists()) {
                 myFile.createNewFile();
@@ -253,7 +253,7 @@ public class DocsFragment extends android.support.v4.app.Fragment {
                     list.add(doc);
                 }
                 Collections.reverse(list);
-                adapter = new DocsAdapter(getApplicationContext(), R.layout.doc_item_list, list);
+                adapter = new DocsAdapter(getApplicationContext(), R.layout.item_doc_list, list);
                 docsListView.setAdapter(adapter);
 
                 if(list.size() == 0) {

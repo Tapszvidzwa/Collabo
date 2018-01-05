@@ -64,7 +64,7 @@ public class NewFeaturesFragment extends Fragment {
 
         featuresList = (ListView) featuresPageView.findViewById(R.id.new_features_lstV);
         list = new ArrayList<>();
-        adapter = new NewFeaturesAdapter(getApplicationContext(), R.layout.new_feature_list_item, list);
+        adapter = new NewFeaturesAdapter(getApplicationContext(), R.layout.item_new_features_list, list);
         featuresList.setAdapter(adapter);
 
 
@@ -119,7 +119,7 @@ public class NewFeaturesFragment extends Fragment {
                 Collections.reverse(list);
                 featuresDbRef.keepSynced(true);
 
-                adapter = new NewFeaturesAdapter(getApplicationContext(), R.layout.new_feature_list_item, list);
+                adapter = new NewFeaturesAdapter(getApplicationContext(), R.layout.item_new_features_list, list);
                 featuresList.setAdapter(adapter);
 
             }

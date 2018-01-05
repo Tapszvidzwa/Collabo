@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.NewImage;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.CameraGalleryUpload;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,13 +51,13 @@ public class UserProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         MainFrontPageActivity.CurrentFragment = getString(R.string.profile_fragment);
 
-        profileView = inflater.inflate(R.layout.user_profile_fragment, container, false);
+        profileView = inflater.inflate(R.layout.fragment_user_profile, container, false);
         username = profileView.findViewById(R.id.user_name);
         user_profile_photo = profileView.findViewById(R.id.profile_photo);
         uploadProfilePhotoBtn = profileView.findViewById(R.id.upload_profile_photo_btn);
 
 
-        username.setText(GenericServices.getStringFromSharedPreference(getActivity(), getString(R.string.user_name)));
+        username.setText(GenericMethods.getStringFromSharedPreference(getActivity(), getString(R.string.user_name)));
 
 
         FirebaseAuth auth = MainFrontPageActivity.mAuth;

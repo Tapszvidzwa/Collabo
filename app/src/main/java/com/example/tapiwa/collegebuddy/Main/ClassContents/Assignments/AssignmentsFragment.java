@@ -31,7 +31,7 @@ import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Notifications.NotificationReceiver;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
@@ -72,7 +72,7 @@ public class AssignmentsFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        assignmentsView = inflater.inflate(R.layout.assignments_fragment, container, false);
+        assignmentsView = inflater.inflate(R.layout.fragment_assignments, container, false);
         initialize();
         populateScreen();
         return assignmentsView;
@@ -232,7 +232,7 @@ public class AssignmentsFragment extends Fragment  {
     private void initialize() {
         fragmentManager = getFragmentManager();
         date = (TextView) assignmentsView.findViewById(R.id.date);
-        String currentDay = GenericServices.dayOfTheWeek() + " " +GenericServices.date();
+        String currentDay = GenericMethods.dayOfTheWeek() + " " + GenericMethods.date();
         date.setText(currentDay);
         listview = (ListView) assignmentsView.findViewById(R.id.assignmentsListView);
         list = new ArrayList<>();
@@ -242,7 +242,7 @@ public class AssignmentsFragment extends Fragment  {
 
     public static void populateScreen() {
         list = dbHelper.getAllDates(ClassContentsMainActivity.className);
-        assignmentsAdapter = new AssignmentsListAdapter(getApplicationContext(),R.layout.assignment_item_list, list);
+        assignmentsAdapter = new AssignmentsListAdapter(getApplicationContext(),R.layout.item_list_assignment, list);
         listview.setAdapter(assignmentsAdapter);
     }
 
@@ -277,7 +277,7 @@ public class AssignmentsFragment extends Fragment  {
         Collections.reverse(list);
         dbHelper.deleteAssignment(ClassContentsMainActivity.className, assignment.getTitle());
 
-        assignmentsAdapter = new AssignmentsListAdapter(getApplicationContext(),R.layout.assignment_item_list, list);
+        assignmentsAdapter = new AssignmentsListAdapter(getApplicationContext(),R.layout.item_list_assignment, list);
         listview.setAdapter(assignmentsAdapter);
 
         Toasty.success(getContext(),

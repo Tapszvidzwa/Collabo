@@ -41,7 +41,7 @@ package com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain;
         import com.example.tapiwa.collegebuddy.Main.ClassContents.StackImages.StackCardsImages;
         import com.example.tapiwa.collegebuddy.Main.ClassContents.Notes.NewNote;
         import com.example.tapiwa.collegebuddy.Main.ClassContents.Notes.NotesFragment;
-        import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+        import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
         import com.facebook.FacebookSdk;
         import com.facebook.appevents.AppEventsLogger;
         import com.google.firebase.auth.FirebaseAuth;
@@ -115,7 +115,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.class_contents_main_activity);
+        setContentView(R.layout.activity_main_contents);
 
         className = getIntent().getStringExtra("projectName");
         projectKey = getIntent().getStringExtra("projectKey");
@@ -400,7 +400,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
         }
 
         if(requestCode == SELECT_FILE_FROM_SYSTEM) {
-            GenericServices.uploadFiletoFireBase(data.getData(),
+            GenericMethods.uploadFiletoFireBase(data.getData(),
                     ClassContentsMainActivity.projectKey,
                     getApplicationContext());
         }
@@ -438,7 +438,7 @@ public class ClassContentsMainActivity extends AppCompatActivity {
             }
 
             notesAdapter = new NotesListAdapter(getApplicationContext(),
-                    R.layout.note_item_list,
+                    R.layout.item_note_list,
                     notesList,
                     className);
 

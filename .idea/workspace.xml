@@ -20,20 +20,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79a9502f-782f-48f5-bc78-5596352ee063" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericMethods.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/assignment_item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_list_assignment.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/assignments_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_assignments.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/class_contents_main_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_contents.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/converter_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_converter.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/dictionary_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dictionary.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/doc_item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_doc_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/docs_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_docs.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/goal_list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_goal_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/gpa_calculator_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_gpa_calculator.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/homepage_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_homepage.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/inbox_list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_inbox_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_front_page.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_front_page.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/new_feature_list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_new_features_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/note_item_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_note_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/notes_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_notes.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/private_folder_contents_item_lst.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_folder_contents_list.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/select_user_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_select_user.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/stack_image_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_stack_image.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/stack_note_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_stack_note.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/user_profile_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/vocabulary_fragment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_vocabulary.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/word_list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_word_list.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/example/tapiwa/collegebuddy/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/example/tapiwa/collegebuddy/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Analytics/AppUsageAnalytics.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Analytics/AppUsageAnalytics.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Authentication/WelcomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Authentication/WelcomeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/CameraGalleryUploads/CameraGalleryUpload.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/CameraGalleryUploads/CameraGalleryUpload.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Assignments/AssignmentsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Assignments/AssignmentsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/ClassContentsMain/ClassContentsMainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/ClassContentsMain/ClassContentsMainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Docs/DocsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Docs/DocsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/NewNote.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/NewNote.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/NotesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/NotesFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/SelectUsers/SelectUsers.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/SelectUsers/SelectUsers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/StackCards.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/StackCards.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/StackImages/StackCardsImages.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/StackImages/StackCardsImages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Converter/Conveter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Converter/Conveter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/GPA/GPACalculatorFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/GPA/GPACalculatorFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/GPA/GPAFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/GPA/GPAFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Goals/GoalsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Goals/GoalsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/HomePage/HomePageFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/HomePage/HomePageFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/HomePage/MainFrontPageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/HomePage/MainFrontPageActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/NewFeatures/NewFeaturesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/NewFeatures/NewFeaturesFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/UserProfile/UserProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/UserProfile/UserProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Vocabulary/DictionaryFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Vocabulary/DictionaryFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Vocabulary/WordsListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Vocabulary/WordsListActivity.java" />
     </list>
     <ignored path="CollaboApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +113,8 @@
             <state relative-caret-position="330">
               <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding>
-                <element signature="e#2231#2260#0" expanded="true" />
-                <element signature="e#2476#2515#0" expanded="true" />
+                <element signature="e#2229#2258#0" expanded="true" />
+                <element signature="e#2474#2513#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,8 +146,8 @@
             <state relative-caret-position="575">
               <caret line="248" column="5" selection-start-line="248" selection-start-column="5" selection-end-line="248" selection-end-column="5" />
               <folding>
-                <element signature="e#5695#8220#0" expanded="true" />
-                <element signature="e#8219#8220#0" expanded="true" />
+                <element signature="e#5692#8216#0" expanded="true" />
+                <element signature="e#8215#8216#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,50 +167,51 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Authentication/WelcomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-162">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
-                <element signature="e#1629#2019#0" expanded="true" />
-                <element signature="e#2018#2019#0" expanded="true" />
-                <element signature="e#2049#2899#0" expanded="true" />
-                <element signature="e#2898#2899#0" expanded="true" />
-                <element signature="e#3093#3122#0" expanded="true" />
-                <element signature="e#3436#3461#0" expanded="true" />
+                <element signature="e#1554#1944#0" expanded="true" />
+                <element signature="e#1943#1944#0" expanded="true" />
+                <element signature="e#1974#2824#0" expanded="true" />
+                <element signature="e#2823#2824#0" expanded="true" />
+                <element signature="e#3017#3046#0" expanded="true" />
+                <element signature="e#3360#3385#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericServices.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java">
+      <file leaf-file-name="GenericMethods.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="530">
               <caret line="676" column="0" selection-start-line="676" selection-start-column="0" selection-end-line="676" selection-end-column="0" />
               <folding>
-                <element signature="method#getCurrentUserName#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#sendInvitation#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#hideKeyboard#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#createPDF#0;class#GenericServices#0" expanded="false" />
-                <element signature="e#8842#8867#0" expanded="false" />
-                <element signature="method#saveNotePdf#0;class#GenericServices#0" expanded="false" />
-                <element signature="e#10619#10644#0" expanded="false" />
-                <element signature="method#createNewPDFFile#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#createNewPDFFileOpening#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#createNewPDFFile2#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#sendImagePdf#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#saveImagePdf#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#uploadFiletoFireBase#0;class#GenericServices#0" expanded="false" />
-                <element signature="method#saveUserCredentialsLocally#0;class#GenericServices#0" expanded="false" />
-                <element signature="e#23842#23892#0" expanded="true" />
-                <element signature="method#getStringFromSharedPreference#0;class#GenericServices#0" expanded="false" />
-                <element signature="e#24524#24574#0" expanded="true" />
-                <element signature="e#24964#25014#0" expanded="true" />
+                <element signature="method#getCurrentUserName#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#sendInvitation#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#hideKeyboard#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#createPDF#0;class#GenericMethods#0" expanded="false" />
+                <element signature="e#8840#8865#0" expanded="false" />
+                <element signature="method#saveNotePdf#0;class#GenericMethods#0" expanded="false" />
+                <element signature="e#10617#10642#0" expanded="false" />
+                <element signature="method#createNewPDFFile#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#createNewPDFFileOpening#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#createNewPDFFile2#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#sendImagePdf#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#saveImagePdf#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#uploadFiletoFireBase#0;class#GenericMethods#0" expanded="false" />
+                <element signature="method#saveUserCredentialsLocally#0;class#GenericMethods#0" expanded="false" />
+                <element signature="e#23837#23887#0" expanded="true" />
+                <element signature="method#getStringFromSharedPreference#0;class#GenericMethods#0" expanded="false" />
+                <element signature="e#24519#24569#0" expanded="true" />
+                <element signature="method#getIntFromSharedPreferences#0;class#GenericMethods#0" expanded="false" />
+                <element signature="e#24959#25009#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_user_profile.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_user_profile.xml">
+      <file leaf-file-name="calculator.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/calculator.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
@@ -189,14 +223,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_profile_fragment.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_profile_fragment.xml">
+      <file leaf-file-name="app_bar_main_front_page2.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main_front_page2.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app_bar_layout.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_layout.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -2612,7 +2659,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/authentication/WelcomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/Inbox/InboxFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/images_menu.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_display_note.xml" />
@@ -2663,6 +2709,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/UserProfile/UserProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericMethods.java" />
       </list>
     </option>
   </component>
@@ -2790,11 +2837,67 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="collegebuddy" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collegebudddy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2825,82 +2928,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="collegebuddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Miscellaneous" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebuddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebudddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collegebuddy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserProfile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3319,13 +3346,6 @@
       <option name="presentableId" value="Default" />
       <updated>1493444438002</updated>
     </task>
-    <task id="LOCAL-00020" summary="Added time to imageUploads and tags">
-      <created>1500029408828</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1500029408828</updated>
-    </task>
     <task id="LOCAL-00021" summary="Fixed time">
       <created>1500030102463</created>
       <option name="number" value="00021" />
@@ -3662,12 +3682,19 @@
       <option name="project" value="LOCAL" />
       <updated>1515105699320</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Save username using sharedPreferences">
+      <created>1515170321900</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1515170321900</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45081967" sideWeight="0.55815834" order="12" side_tool="false" content_ui="tabs" />
@@ -3683,7 +3710,8 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.784153" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329235" sideWeight="0.42487884" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.84153" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.84153" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21448088" sideWeight="0.49676898" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15024233" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24900794" sideWeight="0.89480877" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3699,7 +3727,6 @@
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852563" sideWeight="0.6098546" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21526055" sideWeight="0.49676898" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3747,7 +3774,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="solved the notes on click issue" />
     <MESSAGE value="Created controller to compress image from camera and gallery" />
     <MESSAGE value="Cards feature" />
     <MESSAGE value="New class for image uploads" />
@@ -3772,7 +3798,8 @@
     <MESSAGE value="Adjust pan on notes page" />
     <MESSAGE value="Add profile pictures" />
     <MESSAGE value="Enlarged User Profile picture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enlarged User Profile picture" />
+    <MESSAGE value="Save username using sharedPreferences" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save username using sharedPreferences" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3828,33 +3855,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Main/ClassContents/Notes/DisplayNoteActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
-          <folding>
-            <element signature="method#continueWithoutSaving#0;class#DisplayNoteActivity#0" expanded="false" />
-            <element signature="method#onSupportNavigateUp#0;class#DisplayNoteActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#DisplayNoteActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dot.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/curved_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3862,6 +3862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3872,6 +3873,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="8" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3882,6 +3884,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+          <folding>
+            <element signature="e#270#298#0" expanded="true" />
+            <element signature="e#451#480#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4109,12 +4115,12 @@
         <state relative-caret-position="440">
           <caret line="350" column="21" selection-start-line="350" selection-start-column="21" selection-end-line="350" selection-end-column="21" />
           <folding>
-            <element signature="class#5412:6478" expanded="false" />
+            <element signature="class#5411:6477" expanded="false" />
             <element signature="method#reload#0;class#ImagesFragment#0" expanded="false" />
             <element signature="method#initializeFirebase#0;class#ImagesFragment#0" expanded="false" />
             <element signature="method#initializeViews#0;class#ImagesFragment#0" expanded="false" />
             <element signature="method#searchImage#0;class#ImagesFragment#0" expanded="false" />
-            <element signature="e#12801#13321#0" expanded="false" />
+            <element signature="e#12800#13320#0" expanded="false" />
             <element signature="method#onCreateContextMenu#0;class#ImagesFragment#0" expanded="false" />
             <element signature="method#sendImagePdf#0;class#ImagesFragment#0" expanded="false" />
             <element signature="method#savePdf#0;class#ImagesFragment#0" expanded="false" />
@@ -4148,7 +4154,7 @@
           <caret line="270" column="88" selection-start-line="270" selection-start-column="88" selection-end-line="270" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10688#10724#0" expanded="true" />
+            <element signature="e#10687#10723#0" expanded="true" />
             <element signature="method#openInbox#0;class#MainFrontPageActivity#0" expanded="false" />
             <element signature="method#openGoals#0;class#MainFrontPageActivity#0" expanded="false" />
             <element signature="method#openInboxFragment#0;class#MainFrontPageActivity#0" expanded="false" />
@@ -4164,7 +4170,7 @@
         <state relative-caret-position="480">
           <caret line="418" column="58" selection-start-line="418" selection-start-column="58" selection-end-line="418" selection-end-column="58" />
           <folding>
-            <element signature="e#15756#15791#0" expanded="false" />
+            <element signature="e#15748#15783#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4191,7 +4197,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_profile_fragment.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
@@ -4231,8 +4237,8 @@
         <state relative-caret-position="330">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
-            <element signature="e#2231#2260#0" expanded="true" />
-            <element signature="e#2476#2515#0" expanded="true" />
+            <element signature="e#2229#2258#0" expanded="true" />
+            <element signature="e#2474#2513#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4250,8 +4256,8 @@
         <state relative-caret-position="575">
           <caret line="248" column="5" selection-start-line="248" selection-start-column="5" selection-end-line="248" selection-end-column="5" />
           <folding>
-            <element signature="e#5695#8220#0" expanded="true" />
-            <element signature="e#8219#8220#0" expanded="true" />
+            <element signature="e#5692#8216#0" expanded="true" />
+            <element signature="e#8215#8216#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4259,42 +4265,76 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Authentication/WelcomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-162">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <element signature="e#1629#2019#0" expanded="true" />
-            <element signature="e#2018#2019#0" expanded="true" />
-            <element signature="e#2049#2899#0" expanded="true" />
-            <element signature="e#2898#2899#0" expanded="true" />
-            <element signature="e#3093#3122#0" expanded="true" />
-            <element signature="e#3436#3461#0" expanded="true" />
+            <element signature="e#1554#1944#0" expanded="true" />
+            <element signature="e#1943#1944#0" expanded="true" />
+            <element signature="e#1974#2824#0" expanded="true" />
+            <element signature="e#2823#2824#0" expanded="true" />
+            <element signature="e#3017#3046#0" expanded="true" />
+            <element signature="e#3360#3385#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericServices.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tapiwa/collegebuddy/Miscellaneous/GenericMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="530">
           <caret line="676" column="0" selection-start-line="676" selection-start-column="0" selection-end-line="676" selection-end-column="0" />
           <folding>
-            <element signature="method#getCurrentUserName#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#sendInvitation#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#hideKeyboard#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#createPDF#0;class#GenericServices#0" expanded="false" />
-            <element signature="e#8842#8867#0" expanded="false" />
-            <element signature="method#saveNotePdf#0;class#GenericServices#0" expanded="false" />
-            <element signature="e#10619#10644#0" expanded="false" />
-            <element signature="method#createNewPDFFile#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#createNewPDFFileOpening#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#createNewPDFFile2#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#sendImagePdf#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#saveImagePdf#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#uploadFiletoFireBase#0;class#GenericServices#0" expanded="false" />
-            <element signature="method#saveUserCredentialsLocally#0;class#GenericServices#0" expanded="false" />
-            <element signature="e#23842#23892#0" expanded="true" />
-            <element signature="method#getStringFromSharedPreference#0;class#GenericServices#0" expanded="false" />
-            <element signature="e#24524#24574#0" expanded="true" />
-            <element signature="e#24964#25014#0" expanded="true" />
+            <element signature="method#getCurrentUserName#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#sendInvitation#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#hideKeyboard#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#createPDF#0;class#GenericMethods#0" expanded="false" />
+            <element signature="e#8840#8865#0" expanded="false" />
+            <element signature="method#saveNotePdf#0;class#GenericMethods#0" expanded="false" />
+            <element signature="e#10617#10642#0" expanded="false" />
+            <element signature="method#createNewPDFFile#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#createNewPDFFileOpening#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#createNewPDFFile2#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#sendImagePdf#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#saveImagePdf#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#uploadFiletoFireBase#0;class#GenericMethods#0" expanded="false" />
+            <element signature="method#saveUserCredentialsLocally#0;class#GenericMethods#0" expanded="false" />
+            <element signature="e#23837#23887#0" expanded="true" />
+            <element signature="method#getStringFromSharedPreference#0;class#GenericMethods#0" expanded="false" />
+            <element signature="e#24519#24569#0" expanded="true" />
+            <element signature="method#getIntFromSharedPreferences#0;class#GenericMethods#0" expanded="false" />
+            <element signature="e#24959#25009#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/calculator.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_main_front_page2.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/app_bar_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

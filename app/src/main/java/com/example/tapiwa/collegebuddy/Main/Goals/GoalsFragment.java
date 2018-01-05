@@ -105,7 +105,7 @@ public class GoalsFragment extends Fragment {
 
         goalsList = (ListView) goalsPageView.findViewById(R.id.goals_lstV);
         list = new ArrayList<>();
-        adapter = new GoalsAdapter(getApplicationContext(), R.layout.goal_list_item, list);
+        adapter = new GoalsAdapter(getApplicationContext(), R.layout.item_goal_list, list);
         //  goalsList.setAdapter(adapter);
 
 
@@ -272,7 +272,7 @@ public class GoalsFragment extends Fragment {
 
                 goalsDbRef.keepSynced(true);
 
-                adapter = new GoalsAdapter(getApplicationContext(), R.layout.goal_list_item, list);
+                adapter = new GoalsAdapter(getApplicationContext(), R.layout.item_goal_list, list);
                 goalsList.setAdapter(adapter);
 
                 loadingBar.updateCompletionBar(completedGoals, uncompletedGoals, initialBarlength, progressBar, percentage);

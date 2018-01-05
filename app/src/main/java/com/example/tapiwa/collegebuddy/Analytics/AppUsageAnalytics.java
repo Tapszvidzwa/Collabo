@@ -1,7 +1,7 @@
 package com.example.tapiwa.collegebuddy.Analytics;
 
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +57,7 @@ public class AppUsageAnalytics {
 
     public static void recordTime() {
         String new_time = analyticsRef.child(user).child("LOGIN_TIMES").push().getKey();
-        analyticsRef.child(user).child("LOGIN_TIMES").child(new_time).setValue(GenericServices.timeStamp());
+        analyticsRef.child(user).child("LOGIN_TIMES").child(new_time).setValue(GenericMethods.timeStamp());
     }
 
 

@@ -24,7 +24,7 @@ import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -255,7 +255,7 @@ public class CameraGalleryUpload extends AppCompatActivity {
                         ("",
                                 url,
                                 thumb_download_url,
-                                GenericServices.date(),
+                                GenericMethods.date(),
                                 uploadId);
 
 

@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Miscellaneous.GenericServices;
+import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -58,7 +58,7 @@ public class DictionaryFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Inflate the layout for this fragment
-            vocabSearchView = inflater.inflate(R.layout.vocabulary_fragment, container, false);
+            vocabSearchView = inflater.inflate(R.layout.fragment_vocabulary, container, false);
 
             MainFrontPageActivity.toolbar.setTitle("Vocabulary");
 
@@ -73,7 +73,7 @@ public class DictionaryFragment extends Fragment {
                 public void onClick(View v) {
                     String searchTxt = word_to_search.getText().toString();
                     new CallbackTask().execute(inflections(searchTxt));
-                    GenericServices.hideKeyboard(word_to_search, getActivity());
+                    GenericMethods.hideKeyboard(word_to_search, getActivity());
                 }
             });
 
@@ -86,7 +86,7 @@ public class DictionaryFragment extends Fragment {
             });
 
             firebaseDatabase = FirebaseDatabase.getInstance();
-            vocabDbRef = firebaseDatabase.getReference(WORDS_LIST_DB_REF).child(GenericServices.getCurrentUid());
+            vocabDbRef = firebaseDatabase.getReference(WORDS_LIST_DB_REF).child(GenericMethods.getCurrentUid());
 
 
             return vocabSearchView;
