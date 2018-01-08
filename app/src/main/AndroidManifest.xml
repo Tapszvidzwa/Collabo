@@ -44,9 +44,9 @@
             android:name=".Settings.Settings"
             android:label="@string/title_activity_settings" />
 
-        <activity android:name=".Main.ClassContents.Notes.NewNote"
+        <activity android:name=".Main.FolderContents.Notes.NewNote"
             android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
-        <activity android:name=".Main.ClassContents.Notes.DisplayNoteActivity"
+        <activity android:name=".Main.FolderContents.Notes.DisplayNoteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"> </activity>
 
         <!--
@@ -86,7 +86,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Main.ClassContents.ClassContentsMain.ClassContentsMainActivity">
+        <activity android:name=".Main.FolderContents.FolderContentsMain.FolderContentsMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -95,15 +95,15 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".Main.ClassContents.Notes.StackCards" />
-        <activity android:name=".Main.ClassContents.Images.MaximizePrivateImageActivity" />
-        <activity android:name=".Main.ClassContents.ClassContentsMain.classImagesActivity" />
+        <activity android:name=".Main.FolderContents.Notes.StackCardsActivity" />
+        <activity android:name=".Main.FolderContents.Images.MaximizeImageActivity" />
+        <activity android:name=".Main.FolderContents.FolderContentsMain.FolderImagesActivity" />
         <activity android:name=".Miscellaneous.SendFeedBackActivity" />
         <activity android:name=".Main.NewFeatures.AddFeature" />
-        <activity android:name=".Main.ClassContents.Notes.SelectUsers.SelectUsers" />
+        <activity android:name=".Main.FolderContents.SelectUsers.SelectUsersActivity" />
         <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
-        <activity android:name=".Main.Class.ChooseClass" />
+        <activity android:name=".Main.Folder.ChooseClassActivity" />
         <activity android:name=".Main.Vocabulary.WordsListActivity"/>
         <activity android:name=".Authentication.WelcomeActivity">
             <intent-filter>
@@ -112,7 +112,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.ClassContents.StackImages.StackCardsImages" />
+        <activity android:name=".Main.FolderContents.StackImages.StackCardsImages" />
         <activity
             android:name=".Authentication.Tutorial"
             android:label="@string/title_activity_tutorial"

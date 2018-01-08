@@ -6,15 +6,52 @@ package com.example.tapiwa.collegebuddy.Main.Inbox;
 
 public class InboxObject {
 
-    private String senderName;
-    private String title;
-    private String content;
-    private String note_color;
-    private String type;
-    private String url;
+    public String senderName;
+    public String title;
+    public String content;
+    public String note_color;
+    public String type;
+    public String imageUri;
+    public String url;
+    public String time_sent;
+    public String pushKey;
 
+    public InboxObject(String senderName, String title, String content, String noteColor, String type, String pushKey, String time_sent, String imageUri) {
+        this.senderName = senderName;
+        this.title = title;
+        this.time_sent = time_sent;
+        this.content = content;
+        this.note_color = noteColor;
+        this.type = type;
+        this.pushKey = pushKey;
+        this.imageUri = imageUri;
 
-    private String pushKey;
+    }
+
+    public InboxObject(String senderName, String notetitle, String type, String url, String pushKey, String time_sent, String imageUri) {
+        this.senderName = senderName;
+        this.title = notetitle;
+        this.type = type;
+        this.url = url;
+        this.pushKey = pushKey;
+        this.time_sent = time_sent;
+        this.imageUri = imageUri;
+    }
+
+    public InboxObject() {
+    }
+
+    public String getTime_sent() {
+        return time_sent;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
 
     public String getNote_color() {
         return note_color;
@@ -32,30 +69,6 @@ public class InboxObject {
         return content;
     }
 
-    public InboxObject(String senderName, String title, String content, String noteColor, String type, String pushKey) {
-        this.senderName = senderName;
-        this.title = title;
-        this.content = content;
-        this.note_color = noteColor;
-        this.type = type;
-        this.pushKey = pushKey;
-    }
-
-    public InboxObject(String senderName, String title, String type, String url, String pushKey) {
-        this.senderName = senderName;
-        this.title = title;
-        this.type = type;
-        this.url = url;
-        this.pushKey = pushKey;
-    }
-
-    public InboxObject() {
-    }
-
-
-    public String getType() {
-        return type;
-    }
 
     public String getUrl() {
         return url;

@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderContentsMainActivity;
 import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -321,8 +321,8 @@ public class CameraGalleryUpload extends AppCompatActivity {
                 fileUri = photoURI;
 
                 if(callingActivity.equals("ClassContentsMainActivity")) {
-                    ClassContentsMainActivity.photoFile = photoFile;
-                    ClassContentsMainActivity.resultfileUri = fileUri;
+                    FolderContentsMainActivity.photoFile = photoFile;
+                    FolderContentsMainActivity.resultfileUri = fileUri;
                 } else if(callingActivity.equals("MainFrontPage")) {
                     MainFrontPageActivity.photoFile = photoFile;
                     MainFrontPageActivity.resultFileUri = fileUri;

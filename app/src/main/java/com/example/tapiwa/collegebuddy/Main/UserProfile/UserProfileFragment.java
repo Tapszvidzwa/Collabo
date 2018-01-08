@@ -57,7 +57,7 @@ public class UserProfileFragment extends Fragment {
         uploadProfilePhotoBtn = profileView.findViewById(R.id.upload_profile_photo_btn);
 
 
-        username.setText(GenericMethods.getStringFromSharedPreference(getActivity(), getString(R.string.user_name)));
+        username.setText(GenericMethods.getThisUserName(getActivity()));
 
 
         FirebaseAuth auth = MainFrontPageActivity.mAuth;
@@ -65,7 +65,7 @@ public class UserProfileFragment extends Fragment {
 
         mProfilePicsDBRef = FirebaseDatabase
                 .getInstance()
-                .getReference(this.getString(R.string.profile_photos));
+                .getReference(this.getString(R.string.profile_photos_db_ref));
 
         setListeners();
 

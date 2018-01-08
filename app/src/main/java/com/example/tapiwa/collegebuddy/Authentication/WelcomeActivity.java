@@ -95,7 +95,7 @@ public class WelcomeActivity extends AppCompatActivity {
             final String user_uid = mAuth.getCurrentUser().getUid().toString();
             final String user_email = mAuth.getCurrentUser().getEmail().toString();
             FirebaseDB = FirebaseDatabase.getInstance();
-            usersBDRef = FirebaseDB.getReference(getString(R.string.users));
+            usersBDRef = FirebaseDB.getReference(getString(R.string.users_db_ref));
 
 
             usersBDRef.child(user_uid).addListenerForSingleValueEvent(new ValueEventListener() {

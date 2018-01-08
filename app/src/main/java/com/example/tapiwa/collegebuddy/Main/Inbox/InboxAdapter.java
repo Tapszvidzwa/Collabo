@@ -12,8 +12,14 @@ import android.widget.TextView;
 
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeature;
 import com.example.tapiwa.collegebuddy.R;
+import com.github.siyamed.shapeimageview.CircularImageView;
+import com.google.firebase.database.DatabaseError;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class InboxAdapter extends BaseAdapter {
@@ -47,7 +53,8 @@ public class InboxAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView text;
         TextView sender_name;
-        ImageView star;
+        TextView time_sent;
+        CircleImageView sender_image;
         CardView card;
     }
 
@@ -64,9 +71,10 @@ public class InboxAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
-            holder.text  = (TextView) row.findViewById(R.id.inbox_title);
-            holder.sender_name = (TextView) row.findViewById(R.id.inbox_sent_by);
-            holder.star = (ImageView) row.findViewById(R.id.inbox_sender_img);
+            holder.text  =  row.findViewById(R.id.inbox_title);
+            holder.time_sent = row.findViewById(R.id.inbox_time_received);
+            holder.sender_name =  row.findViewById(R.id.inbox_sent_by);
+            holder.sender_image =  row.findViewById(R.id.inbox_sender_img);
 
             row.setTag(holder);
 
@@ -76,10 +84,38 @@ public class InboxAdapter extends BaseAdapter {
 
 
         holder.text.setText(inboxObject.getTitle());
+        holder.time_sent.setText(inboxObject.getTitle());
         holder.sender_name.setText(inboxObject.getSenderName());
 
+        final  CircleImageView holder1 = holder.sender_image;
 
-        if(inboxObject.getType().equals("pdf")) {
+
+        if(inboxObject.imageUri != null) {
+            //load sender photo
+            Picasso.with(context)
+                    .load(inboxObject.imageUri)
+                    .fit()
+                    .placeholder(R.drawable.ic_user)
+                    .priority(Picasso.Priority.HIGH)
+                    .into(holder1, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError() {
+                            // Try again online if cache failed
+                            Picasso.with(context)
+                                    .load(inboxObject.imageUri)
+                                    .fit()
+                                    .priority(Picasso.Priority.HIGH)
+                                    .into(holder1);
+                        }
+                    });
+        }
+
+
+    /*    if(inboxObject.getType().equals("pdf")) {
             holder.star.setImageResource(R.drawable.ic_pdf_new);
         } else if(inboxObject.getType().equals("image")) {
             holder.star.setImageResource(R.drawable.ic_image_file);
@@ -88,6 +124,7 @@ public class InboxAdapter extends BaseAdapter {
         } else {
             holder.star.setImageResource(R.drawable.ic_file_new);
         }
+        */
 
         return row;
     }

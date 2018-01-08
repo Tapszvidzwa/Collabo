@@ -31,12 +31,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-import com.example.tapiwa.collegebuddy.Main.Class.ClassesAdapter;
-import com.example.tapiwa.collegebuddy.Main.Class.NewClass;
-import com.example.tapiwa.collegebuddy.Main.Class.ClassFolderColor;
+import com.example.tapiwa.collegebuddy.Main.Folder.ClassesAdapter;
+import com.example.tapiwa.collegebuddy.Main.Folder.NewClass;
+import com.example.tapiwa.collegebuddy.Main.Folder.ClassFolderColor;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.classImagesActivity;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderContentsMainActivity;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderImagesActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -278,7 +278,7 @@ View homePageView;
         storageReference = mStorage.getReference();
 
         mFolderContentsDBRef = FirebaseDatabase.getInstance()
-                .getReference(classImagesActivity.PRIVATE_FOLDERS_CONTENTS)
+                .getReference(FolderImagesActivity.PRIVATE_FOLDERS_CONTENTS)
                 .child(user);
 
         mFolderContentsDBRef.keepSynced(true);
@@ -499,7 +499,7 @@ View homePageView;
 
                 //Get item at position
                 NewClass item = (NewClass) parent.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), ClassContentsMainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FolderContentsMainActivity.class);
 
                 intent.putExtra("projectKey", item.getProjectKey());
                 intent.putExtra("projectName", item.getProjectName());

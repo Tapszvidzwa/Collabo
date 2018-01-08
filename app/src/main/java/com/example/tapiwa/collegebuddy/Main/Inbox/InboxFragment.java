@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.Images.MaximizePrivateImageActivity;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.Images.MaximizeImageActivity;
 import com.example.tapiwa.collegebuddy.Miscellaneous.GenericMethods;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -111,8 +111,7 @@ public class InboxFragment extends Fragment {
 
                 } else if(itemType.equals("image")) {
 
-
-                    Intent maximizeImage = new Intent(getActivity(), MaximizePrivateImageActivity.class);
+                    Intent maximizeImage = new Intent(getActivity(), MaximizeImageActivity.class);
                     maximizeImage.putExtra("imageUri", item.getUrl());
                     maximizeImage.putExtra("tag", item.getTitle());
                     maximizeImage.putExtra("callingIntent", "inbox");
@@ -236,10 +235,8 @@ public class InboxFragment extends Fragment {
                 adapter.notifyDataSetChanged();
 
                 if(list.size() == 0) {
-
                     cryingBaby.setVisibility(View.VISIBLE);
                     noInboxTxt.setVisibility(View.VISIBLE);
-
                 } else {
                     cryingBaby.setVisibility(View.INVISIBLE);
                     noInboxTxt.setVisibility(View.INVISIBLE);

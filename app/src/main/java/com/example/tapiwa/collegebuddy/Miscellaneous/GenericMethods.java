@@ -28,9 +28,9 @@ import android.widget.Toast;
 
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.Docs.DOC;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.Docs.DocsFragment;
-import com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.Docs.DOC;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.Docs.DocsFragment;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderContentsMainActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -80,7 +80,6 @@ public class GenericMethods {
 
     public GenericMethods(Context cxt) {
         this.context = cxt;
-
     }
 
 
@@ -356,7 +355,7 @@ public class GenericMethods {
         StorageReference noteStorage = FirebaseStorage
                             .getInstance()
                             .getReference(DocsFragment.DOCS_STORAGE_REF).child(MainFrontPageActivity.user)
-                            .child(ClassContentsMainActivity.projectKey)
+                            .child(FolderContentsMainActivity.projectKey)
                             .child(contentUri.getLastPathSegment());
 
 
@@ -670,8 +669,27 @@ public class GenericMethods {
         //returns "none" if there is no string stored in sharedPreferences
         SharedPreferences sharedPreferences = activity.getSharedPreferences
                 (activity.getString(R.string.sharedPreference_file),
-                Context.MODE_PRIVATE);
+                        Context.MODE_PRIVATE);
         String result =  sharedPreferences.getString(itemToGet, "none");
+        return result;
+    }
+
+
+    public static String getThisUserName(Activity activity) {
+        //returns "none" if there is no string stored in sharedPreferences
+        SharedPreferences sharedPreferences = activity.getSharedPreferences
+                (activity.getString(R.string.sharedPreference_file),
+                        Context.MODE_PRIVATE);
+        String result =  sharedPreferences.getString(activity.getString(R.string.user_name), "none");
+        return result;
+    }
+
+    public static String getThisUserID(Activity activity) {
+        //returns "none" if there is no string stored in sharedPreferences
+        SharedPreferences sharedPreferences = activity.getSharedPreferences
+                (activity.getString(R.string.sharedPreference_file),
+                        Context.MODE_PRIVATE);
+        String result =  sharedPreferences.getString(activity.getString(R.string.user_id), "none");
         return result;
     }
 

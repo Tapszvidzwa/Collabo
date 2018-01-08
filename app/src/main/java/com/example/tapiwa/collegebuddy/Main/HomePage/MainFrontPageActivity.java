@@ -22,9 +22,9 @@ import android.widget.ListView;
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-import com.example.tapiwa.collegebuddy.Main.Class.ChooseClass;
-import com.example.tapiwa.collegebuddy.Main.Class.ClassesAdapter;
-import com.example.tapiwa.collegebuddy.Main.Class.NewClass;
+import com.example.tapiwa.collegebuddy.Main.Folder.ChooseClassActivity;
+import com.example.tapiwa.collegebuddy.Main.Folder.ClassesAdapter;
+import com.example.tapiwa.collegebuddy.Main.Folder.NewClass;
 import com.example.tapiwa.collegebuddy.Main.Goals.GoalsFragment;
 import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment;
@@ -58,7 +58,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 import static com.example.tapiwa.collegebuddy.Authentication.LoginActivity.permissionsRef;
-import static com.example.tapiwa.collegebuddy.Main.ClassContents.ClassContentsMain.ClassContentsMainActivity.projectKey;
+import static com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderContentsMainActivity.projectKey;
 
 public class MainFrontPageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -280,13 +280,13 @@ public class MainFrontPageActivity extends AppCompatActivity
         }
 
         if (requestCode == IMAGE_PICK && resultCode == RESULT_OK) {
-            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClass.class);
+            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClassActivity.class);
             startActivity(chooseClassToUploadImage);
             return;
         }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClass.class);
+            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClassActivity.class);
             startActivity(chooseClassToUploadImage);
             return;
         }

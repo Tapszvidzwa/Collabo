@@ -49,8 +49,9 @@
     <string name="upload_from_gallery">Select from Gallery</string>
 
     <!-- Strings related to Database References -->
-    <string name="profile_photos">Profile_Pictures</string>
-    <string name="users">Users</string>
+    <string name="profile_photos_db_ref">Profile_Pictures</string>
+    <string name="users_db_ref">Users</string>
+    <string name="inbox_db_ref">INBOX</string>
 
 
     <!-- Strings related to Shared Preferences -->
@@ -62,9 +63,13 @@
     <!-- Strings related to Fragments and Activities -->
     <string name="profile_fragment">Profile_Fragment</string>
     <string name="images_fragment">Images_Fragment</string>
+    <string name="notes_fragment">Notes_Fragment</string>
+    <string name="docs_fragment">Docs_Fragment</string>
 
     <string name="select_from_gallery_activity">Select_From_Gallery_Activity</string>
     <string name="main_front_page_activity">Main_Front_Page_Activity</string>
+    <string name="display_note_activity">DisplayNote_Activity</string>
+    <string name="newNote_activity">NewNote_Activity</string>
 
     <!-- Example General settings -->
     <string name="pref_header_general">Account</string>

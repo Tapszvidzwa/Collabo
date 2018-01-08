@@ -11,7 +11,7 @@ public class NewImage {
     private String tag;
     private String full_image_uri;
     private String timeUploaded;
-    private String thumb_uri;
+    public String thumb_uri;
     private String image_key;
 
     public NewImage() {
