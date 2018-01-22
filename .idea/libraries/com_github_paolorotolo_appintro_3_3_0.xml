@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.github.paolorotolo:appintro-3.3.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appintro-3.3.0.aar/f60085033ea6309788121d822b799fb0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appintro-3.3.0.aar/f60085033ea6309788121d822b799fb0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.paolorotolo/appintro/3.3.0/fb197feff940aa4128ba8bd7059ec4905b64e84b/appintro-3.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

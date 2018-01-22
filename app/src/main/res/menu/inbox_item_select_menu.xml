@@ -8,5 +8,11 @@
         android:title="Delete"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/move_to_folder"
+        android:orderInCategory="80"
+        android:title="Move to folder"
+        app:showAsAction="never" />
+
 
 </menu>

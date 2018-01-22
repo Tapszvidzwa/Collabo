@@ -7,7 +7,6 @@ package com.example.tapiwa.collegebuddy.CameraGalleryUploads;
 
 public class NewImage {
 
-
     private String tag;
     private String full_image_uri;
     private String timeUploaded;
@@ -51,5 +50,25 @@ public class NewImage {
 
     public String getFull_image_uri() {
         return full_image_uri;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setFull_image_uri(String full_image_uri) {
+        this.full_image_uri = full_image_uri;
+    }
+
+    public void setTimeUploaded(String timeUploaded) {
+        this.timeUploaded = timeUploaded;
+    }
+
+    public void setThumb_uri(String thumb_uri) {
+        this.thumb_uri = thumb_uri;
+    }
+
+    public void setImage_key(String image_key) {
+        this.image_key = image_key;
     }
 }

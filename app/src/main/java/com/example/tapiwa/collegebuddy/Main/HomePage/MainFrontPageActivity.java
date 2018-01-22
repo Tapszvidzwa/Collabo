@@ -22,10 +22,10 @@ import android.widget.ListView;
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
-import com.example.tapiwa.collegebuddy.Main.Folder.ChooseClassActivity;
+import com.example.tapiwa.collegebuddy.Main.Folder.ChooseFolderActivity;
 import com.example.tapiwa.collegebuddy.Main.Folder.ClassesAdapter;
 import com.example.tapiwa.collegebuddy.Main.Folder.NewClass;
-import com.example.tapiwa.collegebuddy.Main.Goals.GoalsFragment;
+import com.example.tapiwa.collegebuddy.Main.FolderContents.Goals.GoalsFragment;
 import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment;
 import com.example.tapiwa.collegebuddy.Main.UserProfile.UserProfileFragment;
@@ -49,6 +49,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -61,7 +62,7 @@ import static com.example.tapiwa.collegebuddy.Authentication.LoginActivity.permi
 import static com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.FolderContentsMainActivity.projectKey;
 
 public class MainFrontPageActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Serializable {
 
     public ListView foldersListView;
     private String[] drawerTitles;
@@ -280,13 +281,13 @@ public class MainFrontPageActivity extends AppCompatActivity
         }
 
         if (requestCode == IMAGE_PICK && resultCode == RESULT_OK) {
-            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClassActivity.class);
+            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseFolderActivity.class);
             startActivity(chooseClassToUploadImage);
             return;
         }
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseClassActivity.class);
+            Intent chooseClassToUploadImage = new Intent(MainFrontPageActivity.this, ChooseFolderActivity.class);
             startActivity(chooseClassToUploadImage);
             return;
         }
@@ -402,7 +403,7 @@ public class MainFrontPageActivity extends AppCompatActivity
     private void openGoals() {
 
         CurrentFragment = "Goals";
-        android.app.Fragment fragment = new GoalsFragment();
+        android.app.Fragment fragment = new InboxFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
                 .commit();

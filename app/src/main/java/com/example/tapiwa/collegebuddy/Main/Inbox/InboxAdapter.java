@@ -1,19 +1,20 @@
 package com.example.tapiwa.collegebuddy.Main.Inbox;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeature;
+import com.example.tapiwa.collegebuddy.CameraGalleryUploads.NewImage;
 import com.example.tapiwa.collegebuddy.R;
-import com.github.siyamed.shapeimageview.CircularImageView;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +28,9 @@ public class InboxAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<InboxObject> ObjectsList;
+    private String sender_img;
+    private DatabaseReference profPicsRef;
+    private FirebaseDatabase firebaseDatabase;
 
 
     public InboxAdapter(Context context, int layout, ArrayList<InboxObject> ObjectsList) {
@@ -60,8 +64,10 @@ public class InboxAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, final View view, ViewGroup viewGroup) {
-
         final InboxObject inboxObject = ObjectsList.get(position);
+
+      firebaseDatabase = FirebaseDatabase.getInstance();
+      profPicsRef = firebaseDatabase.getReference(context.getString(R.string.profile_photos_db_ref));
 
         View row = view;
         ViewHolder holder = new ViewHolder();
@@ -84,35 +90,48 @@ public class InboxAdapter extends BaseAdapter {
 
 
         holder.text.setText(inboxObject.getTitle());
-        holder.time_sent.setText(inboxObject.getTitle());
+        holder.time_sent.setText(inboxObject.getTime_sent());
         holder.sender_name.setText(inboxObject.getSenderName());
 
         final  CircleImageView holder1 = holder.sender_image;
 
 
-        if(inboxObject.imageUri != null) {
-            //load sender photo
-            Picasso.with(context)
-                    .load(inboxObject.imageUri)
-                    .fit()
-                    .placeholder(R.drawable.ic_user)
-                    .priority(Picasso.Priority.HIGH)
-                    .into(holder1, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
+        profPicsRef.child(inboxObject.getSenderID()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        @Override
-                        public void onError() {
-                            // Try again online if cache failed
-                            Picasso.with(context)
-                                    .load(inboxObject.imageUri)
-                                    .fit()
-                                    .priority(Picasso.Priority.HIGH)
-                                    .into(holder1);
-                        }
-                    });
-        }
+                if(dataSnapshot.exists()) {
+                    final NewImage sender_image = dataSnapshot.getValue(NewImage.class);
+
+                    //load sender photo
+                    Picasso.with(context)
+                            .load(sender_image.getThumb_uri())
+                            .placeholder(R.drawable.ic_user)
+                            .priority(Picasso.Priority.HIGH)
+                            .into(holder1, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                }
+
+                                @Override
+                                public void onError() {
+                                    // Try again online if cache failed
+                                    Picasso.with(context)
+                                            .load(sender_image.getThumb_uri())
+                                            .priority(Picasso.Priority.HIGH)
+                                            .into(holder1);
+                                }
+                            });
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
 
     /*    if(inboxObject.getType().equals("pdf")) {

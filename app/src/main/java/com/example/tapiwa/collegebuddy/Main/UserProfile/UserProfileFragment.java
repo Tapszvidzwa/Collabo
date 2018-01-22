@@ -2,6 +2,7 @@ package com.example.tapiwa.collegebuddy.Main.UserProfile;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -35,7 +36,7 @@ public class UserProfileFragment extends Fragment {
     public static TextView username;
     public static CircleImageView user_profile_photo;
     private View profileView;
-    private Button uploadProfilePhotoBtn;
+    private FloatingActionButton uploadProfilePhotoBtn;
     private DatabaseReference mProfilePicsDBRef;
     private String uid;
 
@@ -87,7 +88,6 @@ public class UserProfileFragment extends Fragment {
                 final NewImage prof_pic = dataSnapshot.getValue(NewImage.class);
                 Picasso.with(getActivity())
                         .load(prof_pic.getFull_image_uri())
-                        .fit()
                         .placeholder(R.drawable.ic_user)
                         .priority(Picasso.Priority.HIGH)
                         .into(user_profile_photo, new Callback() {
@@ -100,7 +100,6 @@ public class UserProfileFragment extends Fragment {
                                 // Try again online if cache failed
                                 Picasso.with(getActivity())
                                         .load(prof_pic.getFull_image_uri())
-                                        .fit()
                                         .priority(Picasso.Priority.HIGH)
                                         .into(user_profile_photo);
                             }

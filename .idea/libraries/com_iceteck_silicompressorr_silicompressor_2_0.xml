@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="com.iceteck.silicompressorr:silicompressor-2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/silicompressor-2.0.aar/1d4979c1a73818a44645704a0df3fe3f/jars/libs/aspectjrt-1.7.3.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/silicompressor-2.0.aar/1d4979c1a73818a44645704a0df3fe3f/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/silicompressor-2.0.aar/1d4979c1a73818a44645704a0df3fe3f/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/silicompressor-2.0.aar/1d4979c1a73818a44645704a0df3fe3f/jars/libs/isoparser-1.0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.iceteck.silicompressorr/silicompressor/2.0/ed13dab6a44b73e385de1066fe601f46dd064d9a/silicompressor-2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,6 +1,7 @@
 package com.example.tapiwa.collegebuddy.Main.FolderContents.SelectUsers;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -22,6 +23,7 @@ import com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain.Fo
 import com.example.tapiwa.collegebuddy.Main.FolderContents.Images.ImagesFragment;
 import com.example.tapiwa.collegebuddy.CameraGalleryUploads.NewImage;
 import com.example.tapiwa.collegebuddy.Main.FolderContents.Notes.NotesSQLiteDBHelper;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +55,7 @@ public class SelectUsersActivity extends AppCompatActivity  {
     private ArrayList<NewUser> users;
     private SelectUsersAdapter adapter;
     public static final String NOTE_TYPE = "note";
-    private String currentUserName;
+    private String currentUserName, senderID;
     public static String Url, callingIntent, noteTitle, noteContents, sender_image_uri;
 
 
@@ -156,22 +158,6 @@ public class SelectUsersActivity extends AppCompatActivity  {
 
     private void setOnCLickListeners() {
 
-
-        profilePicsDbRef.child(GenericMethods.getThisUserID(activity))
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        NewImage image = dataSnapshot.getValue(NewImage.class);
-                        sender_image_uri = image.thumb_uri;
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick (AdapterView < ? > parent, View v,int position, long id){
@@ -207,23 +193,20 @@ public class SelectUsersActivity extends AppCompatActivity  {
                                     NOTE_TYPE,
                                     pushKey,
                                     GenericMethods.timeStamp(),
-                                    sender_image_uri));
+                                    GenericMethods.getThisUserID(activity)));
                 }
                 else if(callingIntent.equals(getString(R.string.images_fragment))) {
 
                     NewImage img = ImagesFragment.list.get(ImagesFragment.selectedImage);
 
-
-                    String aboutTosend = sender_image_uri;
-
                     InboxObject imageObject = new InboxObject(
                             currentUserName,
                             img.getTag(),
-                            "image",
+                            getString(R.string.image_file),
                             img.getFull_image_uri(),
                             pushKey,
                             GenericMethods.timeStamp(),
-                            sender_image_uri);
+                            GenericMethods.getThisUserID(activity));
 
                     sendToInbxRef.child(pushKey).setValue(imageObject);
                 } else if(callingIntent.equals(getString(R.string.docs_fragment))) {
@@ -231,11 +214,11 @@ public class SelectUsersActivity extends AppCompatActivity  {
                     DOC doc = DocsFragment.list.get(DocsFragment.selectedDocument);
                     InboxObject docObject = new InboxObject(currentUserName,
                             doc.getDoc_name(),
-                            "pdf",
+                            getString(R.string.pdf_file),
                             doc.getDoc_uri(),
                             pushKey,
                             GenericMethods.timeStamp(),
-                            sender_image_uri);
+                            GenericMethods.getThisUserID(activity));
 
                     sendToInbxRef.child(pushKey).setValue(docObject);
 
@@ -247,16 +230,14 @@ public class SelectUsersActivity extends AppCompatActivity  {
                                     noteTitle,
                                     noteContents,
                                     "yellow",
-                                    NOTE_TYPE,
+                                    getString(R.string.note_file),
                                     pushKey,
                                     GenericMethods.timeStamp(),
-                                    sender_image_uri));
+                                    GenericMethods.getThisUserID(activity)));
                 }
 
                 SendNotification sendNotification = new SendNotification(selectedUserID, currentUserName);
                 sendNotification.executeSendNotification();
-
-
 
                 Toasty.success(getApplicationContext(), "Sent to " + selectedUser.name, Toast.LENGTH_SHORT).show();
                 SelectUsersActivity.this.finish();

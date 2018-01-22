@@ -11,12 +11,12 @@ public class InboxObject {
     public String content;
     public String note_color;
     public String type;
-    public String imageUri;
+    public String senderID;
     public String url;
     public String time_sent;
     public String pushKey;
 
-    public InboxObject(String senderName, String title, String content, String noteColor, String type, String pushKey, String time_sent, String imageUri) {
+    public InboxObject(String senderName, String title, String content, String noteColor, String type, String pushKey, String time_sent, String senderID) {
         this.senderName = senderName;
         this.title = title;
         this.time_sent = time_sent;
@@ -24,18 +24,18 @@ public class InboxObject {
         this.note_color = noteColor;
         this.type = type;
         this.pushKey = pushKey;
-        this.imageUri = imageUri;
+        this.senderID = senderID;
 
     }
 
-    public InboxObject(String senderName, String notetitle, String type, String url, String pushKey, String time_sent, String imageUri) {
+    public InboxObject(String senderName, String title, String type, String url, String pushKey, String time_sent, String senderID) {
         this.senderName = senderName;
-        this.title = notetitle;
+        this.title = title;
         this.type = type;
         this.url = url;
         this.pushKey = pushKey;
         this.time_sent = time_sent;
-        this.imageUri = imageUri;
+        this.senderID = senderID;
     }
 
     public InboxObject() {
@@ -49,8 +49,8 @@ public class InboxObject {
         return type;
     }
 
-    public String getImageUri() {
-        return imageUri;
+    public String getSenderID() {
+        return senderID;
     }
 
     public String getNote_color() {

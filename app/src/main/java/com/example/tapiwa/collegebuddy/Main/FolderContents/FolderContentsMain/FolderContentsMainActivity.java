@@ -30,6 +30,7 @@ package com.example.tapiwa.collegebuddy.Main.FolderContents.FolderContentsMain;
         import com.eightbitlab.bottomnavigationbar.BottomBarItem;
         import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
         import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+        import com.example.tapiwa.collegebuddy.Main.FolderContents.Goals.GoalsFragment;
         import com.example.tapiwa.collegebuddy.R;
         import com.example.tapiwa.collegebuddy.Main.FolderContents.Docs.DocsFragment;
         import com.example.tapiwa.collegebuddy.Main.FolderContents.Assignments.AssignmentsFragment;
@@ -94,8 +95,6 @@ public class FolderContentsMainActivity extends AppCompatActivity {
     private final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1002;
     private final int SELECT_FILE_FROM_SYSTEM = 1236;
 
-
-
     private final int PICK_IMAGE = 1001;
     private final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -107,10 +106,6 @@ public class FolderContentsMainActivity extends AppCompatActivity {
     private Vibrator vibrate;
     private int pageNumber = 0;
     private BottomNavigationBar bottomNavigationBar;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +148,7 @@ public class FolderContentsMainActivity extends AppCompatActivity {
 
         //floatingBtn
         actionButton = (FloatingActionButton) findViewById(R.id.fragment_action);
-        actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
+        actionButton.setImageResource(R.drawable.fab_add);
         actionButton.show();
 
 
@@ -179,7 +174,7 @@ public class FolderContentsMainActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CameraGalleryUpload.chooseImageFromGallery(FolderContentsMainActivity.this);
+               GoalsFragment.createNewGoal();
             }
         });
 
@@ -194,8 +189,21 @@ public class FolderContentsMainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-
                 if (position == 0) {
+                    //privates fragment
+                    actionButton.setImageResource(R.drawable.fab_add);
+                    actionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            GoalsFragment.createNewGoal();
+                        }
+                    });
+                    actionButton.show();
+                    pageNumber = 0;
+
+                }
+
+                if (position == 1) {
                     //privates fragment
                     actionButton.setImageResource(R.drawable.ic_perm_media_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -205,11 +213,11 @@ public class FolderContentsMainActivity extends AppCompatActivity {
                         }
                     });
                     actionButton.show();
-                    pageNumber = 0;
+                    pageNumber = 1;
 
                 }
 
-                if (position == 1) {
+                if (position == 2) {
                     //my notes fragment
                     actionButton.setImageResource(R.drawable.ic_note_add_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -220,10 +228,10 @@ public class FolderContentsMainActivity extends AppCompatActivity {
                         }
                     });
                     actionButton.show();
-                    pageNumber = 1;
+                    pageNumber = 2;
                 }
 
-                if (position == 2) {
+                if (position == 3) {
                     //my notes fragment
                     actionButton.setImageResource(R.drawable.ic_add_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -234,10 +242,10 @@ public class FolderContentsMainActivity extends AppCompatActivity {
                     });
 
                     actionButton.show();
-                    pageNumber = 2;
+                    pageNumber = 3;
                 }
 
-                if (position == 3) {
+                if (position == 4) {
                     //my notes fragment
                     actionButton.setImageResource(R.drawable.ic_add_white_24px);
                     actionButton.setOnClickListener(new View.OnClickListener() {
@@ -248,20 +256,22 @@ public class FolderContentsMainActivity extends AppCompatActivity {
                     });
 
                     actionButton.show();
-                    pageNumber = 3;
+                    pageNumber = 4;
                 }
 
                 switch (position) {
                     case 0:
+                        AppUsageAnalytics.incrementPageVisitCount("Goals_Fragment");
+                    case 1:
                         AppUsageAnalytics.incrementPageVisitCount("Images_Fragment");
                         break;
-                    case 1:
+                    case 2:
                         AppUsageAnalytics.incrementPageVisitCount("Notes_Fragment");
                         break;
-                    case 2:
+                    case 3:
                         AppUsageAnalytics.incrementPageVisitCount("Docs_Fragment");
                         break;
-                    case 3:
+                    case 4:
                         AppUsageAnalytics.incrementPageVisitCount("DeadLines_Fragment");
                         break;
                 }
@@ -639,16 +649,19 @@ public class FolderContentsMainActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0 :
+                    GoalsFragment goalsFragment = new GoalsFragment();
+                    return goalsFragment;
+                case 1 :
                     // PrivatesFragment privatesFragment = new PrivatesFragment();
                     ImagesFragment imagesFragment = new ImagesFragment();
                     return imagesFragment;
-                case 1:
+                case 2:
                     NotesFragment notesFragment = new NotesFragment();
                     return notesFragment;
-                case 2:
+                case 3:
                     DocsFragment docsFragment = new DocsFragment();
                     return docsFragment;
-                case 3:
+                case 4:
                     AssignmentsFragment assignmentsFragment= new AssignmentsFragment();
                     return assignmentsFragment;
 
@@ -660,20 +673,22 @@ public class FolderContentsMainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 4;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "IMAGES";
+                    return "GOALS";
                 case 1:
-                    return "NOTES";
+                    return "SNAPS";
                 case 2:
-                    return "DOCS";
+                    return "CARDS";
                 case 3:
-                    return "DEADLINES";
+                    return "DOCS";
+                case 4:
+                    return "DATES";
             }
             return null;
         }

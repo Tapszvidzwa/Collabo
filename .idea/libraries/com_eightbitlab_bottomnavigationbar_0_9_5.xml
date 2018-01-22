@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.eightbitlab:bottomnavigationbar-0.9.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomnavigationbar-0.9.5.aar/53da39f86422f6155e18f2e54a5cd442/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomnavigationbar-0.9.5.aar/53da39f86422f6155e18f2e54a5cd442/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.eightbitlab/bottomnavigationbar/0.9.5/62276cc57d95ace8a30db3e5ba8ea9ec20f4e58d/bottomnavigationbar-0.9.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

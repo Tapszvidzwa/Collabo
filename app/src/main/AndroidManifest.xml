@@ -14,11 +14,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
 
     <application
         android:allowBackup="true"
@@ -103,7 +101,7 @@
         <activity android:name=".Main.FolderContents.SelectUsers.SelectUsersActivity" />
         <activity android:name=".Main.Inbox.DisplayInboxNoteActivity"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
-        <activity android:name=".Main.Folder.ChooseClassActivity" />
+        <activity android:name=".Main.Folder.ChooseFolderActivity" />
         <activity android:name=".Main.Vocabulary.WordsListActivity"/>
         <activity android:name=".Authentication.WelcomeActivity">
             <intent-filter>

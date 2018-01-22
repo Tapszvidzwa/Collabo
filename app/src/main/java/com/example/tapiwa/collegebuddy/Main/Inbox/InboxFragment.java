@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tapiwa.collegebuddy.CameraGalleryUploads.NewImage;
+import com.example.tapiwa.collegebuddy.Main.Folder.ChooseFolderActivity;
 import com.example.tapiwa.collegebuddy.Main.HomePage.MainFrontPageActivity;
 import com.example.tapiwa.collegebuddy.R;
 import com.example.tapiwa.collegebuddy.Main.FolderContents.Images.MaximizeImageActivity;
@@ -37,6 +39,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -203,12 +206,48 @@ public class InboxFragment extends Fragment {
             case R.id.delete_inbox:
                 deleteInbox(info.position);
                 return true;
+
+            case R.id.move_to_folder:
+                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }
 
 
     }
+
+
+ /*   private void moveToFolder(int position) {
+
+       InboxObject inboxObject = list.get(position);
+        NewImage image = new NewImage();
+
+        if(inboxObject.getType().equals(getString(R.string.image_file))) {
+            image.setFull_image_uri(inboxObject.getImageUri());
+            image.setImage_key(inboxObject.getPushKey());
+            image.setTag(inboxObject.getTitle());
+            image.setTimeUploaded(inboxObject.getTime_sent());
+        }
+
+        Intent selectFolder = new Intent(getActivity(), ChooseFolderActivity.class);
+        selectFolder.putExtra("InboxObject", (Serializable) image);
+        selectFolder.putExtra("callingIntent", getString(R.string.inbox_fragment));
+        startActivity(selectFolder);
+
+
+        //determine if it is a
+
+        // 1) Image
+        // 2) Note
+        // 3) Document
+
+      //open folders to move file
+        // place file in folder
+
+
+
+    } */
 
     private void getInboxesFromFirebase() {
 

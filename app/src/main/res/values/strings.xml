@@ -60,11 +60,18 @@
     <string name="user_email">user_email</string>
     <string name="user_id">user_id</string>
 
+    <!-- Strings related to file types -->
+    <string name="image_file">image</string>
+    <string name="pdf_file">pdf</string>
+    <string name="note_file">note</string>
+
+
     <!-- Strings related to Fragments and Activities -->
     <string name="profile_fragment">Profile_Fragment</string>
     <string name="images_fragment">Images_Fragment</string>
     <string name="notes_fragment">Notes_Fragment</string>
     <string name="docs_fragment">Docs_Fragment</string>
+    <string name="inbox_fragment">Inbox_Fragment</string>
 
     <string name="select_from_gallery_activity">Select_From_Gallery_Activity</string>
     <string name="main_front_page_activity">Main_Front_Page_Activity</string>
