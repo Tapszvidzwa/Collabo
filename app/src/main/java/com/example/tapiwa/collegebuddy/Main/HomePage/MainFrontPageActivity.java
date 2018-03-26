@@ -17,11 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 import com.example.tapiwa.collegebuddy.Analytics.AppUsageAnalytics;
+import com.example.tapiwa.collegebuddy.Main.Calculator.Calculator;
 import com.example.tapiwa.collegebuddy.Main.Folder.ChooseFolderActivity;
 import com.example.tapiwa.collegebuddy.Main.Folder.ClassesAdapter;
 import com.example.tapiwa.collegebuddy.Main.Folder.NewClass;
@@ -91,6 +94,7 @@ public class MainFrontPageActivity extends AppCompatActivity
     public BottomNavigationBar bottomNavigationBar;
     public static Toolbar toolbar;
     public static Uri resultFileUri;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,12 +124,10 @@ public class MainFrontPageActivity extends AppCompatActivity
         bottomNavigationBar.addTab(goalsIcon);
         bottomNavigationBar.addTab(dictionaryIcon);
 
-
         //set bottom navigation bar listeners
         bottomNavigationBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
             @Override
             public void onSelect(int position) {
-
 
                 switch (position) {
 
@@ -144,12 +146,7 @@ public class MainFrontPageActivity extends AppCompatActivity
                     case 4:
                         openDictionary();
                         break;
-
                 }
-
-
-
-
             }
         });
 
@@ -222,6 +219,8 @@ public class MainFrontPageActivity extends AppCompatActivity
 
         LoginActivity.connectPermissions();
 
+
+
         permissionsRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -238,6 +237,8 @@ public class MainFrontPageActivity extends AppCompatActivity
             }
         });
     }
+
+
 
   /*  private void initializeViews() {
 
@@ -438,8 +439,6 @@ public class MainFrontPageActivity extends AppCompatActivity
             openInboxFragment();
         }
 
-
-
         if (id == R.id.home) {
            openHome();
         }
@@ -460,6 +459,13 @@ public class MainFrontPageActivity extends AppCompatActivity
                     .commit();
         }
 
+        if(id == R.id.calculator) {
+            android.app.Fragment fragment = new Calculator();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_place_holder, fragment)
+                    .commit();
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -473,7 +479,6 @@ public class MainFrontPageActivity extends AppCompatActivity
             //initialize firebasetokens
             FirebaseMessaging.getInstance().subscribeToTopic("notifications");
             String token = FirebaseInstanceId.getInstance().getToken();
-
 
             OkHttpClient client = new OkHttpClient();
 

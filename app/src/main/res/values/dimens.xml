@@ -6,4 +6,10 @@
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="MARGIN_BOTTOM">56dp</dimen>
+
+
+
+    //Calculator
+    <dimen name="CALCULATOR_BTN_LENGTH">60dp</dimen>
 </resources>

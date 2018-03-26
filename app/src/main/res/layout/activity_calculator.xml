@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/MARGIN_BOTTOM"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:textSize="15sp"
+        android:layout_weight="0.1"
+        android:gravity="right"
+        android:id="@+id/mini_calculator_screen"
+        android:layout_marginTop="55dp"
+         />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="right"
+        android:textSize="50sp"
+        android:layout_weight="0.2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/zero"
+        android:cursorVisible="false"
+        android:background="@color/light_gray"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="2dp"
+        android:id="@+id/calculator_screen" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.16"
+        android:gravity="center"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/num_kepad_opening_bracket"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/opening_bracket" />
+
+
+        <Button
+            android:id="@+id/num_kepad_closing_bracket"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/closing_bracket" />
+
+
+        <Button
+            android:id="@+id/num_keypad_percentage"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/percentage" />
+
+
+        <Button
+            android:id="@+id/num_keypad_delete"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/delete"
+            android:backgroundTint="@android:color/holo_red_light"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.16"
+        android:gravity="center"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/num_kepad_7"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/seven" />
+
+
+        <Button
+            android:id="@+id/num_keypad_8"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/eight" />
+
+
+        <Button
+            android:id="@+id/num_keypad_9"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/nine" />
+
+
+        <Button
+            android:id="@+id/num_keypad_division"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/division" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.16"
+        android:gravity="center"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/num_kepad_4"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/four" />
+
+
+        <Button
+            android:id="@+id/num_kepad_5"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/five" />
+
+
+        <Button
+            android:id="@+id/num_keypad_6"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/six" />
+
+
+        <Button
+            android:id="@+id/num_keypad_multiplication"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/multiplication" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.16"
+        android:gravity="center"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/num_kepad_1"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/one" />
+
+
+        <Button
+            android:id="@+id/num_kepad_2"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/two" />
+
+
+        <Button
+            android:id="@+id/num_keypad_3"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/three" />
+
+
+        <Button
+            android:id="@+id/num_keypad_subtraction"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/subtraction" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.16"
+        android:gravity="center"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/num_kepad_0"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/zero" />
+
+
+        <Button
+            android:id="@+id/num_kepad_dot"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/dot" />
+
+
+        <Button
+            android:id="@+id/num_keypad_equals"
+            android:layout_width="20dp"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/equals" />
+
+
+        <Button
+            android:id="@+id/num_keypad_addition"
+            android:layout_width="20dp"
+            android:layout_height="@dimen/CALCULATOR_BTN_LENGTH"
+            android:layout_weight="0.25"
+            android:text="@string/addition" />
+
+    </LinearLayout>
+
+</LinearLayout>

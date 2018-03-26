@@ -15,7 +15,6 @@
 
       <include layout="@layout/app_bar_layout" android:id="@+id/frnt_pg_toolbar" />
 
-
       <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
           android:id="@+id/bottom_bar"
           android:layout_width="match_parent"
@@ -24,8 +23,6 @@
           android:background="@android:color/white"
           app:activeTabColor="@color/colorPrimary"
           app:inactiveTabColor="@color/bottomBarDefaultTextColor"/>
-
-
 
   </RelativeLayout>
 

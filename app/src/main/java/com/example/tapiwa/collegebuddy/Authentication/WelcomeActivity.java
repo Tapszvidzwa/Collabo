@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -29,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private FirebaseAnalytics mFBAnalytics;
     private Boolean isUser;
     private Activity activity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +108,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     NewUser user = dataSnapshot.getValue(NewUser.class);
                     GenericMethods.saveUserCredentialsLocally(
                             activity,
-                            user.name,
+                            "tapiwa",
                             user_email,
                             user_uid
                     );
@@ -135,6 +138,8 @@ public class WelcomeActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+
 }
 
 
