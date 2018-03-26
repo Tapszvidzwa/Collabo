@@ -138,7 +138,7 @@ public class CalculatorEngineTest {
     @Test
     public void posNegTest3() throws Exception {
         double delta = 0.1;
-        //simple subtraction test
+
         String input = "1 - -1 - -1 - -1";
         double output;
         double expected = 4;
@@ -152,7 +152,7 @@ public class CalculatorEngineTest {
     @Test
     public void posNegTest4() throws Exception {
         double delta = 0.1;
-        //simple subtraction test
+
         String input = "-1 / 3 x -4";
         double output;
         double expected = 1.3333333333;
@@ -166,7 +166,7 @@ public class CalculatorEngineTest {
     @Test
     public void bracketsTest1() throws Exception {
         double delta = 0.1;
-        //simple subtraction test
+        //brackets at end of expression
         String input = "2 x (5 + 2)";
         double output;
         double expected = 14;
@@ -181,7 +181,7 @@ public class CalculatorEngineTest {
     @Test
     public void bracketsTest2() throws Exception {
         double delta = 0.1;
-        //simple subtraction test
+        //brackets in the middle of expression
         String input = "14 / (3 + 4) + 4";
         double output;
         double expected = 6.0;
@@ -207,7 +207,7 @@ public class CalculatorEngineTest {
     @Test
     public void bracketsTest4() throws Exception {
         double delta = 0.1;
-
+        //brackets at beginning of expression
         String input = "(3 - 1) / 8 x 9";
         double output;
         double expected = 2.25;
@@ -220,7 +220,7 @@ public class CalculatorEngineTest {
     @Test
     public void bracketsTest5() throws Exception {
         double delta = 0.1;
-        //simple subtraction test
+        //brackets in the middle test
         String input = "5 + (3 + 4 / 2 - 4) + 9";
         double output;
         double expected = 9.0;
