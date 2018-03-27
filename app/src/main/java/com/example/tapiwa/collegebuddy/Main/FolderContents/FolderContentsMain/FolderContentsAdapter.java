@@ -105,9 +105,6 @@ holder.cardView.setCardBackgroundColor(Color.WHITE);
                     }
                 });
 
-
-
-
         return row;
     }
 

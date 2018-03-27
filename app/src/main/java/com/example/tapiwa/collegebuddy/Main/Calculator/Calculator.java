@@ -167,7 +167,6 @@ public class Calculator extends Fragment {
 
                 copy_display_to_mini_screen();
                 calculate_result();
-                //resetSignChecks();
                 previous_char_operator = true;
             }
         });

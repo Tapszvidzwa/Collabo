@@ -12,4 +12,5 @@
 
     //Calculator
     <dimen name="CALCULATOR_BTN_LENGTH">60dp</dimen>
+    <dimen name="CALCULATRO_BTN_WIDTH">15dp</dimen>
 </resources>
