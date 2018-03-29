@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_goal_layout"
+    android:id="@+id/fragment_tasks_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
    >
@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Completed"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/APP_MARGIN_TOP"
         android:textSize="22sp"
         android:paddingBottom="2dp"
         android:layout_centerHorizontal="true"
@@ -22,17 +22,17 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:orientation="horizontal"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@id/percentage_completed"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:id="@+id/progress_outer_bar"
             android:background="@android:color/darker_gray"
             >
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="20dp"
                 android:id="@+id/progress_inner_bar"
                 android:orientation="horizontal"
                 android:background="@android:color/holo_blue_light"
@@ -68,18 +68,17 @@
         android:text="You have no goals set"
         android:layout_below="@id/resting_dude"/>
 
-
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/resetGoal"
+        android:id="@+id/add_task"
         android:layout_above="@id/bottom_bar"
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_refresh_white_24px"
+        app:srcCompat="@drawable/fab_add"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="@dimen/APP_MARGIN_BOTTOM"
         />
 
 </RelativeLayout>

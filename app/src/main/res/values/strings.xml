@@ -183,9 +183,25 @@
 
 
     //Activity titles
-
+    <string name="MainFrontPageActivity">MainFrontPage</string>
 
 
     //Fragment titles
+    <string name="TaskFragment">Tasks</string>
+
+
+    //File names
+    <string name="Tasks_File">tasks.json</string>
+
+
+    //Error Messages
+    <string name="Tasks_file_creation">Error occured</string>
+
+
+    //Tasks Fragment
+    <string name="Add_new_task">What\'s the new task</string>
+    <string name="Warning_to_delete_task">Are you sure?</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="congratulation_msg">You have completed 100% of your tasks</string>
 
 </resources>

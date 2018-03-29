@@ -17,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -28,7 +27,7 @@ import com.example.tapiwa.collegebuddy.Main.Calculator.Calculator;
 import com.example.tapiwa.collegebuddy.Main.Folder.ChooseFolderActivity;
 import com.example.tapiwa.collegebuddy.Main.Folder.ClassesAdapter;
 import com.example.tapiwa.collegebuddy.Main.Folder.NewClass;
-import com.example.tapiwa.collegebuddy.Main.FolderContents.Goals.GoalsFragment;
+import com.example.tapiwa.collegebuddy.Main.Tasks.TaskFragment;
 import com.example.tapiwa.collegebuddy.Main.Inbox.InboxFragment;
 import com.example.tapiwa.collegebuddy.Main.NewFeatures.NewFeaturesFragment;
 import com.example.tapiwa.collegebuddy.Main.UserProfile.UserProfileFragment;
@@ -141,7 +140,7 @@ public class MainFrontPageActivity extends AppCompatActivity
                         CameraGalleryUpload.takePicture(MainFrontPageActivity.this, "MainFrontPage");
                         break;
                     case 3:
-                        openGoals();
+                        openTasks();
                         break;
                     case 4:
                         openDictionary();
@@ -167,7 +166,7 @@ public class MainFrontPageActivity extends AppCompatActivity
                        CameraGalleryUpload.takePicture(MainFrontPageActivity.this, "MainFrontPage");
                        break;
                    case 3:
-                       openGoals();
+                       openTasks();
                        break;
                    case 4:
                        openDictionary();
@@ -316,8 +315,8 @@ public class MainFrontPageActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        toolbar.setTitle("Collabo");
-        AppUsageAnalytics.incrementPageVisitCount("MainFrontPage");
+        toolbar.setTitle(R.string.app_name);
+        AppUsageAnalytics.incrementPageVisitCount(getText(R.string.MainFrontPageActivity).toString());
         AppUsageAnalytics.recordTime();
     }
 
@@ -328,33 +327,27 @@ public class MainFrontPageActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-
-        //// TODO: 8/1/17 Change these settings to custom settings
-        if (id == R.id.action_settings) {
-            Intent settings = new Intent(MainFrontPageActivity.this, Settings.class);
-            startActivity(settings);
+        switch (id) {
+            case R.id.action_settings:
+                Intent settings = new Intent(MainFrontPageActivity.this, Settings.class);
+                startActivity(settings);
+                break;
+            case R.id.send_feedback:
+                Intent feedback = new Intent(MainFrontPageActivity.this, SendFeedBackActivity.class);
+                startActivity(feedback);
+                break;
+            case R.id.send_invite:
+                GenericMethods.sendInvitation(MainFrontPageActivity.this);
+                break;
+            case R.id.class_front_page_info:
+                showGrinnellTime();
+                break;
+            case R.id.sign_out:
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.signOut();
+                this.finish();
+                break;
         }
-
-        if (id == R.id.send_feedback) {
-            Intent feedback = new Intent(MainFrontPageActivity.this, SendFeedBackActivity.class);
-            startActivity(feedback);
-        }
-
-        if(id == R.id.send_invite) {
-            GenericMethods.sendInvitation(MainFrontPageActivity.this);
-        }
-
-        if(id == R.id.class_front_page_info) {
-           showGrinnellTime();
-        }
-
-        if(id == R.id.sign_out) {
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.signOut();
-            this.finish();
-        }
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -393,7 +386,6 @@ public class MainFrontPageActivity extends AppCompatActivity
     }
 
     private void openInbox() {
-
         CurrentFragment = "Inbox";
             android.app.Fragment fragment = new InboxFragment();
             getFragmentManager().beginTransaction()
@@ -401,10 +393,10 @@ public class MainFrontPageActivity extends AppCompatActivity
                     .commit();
     }
 
-    private void openGoals() {
+    private void openTasks() {
 
-        CurrentFragment = "Goals";
-        android.app.Fragment fragment = new InboxFragment();
+        CurrentFragment = getString(R.string.TaskFragment);
+        android.app.Fragment fragment = new TaskFragment();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_place_holder, fragment)
                 .commit();
@@ -442,7 +434,6 @@ public class MainFrontPageActivity extends AppCompatActivity
         if (id == R.id.home) {
            openHome();
         }
-
 
         if(id == R.id.profile) {
             android.app.Fragment fragment = new UserProfileFragment();
