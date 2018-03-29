@@ -12,8 +12,11 @@ import java.util.LinkedList;
 public class CalculatorEngine {
 
     private LinkedList<Datum> lst;
-    private String expression;
+    public String expression;
     public boolean error = false;
+
+    public CalculatorEngine() {
+    }
 
     public CalculatorEngine(String expression) {
         this.lst = new LinkedList<>();
@@ -86,13 +89,81 @@ public class CalculatorEngine {
         return bd.doubleValue();
     }
 
+    private int findInnerMostBracket(String expression) {
+
+        for(int i = 0; i < expression.length(); i++) {
+            if(expression.charAt(i) == '(') {
+                if(containsOpeningBracket(expression.substring(i + 1))){
+                    continue;
+                } else {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+
+    private int findNextClosingBracket(String expression) {
+
+        for(int i = 0; i < expression.length(); i++) {
+            if(expression.charAt(i) == ')') {
+                if(containsOpeningBracket(expression.substring(i + 1))){
+                    continue;
+                } else {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+
+    private boolean containsOpeningBracket(String expression) {
+        for(int i = 0; i < expression.length(); i++) {
+            if(expression.charAt(i) == '(') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void evaluateBrackets() {
+        int startIndex, endIndex;
+        double result;
+
+        while((startIndex = findInnerMostBracket(expression)) != -1) {
+            endIndex = findNextClosingBracket(expression);
+
+            CalculatorEngine calculatorEngine = new CalculatorEngine(expression.substring(startIndex + 1, endIndex));
+            result = calculatorEngine.getResult();
+
+            StringBuilder newExpression = new StringBuilder();
+            newExpression.append(expression);
+            newExpression.replace(startIndex, endIndex + 1, Double.toString(result));
+
+            expression = newExpression.toString();
+        }
+
+    }
+
+    //populates the linked list with the data
     private void populatelst() {
+
         boolean digits = false;
         StringBuilder value = new StringBuilder();
 
+        //evaluates all the expressions in the brackets first and updates the expression
+        evaluateBrackets();
+
         for (int i = 0; i < expression.length(); i++) {
+
+            char c = expression.charAt(i);
+
             //if we find a digit, just append it to value
-            if (Character.isDigit(expression.charAt(i))) {
+            if (Character.isDigit(c) || c == '.') {
                 value.append(expression.charAt(i));
                 digits = true;
 
@@ -109,8 +180,9 @@ public class CalculatorEngine {
                 }
                 continue;
             }
+
             //if you reach a space character
-            if (Character.isSpaceChar(expression.charAt(i))) {
+            if (Character.isSpaceChar(c)) {
                 //if the previous values before the space were digits
                 if (digits) {
                     //determine the sign of the digits
@@ -132,7 +204,7 @@ public class CalculatorEngine {
                 continue;
             }
 
-            if(expression.charAt(i) == '-' || expression.charAt(i) == '+') {
+            if(c == '-' || c == '+') {
                if(Character.isDigit(expression.charAt(i + 1))) {
                    value.append(expression.charAt(i));
                    digits = true;

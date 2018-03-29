@@ -223,11 +223,54 @@ public class CalculatorEngineTest {
         //brackets in the middle test
         String input = "5 + (3 + 4 / 2 - 4) + 9";
         double output;
-        double expected = 9.0;
+        double expected = 15.0;
 
         CalculatorEngine calculatorEngine = new CalculatorEngine(input);
         output = calculatorEngine.getResult();
         assertEquals("bracketsTest5 failed", expected, output, delta);
+    }
+
+    /* DOUBLE NUMS TEST */
+
+    @Test
+    public void doubleNumsSimple() throws Exception {
+        double delta = 0.1;
+
+        String input = "3.2 + 7.8 + 4";
+        double output;
+        double expected = 15.0;
+
+        CalculatorEngine calculatorEngine = new CalculatorEngine(input);
+        output = calculatorEngine.getResult();
+        assertEquals("simple doubles test failed", expected, output, delta);
+    }
+
+
+    @Test
+    public void doubleNumsAverage() throws Exception {
+        double delta = 0.1;
+        //brackets in the mid
+        String input = "3.44445 + 8.9323 x 9.432 / 2.31";
+        double output;
+        double expected = 39.9160749351;
+
+        CalculatorEngine calculatorEngine = new CalculatorEngine(input);
+        output = calculatorEngine.getResult();
+        assertEquals("doubles average test failed", expected, output, delta);
+    }
+
+
+    @Test
+    public void doubleNumsWorst() throws Exception {
+        double delta = 0.1;
+        //brackets in the middle test
+        String input = "3 x 2898 - 2.32 + 12312.31 + (3.231 - 2312.1) / 4.3 x 2";
+        double output;
+        double expected = 19930.0974419;
+
+        CalculatorEngine calculatorEngine = new CalculatorEngine(input);
+        output = calculatorEngine.getResult();
+        assertEquals("doubles worst test failed", expected, output, delta);
     }
 
 
@@ -259,8 +302,6 @@ public class CalculatorEngineTest {
         assertEquals("extremeTests failed", expected, output, delta);
     }
 
-
-
     @Test
     public void extremeTests2() throws Exception {
         double delta = 0.1;
@@ -273,6 +314,36 @@ public class CalculatorEngineTest {
         output = calculatorEngine.getResult();
         assertEquals("extremeTests2 failed", expected, output, delta);
     }
+
+    @Test
+    public void findInnerBrackets() throws Exception {
+        double delta = 0.1;
+        //division by zero
+        String input = "(";
+        int output;
+        double expected = 0;
+
+        CalculatorEngine calculatorEngine = new CalculatorEngine();
+        output = calculatorEngine.findInnerMostBracket(input);
+        assertEquals("findInnerBrackets failed", expected, output, delta);
+    }
+
+
+    @Test
+    public void bracketEvaluationTest() throws Exception {
+        double delta = 0.1;
+        //division by zero
+        String input = "1 + (3 x (2 + 2)) + 4";
+        String output;
+        String expected = "1 + 12.0 + 4";
+
+        CalculatorEngine calculatorEngine = new CalculatorEngine(input);
+        calculatorEngine.evaluateBrackets();
+        output = calculatorEngine.expression;
+        assertEquals("bracketsEvaluationTest failed", expected, output);
+    }
+
+
 
 
 

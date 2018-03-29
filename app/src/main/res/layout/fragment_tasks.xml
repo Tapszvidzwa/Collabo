@@ -10,7 +10,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Completed"
         android:layout_marginTop="@dimen/APP_MARGIN_TOP"
         android:textSize="22sp"
         android:paddingBottom="2dp"

@@ -45,7 +45,7 @@ public class CompletionBar {
     }
 
     public void percentageCompleted() {
-        int pcnt = (int) Math.floor(((double) completed / total) * 100);
+        int pcnt = (int) Math.ceil(((double) completed / total) * 100);
         String percentage = pcnt + "%";
         completionTxtV.setText(percentage);
     }
